@@ -1,0 +1,1102 @@
+//
+// Created by LaiChao on 2020/10/31.
+//
+
+#include "../DataStructure/Tree.h"
+#include "../include/DailyCoding.h"
+#include <queue>
+#include <unordered_set>
+#include <unordered_map>
+#include <algorithm>
+#include <numeric>
+#include <stack>
+#include <string>
+
+////// 无法使用to_string所以，有两个函数报错
+
+using namespace std;
+
+/// ================================== GLOBAL VAR ==================================
+vector<string> gAns;
+string gTemp;
+string gDic[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+unordered_map<string, priority_queue<string, vector<string>, std::greater<string>>> gvfindItine;
+vector<string> gSTK;
+vector<vector<int>> gWinnerDPArr(21, vector<int>(21, 0));
+
+///// ================================== HELP FUNC ==================================
+void findSubsequencesbackTracking(vector<int> &nums, vector<vector<int>> &res, vector<int> &subSeq, int startIndex) {
+    if (subSeq.size() > 1) {
+        res.push_back(subSeq);    // 不return
+    }
+    unordered_set<int> uSet;
+    for (int i = startIndex; i < nums.size(); i++) {
+        if ((subSeq.empty() || nums[i] >= subSeq.back()) && uSet.find(nums[i]) == uSet.end()) {
+            subSeq.push_back(nums[i]);
+            findSubsequencesbackTracking(nums, res, subSeq, i + 1);
+            subSeq.pop_back();
+            uSet.insert(nums[i]);
+        }
+    }
+}
+
+void letterCombinationDFS(string &digits, int index) {
+    if (index == digits.size()) {
+        gAns.push_back(gTemp);
+        return;
+    }
+    int t = digits[index] - '0';
+    for (int i = 0; i < gDic[t].size(); i++) {
+        gTemp[index] = gDic[t][i];
+        letterCombinationDFS(digits, index + 1);
+    }
+}
+
+void findItineDFS(const string &curr) {
+    while (gvfindItine.count(curr) && gvfindItine[curr].size() > 0) {
+        string tmp = gvfindItine[curr].top();
+        gvfindItine[curr].pop();
+        findItineDFS(move(tmp));
+    }
+    gSTK.emplace_back(curr);
+}
+
+int winnerSum(const vector<int> &nums, int L, int R) {
+    int sum = 0;
+    for (int i = L; i <= R; i++) {
+        sum += nums[i - 1];
+    }
+    return sum;
+}
+
+int winnerDFS(int L, int R, const vector<int> &nums) {
+    if (gWinnerDPArr[L][R] != -1) {
+        return gWinnerDPArr[L][R];    // 已经计算过
+    }
+    if (L == R) {
+        return gWinnerDPArr[L][R] = nums[L - 1];
+    }
+    return gWinnerDPArr[L][R] = winnerSum(nums, L, R) - min(winnerDFS(L + 1, R, nums), winnerDFS(L, R - 1, nums));
+}
+
+int sumNumDFS(TreeNode *root, int preSum) {
+    if (root == nullptr) {
+        return 0;
+    }
+    int sum = preSum * 10 + root->val;
+    if (root->left == nullptr && root->right == nullptr) {
+        return sum;
+    } else {
+        return sumNumDFS(root->left, sum) + sumNumDFS(root->right, sum);
+    }
+}
+
+int n_queen_backtrack(int n, int row, unordered_set<int> &columns, unordered_set<int> &diagonals1,
+                      unordered_set<int> &diagonals2) {
+    if (row == n) {
+        return 1;
+    } else {
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            if (columns.find(i) != columns.end()) {
+                continue;
+            }
+            int diagonal1 = row - i;
+            if (diagonals1.find(diagonal1) != diagonals1.end()) {
+                continue;
+            }
+            int diagonal2 = row + i;
+            if (diagonals2.find(diagonal2) != diagonals2.end()) {
+                continue;
+            }
+            columns.insert(i);
+            diagonals1.insert(diagonal1);
+            diagonals2.insert(diagonal2);
+            count += n_queen_backtrack(n, row + 1, columns, diagonals1, diagonals2);
+            columns.erase(i);
+            diagonals1.erase(diagonal1);
+            diagonals2.erase(diagonal2);
+        }
+        return count;
+    }
+}
+
+int get_list_length(ListNode *head) {    // 获取链表的长度
+    int len = 0;
+    while (head) {
+        len++;
+        head = head->next;
+    }
+    return len;
+}
+
+void help_quick_sort(vector<int> &arr, int l, int r) {     // 快速排序
+    if (l < r) {
+        int i = l, j = r, save = arr[l];
+        while (i < j) {
+            while (i < j && arr[j] > save) {
+                j--;
+            }
+            if (i < j) {
+                arr[i] = arr[j];
+                i++;
+            }
+            while (i < j && arr[i] <= arr[j]) {    /// 从左往右扫描，找到比轴点大的放右边
+                i++;
+            }
+            if (i < j) {
+                arr[j] = arr[i];
+            }
+        }
+        arr[i] = save;        /// 还原轴点值
+        help_quick_sort(arr, l, i - 1);
+        help_quick_sort(arr, i + 1, r);
+    }
+}
+
+bool isValid(vector<string> &board, int row, int col) {
+    int n = board.size();
+    //检查同列
+    for (int i = 0; i < row; i++) {
+        if (board[i][col] == 'Q') {
+            return false;
+        }
+    }
+    //右上
+    for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+        if (board[i][j] == 'Q') {
+            return false;
+        }
+    }
+    //左上
+    for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+        if (board[i][j] == 'Q') {
+            return false;
+        }
+    }
+    return true;
+}
+
+void nQueensBacktrack(vector<string> &board, int row, vector<vector<string>> &res) {
+    if (row == board.size()) {
+        res.emplace_back(board);
+        return;
+    }
+
+    int n = board[row].size();
+    for (int col = 0; col < n; ++col) {
+        if (!isValid(board, row, col)) {
+            continue;
+        }
+        board[row][col] = 'Q';
+        nQueensBacktrack(board, row + 1, res);
+        board[row][col] = '.';
+    }
+}
+
+//void buildTreePath(TreeNode*&root, string s, vector<string>&path) {
+//    if (root != nullptr) {
+//        s += to_string(root->val);
+//        if (root->left == nullptr&&root->right == nullptr) {
+//            path.push_back(s);
+//        }
+//        else {
+//            s += "->";
+//            buildTreePath(root->left, s, path);
+//            buildTreePath(root->right, s, path);
+//        }
+//    }
+//}
+
+int DailyCoding::numJewelsInStones(string J, string S) {
+    if (J.empty() || S.empty()) {
+        return 0;
+    }
+    unordered_map<char, int> hashMap;
+    for (char &i : J) {
+        hashMap[i]++;
+    }
+    int res = 0;
+    for (char &i : S) {
+        if (hashMap[i]) {
+            res++;
+        }
+    }
+    return res;
+}
+
+vector<int> DailyCoding::twoSum(vector<int> &nums, int target) {
+    unordered_map<int, int> hashMap;
+    for (int i = 0; i < nums.size(); i++) {
+        auto iter = hashMap.find(target - nums[i]);
+        if (iter != hashMap.end()) {
+            return {iter->second, i};
+        }
+        hashMap[nums[i]] = i;
+    }
+    return {};
+}
+
+void DailyCoding::reverseString(vector<char> &s) {
+    int left = 0, right = s.size() - 1;
+    while (left < right) {
+        swap(s[left], s[right]);
+        left++, right--;
+    }
+}
+
+char DailyCoding::findTheDifference(string s, string t) {
+    vector<int> charHash(26, 0);
+    for (int i = 0; i < s.length(); i++) {
+        charHash[s[i] - 'a']++;
+    }
+    for (int i = 0; i < t.length(); i++) {
+        charHash[t[i] - 'a'];
+    }
+    for (int i = 0; i < charHash.size(); i++) {
+        if (charHash[i] == 1) {
+            return (char) ('a' + charHash[i]);
+        }
+    }
+    return 'a';
+}
+
+bool DailyCoding::hasCycle(ListNode *head) {
+    if (head == nullptr) {
+        return false;
+    }
+    ListNode *fast = head, *slow = head;
+    while (fast->next && slow->next) {
+        if (fast->next->next == nullptr) {
+            return false;
+        } else {
+            fast = fast->next->next;
+            slow = slow->next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool DailyCoding::canPartition(vector<int> &nums) {
+    int n = nums.size();
+    if (n < 2) {
+        return false;
+    }
+    int sum = accumulate(nums.begin(), nums.end(), 0);
+    int maxNum = *max_element(nums.begin(), nums.end());
+    if (sum & 1) {
+        return false;
+    }
+    int target = sum / 2;
+    if (maxNum > target) {
+        return false;
+    }
+    vector<vector<int>> dp(n, vector<int>(target + 1, 0));
+    for (int i = 0; i < n; i++) {
+        dp[i][0] = true;
+    }
+    dp[0][nums[0]] = true;
+    for (int i = 1; i < n; i++) {
+        int num = nums[i];
+        for (int j = 1; j <= target; j++) {
+            if (j >= num) {
+                dp[i][j] = dp[i - 1][j] | dp[i - 1][j - num];
+            } else {
+                dp[i][j] = dp[i - 1][j];
+            }
+        }
+    }
+    return dp[n - 1][target];
+}
+
+int DailyCoding::getMinimumDifference(TreeNode *root) {
+    if (root == nullptr || (root->left == nullptr && root->right == nullptr)) {
+        return 0;
+    }
+    vector<int> allRes;
+    queue<TreeNode *> qNodes;
+    qNodes.push(root);
+    while (!qNodes.empty()) {
+        TreeNode *currNode = qNodes.front();
+        qNodes.pop();
+        allRes.push_back(currNode->val);
+        if (currNode->left != nullptr) {
+            qNodes.push(currNode->left);
+        }
+        if (currNode->right != nullptr) {
+            qNodes.push(currNode->right);
+        }
+    }
+    sort(allRes.begin(), allRes.end());
+    int res = 99999;
+    for (int i = 0; i < allRes.size() - 1; i++) {
+        //res = min(res, __abs(allRes[i] - allRes[i + 1]));
+    }
+    return res;
+}
+
+ListNode *DailyCoding::swapPairs(ListNode *head) {
+    if (head == nullptr || head->next == nullptr) {
+        return head;
+    }
+    ListNode *preNode = new ListNode(0);
+    preNode->next = head;
+    ListNode *tmpNode = preNode;
+    while (tmpNode->next != nullptr && tmpNode->next->next != nullptr) {
+        ListNode *node1 = tmpNode->next;
+        ListNode *node2 = tmpNode->next->next;
+        tmpNode->next = node2;
+        node1->next = node2->next;
+        node2->next = node1;
+        tmpNode = node1;    // 此时 node1 在前
+    }
+    return preNode->next;
+}
+
+vector<string> DailyCoding::commonChars(vector<string> &A) {
+    if (A.empty()) {
+        return {};
+    }
+    if (A.size() == 1) {
+        return A;
+    }
+    vector<vector<int>> allHash(A.size(), vector<int>(26, 0));
+    for (int i = 0; i < A.size(); i++) {
+        string currStr = A[i];
+        for (int j = 0; j < currStr.size(); j++) {
+            int hash = currStr[j] - 'a';
+            allHash[i][hash]++;
+        }
+    }
+    vector<string> resVec;
+    for (int i = 0; i < 26; i++) {
+        char c = (char) ('a' + i);
+        string s(c, 1);
+        int minCount = 99999;
+        bool flag = true;    // 检查是否这个字符至少每个出现一次
+        for (int j = 0; j < allHash.size(); j++) {
+            if (allHash[j][i] == 0) {
+                flag = false;
+                break;
+            }
+            minCount = min(minCount, allHash[j][i]);
+        }
+        if (flag) {
+            for (int k = 0; k < minCount; k++) {
+                resVec.push_back(s);
+            }
+        }
+    }
+    return resVec;
+}
+
+Node *DailyCoding::connect(Node *root) {
+    if (root == nullptr) {
+        return root;
+    }
+    queue<Node *> qNodes;
+    qNodes.push(root);
+    while (!qNodes.empty()) {
+        int currSize = qNodes.size();
+        for (int i = 0; i < currSize; i++) {
+            Node *currNode = qNodes.front();
+            qNodes.pop();
+            if (i < currSize - 1) {
+                currNode->next = qNodes.front();
+            }
+            if (currNode->left != nullptr) {
+                qNodes.push(currNode->left);
+            }
+            if (currNode->right != nullptr) {
+                qNodes.push(currNode->right);
+            }
+        }
+    }
+    return root;
+}
+
+vector<int> DailyCoding::sortedSquares(vector<int> &A) {
+    if (A.empty()) {
+        return A;
+    }
+    for (int i = 0; i < A.size(); i++) {
+        A[i] *= A[i];
+    }
+    sort(A.begin(), A.end());
+    return A;
+}
+
+ListNode *DailyCoding::removeNthFromEnd2(ListNode *head, int n) {
+    if (head == nullptr) {
+        return head;
+    }
+    int len = 0;
+    ListNode *phead = head;
+    ListNode *dummy = new ListNode(0);
+    dummy->next = head;
+    while (phead) {
+        len++;
+        phead = phead->next;
+    }
+    len -= n;
+    phead = dummy;
+    while (len) {
+        len--;
+        phead = phead->next;
+    }
+    phead->next = phead->next->next;
+    return dummy->next;
+}
+
+bool DailyCoding::backspaceCompare(string S, string T) {
+    if (S.empty() && T.empty()) {
+        return true;
+    }
+    stack<char> sS, sT;
+    for (int i = 0; i < S.length(); i++) {
+        if (S[i] == '#') {
+            if (!sS.empty()) {
+                sS.pop();
+            }
+        } else {
+            sS.push(S[i]);
+        }
+    }
+    for (int i = 0; i < T.length(); i++) {
+        if (T[i] == '#') {
+            if (sT.empty()) {
+                sT.pop();
+            }
+        } else {
+            sT.push(T[i]);
+        }
+    }
+    if (sS.size() != sT.size()) {
+        return false;
+    }
+    while (!sS.empty() && !sT.empty()) {
+        if (sS.top() != sT.top()) {
+            return false;
+        }
+        sS.pop();
+        sT.pop();
+    }
+    return true;
+    // return sS == sT;
+}
+
+void DailyCoding::reorderList(ListNode *head) {
+    if (head == nullptr || head->next == nullptr) {
+        return;
+    }
+    vector<ListNode *> vAllNodes;    // 保存所有的节点地址
+    ListNode *tmp = head;
+    while (tmp != nullptr) {
+        vAllNodes.push_back(tmp);
+        tmp = tmp->next;
+    }
+    int le_pos = 0, rg_pos = vAllNodes.size() - 1;
+    while (le_pos < rg_pos) {
+        vAllNodes[le_pos]->next = vAllNodes[rg_pos];
+        le_pos++;
+        if (le_pos == rg_pos) {
+            break;
+        }
+        vAllNodes[rg_pos]->next = vAllNodes[le_pos];
+        rg_pos--;
+    }
+    vAllNodes[le_pos]->next = nullptr;
+}
+
+bool DailyCoding::isLongPressedName(string name, string typed) {
+    int i = 0, j = 0;
+    while (j < typed.length()) {
+        if (i < name.length() && name[i] == typed[j]) {
+            i++;
+            j++;
+        } else if (j > 0 && typed[j] == typed[j - 1]) {
+            j++;
+        } else {
+            return false;
+        }
+    }
+    return i == name.length();
+}
+
+vector<int> DailyCoding::partitionLabels(string S) {
+    if (S.empty()) {
+        return {};
+    }
+    /// 建立哈希表
+    vector<int> hash(26, -1);
+    for (int i = 0; i < S.size(); i++) {
+        hash[S[i] - 'a'] = i;    /// 保留每个字母的最后的出现位置
+    }
+    vector<int> answer;
+    int pos = 0;
+    while (pos < S.size()) {
+        int curr_last_pos = hash[S[pos] - 'a'];
+        for (int i = pos + 1; i < curr_last_pos; i++) {        /// curr_last_pos随时可能更新
+            curr_last_pos = max(curr_last_pos, hash[S[i] - 'a']);
+        }
+        answer.push_back(curr_last_pos - pos + 1);
+        pos = curr_last_pos + 1;
+    }
+    return answer;
+}
+
+bool DailyCoding::isPalindrome(ListNode *head) {
+    if (head == nullptr || head->next == nullptr) {
+        return true;
+    }
+    vector<int> getNumbers;
+    while (head) {
+        getNumbers.push_back(head->val);
+        head = head->next;
+    }
+    int l = 0, r = getNumbers.size() - 1;
+    while (l < r) {
+        if (getNumbers[l] != getNumbers[r]) {
+            return false;
+        }
+        l++, r--;
+    }
+    return true;
+}
+
+int DailyCoding::videoStitching(vector<vector<int>> &clips, int T) {
+    vector<int> dp(T + 1, 99999 - 1);
+    dp[0] = 0;
+    for (int i = 1; i <= T; i++) {
+        for (auto &it : clips) {
+            if (it[0] < i && i <= it[1]) {
+                dp[i] = min(dp[i], dp[it[0]] + 1);
+            }
+        }
+    }
+    return dp[T] == 99999 - 1 ? -1 : dp[T];
+}
+
+int DailyCoding::longestMountain(vector<int> &A) {
+    int n = A.size();
+    if (!n) {
+        return 0;
+    }
+    vector<int> left(n);
+    for (int i = 1; i < n; ++i) {
+        left[i] = (A[i - 1] < A[i] ? left[i - 1] + 1 : 0);
+    }
+    vector<int> right(n);
+    for (int i = n - 2; i >= 0; --i) {
+        right[i] = (A[i + 1] < A[i] ? right[i + 1] + 1 : 0);
+    }
+
+    int ans = 0;
+    for (int i = 0; i < n; ++i) {
+        if (left[i] > 0 && right[i] > 0) {
+            ans = max(ans, left[i] + right[i] + 1);
+        }
+    }
+    return ans;
+}
+
+vector<int> DailyCoding::smallerNumbersThanCurrent(vector<int> &nums) {
+    vector<int> cnt(101, 0);
+    int n = nums.size();
+    for (int i = 0; i < n; i++) {
+        cnt[nums[i]]++;
+    }
+    for (int i = 1; i <= 100; i++) {
+        cnt[i] += cnt[i - 1];
+    }
+    vector<int> ret;
+    for (int i = 0; i < n; i++) {
+        ret.push_back(nums[i] == 0 ? 0 : cnt[nums[i] - 1]);
+    }
+    return ret;
+}
+
+vector<int> DailyCoding::preorderTraversal(TreeNode *root) {
+    if (root == nullptr) {
+        return {};
+    }
+    vector<int> res;
+    stack<TreeNode *> sNodes;
+    sNodes.push(root);
+    while (!sNodes.empty()) {
+        TreeNode *curr = sNodes.top();
+        sNodes.pop();
+        res.push_back(curr->val);
+        if (curr->right != nullptr) {
+            sNodes.push(curr->right);
+        }
+        if (curr->left != nullptr) {
+            sNodes.push(curr->left);
+        }
+    }
+    return res;
+}
+
+bool DailyCoding::uniqueOccurrences(vector<int> &arr) {
+    if (arr.empty()) {
+        return true;
+    }
+    int maxNum = *max_element(arr.begin(), arr.end());
+    vector<int> hash(maxNum + 1, 0);
+    for (int i = 0; i < arr.size(); i++) {
+        hash[arr[i]]++;
+    }
+    maxNum = *max_element(hash.begin(), hash.end());
+    vector<int> hashhash(maxNum + 1, 0);
+    for (int i = 0; i < hash.size(); i++) {
+        hashhash[hash[i]]++;
+    }
+    for (int i = 0; i < hashhash.size(); i++) {
+        if (hashhash[i] > 1) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int DailyCoding::sumNumbers2(TreeNode *root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    int res = 0;
+    queue<TreeNode *> qNodes;
+    queue<int> qNums;
+    qNodes.push(root);
+    qNums.push(root->val);
+    while (!qNodes.empty()) {
+        TreeNode *cNode = qNodes.front();
+        qNodes.pop();
+        int cNum = qNums.front();
+        qNums.pop();
+        if (cNode->left == nullptr && cNode->right == nullptr) {
+            res += cNum;
+        } else {
+            if (cNode->left != nullptr) {
+                qNodes.push(cNode->left);
+                qNums.push(cNode->left->val + cNum * 10);
+            }
+            if (cNode->right != nullptr) {
+                qNodes.push(cNode->right);
+                qNums.push(cNode->right->val + cNum * 10);
+            }
+        }
+    }
+    return res;
+}
+
+int DailyCoding::minDepth(TreeNode *root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    int depRes = 1;
+    queue<TreeNode *> qNodes;
+    qNodes.push(root);
+    while (!qNodes.empty()) {
+        int currSize = qNodes.size();
+        depRes++;
+        for (int i = 0; i < currSize; i++) {
+            TreeNode *tmpNode = qNodes.front();
+            qNodes.pop();
+            if (tmpNode->left != nullptr) {
+                qNodes.push(tmpNode->left);
+            }
+            if (tmpNode->right != nullptr) {
+                qNodes.push(tmpNode->right);
+            }
+            if (tmpNode->left == nullptr && tmpNode->right == nullptr) {
+                return depRes;
+            }
+        }
+    }
+    return depRes;
+}
+
+bool DailyCoding::judgeCircle(string moves) {
+    if (moves.empty()) {
+        return true;
+    }
+    stack<int> leftRight;
+    stack<int> upDown;
+    for (int i = 0; i < moves.size(); i++) {
+        switch (moves[i]) {
+            case 'R':
+                leftRight.push(1);
+                break;
+            case 'L':
+                leftRight.push(-1);
+                break;
+            case 'U':
+                upDown.push(1);
+                break;
+            case 'P':
+                upDown.push(-1);
+                break;
+
+            default:
+                break;
+        }
+    }
+    int tmp01 = 0, tmp02 = 0;
+    while (!leftRight.empty()) {
+        tmp01 += leftRight.top();
+        leftRight.pop();
+    }
+    while (!upDown.empty()) {
+        tmp02 += upDown.top();
+        upDown.pop();
+    }
+    return tmp01 == 0 && tmp02 == 0;
+}
+
+string DailyCoding::shortestPalindrome(string s) {
+    int n = s.length();
+    vector<int> fail(n, -1);
+    for (int i = 1; i < n; i++) {
+        int j = fail[i - 1];
+        while (j != -1 && s[j + 1] != s[i]) {
+            j = fail[j];
+        }
+        if (s[j + 1] == s[i]) {
+            fail[i] = j + 1;
+        }
+    }
+    int best = -1;
+    for (int i = n - 1; i >= 0; i--) {
+        while (best != -1 && s[best + 1] != s[i]) {
+            best = fail[best];
+        }
+        if (s[best + 1] == s[i]) {
+            ++best;
+        }
+    }
+    string add = (best == n - 1 ? "" : s.substr(best + 1, n));
+    reverse(add.begin(), add.end());
+    return add + s;
+}
+
+string DailyCoding::reverseWords(string s) {
+    string resStr;
+    string tmp;
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] != ' ') {
+            tmp += s[i];
+        } else {
+            reverse(tmp.begin(), tmp.end());
+            resStr += tmp;
+            resStr += ' ';
+            tmp = "";
+        }
+    }
+    if (!tmp.empty()) {
+        reverse(tmp.begin(), tmp.end());
+        resStr += tmp;
+    }
+    return resStr;
+}
+
+bool DailyCoding::canVisitAllRooms(vector<vector<int>> &rooms) {
+    vector<bool> flagRoom(rooms.size(), false);
+    for (int i = 0; i < rooms.size(); i++) {
+        for (auto _key : rooms[i]) {
+            flagRoom[_key] = true;
+        }
+    }
+    for (bool _flag : flagRoom) {
+        if (!_flag) {
+            return _flag;
+        }
+    }
+    return true;
+}
+
+bool DailyCoding::PredictTheWinner(vector<int> &nums) {
+    if (nums.size() < 3) {
+        return true;
+    }
+    int n = nums.size();
+    // dp[i][j]代表在i,j范围内，先手比后手拿到最好的多多少
+    vector<vector<int>> dpArr(n, vector<int>(n, 0));
+    for (int i = 0; i < n; i++) {
+        //当i==j时，取得的在i-j范围内，最大值即为 nums[i]
+        dpArr[i][i] = nums[i];
+    }
+    for (int len = 1; len < n; len++) {
+        for (int i = 0, j = len; j < n; i++, j++) {
+            dpArr[i][j] = max(nums[i] - dpArr[i + 1][j], nums[j] - dpArr[i][j - 1]);
+        }
+    }
+    //返回dp[0][n-1],因为开始是0，最后一次是n-1,代表在0~n-1范围内先手是否能比后手多
+    return dpArr[0][n - 1] >= 0;
+}
+
+bool DailyCoding::isNumber(string s) {
+    int n = s.size();
+    int index = -1;
+    bool hasDot = false, hasE = false, hasOp = false, hasNum = false;
+    while (index < n && s[++index] == ' ');        /// 跳过前面的空格
+    while (index < n) {
+        if ('0' <= s[index] && s[index] <= '9') {
+            hasNum = true;
+        } else if (s[index] == 'e' || s[index] == 'E') {
+            if (hasE || !hasNum) return false;
+            hasE = true;
+            hasOp = false;
+            hasDot = false;
+            hasNum = false;
+        } else if (s[index] == '+' || s[index] == '-') {
+            if (hasOp || hasNum || hasDot) return false;
+            hasOp = true;
+        } else if (s[index] == '.') {
+            if (hasDot || hasE) return false;
+            hasDot = true;
+        } else if (s[index] == ' ') {
+            break;
+        } else {
+            return false;
+        }
+        ++index;
+    }
+    while (index < n && s[++index] == ' ');
+    return hasNum && index == n;
+}
+
+//vector<string> DailyCoding::binaryTreePaths2(TreeNode * root) {
+//    if (root == nullptr) {
+//        return{};
+//    }
+//    vector<string>resPaths;
+//    queue<TreeNode*>qNodes;
+//    queue<string>qPath;
+//    qNodes.push(root);
+//    qPath.push(to_string(root->val));
+//    while (!qNodes.empty()) {
+//        TreeNode* tmpNode = qNodes.front();
+//        string tmpPath = qPath.front();
+//        qNodes.pop();
+//        qPath.pop();
+//
+//        if (tmpNode->left == nullptr&&tmpNode->right == nullptr) {
+//            resPaths.push_back(tmpPath);
+//        }
+//        else {
+//            string tmp;
+//            if (tmpNode->left != nullptr) {
+//                qNodes.push(tmpNode->left);
+//                tmp += tmpPath;
+//                tmp += "->";
+//                tmp += to_string(tmpNode->left->val);
+//                qPath.push(tmp);
+//            }
+//            if (tmpNode->right != nullptr) {
+//                qNodes.push(tmpNode->right);
+//                tmp += tmpPath;
+//                tmp += "->";
+//                tmp += to_string(tmpNode->right->val);
+//                qPath.push(tmp);
+//            }
+//        }
+//    }
+//    return resPaths;
+//}
+
+vector<vector<int>> DailyCoding::levelOrderBottom(TreeNode *root) {
+    if (root == nullptr) {
+        return {};
+    }
+    queue<TreeNode *> qNodes;
+    qNodes.push(root);
+    vector<vector<int>> resVec;
+    while (!qNodes.empty()) {
+        int size = qNodes.size();
+        vector<int> tmpVec;
+        for (int i = 0; i < size; i++) {
+            TreeNode *tmpCurr = qNodes.front();
+            qNodes.pop();
+            int val = tmpCurr->val;
+            tmpVec.push_back(val);
+            if (tmpCurr->left != nullptr) {
+                qNodes.push(tmpCurr->left);
+            }
+            if (tmpCurr->right != nullptr) {
+                qNodes.push(tmpCurr->right);
+            }
+        }
+        resVec.push_back(tmpVec);
+    }
+    reverse(resVec.begin(), resVec.end());
+    return resVec;
+}
+
+vector<int> DailyCoding::topKFrequent(vector<int> &nums, int k) {
+    unordered_map<int, int> numsHash;
+    for (int i = 0; i < nums.size(); i++) {
+        numsHash[nums[i]]++;
+    }
+    vector<pair<int, int>> vNumberCounts;
+    for (int i = 0; i < nums.size(); i++) {
+        if (numsHash[nums[i]]) {
+            vNumberCounts.push_back(make_pair(numsHash[nums[i]], nums[i]));
+        }
+    }
+    sort(vNumberCounts.begin(), vNumberCounts.end(),
+         [](pair<int, int> a, pair<int, int> b) { return a.first > b.first; });
+    vector<int> res;
+    for (int i = 0; i < k; i++) {
+        res.push_back(vNumberCounts[i].second);
+    }
+    return res;
+}
+
+int DailyCoding::sumOfLeftLeaves(TreeNode *root) {
+    int res = 0;
+    if (root == nullptr) {
+        return res;
+    }
+    stack<TreeNode *> sNodes;
+    sNodes.push(root);
+    while (!sNodes.empty()) {
+        TreeNode *currNode = sNodes.top();
+        sNodes.pop();
+        if (currNode->left != nullptr && currNode->left->left == nullptr && currNode->left->right == nullptr) {
+            res += currNode->left->val;
+        }
+        if (currNode->left != nullptr) {
+            sNodes.push(currNode->left);
+        }
+        if (currNode->right != nullptr) {
+            sNodes.push(currNode->right);
+        }
+    }
+    return res;
+}
+
+int DailyCoding::sumOfLeftLeaves2(TreeNode *root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    int res = 0;
+    if (root->left != nullptr && root->left->left == nullptr && root->left->right == nullptr) {
+        res += root->left->val;
+    }
+    return res + sumOfLeftLeaves2(root->left) + sumOfLeftLeaves2(root->right);
+}
+
+int DailyCoding::minCameraCover(TreeNode *root) {
+    return 0;
+}
+
+TreeNode *DailyCoding::buildTree(vector<int> &inorder, vector<int> &postorder) {
+    return nullptr;
+}
+
+vector<vector<int>> DailyCoding::findSubsequences(vector<int> &nums) {
+    vector<vector<int>> res;
+    vector<int> subseq;
+    findSubsequencesbackTracking(nums, res, subseq, 0);
+    return res;
+}
+
+vector<string> DailyCoding::letterCombinations(string digits) {
+    if (digits.empty()) {
+        return gAns;
+    }
+    gTemp.resize(digits.size());
+    letterCombinationDFS(digits, 0);
+    return gAns;
+}
+
+vector<string> DailyCoding::findItinerary(vector<vector<string>> &tickets) {
+    for (auto &it : tickets) {
+        gvfindItine[it[0]].emplace(it[1]);
+    }
+    findItineDFS("JFK");
+
+    reverse(gSTK.begin(), gSTK.end());
+    return gSTK;
+}
+
+bool DailyCoding::PredictTheWinner2(vector<int> &nums) {
+    return winnerSum(nums, 1, nums.size()) <= (winnerDFS(1, nums.size(), nums) * 2);
+}
+
+int DailyCoding::sumNumbers(TreeNode *root) {
+    return sumNumDFS(root, 0);
+}
+
+int DailyCoding::totalNQueens(int n) {
+    unordered_set<int> columns, diagonals1, diagonals2;
+    return n_queen_backtrack(n, 0, columns, diagonals1, diagonals2);
+}
+
+ListNode *DailyCoding::removeNthFromEnd(ListNode *head, int n) {
+    if (head == nullptr) {
+        return head;
+    }
+    ListNode *dummy = new ListNode(0, head);
+    int length = get_list_length(head);
+    ListNode *curr = dummy;
+    for (int i = 1; i < length - n + 1; i++) {
+        curr = curr->next;
+    }
+    curr->next = curr->next->next;
+    ListNode *ans = dummy->next;
+    delete dummy;
+    return ans;
+}
+
+void DailyCoding::sortColors(vector<int> &nums) {
+    // sort(nums.begin(), nums.end());
+    if (nums.size() < 2) {
+        return;
+    }
+    help_quick_sort(nums, 0, nums.size() - 1);
+}
+
+vector<vector<string>> DailyCoding::solveNQueens(int n) {
+    /// 经典的回溯算法
+    vector<vector<string>> res;
+    vector<string> board(n, string(n, '.'));
+    nQueensBacktrack(board, 0, res);
+    return res;
+}
+
+vector<vector<int>> DailyCoding::combine(int n, int k) {
+
+}
+
+//vector<string> DailyCoding::binaryTreePaths(TreeNode *root) {
+//    vector<string> res;
+//    if (root == nullptr) {
+//        return res;
+//    }
+//    queue<TreeNode *> qNodes;
+//    queue<string> qPath;
+//    qNodes.push(root);
+//    qPath.push(to_string(root->val));
+//    while (!qNodes.empty()) {
+//        TreeNode *currNode = qNodes.front();
+//        string currPath = qPath.front();
+//        qNodes.pop();
+//        qPath.pop();
+//        if (currNode->left == nullptr && currNode->right == nullptr) {
+//            res.push_back(currPath);
+//        }
+//        if (currNode->left != nullptr) {
+//            qNodes.push(currNode->left);
+//            qPath.push(currPath + "->" + to_string(currNode->left->val));
+//        }
+//        if (currNode->right != nullptr) {
+//            qNodes.push(currNode->right);
+//            qPath.push(currPath + "->" + to_string(currNode->right->val));
+//        }
+//    }
+//    return res;
+//}
