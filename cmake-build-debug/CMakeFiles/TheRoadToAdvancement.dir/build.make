@@ -80,45 +80,77 @@ CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj: CMakeFiles/TheRoadToAdvanc
 CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj: CMakeFiles/TheRoadToAdvancement.dir/includes_CXX.rsp
 CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj: ../src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\LaiChao\TheRoadToAdvancement\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj"
-	D:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\TheRoadToAdvancement.dir\src\main.cpp.obj -c F:\LaiChao\TheRoadToAdvancement\src\main.cpp
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\TheRoadToAdvancement.dir\src\main.cpp.obj -c F:\LaiChao\TheRoadToAdvancement\src\main.cpp
 
 CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.i"
-	D:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\LaiChao\TheRoadToAdvancement\src\main.cpp > CMakeFiles\TheRoadToAdvancement.dir\src\main.cpp.i
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\LaiChao\TheRoadToAdvancement\src\main.cpp > CMakeFiles\TheRoadToAdvancement.dir\src\main.cpp.i
 
 CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.s"
-	D:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\LaiChao\TheRoadToAdvancement\src\main.cpp -o CMakeFiles\TheRoadToAdvancement.dir\src\main.cpp.s
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\LaiChao\TheRoadToAdvancement\src\main.cpp -o CMakeFiles\TheRoadToAdvancement.dir\src\main.cpp.s
 
 CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj: CMakeFiles/TheRoadToAdvancement.dir/flags.make
 CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj: CMakeFiles/TheRoadToAdvancement.dir/includes_CXX.rsp
 CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj: ../src/DailyCoding.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\LaiChao\TheRoadToAdvancement\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj"
-	D:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\TheRoadToAdvancement.dir\src\DailyCoding.cpp.obj -c F:\LaiChao\TheRoadToAdvancement\src\DailyCoding.cpp
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\TheRoadToAdvancement.dir\src\DailyCoding.cpp.obj -c F:\LaiChao\TheRoadToAdvancement\src\DailyCoding.cpp
 
 CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.i"
-	D:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\LaiChao\TheRoadToAdvancement\src\DailyCoding.cpp > CMakeFiles\TheRoadToAdvancement.dir\src\DailyCoding.cpp.i
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\LaiChao\TheRoadToAdvancement\src\DailyCoding.cpp > CMakeFiles\TheRoadToAdvancement.dir\src\DailyCoding.cpp.i
 
 CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.s"
-	D:\MinGW\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\LaiChao\TheRoadToAdvancement\src\DailyCoding.cpp -o CMakeFiles\TheRoadToAdvancement.dir\src\DailyCoding.cpp.s
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\LaiChao\TheRoadToAdvancement\src\DailyCoding.cpp -o CMakeFiles\TheRoadToAdvancement.dir\src\DailyCoding.cpp.s
+
+CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj: CMakeFiles/TheRoadToAdvancement.dir/flags.make
+CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj: CMakeFiles/TheRoadToAdvancement.dir/includes_CXX.rsp
+CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj: ../src/LinkListSolutions.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\LaiChao\TheRoadToAdvancement\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj"
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\TheRoadToAdvancement.dir\src\LinkListSolutions.cpp.obj -c F:\LaiChao\TheRoadToAdvancement\src\LinkListSolutions.cpp
+
+CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.i"
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\LaiChao\TheRoadToAdvancement\src\LinkListSolutions.cpp > CMakeFiles\TheRoadToAdvancement.dir\src\LinkListSolutions.cpp.i
+
+CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.s"
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\LaiChao\TheRoadToAdvancement\src\LinkListSolutions.cpp -o CMakeFiles\TheRoadToAdvancement.dir\src\LinkListSolutions.cpp.s
+
+CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj: CMakeFiles/TheRoadToAdvancement.dir/flags.make
+CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj: CMakeFiles/TheRoadToAdvancement.dir/includes_CXX.rsp
+CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj: ../src/SortSolutions.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\LaiChao\TheRoadToAdvancement\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj"
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe"  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\TheRoadToAdvancement.dir\src\SortSolutions.cpp.obj -c F:\LaiChao\TheRoadToAdvancement\src\SortSolutions.cpp
+
+CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.i"
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E F:\LaiChao\TheRoadToAdvancement\src\SortSolutions.cpp > CMakeFiles\TheRoadToAdvancement.dir\src\SortSolutions.cpp.i
+
+CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.s"
+	"D:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S F:\LaiChao\TheRoadToAdvancement\src\SortSolutions.cpp -o CMakeFiles\TheRoadToAdvancement.dir\src\SortSolutions.cpp.s
 
 # Object files for target TheRoadToAdvancement
 TheRoadToAdvancement_OBJECTS = \
 "CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj" \
-"CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj"
+"CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj" \
+"CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj" \
+"CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj"
 
 # External object files for target TheRoadToAdvancement
 TheRoadToAdvancement_EXTERNAL_OBJECTS =
 
 TheRoadToAdvancement.exe: CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj
 TheRoadToAdvancement.exe: CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj
+TheRoadToAdvancement.exe: CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj
+TheRoadToAdvancement.exe: CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj
 TheRoadToAdvancement.exe: CMakeFiles/TheRoadToAdvancement.dir/build.make
 TheRoadToAdvancement.exe: CMakeFiles/TheRoadToAdvancement.dir/linklibs.rsp
 TheRoadToAdvancement.exe: CMakeFiles/TheRoadToAdvancement.dir/objects1.rsp
 TheRoadToAdvancement.exe: CMakeFiles/TheRoadToAdvancement.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=F:\LaiChao\TheRoadToAdvancement\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable TheRoadToAdvancement.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=F:\LaiChao\TheRoadToAdvancement\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable TheRoadToAdvancement.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\TheRoadToAdvancement.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

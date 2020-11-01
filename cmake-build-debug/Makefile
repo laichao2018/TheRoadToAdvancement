@@ -169,6 +169,60 @@ src/DailyCoding.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.s
 .PHONY : src/DailyCoding.cpp.s
 
+src/LinkListSolutions.obj: src/LinkListSolutions.cpp.obj
+
+.PHONY : src/LinkListSolutions.obj
+
+# target to build an object file
+src/LinkListSolutions.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj
+.PHONY : src/LinkListSolutions.cpp.obj
+
+src/LinkListSolutions.i: src/LinkListSolutions.cpp.i
+
+.PHONY : src/LinkListSolutions.i
+
+# target to preprocess a source file
+src/LinkListSolutions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.i
+.PHONY : src/LinkListSolutions.cpp.i
+
+src/LinkListSolutions.s: src/LinkListSolutions.cpp.s
+
+.PHONY : src/LinkListSolutions.s
+
+# target to generate assembly for a file
+src/LinkListSolutions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.s
+.PHONY : src/LinkListSolutions.cpp.s
+
+src/SortSolutions.obj: src/SortSolutions.cpp.obj
+
+.PHONY : src/SortSolutions.obj
+
+# target to build an object file
+src/SortSolutions.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj
+.PHONY : src/SortSolutions.cpp.obj
+
+src/SortSolutions.i: src/SortSolutions.cpp.i
+
+.PHONY : src/SortSolutions.i
+
+# target to preprocess a source file
+src/SortSolutions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.i
+.PHONY : src/SortSolutions.cpp.i
+
+src/SortSolutions.s: src/SortSolutions.cpp.s
+
+.PHONY : src/SortSolutions.s
+
+# target to generate assembly for a file
+src/SortSolutions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.s
+.PHONY : src/SortSolutions.cpp.s
+
 src/main.obj: src/main.cpp.obj
 
 .PHONY : src/main.obj
@@ -208,6 +262,12 @@ help:
 	@echo ... src/DailyCoding.obj
 	@echo ... src/DailyCoding.i
 	@echo ... src/DailyCoding.s
+	@echo ... src/LinkListSolutions.obj
+	@echo ... src/LinkListSolutions.i
+	@echo ... src/LinkListSolutions.s
+	@echo ... src/SortSolutions.obj
+	@echo ... src/SortSolutions.i
+	@echo ... src/SortSolutions.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

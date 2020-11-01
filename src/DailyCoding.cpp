@@ -194,19 +194,19 @@ void nQueensBacktrack(vector<string> &board, int row, vector<vector<string>> &re
     }
 }
 
-//void buildTreePath(TreeNode*&root, string s, vector<string>&path) {
-//    if (root != nullptr) {
-//        s += to_string(root->val);
-//        if (root->left == nullptr&&root->right == nullptr) {
-//            path.push_back(s);
-//        }
-//        else {
-//            s += "->";
-//            buildTreePath(root->left, s, path);
-//            buildTreePath(root->right, s, path);
-//        }
-//    }
-//}
+void buildTreePath(TreeNode*&root, string s, vector<string>&path) {
+    if (root != nullptr) {
+        s += to_string(root->val);
+        if (root->left == nullptr&&root->right == nullptr) {
+            path.push_back(s);
+        }
+        else {
+            s += "->";
+            buildTreePath(root->left, s, path);
+            buildTreePath(root->right, s, path);
+        }
+    }
+}
 
 int DailyCoding::numJewelsInStones(string J, string S) {
     if (J.empty() || S.empty()) {
@@ -651,11 +651,11 @@ bool DailyCoding::uniqueOccurrences(vector<int> &arr) {
     }
     maxNum = *max_element(hash.begin(), hash.end());
     vector<int> hashhash(maxNum + 1, 0);
-    for (int i = 0; i < hash.size(); i++) {
-        hashhash[hash[i]]++;
+    for (int i : hash) {
+        hashhash[i]++;
     }
-    for (int i = 0; i < hashhash.size(); i++) {
-        if (hashhash[i] > 1) {
+    for (int i : hashhash) {
+        if (i > 1) {
             return false;
         }
     }
@@ -868,45 +868,6 @@ bool DailyCoding::isNumber(string s) {
     return hasNum && index == n;
 }
 
-//vector<string> DailyCoding::binaryTreePaths2(TreeNode * root) {
-//    if (root == nullptr) {
-//        return{};
-//    }
-//    vector<string>resPaths;
-//    queue<TreeNode*>qNodes;
-//    queue<string>qPath;
-//    qNodes.push(root);
-//    qPath.push(to_string(root->val));
-//    while (!qNodes.empty()) {
-//        TreeNode* tmpNode = qNodes.front();
-//        string tmpPath = qPath.front();
-//        qNodes.pop();
-//        qPath.pop();
-//
-//        if (tmpNode->left == nullptr&&tmpNode->right == nullptr) {
-//            resPaths.push_back(tmpPath);
-//        }
-//        else {
-//            string tmp;
-//            if (tmpNode->left != nullptr) {
-//                qNodes.push(tmpNode->left);
-//                tmp += tmpPath;
-//                tmp += "->";
-//                tmp += to_string(tmpNode->left->val);
-//                qPath.push(tmp);
-//            }
-//            if (tmpNode->right != nullptr) {
-//                qNodes.push(tmpNode->right);
-//                tmp += tmpPath;
-//                tmp += "->";
-//                tmp += to_string(tmpNode->right->val);
-//                qPath.push(tmp);
-//            }
-//        }
-//    }
-//    return resPaths;
-//}
-
 vector<vector<int>> DailyCoding::levelOrderBottom(TreeNode *root) {
     if (root == nullptr) {
         return {};
@@ -1069,34 +1030,34 @@ vector<vector<string>> DailyCoding::solveNQueens(int n) {
 }
 
 vector<vector<int>> DailyCoding::combine(int n, int k) {
-
+    return {};
 }
 
-//vector<string> DailyCoding::binaryTreePaths(TreeNode *root) {
-//    vector<string> res;
-//    if (root == nullptr) {
-//        return res;
-//    }
-//    queue<TreeNode *> qNodes;
-//    queue<string> qPath;
-//    qNodes.push(root);
-//    qPath.push(to_string(root->val));
-//    while (!qNodes.empty()) {
-//        TreeNode *currNode = qNodes.front();
-//        string currPath = qPath.front();
-//        qNodes.pop();
-//        qPath.pop();
-//        if (currNode->left == nullptr && currNode->right == nullptr) {
-//            res.push_back(currPath);
-//        }
-//        if (currNode->left != nullptr) {
-//            qNodes.push(currNode->left);
-//            qPath.push(currPath + "->" + to_string(currNode->left->val));
-//        }
-//        if (currNode->right != nullptr) {
-//            qNodes.push(currNode->right);
-//            qPath.push(currPath + "->" + to_string(currNode->right->val));
-//        }
-//    }
-//    return res;
-//}
+vector<string> DailyCoding::binaryTreePaths(TreeNode *root) {
+    vector<string> res;
+    if (root == nullptr) {
+        return res;
+    }
+    queue<TreeNode *> qNodes;
+    queue<string> qPath;
+    qNodes.push(root);
+    qPath.push(to_string(root->val));
+    while (!qNodes.empty()) {
+        TreeNode *currNode = qNodes.front();
+        string currPath = qPath.front();
+        qNodes.pop();
+        qPath.pop();
+        if (currNode->left == nullptr && currNode->right == nullptr) {
+            res.push_back(currPath);
+        }
+        if (currNode->left != nullptr) {
+            qNodes.push(currNode->left);
+            qPath.push(currPath + "->" + to_string(currNode->left->val));
+        }
+        if (currNode->right != nullptr) {
+            qNodes.push(currNode->right);
+            qPath.push(currPath + "->" + to_string(currNode->right->val));
+        }
+    }
+    return res;
+}

@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD 11)
 include_directories(include)
 include_directories(include/DataStructure)
 
-add_executable(TheRoadToAdvancement src/main.cpp src/DailyCoding.cpp)
+add_executable(TheRoadToAdvancement src/main.cpp src/DailyCoding.cpp src/LinkListSolutions.cpp src/SortSolutions.cpp)
