@@ -66,8 +66,9 @@ public:
     static vector<int> smallerNumbersThanCurrent(vector<int> &nums);    // 1365. 有多少小于当前数字的数字
     static vector<int> preorderTraversal(TreeNode *root);    // 144. 二叉树的前序遍历(不用递归)
     static bool uniqueOccurrences(vector<int> &arr);        // 1207. 独一无二的出现次数
-    static int sumNumbers(TreeNode *root);        // 129. 求根到叶子节点数字之和
-    static int sumNumbers2(TreeNode *root);        // 129. 求根到叶子节点数字之和 (BFS)
+    static int sumNumbers(TreeNode *root);          // 129. 求根到叶子节点数字之和
+    static int sumNumbers2(TreeNode *root);         // 129. 求根到叶子节点数字之和 (BFS)
+    static bool validMountainArray(vector<int>& A);        // 941. 有效的山脉数组
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

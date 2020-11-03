@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/DataStructure/List.h
+
+../include/DataStructure/Tree.h
+
+F:/LaiChao/TheRoadToAdvancement/include/DailyCoding.h
+../DataStructure/Tree.h
+F:/LaiChao/TheRoadToAdvancement/DataStructure/Tree.h
+../DataStructure/List.h
+F:/LaiChao/TheRoadToAdvancement/DataStructure/List.h
+iostream
+-
+vector
+-
+string
+-
+
+F:/LaiChao/TheRoadToAdvancement/src/DailyCoding.cpp
+../DataStructure/Tree.h
+F:/LaiChao/TheRoadToAdvancement/DataStructure/Tree.h
+../include/DailyCoding.h
+F:/LaiChao/TheRoadToAdvancement/include/DailyCoding.h
+queue
+-
+unordered_set
+-
+unordered_map
+-
+algorithm
+-
+numeric
+-
+stack
+-
+string
+-
+

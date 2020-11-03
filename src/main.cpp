@@ -1,10 +1,13 @@
+#include "../include/DailyCoding.h"
 #include <iostream>
-#include <string>
+#include <vector>
 
 using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-//    cout << to_string(111) << endl;
+    DailyCoding pD;
+    vector<int> aa{0, 3, 2, 1};;
+    cout << pD.validMountainArray(aa) << endl;
+
     return 0;
 }

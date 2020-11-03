@@ -194,13 +194,12 @@ void nQueensBacktrack(vector<string> &board, int row, vector<vector<string>> &re
     }
 }
 
-void buildTreePath(TreeNode*&root, string s, vector<string>&path) {
+void buildTreePath(TreeNode *&root, string s, vector<string> &path) {
     if (root != nullptr) {
         s += to_string(root->val);
-        if (root->left == nullptr&&root->right == nullptr) {
+        if (root->left == nullptr && root->right == nullptr) {
             path.push_back(s);
-        }
-        else {
+        } else {
             s += "->";
             buildTreePath(root->left, s, path);
             buildTreePath(root->right, s, path);
@@ -1060,4 +1059,18 @@ vector<string> DailyCoding::binaryTreePaths(TreeNode *root) {
         }
     }
     return res;
+}
+
+bool DailyCoding::validMountainArray(vector<int> &A) {
+    if (A.size() < 3) {
+        return false;
+    }
+    int prePos = 0, behPos = A.size() - 1;
+    while (prePos + 1 < A.size() && A[prePos] < A[prePos + 1]) {
+        prePos++;
+    }
+    while (behPos > 0 && A[behPos - 1] > A[behPos]) {
+        behPos--;
+    }
+    return prePos > 0 && behPos < A.size() - 1 && prePos == behPos;
 }

@@ -6,14 +6,13 @@
 #define THEROADTOADVANCEMENT_LIST_H
 
 ///// 剑指offer && LeetCode 中的链表数据结构
-typdef struct ListNode {
+struct ListNode {
     int val;
     struct ListNode *next;
 
     ListNode(int x) : val(x), next(nullptr) {}
 
     ListNode(int x, ListNode *next) : val(x), next(next) {}
-} ListNode, *pLinkList;
-
+};
 
 #endif //THEROADTOADVANCEMENT_LIST_H
