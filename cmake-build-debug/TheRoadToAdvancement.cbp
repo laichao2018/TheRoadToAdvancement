@@ -93,6 +93,9 @@
 		<Unit filename="F:/LaiChao/TheRoadToAdvancement/src/SortSolutions.cpp">
 			<Option target="TheRoadToAdvancement"/>
 		</Unit>
+		<Unit filename="F:/LaiChao/TheRoadToAdvancement/src/TreeSolutions.cpp">
+			<Option target="TheRoadToAdvancement"/>
+		</Unit>
 		<Unit filename="F:/LaiChao/TheRoadToAdvancement/src/main.cpp">
 			<Option target="TheRoadToAdvancement"/>
 		</Unit>

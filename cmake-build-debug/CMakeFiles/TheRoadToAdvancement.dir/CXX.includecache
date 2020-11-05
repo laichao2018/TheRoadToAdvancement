@@ -6,23 +6,31 @@
 
 #IncludeRegexTransform: 
 
-F:/LaiChao/TheRoadToAdvancement/include/DataStructure/List.h
+../include/DataStructure/List.h
 
-F:/LaiChao/TheRoadToAdvancement/include/DataStructure/Tree.h
+../include/DataStructure/Tree.h
 
-F:/LaiChao/TheRoadToAdvancement/include/LinkListSolutions.h
-./DataStructure/List.h
-F:/LaiChao/TheRoadToAdvancement/include/DataStructure/List.h
-./DataStructure/Tree.h
-F:/LaiChao/TheRoadToAdvancement/include/DataStructure/Tree.h
+F:/LaiChao/TheRoadToAdvancement/include/DailyCoding.h
+../DataStructure/Tree.h
+F:/LaiChao/TheRoadToAdvancement/DataStructure/Tree.h
+../DataStructure/List.h
+F:/LaiChao/TheRoadToAdvancement/DataStructure/List.h
+iostream
+-
+vector
+-
+string
+-
+
+F:/LaiChao/TheRoadToAdvancement/include/SortSolutions.h
 vector
 -
 
-F:/LaiChao/TheRoadToAdvancement/src/LinkListSolutions.cpp
-../include/LinkListSolutions.h
-F:/LaiChao/TheRoadToAdvancement/include/LinkListSolutions.h
-stack
--
+F:/LaiChao/TheRoadToAdvancement/src/main.cpp
+../include/DailyCoding.h
+F:/LaiChao/TheRoadToAdvancement/include/DailyCoding.h
+../include/SortSolutions.h
+F:/LaiChao/TheRoadToAdvancement/include/SortSolutions.h
 iostream
 -
 vector

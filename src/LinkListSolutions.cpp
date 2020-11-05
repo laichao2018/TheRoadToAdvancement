@@ -235,6 +235,22 @@ ListNode *LinkListSolution::deleteDuplicates(ListNode *headNode) {
     return headNode;
 }
 
+ListNode *LinkListSolution::swapPairs(ListNode *headNode) {
+    ListNode *preNode = (ListNode *) malloc(sizeof(ListNode));
+    preNode->val = 0;
+    preNode->next = headNode;
+    ListNode *tmpNode = preNode;
+    while (tmpNode->next != nullptr && tmpNode->next->next != nullptr) {
+        ListNode *start = tmpNode->next;
+        ListNode *end = tmpNode->next->next;
+        tmpNode->next = end;
+        start->next = end->next;
+        end->next = start;
+        tmpNode = start;
+    }
+    return preNode->next;
+}
+
 
 
 

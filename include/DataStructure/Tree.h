@@ -12,6 +12,7 @@
 //    struct TreeNode *left;
 //    struct TreeNode *right;
 //};
+
 typedef struct TreeNode {
     int val;
     TreeNode *left;

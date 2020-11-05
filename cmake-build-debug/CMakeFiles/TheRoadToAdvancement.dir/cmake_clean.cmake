@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj"
   "CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj"
   "CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj"
+  "CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj"
   "CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj"
   "TheRoadToAdvancement.exe"
   "TheRoadToAdvancement.exe.manifest"

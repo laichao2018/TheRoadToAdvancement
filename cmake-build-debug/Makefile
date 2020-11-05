@@ -223,6 +223,33 @@ src/SortSolutions.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.s
 .PHONY : src/SortSolutions.cpp.s
 
+src/TreeSolutions.obj: src/TreeSolutions.cpp.obj
+
+.PHONY : src/TreeSolutions.obj
+
+# target to build an object file
+src/TreeSolutions.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj
+.PHONY : src/TreeSolutions.cpp.obj
+
+src/TreeSolutions.i: src/TreeSolutions.cpp.i
+
+.PHONY : src/TreeSolutions.i
+
+# target to preprocess a source file
+src/TreeSolutions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.i
+.PHONY : src/TreeSolutions.cpp.i
+
+src/TreeSolutions.s: src/TreeSolutions.cpp.s
+
+.PHONY : src/TreeSolutions.s
+
+# target to generate assembly for a file
+src/TreeSolutions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.s
+.PHONY : src/TreeSolutions.cpp.s
+
 src/main.obj: src/main.cpp.obj
 
 .PHONY : src/main.obj
@@ -268,6 +295,9 @@ help:
 	@echo ... src/SortSolutions.obj
 	@echo ... src/SortSolutions.i
 	@echo ... src/SortSolutions.s
+	@echo ... src/TreeSolutions.obj
+	@echo ... src/TreeSolutions.i
+	@echo ... src/TreeSolutions.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
