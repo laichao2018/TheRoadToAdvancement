@@ -5,6 +5,7 @@
 #include "TreeSolutions.h"
 #include <queue>
 #include <stack>
+#include <algorithm>
 
 using namespace std;
 
@@ -140,6 +141,27 @@ vector<int> TreeSolution::inorderTraversal(TreeNode *root) {
             root = currNode->right;         // 更新root值，如果为空，将会接着执行出栈
         }
     }
+    return vRes;
+}
+
+vector<int> TreeSolution::postorderTraversal(TreeNode *root) {
+    if (root == nullptr) {
+        return {};
+    }
+    vector<int> vRes;
+    stack<TreeNode *> sNodes;
+    /// 根节点 -> 右节点 -> 左节点 -> 逆序输出
+    while (!sNodes.empty() || root != nullptr) {
+        if (root != nullptr) {
+            sNodes.push(root);
+            vRes.push_back(root->val);
+            root = root->right;
+        }
+        root = sNodes.top();
+        sNodes.pop();
+        root = root->left;
+    }
+    reverse(vRes.begin(), vRes.end());
     return vRes;
 }
 
