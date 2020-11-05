@@ -12,8 +12,6 @@
 #include <stack>
 #include <string>
 
-////// 无法使用to_string所以，有两个函数报错
-
 using namespace std;
 
 /// ================================== GLOBAL VAR ==================================
@@ -206,6 +204,8 @@ void buildTreePath(TreeNode *&root, string s, vector<string> &path) {
         }
     }
 }
+
+///// ================================== CLASS FUNC ==================================
 
 int DailyCoding::numJewelsInStones(string J, string S) {
     if (J.empty() || S.empty()) {
