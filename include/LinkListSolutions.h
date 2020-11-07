@@ -31,7 +31,7 @@ public:
     static ListNode *oddEvenList(ListNode *head);          // 328. 奇偶链表
     static ListNode *deleteNode(ListNode *head, int val);      // 剑指 Offer 18. 删除链表的节点
     static vector<ListNode *> listOfDepth(TreeNode *tree);     // 面试题 04.03. 特定深度节点链表
-    static ListNode *sortList(ListNode *head);        // 148. 排序链表
+    static ListNode *sortList(ListNode *head);              // 148. 排序链表
     static ListNode *partition(ListNode *head, int x);             // 面试题 02.04. 分割链表
     static ListNode *partition2(ListNode *head, int x);            // 面试题 02.04. 分割链表	==== 不使用 vector 写法
     static ListNode *reverseKGroup(ListNode *head, int k);         // 25. K 个一组翻转链表
