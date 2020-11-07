@@ -11,8 +11,17 @@ CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj: ../include/Da
 CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj: ../include/LinkListSolutions.h
 CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj: ../src/LinkListSolutions.cpp
 
+CMakeFiles/TheRoadToAdvancement.dir/src/OfferSolutions.cpp.obj: ../include/DataStructure/List.h
+CMakeFiles/TheRoadToAdvancement.dir/src/OfferSolutions.cpp.obj: ../include/DataStructure/Tree.h
+CMakeFiles/TheRoadToAdvancement.dir/src/OfferSolutions.cpp.obj: ../include/OfferSolutions.h
+CMakeFiles/TheRoadToAdvancement.dir/src/OfferSolutions.cpp.obj: ../src/OfferSolutions.cpp
+
 CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj: ../include/SortSolutions.h
 CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj: ../src/SortSolutions.cpp
+
+CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj: ../include/DataStructure/Tree.h
+CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj: ../include/TreeSolutions.h
+CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj: ../src/TreeSolutions.cpp
 
 CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj: ../include/DataStructure/List.h
 CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj: ../include/DataStructure/Tree.h

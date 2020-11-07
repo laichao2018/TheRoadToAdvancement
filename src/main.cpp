@@ -2,17 +2,17 @@
 #include "../include/SortSolutions.h"
 #include <iostream>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
 int main() {
-    vector<int> aa{0, 3, 10, 5, 11, 6, 14, 2, 1};;
-    SortSolution::bubleSort(aa);
-    for (int &init:aa) {
-        cout << init << "  ";
+    vector<int> aa{10, 100, 1000, 10000};
+    auto res = DailyCoding::sortByBits(aa);
+    for (int ii:res) {
+        cout << ii << "  ";
     }
     cout << endl;
-
 
     return 0;
 }

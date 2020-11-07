@@ -1074,3 +1074,36 @@ bool DailyCoding::validMountainArray(vector<int> &A) {
     }
     return prePos > 0 && behPos < A.size() - 1 && prePos == behPos;
 }
+
+vector<int> DailyCoding::sortByBits(vector<int> &arr) {
+    vector<int> bits(10001, 0);
+    for (int i = 1; i <= 10000; i++) {
+        bits[i] = bits[i >> 1] + (i & 1);   /// *****
+    }
+    sort(arr.begin(), arr.end(), [&](int x, int y) {
+        if (bits[x] < bits[y]) {
+            return true;
+        }
+        if (bits[x] > bits[y]) {
+            return false;
+        }
+        return x < y;
+    });
+    return arr;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
