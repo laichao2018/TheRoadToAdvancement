@@ -164,13 +164,3 @@ vector<int> TreeSolution::postorderTraversal(TreeNode *root) {
     reverse(vRes.begin(), vRes.end());
     return vRes;
 }
-
-
-
-
-
-
-
-
-
-

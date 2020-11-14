@@ -1092,18 +1092,26 @@ vector<int> DailyCoding::sortByBits(vector<int> &arr) {
     return arr;
 }
 
+vector<int> DailyCoding::relativeSortArray(vector<int> &arr1, vector<int> &arr2) {
+    vector<int> vRes;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    for (int i = 0; i < arr2.size(); i++) {
+        int currNum = arr2[i];
+        vector<int>::iterator pos = arr1.begin();
+        while (pos < arr1.end()) {
+            if (*pos == currNum) {
+                vRes.push_back(currNum);
+                arr1.erase(pos);
+            } else {
+                pos++;
+            }
+        }
+    }
+    if (!arr1.empty()) {
+        sort(arr1.begin(), arr1.end());
+        for (int ii:arr1) {
+            vRes.push_back(ii);
+        }
+    }
+    return vRes;
+}

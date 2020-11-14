@@ -28,9 +28,5 @@ CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj: ../include/DataSt
 CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj: ../include/TreeSolutions.h
 CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj: ../src/TreeSolutions.cpp
 
-CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj: ../include/DataStructure/List.h
-CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj: ../include/DataStructure/Tree.h
-CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj: ../include/DailyCoding.h
-CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj: ../include/SortSolutions.h
 CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj: ../src/main.cpp
 

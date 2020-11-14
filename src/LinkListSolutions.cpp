@@ -250,20 +250,3 @@ ListNode *LinkListSolution::swapPairs(ListNode *headNode) {
     }
     return preNode->next;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

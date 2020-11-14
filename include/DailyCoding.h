@@ -70,6 +70,7 @@ public:
     static int sumNumbers2(TreeNode *root);         // 129. 求根到叶子节点数字之和 (BFS)
     static bool validMountainArray(vector<int>& A);        // 941. 有效的山脉数组
     static vector<int> sortByBits(vector<int>& arr);       // 1356. 根据数字二进制下 1 的数目排序
+    static vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2);     // 1122. 数组的相对排序
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
