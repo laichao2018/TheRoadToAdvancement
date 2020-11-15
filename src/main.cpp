@@ -1,3 +1,5 @@
+#include "DailyCoding.h"
+#include "ModuleSolutions.h"
 #include <iostream>
 #include <thread>
 #include <future>
@@ -61,14 +63,13 @@ vector<posStr> analysisData(vector<string> &data) {
     vector<posStr> vRes;
     for (string str : data) {
         posStr pp;
-        auto p1 = str.find("MX");
-//        string gjName = str.substr(0, p1 - 1);
-        pp.gjName = str.substr(0, p1 - 1);
+        auto p1 = str.find("-MX");
+        pp.gjName = str.substr(0, p1);
 
-        auto p2 = str.find("JM");
-        pp.mxName = str.substr(p1, p2 - p1 - 1);
+        auto p2 = str.find("-JM");
+        pp.mxName = str.substr(p1 + 1, p2 - p1 - 1);
 
-        string jmBeh = str.substr(p2);
+        string jmBeh = str.substr(p2 + 1);
         auto pp1 = jmBeh.find("-");
         pp.jmName = jmBeh.substr(0, pp1);
 
@@ -85,11 +86,11 @@ vector<posStr> analysisData(vector<string> &data) {
 }
 
 int main() {
-    vector<string> data{"B7BA655-MX01-JM05-E12-SY1", "B7BA654-MX01-JM04-S25-SY1", "B7BA630-XN-3-MX01-JM05-E6-SY1"};
-    auto res = analysisData(data);
-    for (auto r:res) {
-        cout << r.gjName << "  " << r.mxName << "  " << r.jmName << "  " << r.KongHao << "  " << r.syPoint << endl;
-    }
+//    vector<string> data{"B7BA655-MX01-JM05-E12-SY1", "B7BA654-MX01-JM04-S25-SY1", "B7BA630-XN-3-MX01-JM05-E6-SY1"};
+//    auto res = analysisData(data);
+//    for (auto r:res) {
+//        cout << r.gjName << "  " << r.mxName << "  " << r.jmName << "  " << r.KongHao << "  " << r.syPoint << endl;
+//    }
 
     return 0;
 }

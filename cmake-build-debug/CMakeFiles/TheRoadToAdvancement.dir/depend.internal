@@ -16,6 +16,11 @@ CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj
  F:/LaiChao/TheRoadToAdvancement/include/DataStructure/Tree.h
  F:/LaiChao/TheRoadToAdvancement/include/LinkListSolutions.h
  F:/LaiChao/TheRoadToAdvancement/src/LinkListSolutions.cpp
+CMakeFiles/TheRoadToAdvancement.dir/src/ModuleSolutions.cpp.obj
+ F:/LaiChao/TheRoadToAdvancement/include/DataStructure/List.h
+ F:/LaiChao/TheRoadToAdvancement/include/DataStructure/Tree.h
+ F:/LaiChao/TheRoadToAdvancement/include/ModuleSolutions.h
+ F:/LaiChao/TheRoadToAdvancement/src/ModuleSolutions.cpp
 CMakeFiles/TheRoadToAdvancement.dir/src/OfferSolutions.cpp.obj
  ../include/DataStructure/List.h
  ../include/DataStructure/Tree.h
@@ -29,4 +34,8 @@ CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj
  ../include/TreeSolutions.h
  F:/LaiChao/TheRoadToAdvancement/src/TreeSolutions.cpp
 CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj
+ ../include/DailyCoding.h
+ ../include/DataStructure/List.h
+ ../include/DataStructure/Tree.h
+ ../include/ModuleSolutions.h
  F:/LaiChao/TheRoadToAdvancement/src/main.cpp

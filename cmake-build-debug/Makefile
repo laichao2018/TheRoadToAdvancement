@@ -223,6 +223,33 @@ src/LinkListSolutions.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.s
 .PHONY : src/LinkListSolutions.cpp.s
 
+src/ModuleSolutions.obj: src/ModuleSolutions.cpp.obj
+
+.PHONY : src/ModuleSolutions.obj
+
+# target to build an object file
+src/ModuleSolutions.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/ModuleSolutions.cpp.obj
+.PHONY : src/ModuleSolutions.cpp.obj
+
+src/ModuleSolutions.i: src/ModuleSolutions.cpp.i
+
+.PHONY : src/ModuleSolutions.i
+
+# target to preprocess a source file
+src/ModuleSolutions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/ModuleSolutions.cpp.i
+.PHONY : src/ModuleSolutions.cpp.i
+
+src/ModuleSolutions.s: src/ModuleSolutions.cpp.s
+
+.PHONY : src/ModuleSolutions.s
+
+# target to generate assembly for a file
+src/ModuleSolutions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/ModuleSolutions.cpp.s
+.PHONY : src/ModuleSolutions.cpp.s
+
 src/OfferSolutions.obj: src/OfferSolutions.cpp.obj
 
 .PHONY : src/OfferSolutions.obj
@@ -349,6 +376,9 @@ help:
 	@echo ... src/LinkListSolutions.obj
 	@echo ... src/LinkListSolutions.i
 	@echo ... src/LinkListSolutions.s
+	@echo ... src/ModuleSolutions.obj
+	@echo ... src/ModuleSolutions.i
+	@echo ... src/ModuleSolutions.s
 	@echo ... src/OfferSolutions.obj
 	@echo ... src/OfferSolutions.i
 	@echo ... src/OfferSolutions.s

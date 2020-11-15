@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "F:/LaiChao/TheRoadToAdvancement/src/DailyCoding.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj"
   "F:/LaiChao/TheRoadToAdvancement/src/Important200.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/Important200.cpp.obj"
   "F:/LaiChao/TheRoadToAdvancement/src/LinkListSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj"
+  "F:/LaiChao/TheRoadToAdvancement/src/ModuleSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/ModuleSolutions.cpp.obj"
   "F:/LaiChao/TheRoadToAdvancement/src/OfferSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/OfferSolutions.cpp.obj"
   "F:/LaiChao/TheRoadToAdvancement/src/SortSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj"
   "F:/LaiChao/TheRoadToAdvancement/src/TreeSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj"

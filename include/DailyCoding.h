@@ -71,6 +71,7 @@ public:
     static bool validMountainArray(vector<int>& A);        // 941. 有效的山脉数组
     static vector<int> sortByBits(vector<int>& arr);       // 1356. 根据数字二进制下 1 的数目排序
     static vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2);     // 1122. 数组的相对排序
+    static string removeKdigits(string num, int k);        // 402. 移掉K位数字
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

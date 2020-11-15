@@ -1115,3 +1115,28 @@ vector<int> DailyCoding::relativeSortArray(vector<int> &arr1, vector<int> &arr2)
     }
     return vRes;
 }
+
+string DailyCoding::removeKdigits(string num, int k) {
+    vector<char> stk;
+    for (char &digit:num) {
+        while (stk.size() > 0 && stk.back() > digit && k) {
+            stk.pop_back();
+            k -= 1;
+        }
+        stk.push_back(digit);
+    }
+    while (k > 0) {
+        stk.pop_back();
+        k--;
+    }
+    string res = "";
+    bool isLoadingZero = true;
+    for (char digit:stk) {
+        if (isLoadingZero && digit == '0') {
+            continue;
+        }
+        isLoadingZero = false;
+        res += digit;
+    }
+    return res == "" ? "0" : res;
+}

@@ -6,7 +6,37 @@
 
 #IncludeRegexTransform: 
 
+../include/DailyCoding.h
+../DataStructure/Tree.h
+../DataStructure/Tree.h
+../DataStructure/List.h
+../DataStructure/List.h
+iostream
+-
+vector
+-
+string
+-
+
+../include/DataStructure/List.h
+
+../include/DataStructure/Tree.h
+
+../include/ModuleSolutions.h
+./DataStructure/Tree.h
+../include/DataStructure/Tree.h
+./DataStructure/List.h
+../include/DataStructure/List.h
+vector
+-
+string
+-
+
 F:/LaiChao/TheRoadToAdvancement/src/main.cpp
+DailyCoding.h
+F:/LaiChao/TheRoadToAdvancement/src/DailyCoding.h
+ModuleSolutions.h
+F:/LaiChao/TheRoadToAdvancement/src/ModuleSolutions.h
 iostream
 -
 thread
