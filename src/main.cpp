@@ -85,12 +85,53 @@ vector<posStr> analysisData(vector<string> &data) {
     return vRes;
 }
 
+// 可变参数模板
+template<typename ...T>
+void func(T ... args) {
+    //sizeof...（sizeof后面有3个小点）计算变参个数
+    cout << sizeof...(args) << endl;
+}
+
+class Base {
+public:
+    void f1() {
+
+    }
+
+    int a;
+
+private:
+    void f2() {
+
+    }
+
+    int b;
+};
+
+class Der : public Base {
+public:
+    void df1() {
+
+    }
+
+private:
+    void df2() {
+
+    }
+};
+
 int main() {
 //    vector<string> data{"B7BA655-MX01-JM05-E12-SY1", "B7BA654-MX01-JM04-S25-SY1", "B7BA630-XN-3-MX01-JM05-E6-SY1"};
 //    auto res = analysisData(data);
 //    for (auto r:res) {
 //        cout << r.gjName << "  " << r.mxName << "  " << r.jmName << "  " << r.KongHao << "  " << r.syPoint << endl;
 //    }
+
+    string ss = "C:\\Users\\ZJG-Admine\\Desktop\\sdsds\\dsds\\sdsdsd.xlsx";
+    auto pos = ss.find_last_of('\\');
+    string path = ss.substr(0, pos);
+    cout << path << endl;
+
 
     return 0;
 }

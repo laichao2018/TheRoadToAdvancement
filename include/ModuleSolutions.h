@@ -83,7 +83,8 @@ public:
     static double largestTriangleArea(vector<vector<int>> &points);    // 812. 最大三角形面积
     static int lengthOfLastWord(string s);              // 58. 最后一个单词的长度
     static bool isSameTree(TreeNode *p, TreeNode *q);   // 100. 相同的树
-    static bool isSameTree2(TreeNode *p, TreeNode *q);   // 100. 相同的树(非递归方法)
+    static bool isSameTree2(TreeNode *p, TreeNode *q);  // 100. 相同的树(非递归方法)
+    static bool detectCapitalUse(string word);          // 520. 检测大写字母520. 检测大写字母
 };
 
 class MeduimSolutions {

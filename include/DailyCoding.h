@@ -72,6 +72,9 @@ public:
     static vector<int> sortByBits(vector<int>& arr);       // 1356. 根据数字二进制下 1 的数目排序
     static vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2);     // 1122. 数组的相对排序
     static string removeKdigits(string num, int k);        // 402. 移掉K位数字
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people);              // ***406. 根据身高重建队列
+    vector<vector<int>> allCellsDistOrder(int R, int C, int r0, int c0);            // 1030. 距离顺序排列矩阵单元格
+    ListNode* oddEvenList(ListNode* head);          // 328. 奇偶链表
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

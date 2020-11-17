@@ -128,6 +128,10 @@ void titlePossibilitiesDFS(string &str, vector<int> &visit) {
     }
 }
 
+bool isUpChar(char c) {
+    return c >= 'A' && c <= 'Z';
+}
+
 ///// ================================== CLASS FUNC ==================================
 
 int EasySolutions::cakeNumber(int n) {
@@ -1150,6 +1154,16 @@ bool EasySolutions::isSameTree2(TreeNode *p, TreeNode *q) {
         return false;
     }
     return true;
+}
+
+bool EasySolutions::detectCapitalUse(string word) {
+    int upCounts = 0;
+    for (char c:word) {
+        if (isUpChar(c)) {
+            upCounts++;
+        }
+    }
+    return upCounts == word.size() || !upCounts || (upCounts == 1 && isUpChar(word[0]));
 }
 
 int MeduimSolutions::minOperations(int n) {

@@ -11,6 +11,7 @@
 #include <numeric>
 #include <stack>
 #include <string>
+#include <list>
 
 using namespace std;
 
@@ -1139,4 +1140,67 @@ string DailyCoding::removeKdigits(string num, int k) {
         res += digit;
     }
     return res == "" ? "0" : res;
+}
+
+vector<vector<int>> DailyCoding::reconstructQueue(vector<vector<int>> &people) {
+    if (people.empty()) {
+        return {};
+    }
+    sort(people.begin(), people.end(),
+         [](vector<int> &a, vector<int> &b) { return a[0] == b[0] ? a[1] < b[1] : a[0] > b[0]; });
+    list<vector<int>> tmp;
+    for (int i = 0; i < people.size(); i++) {
+        auto pos = tmp.begin();
+        advance(pos, people[i][1]);  //// 为了使得list可以随机访问
+        tmp.insert(pos, people[i]);
+    }
+    return vector<vector<int>>(tmp.begin(), tmp.end());
+}
+
+vector<vector<int>> DailyCoding::allCellsDistOrder(int R, int C, int r0, int c0) {
+    vector<vector<int>> vRes;
+    vector<vector<bool>> isVisit(R, vector<bool>(C, false));
+    vector<int> dx{0, 0, -1, 1};
+    vector<int> dy{1, -1, 0, 0};
+    queue<pair<int, int>> qCoords;
+    qCoords.push(make_pair(r0, c0));
+    while (!qCoords.empty()) {
+        int currR = qCoords.front().first;
+        int currC = qCoords.front().second;
+        qCoords.pop();
+        if (isVisit[currR][currC]) {
+            continue;
+        } else {
+            vRes.push_back({currR, currC});
+            isVisit[currR][currC] = true;
+
+            for (int i = 0; i < 4; i++) {
+                int moveR = dx[i] + currR;
+                int moveC = dy[i] + currC;
+                if (moveR < 0 || moveR >= R || moveC < 0 || moveC >= C) {
+                    continue;
+                } else {
+                    qCoords.push(make_pair(moveR, moveC));
+                }
+            }
+        }
+    }
+    return vRes;
+}
+
+ListNode *DailyCoding::oddEvenList(ListNode *head) {
+    if (head == nullptr) {
+        return head;
+    }
+    ListNode *evenHead = head->next;
+    ListNode *odd = head;
+    ListNode *even = evenHead;
+    while (even != nullptr && even->next != nullptr) {
+        odd->next = even->next;
+        odd = odd->next;
+        even->next = odd->next;
+        even = even->next;
+    }
+    odd->next = evenHead;
+    return head;
 }
