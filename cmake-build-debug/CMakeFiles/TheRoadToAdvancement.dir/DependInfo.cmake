@@ -4,14 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "F:/LaiChao/TheRoadToAdvancement/src/DailyCoding.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj"
-  "F:/LaiChao/TheRoadToAdvancement/src/Important200.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/Important200.cpp.obj"
-  "F:/LaiChao/TheRoadToAdvancement/src/LinkListSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj"
-  "F:/LaiChao/TheRoadToAdvancement/src/ModuleSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/ModuleSolutions.cpp.obj"
-  "F:/LaiChao/TheRoadToAdvancement/src/OfferSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/OfferSolutions.cpp.obj"
-  "F:/LaiChao/TheRoadToAdvancement/src/SortSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.obj"
-  "F:/LaiChao/TheRoadToAdvancement/src/TreeSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.obj"
-  "F:/LaiChao/TheRoadToAdvancement/src/main.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.obj"
+  "/home/laichao/CLionProjects/TheRoadToAdvancement/src/DailyCoding.cpp" "/home/laichao/CLionProjects/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.o"
+  "/home/laichao/CLionProjects/TheRoadToAdvancement/src/Important200.cpp" "/home/laichao/CLionProjects/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/Important200.cpp.o"
+  "/home/laichao/CLionProjects/TheRoadToAdvancement/src/LinkListSolutions.cpp" "/home/laichao/CLionProjects/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.o"
+  "/home/laichao/CLionProjects/TheRoadToAdvancement/src/ModuleSolutions.cpp" "/home/laichao/CLionProjects/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/ModuleSolutions.cpp.o"
+  "/home/laichao/CLionProjects/TheRoadToAdvancement/src/OfferSolutions.cpp" "/home/laichao/CLionProjects/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/OfferSolutions.cpp.o"
+  "/home/laichao/CLionProjects/TheRoadToAdvancement/src/SortSolutions.cpp" "/home/laichao/CLionProjects/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/SortSolutions.cpp.o"
+  "/home/laichao/CLionProjects/TheRoadToAdvancement/src/TreeSolutions.cpp" "/home/laichao/CLionProjects/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/TreeSolutions.cpp.o"
+  "/home/laichao/CLionProjects/TheRoadToAdvancement/src/main.cpp" "/home/laichao/CLionProjects/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -276,7 +276,7 @@ int EasySolutions::maxProduct(vector<int> &nums) {
     if (nums.size() < 2) {
         return 0;
     }
-    int maxResult = INT_MIN;
+    int maxResult = INT64_MIN;
     for (int i = 0; i < nums.size() - 1; i++) {
         for (int j = i + 1; j < nums.size(); j++) {
             int currResult = (nums[i] - 1) * (nums[j] - 1);
