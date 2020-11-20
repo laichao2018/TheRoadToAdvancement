@@ -84,7 +84,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="F:/LaiChao/TheRoadToAdvancement/src/AcWingsSolutions.cpp">
+		<Unit filename="F:/LaiChao/TheRoadToAdvancement/src/AcWingSolutions.cpp">
 			<Option target="TheRoadToAdvancement"/>
 		</Unit>
 		<Unit filename="F:/LaiChao/TheRoadToAdvancement/src/DailyCoding.cpp">

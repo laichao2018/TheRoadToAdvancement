@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/TheRoadToAdvancement.dir/src/AcWingsSolutions.cpp.obj"
+  "CMakeFiles/TheRoadToAdvancement.dir/src/AcWingSolutions.cpp.obj"
   "CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj"
   "CMakeFiles/TheRoadToAdvancement.dir/src/Important200.cpp.obj"
   "CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj"

@@ -142,32 +142,32 @@ TheRoadToAdvancement/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/build
 .PHONY : TheRoadToAdvancement/fast
 
-src/AcWingsSolutions.obj: src/AcWingsSolutions.cpp.obj
+src/AcWingSolutions.obj: src/AcWingSolutions.cpp.obj
 
-.PHONY : src/AcWingsSolutions.obj
+.PHONY : src/AcWingSolutions.obj
 
 # target to build an object file
-src/AcWingsSolutions.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/AcWingsSolutions.cpp.obj
-.PHONY : src/AcWingsSolutions.cpp.obj
+src/AcWingSolutions.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/AcWingSolutions.cpp.obj
+.PHONY : src/AcWingSolutions.cpp.obj
 
-src/AcWingsSolutions.i: src/AcWingsSolutions.cpp.i
+src/AcWingSolutions.i: src/AcWingSolutions.cpp.i
 
-.PHONY : src/AcWingsSolutions.i
+.PHONY : src/AcWingSolutions.i
 
 # target to preprocess a source file
-src/AcWingsSolutions.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/AcWingsSolutions.cpp.i
-.PHONY : src/AcWingsSolutions.cpp.i
+src/AcWingSolutions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/AcWingSolutions.cpp.i
+.PHONY : src/AcWingSolutions.cpp.i
 
-src/AcWingsSolutions.s: src/AcWingsSolutions.cpp.s
+src/AcWingSolutions.s: src/AcWingSolutions.cpp.s
 
-.PHONY : src/AcWingsSolutions.s
+.PHONY : src/AcWingSolutions.s
 
 # target to generate assembly for a file
-src/AcWingsSolutions.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/AcWingsSolutions.cpp.s
-.PHONY : src/AcWingsSolutions.cpp.s
+src/AcWingSolutions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TheRoadToAdvancement.dir\build.make CMakeFiles/TheRoadToAdvancement.dir/src/AcWingSolutions.cpp.s
+.PHONY : src/AcWingSolutions.cpp.s
 
 src/DailyCoding.obj: src/DailyCoding.cpp.obj
 
@@ -394,9 +394,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... TheRoadToAdvancement
-	@echo ... src/AcWingsSolutions.obj
-	@echo ... src/AcWingsSolutions.i
-	@echo ... src/AcWingsSolutions.s
+	@echo ... src/AcWingSolutions.obj
+	@echo ... src/AcWingSolutions.i
+	@echo ... src/AcWingSolutions.s
 	@echo ... src/DailyCoding.obj
 	@echo ... src/DailyCoding.i
 	@echo ... src/DailyCoding.s

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "F:/LaiChao/TheRoadToAdvancement/src/AcWingsSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/AcWingsSolutions.cpp.obj"
+  "F:/LaiChao/TheRoadToAdvancement/src/AcWingSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/AcWingSolutions.cpp.obj"
   "F:/LaiChao/TheRoadToAdvancement/src/DailyCoding.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/DailyCoding.cpp.obj"
   "F:/LaiChao/TheRoadToAdvancement/src/Important200.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/Important200.cpp.obj"
   "F:/LaiChao/TheRoadToAdvancement/src/LinkListSolutions.cpp" "F:/LaiChao/TheRoadToAdvancement/cmake-build-debug/CMakeFiles/TheRoadToAdvancement.dir/src/LinkListSolutions.cpp.obj"
