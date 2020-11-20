@@ -1166,6 +1166,28 @@ bool EasySolutions::detectCapitalUse(string word) {
     return upCounts == word.size() || !upCounts || (upCounts == 1 && isUpChar(word[0]));
 }
 
+int EasySolutions::minOperations(vector<string> &logs) {
+    if (logs.empty()) {
+        return 0;
+    }
+    int flag = 0;
+    for (string ss:logs) {
+        if (ss.size() > 1) {
+            string moveStr = ss.substr(0, ss.size() - 1);
+            if (moveStr == "..") {
+                if (flag != 0) {
+                    flag--;
+                }
+            } else if (moveStr == ".") {
+                continue;
+            } else {
+                flag++;
+            }
+        }
+    }
+    return flag;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
@@ -1348,3 +1370,5 @@ bool MeduimSolutions::exist(vector<vector<char>> &board, string word) {
     }
     return false;
 }
+
+

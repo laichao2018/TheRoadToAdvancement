@@ -141,12 +141,9 @@ int main() {
 //    for (auto r:res) {
 //        cout << r.gjName << "  " << r.mxName << "  " << r.jmName << "  " << r.KongHao << "  " << r.syPoint << endl;
 //    }
-    string ss = "C:\\Users\\ZJG-Admine\\Desktop\\aaaaa\\bbbbb\\s.xlsx";
-    auto pos = ss.find_last_of(".xls");
-    string s1 = ss.substr(0, pos - 4);
 
-    cout << s1 << endl;
-
+    vector<string> input{"d1/","d2/","./","d3/","../","d31/"};
+    cout << EasySolutions::minOperations(input) << endl;
 
     return 0;
 }

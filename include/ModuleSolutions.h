@@ -86,6 +86,7 @@ public:
     static bool isSameTree(TreeNode *p, TreeNode *q);   // 100. 相同的树
     static bool isSameTree2(TreeNode *p, TreeNode *q);  // 100. 相同的树(非递归方法)
     static bool detectCapitalUse(string word);          // 520. 检测大写字母520. 检测大写字母
+    static int minOperations(vector<string>& logs);     // 1598. 文件夹操作日志搜集器
 };
 
 class MeduimSolutions {
@@ -94,14 +95,15 @@ public:
     static int maxCoins(vector<int> &piles);            // 1561. 你可以获得的最大硬币数目 *****
     static vector<int> processQueries(vector<int> &queries, int m);         // 1409. 查询带键的排列
     static vector<int> deckRevealedIncreasing(vector<int> &deck);           // 950. 按递增顺序显示卡牌
-    static int matrixScore(vector<vector<int>> &A);        // 861. 翻转矩阵后的得分 *****
+    static int matrixScore(vector<vector<int>> &A);         // 861. 翻转矩阵后的得分 *****
     static int countBattleships(vector<vector<char>> &board);               // 419. 甲板上的战舰
-    static int numTilePossibilities(string tiles);        // 1079. 活字印刷  *****  全排序（穷举）(=== 78. 子集 ===)
-    static vector<int> lexicalOrder(int n);                // 386. 字典序排数
+    static int numTilePossibilities(string tiles);          // 1079. 活字印刷  *****  全排序（穷举）(=== 78. 子集 ===)
+    static vector<int> lexicalOrder(int n);                 // 386. 字典序排数
     static vector<vector<int>> combinationSum3(int k, int n);               // 216. 组合总和 III
     static bool exist(vector<vector<char>> &board, string word);            // 79. 单词搜索
-    static vector<vector<int>> combinationSum(vector<int> &candidates, int target);        // 39. 组合总和
-    static vector<vector<int>> combinationSum2(vector<int> &candidates, int target);    // 40. 组合总和 II
+    static vector<vector<int>> combinationSum(vector<int> &candidates, int target);         // 39. 组合总和
+    static vector<vector<int>> combinationSum2(vector<int> &candidates, int target);        // 40. 组合总和 II
+    static int maximalSquare(vector<vector<char>> &matrix);         // 221. 最大正方形
 };
 
 #endif //THEROADTOADVANCEMENT_MODULESOLUTIONS_H
