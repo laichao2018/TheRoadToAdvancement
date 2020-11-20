@@ -120,17 +120,32 @@ private:
     }
 };
 
+class pos {
+public:
+    string aa;
+    int bb;
+    double cc;
+};
+
+pos returnPos() {
+    pos Ppos;
+    Ppos.cc = 0.0;
+    Ppos.bb = 10;
+    Ppos.aa = "dsd";
+    return Ppos;
+}
+
 int main() {
 //    vector<string> data{"B7BA655-MX01-JM05-E12-SY1", "B7BA654-MX01-JM04-S25-SY1", "B7BA630-XN-3-MX01-JM05-E6-SY1"};
 //    auto res = analysisData(data);
 //    for (auto r:res) {
 //        cout << r.gjName << "  " << r.mxName << "  " << r.jmName << "  " << r.KongHao << "  " << r.syPoint << endl;
 //    }
+    string ss = "C:\\Users\\ZJG-Admine\\Desktop\\aaaaa\\bbbbb\\s.xlsx";
+    auto pos = ss.find_last_of(".xls");
+    string s1 = ss.substr(0, pos - 4);
 
-    string ss = "C:\\Users\\ZJG-Admine\\Desktop\\sdsds\\dsds\\sdsdsd.xlsx";
-    auto pos = ss.find_last_of('\\');
-    string path = ss.substr(0, pos);
-    cout << path << endl;
+    cout << s1 << endl;
 
 
     return 0;
