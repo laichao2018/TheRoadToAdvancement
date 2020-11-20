@@ -76,6 +76,7 @@ public:
     static vector<vector<int>> reconstructQueue(vector<vector<int>>& people);           // ***406. 根据身高重建队列
     static vector<vector<int>> allCellsDistOrder(int R, int C, int r0, int c0);         // 1030. 距离顺序排列矩阵单元格
     static ListNode* oddEvenList(ListNode* head);           // 328. 奇偶链表
+    static void moveZeroes(vector<int> &nums);              // 283. 移动零
     static ListNode* insertionSortList(ListNode* head);     // 147. 对链表进行插入排序
 };
 

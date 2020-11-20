@@ -1205,6 +1205,26 @@ ListNode *DailyCoding::oddEvenList(ListNode *head) {
     return head;
 }
 
+void DailyCoding::moveZeroes(vector<int> &nums) {
+    if(nums.empty()||nums.size()==1){
+        return;
+    }
+    int zeroCounts=0;
+    auto pos=nums.begin();
+    while(pos!=nums.end()){
+        if((*pos)==0){
+            zeroCounts++;
+            nums.erase(pos);
+        }else{
+            pos++;
+        }
+    }
+    while(zeroCounts){
+        nums.push_back(0);
+        zeroCounts--;
+    }
+}
+
 ListNode *DailyCoding::insertionSortList(ListNode *head) {
     if (head == nullptr) {
         return head;

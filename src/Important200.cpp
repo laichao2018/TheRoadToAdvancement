@@ -1522,14 +1522,14 @@ int DynamicProgramming::minimumTotal(vector<vector<int>> &triangle) {
     for (int i = 1; i < triangle.size(); i++) {
         for (int j = 1; j < triangle[i].size(); j++) {
             int a = triangle[i][j] + dpArr[i - 1][j - 1];
-            int b = my_int_max;
+            int b = 9999999;
             if (j < triangle[i - 1].size()) {
                 b = triangle[i][j] + dpArr[i - 1][j];
             }
             dpArr[i][j] = min(a, b);
         }
     }
-    int res = my_int_max;
+    int res = 9999999;
     for (int i = 0; i < dpArr.back().size(); i++) {
         res = min(res, dpArr.back()[i]);
     }
