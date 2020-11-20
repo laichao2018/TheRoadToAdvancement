@@ -5,6 +5,7 @@
 #ifndef THEROADTOADVANCEMENT_TREESOLUTIONS_H
 #define THEROADTOADVANCEMENT_TREESOLUTIONS_H
 
+#include "./__OSJudge.h"
 #include "./DataStructure/Tree.h"
 #include <vector>
 

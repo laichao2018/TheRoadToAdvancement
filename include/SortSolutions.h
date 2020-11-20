@@ -5,6 +5,7 @@
 #ifndef THEROADTOADVANCEMENT_SORTSOLUTIONS_H
 #define THEROADTOADVANCEMENT_SORTSOLUTIONS_H
 
+#include "./__OSJudge.h"
 #include <vector>
 
 using namespace std;

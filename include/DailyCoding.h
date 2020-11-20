@@ -5,6 +5,7 @@
 #ifndef THEROADTOADVANCEMENT_DAILYCODING_H
 #define THEROADTOADVANCEMENT_DAILYCODING_H
 
+#include "./__OSJudge.h"
 #include "../DataStructure/Tree.h"
 #include "../DataStructure//List.h"
 #include <iostream>
@@ -59,22 +60,23 @@ public:
     static bool backspaceCompare(string S, string T);        // 844. 比较含退格的字符串
     static void reorderList(ListNode *head);    // 143. 重排链表
     static bool isLongPressedName(string name, string typed);        // 925. 长按键入
-    static vector<int> partitionLabels(string S);        // 763. 划分字母区间
-    static bool isPalindrome(ListNode *head);        // 234. 回文链表
+    static vector<int> partitionLabels(string S);           // 763. 划分字母区间
+    static bool isPalindrome(ListNode *head);               // 234. 回文链表
     static int videoStitching(vector<vector<int>> &clips, int T);        // 1024. 视频拼接
-    static int longestMountain(vector<int> &A);    // 845. 数组中的最长山脉
+    static int longestMountain(vector<int> &A);             // 845. 数组中的最长山脉
     static vector<int> smallerNumbersThanCurrent(vector<int> &nums);    // 1365. 有多少小于当前数字的数字
-    static vector<int> preorderTraversal(TreeNode *root);    // 144. 二叉树的前序遍历(不用递归)
+    static vector<int> preorderTraversal(TreeNode *root);   // 144. 二叉树的前序遍历(不用递归)
     static bool uniqueOccurrences(vector<int> &arr);        // 1207. 独一无二的出现次数
     static int sumNumbers(TreeNode *root);          // 129. 求根到叶子节点数字之和
     static int sumNumbers2(TreeNode *root);         // 129. 求根到叶子节点数字之和 (BFS)
-    static bool validMountainArray(vector<int>& A);        // 941. 有效的山脉数组
-    static vector<int> sortByBits(vector<int>& arr);       // 1356. 根据数字二进制下 1 的数目排序
-    static vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2);     // 1122. 数组的相对排序
-    static string removeKdigits(string num, int k);        // 402. 移掉K位数字
-    vector<vector<int>> reconstructQueue(vector<vector<int>>& people);              // ***406. 根据身高重建队列
-    vector<vector<int>> allCellsDistOrder(int R, int C, int r0, int c0);            // 1030. 距离顺序排列矩阵单元格
-    ListNode* oddEvenList(ListNode* head);          // 328. 奇偶链表
+    static bool validMountainArray(vector<int>& A);         // 941. 有效的山脉数组
+    static vector<int> sortByBits(vector<int>& arr);        // 1356. 根据数字二进制下 1 的数目排序
+    static vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2);         // 1122. 数组的相对排序
+    static string removeKdigits(string num, int k);         // 402. 移掉K位数字
+    static vector<vector<int>> reconstructQueue(vector<vector<int>>& people);           // ***406. 根据身高重建队列
+    static vector<vector<int>> allCellsDistOrder(int R, int C, int r0, int c0);         // 1030. 距离顺序排列矩阵单元格
+    static ListNode* oddEvenList(ListNode* head);           // 328. 奇偶链表
+    static ListNode* insertionSortList(ListNode* head);     // 147. 对链表进行插入排序
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
