@@ -206,6 +206,51 @@ void buildTreePath(TreeNode *&root, string s, vector<string> &path) {
     }
 }
 
+ListNode *helpFuncMergeList(ListNode *l1, ListNode *l2) {
+    ListNode *dummyNode = new ListNode(0);
+    ListNode *tail = dummyNode;
+    while (l1 != nullptr && l2 != nullptr) {
+        if (l1->val <= l2->val) {
+            tail->next = l1;
+            l1 = l1->next;
+            tail = tail->next;
+        } else {
+            tail->next = l2;
+            l2 = l2->next;
+            tail = tail->next;
+        }
+        while (l1 != nullptr) {
+            tail->next = l1;
+            l1 = l1->next;
+            tail = tail->next;
+        }
+        while (l2 != nullptr) {
+            tail->next = l2;
+            l2 = l2->next;
+            tail = tail->next;
+        }
+        return dummyNode->next;
+    }
+}
+
+ListNode *helpFuncMergeSort(ListNode *head) {
+    if (head == nullptr || head->next == nullptr) {
+        return head;
+    }
+    ListNode *fastNode = head->next;
+    ListNode *slowNode = head;
+    while (fastNode != nullptr && fastNode->next != nullptr) {
+        fastNode = fastNode->next->next;
+        slowNode = slowNode->next;
+    }
+    // Slow 是前半部分L1的最后一个结点, 它的next 一定要设置为nullptr
+    ListNode *l2 = slowNode->next;
+    slowNode->next = nullptr;
+    head = helpFuncMergeSort(head);
+    l2 = helpFuncMergeSort(l2);
+    return helpFuncMergeList(head, l2);
+}
+
 ///// ================================== CLASS FUNC ==================================
 
 int DailyCoding::numJewelsInStones(string J, string S) {
@@ -1206,20 +1251,20 @@ ListNode *DailyCoding::oddEvenList(ListNode *head) {
 }
 
 void DailyCoding::moveZeroes(vector<int> &nums) {
-    if(nums.empty()||nums.size()==1){
+    if (nums.empty() || nums.size() == 1) {
         return;
     }
-    int zeroCounts=0;
-    auto pos=nums.begin();
-    while(pos!=nums.end()){
-        if((*pos)==0){
+    int zeroCounts = 0;
+    auto pos = nums.begin();
+    while (pos != nums.end()) {
+        if ((*pos) == 0) {
             zeroCounts++;
             nums.erase(pos);
-        }else{
+        } else {
             pos++;
         }
     }
-    while(zeroCounts){
+    while (zeroCounts) {
         nums.push_back(0);
         zeroCounts--;
     }
@@ -1248,6 +1293,13 @@ ListNode *DailyCoding::insertionSortList(ListNode *head) {
         curr = lastSorted->next;
     }
     return dummyHead->next;
+}
+
+ListNode *DailyCoding::sortList(ListNode *head) {
+    if (head == nullptr || head->next == nullptr) {
+        return head;
+    }
+    return helpFuncMergeSort(head);
 }
 
 

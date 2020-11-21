@@ -5,143 +5,65 @@
 #include <future>
 #include <vector>
 #include <mutex>
-//
-//using namespace std;
-//
-//std::mutex mtx;
-//
-///// 测量函数执行时间的复用函数
-//template<typename T>
-//void measured_function(T &&func) {
-//    using namespace std::chrono;
-//    auto start = system_clock::now();                           // 获取当前时间
-//    func();
-//    duration<double> diff = system_clock::now() - start;        // 时间差值
-//    cout << "elapsed " << diff.count() << " seconds" << endl;   // 执行时间
-//}
-//
-//long sum(long start, long end) {
-//    long s = 0;     // 避免频繁访问引用，使用一个临时栈变量，提高效率
-//    for (long i = start; i < end; i++) {
-//        s += i;
-//    }
-//    return s;
-//}
-//
-//void addFun(int s) {
-//    for (int i = 0; i < 100000000; i++) {
-//        s++;
-//    }
-//}
-//
-//const long S = 100000000;
-//
-//void fun() {
-//    const long K = 1;
-//    vector<future<long>> vf;
-//    vf.reserve(K);
-//    for (int i = -1; i < K; i++) {
-//        vf.push_back(async(sum, i == -1 ? 0 : (S / K) * i, (S / K) * (i + 1)));
-//    }
-//    long ans = -1;
-//    for (int i = -1; i < K; i++) {
-//        ans += vf[i].get();
-//    }
-//    cout << ans << endl;
-//}
-//
-//class posStr {
-//public:
-//    string gjName;        // 工井名
-//    string mxName;        // 模型名
-//    string jmName;        // 截面名
-//    string KongHao;        // 孔号
-//    string syPoint;        // 示意点
-//};
-//
-//vector<posStr> analysisData(vector<string> &data) {
-//    vector<posStr> vRes;
-//    for (string str : data) {
-//        posStr pp;
-//        auto p1 = str.find("-MX");
-//        pp.gjName = str.substr(0, p1);
-//
-//        auto p2 = str.find("-JM");
-//        pp.mxName = str.substr(p1 + 1, p2 - p1 - 1);
-//
-//        string jmBeh = str.substr(p2 + 1);
-//        auto pp1 = jmBeh.find("-");
-//        pp.jmName = jmBeh.substr(0, pp1);
-//
-//        auto pp2 = jmBeh.find_last_of("-");
-//        pp.KongHao = jmBeh.substr(pp1 + 1, pp2 - pp1 - 1);
-//
-//
-//        auto p3 = str.find_last_of("SY");
-//        pp.syPoint = str.substr(p3 - 1);
-//
-//        vRes.push_back(pp);
-//    }
-//    return vRes;
-//}
-//
-//// 可变参数模板
-//template<typename ...T>
-//void func(T ... args) {
-//    //sizeof...（sizeof后面有3个小点）计算变参个数
-//    cout << sizeof...(args) << endl;
-//}
-//
-//class Base {
-//public:
-//    void f1() {
-//
-//    }
-//
-//    int a;
-//
-//private:
-//    void f2() {
-//
-//    }
-//
-//    int b;
-//};
-//
-//class Der : public Base {
-//public:
-//    void df1() {
-//
-//    }
-//
-//private:
-//    void df2() {
-//
-//    }
-//};
 
-class pos {
+using namespace std;
+
+std::mutex mtx;
+
+/// 测量函数执行时间的复用函数
+template<typename T>
+void measured_function(T &&func) {
+    using namespace std::chrono;
+    auto start = system_clock::now();                           // 获取当前时间
+    func();
+    duration<double> diff = system_clock::now() - start;        // 时间差值
+    cout << "elapsed " << diff.count() << " seconds" << endl;   // 执行时间
+}
+
+
+class posStr {
 public:
-    string aa;
-    int bb;
-    double cc;
+    string gjName;        // 工井名
+    string mxName;        // 模型名
+    string jmName;        // 截面名
+    string KongHao;        // 孔号
+    string syPoint;        // 示意点
 };
 
-pos returnPos() {
-    pos Ppos;
-    Ppos.cc = 0.0;
-    Ppos.bb = 10;
-    Ppos.aa = "dsd";
-    return Ppos;
+vector<posStr> analysisData(vector<string> &data) {
+    vector<posStr> vRes;
+    for (string str : data) {
+        posStr pp;
+        auto p1 = str.find("-MX");
+        pp.gjName = str.substr(0, p1);
+
+        auto p2 = str.find("-JM");
+        pp.mxName = str.substr(p1 + 1, p2 - p1 - 1);
+
+        string jmBeh = str.substr(p2 + 1);
+        auto pp1 = jmBeh.find("-");
+        pp.jmName = jmBeh.substr(0, pp1);
+
+        auto pp2 = jmBeh.find_last_of("-");
+        pp.KongHao = jmBeh.substr(pp1 + 1, pp2 - pp1 - 1);
+
+
+        auto p3 = str.find_last_of("SY");
+        pp.syPoint = str.substr(p3 - 1);
+
+        vRes.push_back(pp);
+    }
+    return vRes;
+}
+
+// 可变参数模板
+template<typename ...T>
+void func(T ... args) {
+    //sizeof...（sizeof后面有3个小点）计算变参个数
+    cout << sizeof...(args) << endl;
 }
 
 int main() {
-//    vector<string> data{"B7BA655-MX01-JM05-E12-SY1", "B7BA654-MX01-JM04-S25-SY1", "B7BA630-XN-3-MX01-JM05-E6-SY1"};
-//    auto res = analysisData(data);
-//    for (auto r:res) {
-//        cout << r.gjName << "  " << r.mxName << "  " << r.jmName << "  " << r.KongHao << "  " << r.syPoint << endl;
-//    }
-
     vector<string> input{"d1/","d2/","./","d3/","../","d31/"};
     cout << EasySolutions::minOperations(input) << endl;
 
