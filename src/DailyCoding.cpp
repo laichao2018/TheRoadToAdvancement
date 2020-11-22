@@ -229,8 +229,8 @@ ListNode *helpFuncMergeList(ListNode *l1, ListNode *l2) {
             l2 = l2->next;
             tail = tail->next;
         }
-        return dummyNode->next;
     }
+    return dummyNode->next;
 }
 
 ListNode *helpFuncMergeSort(ListNode *head) {
