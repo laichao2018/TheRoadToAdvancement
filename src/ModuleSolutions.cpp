@@ -1416,6 +1416,4 @@ string MeduimSolutions::convert(string s, int numRows) {
         }
     }
     return res;
-
-
-
+}
