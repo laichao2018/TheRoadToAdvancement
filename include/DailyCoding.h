@@ -79,6 +79,7 @@ public:
     static void moveZeroes(vector<int> &nums);              // 283. 移动零
     static ListNode* insertionSortList(ListNode* head);     // 147. 对链表进行插入排序
     static ListNode* sortList(ListNode* head);              // 148. 排序链表
+    static bool isAnagram(string s, string t);              // 242. 有效的字母异位词
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

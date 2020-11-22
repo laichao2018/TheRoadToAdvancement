@@ -1302,6 +1302,24 @@ ListNode *DailyCoding::sortList(ListNode *head) {
     return helpFuncMergeSort(head);
 }
 
+bool DailyCoding::isAnagram(string s, string t) {
+    if (s.size() != t.size()) {
+        return false;
+    }
+    vector<int> hashS(26, 0), hashT(26, 0);
+    for (int i = 0; i < s.size(); i++) {
+        int i_s = (int) s[i] - 'a';
+        int i_t = (int) t[i] - 'a';
+        hashS[i_s]++, hashT[i_t]++;
+    }
+    for (int i = 0; i < 26; i++) {
+        if (hashS[i] != hashT[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 
 
 
