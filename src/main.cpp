@@ -64,8 +64,7 @@ void func(T ... args) {
 }
 
 int main() {
-    vector<string> input{"d1/","d2/","./","d3/","../","d31/"};
-    cout << EasySolutions::minOperations(input) << endl;
-
+    string ss = "sssdss";
+    cout << MeduimSolutions::longestPalindrome(ss) << endl;
     return 0;
 }

@@ -105,6 +105,7 @@ public:
     static vector<vector<int>> combinationSum2(vector<int> &candidates, int target);        // 40. 组合总和 II
     static int maximalSquare(vector<vector<char>> &matrix);         // 221. 最大正方形
     static string longestPalindrome(string s);          // 5. 最长回文子串
+    static string convert(string s, int numRows);       // 6. Z 字形变换
 };
 
 #endif //THEROADTOADVANCEMENT_MODULESOLUTIONS_H
