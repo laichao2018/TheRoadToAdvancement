@@ -17,23 +17,23 @@ using namespace std;
 class DailyCoding {
 public:
     static int minDepth(TreeNode *root);        // 111. 二叉树的最小深度(Leetcode每日一题 20200821)
-    static vector<vector<int>> findSubsequences(vector<int> &nums);    // 491. 递增子序列
-    static vector<string> letterCombinations(string digits);            // 17. 电话号码的字母组合
+    static vector<vector<int>> findSubsequences(vector<int> &nums); // 491. 递增子序列
+    static vector<string> letterCombinations(string digits);        // 17. 电话号码的字母组合
     static vector<string> findItinerary(vector<vector<string>> &tickets);        // 332. 重新安排行程*****
-    static bool judgeCircle(string moves);            // 657. 机器人能否返回原点
-    static string shortestPalindrome(string s);    // 214. 最短回文串***** KMP ***** 官方题解（困难）
-    static string reverseWords(string s);            // 557. 反转字符串中的单词 III
-    static bool canVisitAllRooms(vector<vector<int>> &rooms);        // 841. 钥匙和房间
-    static bool PredictTheWinner(vector<int> &nums);    // 486. 预测赢家   ***** 动态规划 *****
-    static bool PredictTheWinner2(vector<int> &nums);    // 486. 预测赢家	 ***** 零和博弈 *****
+    static bool judgeCircle(string moves);              // 657. 机器人能否返回原点
+    static string shortestPalindrome(string s);         // 214. 最短回文串***** KMP ***** 官方题解（困难）
+    static string reverseWords(string s);               // 557. 反转字符串中的单词 III
+    static bool canVisitAllRooms(vector<vector<int>> &rooms);       // 841. 钥匙和房间
+    static bool PredictTheWinner(vector<int> &nums);                // 486. 预测赢家   ***** 动态规划 *****
+    static bool PredictTheWinner2(vector<int> &nums);               // 486. 预测赢家	 ***** 零和博弈 *****
     static bool isNumber(string s);    // 剑指 Offer 20. 表示数值的字符串
-    static vector<vector<string>> solveNQueens(int n);        // 51. N 皇后 ***** 困难 *****
-    static vector<string> binaryTreePaths(TreeNode *root);        // 257. 二叉树的所有路径 (深度优先遍历--递归)
+    static vector<vector<string>> solveNQueens(int n);              // 51. N 皇后 ***** 困难 *****
+    static vector<string> binaryTreePaths(TreeNode *root);          // 257. 二叉树的所有路径 (深度优先遍历--递归)
     static vector<vector<int>> levelOrderBottom(TreeNode *root);    // 107. 二叉树的层次遍历 II
-    static vector<int> topKFrequent(vector<int> &nums, int k);        // 347. 前 K 个高频元素
+    static vector<int> topKFrequent(vector<int> &nums, int k);      // 347. 前 K 个高频元素
     static vector<vector<int>> combine(int n, int k);        // 77. 组合
     static vector<vector<int>> combinationSum2(vector<int> &candidates, int target);    // 40. 组合总和 II
-    static vector<vector<int>> combinationSum3(int k, int n);        // 216. 组合总和 III
+    static vector<vector<int>> combinationSum3(int k, int n);       // 216. 组合总和 III
     static vector<vector<int>> permuteUnique(vector<int> &nums);    // 47. 全排列 II
     static int sumOfLeftLeaves(TreeNode *root);        // 404. 左叶子之和
     static int sumOfLeftLeaves2(TreeNode *root);        // 404. 左叶子之和(递归方法)
@@ -80,6 +80,7 @@ public:
     static ListNode* insertionSortList(ListNode* head);     // 147. 对链表进行插入排序
     static ListNode* sortList(ListNode* head);              // 148. 排序链表
     static bool isAnagram(string s, string t);              // 242. 有效的字母异位词
+    static int findMinArrowShots(vector<vector<int>>& points);          // 452. 用最少数量的箭引爆气球
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

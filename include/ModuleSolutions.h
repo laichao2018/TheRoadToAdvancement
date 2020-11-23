@@ -54,7 +54,6 @@ public:
     static vector<int> numberOfLines(vector<int> &widths, string S);       //806. 写字符串需要的行数
     static vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2);        //496. 下一个更大元素 I
     static int sumRootToLeaf(TreeNode *root);                              //1022. 从根到叶的二进制数之和
-    static int numWays(int n, vector<vector<int>> &relation, int k);      // LCP 07. 传递信息
     static vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int newColor);    //733. 图像渲染
     static bool isBalanced(TreeNode *root);                                // 110. 平衡二叉树
     static vector<vector<int>> subsetsWithDup(vector<int> &nums);         // 90. 子集 II
@@ -69,24 +68,29 @@ public:
     static vector<string> findOcurrences(string text, string first, string second);    // 1078. Bigram 分词
     static uint32_t reverseBits(uint32_t n);           // 190. 颠倒二进制位
     static int calculate(string s);                    // LCP 17. 速算机器人
-    static TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2);       // 617. 合并二叉树
-    static vector<int> findMode(TreeNode *root);                   // 501. 二叉搜索树中的众数
-    static int numSpecial(vector<vector<int>> &mat);              // 1582. 二进制矩阵中的特殊位置
-    static vector<int> fraction(vector<int> &cont);                // LCP 02. 分式化简
+    static TreeNode *mergeTrees(TreeNode *t1, TreeNode *t2);        // 617. 合并二叉树
+    static vector<int> findMode(TreeNode *root);                    // 501. 二叉搜索树中的众数
+    static int numSpecial(vector<vector<int>> &mat);                // 1582. 二进制矩阵中的特殊位置
+    static vector<int> fraction(vector<int> &cont);                 // LCP 02. 分式化简
     static Node *connect(Node *root);                  // 117. 填充每个节点的下一个右侧节点指针 II
     static vector<vector<int>> allCellsDistOrder(int R, int C, int r0, int c0);    // 1030. 距离顺序排列矩阵单元格
-    static TreeNode *insertIntoBST(TreeNode *root, int val);    // 701. 二叉搜索树中的插入操作
-    static vector<string> fizzBuzz(int n);            // 412. Fizz Buzz
-    static int maxNumberOfBalloons(string text);       // 1189. “气球” 的最大数量
+    static TreeNode *insertIntoBST(TreeNode *root, int val);        // 701. 二叉搜索树中的插入操作
+    static vector<string> fizzBuzz(int n);              // 412. Fizz Buzz
+    static int maxNumberOfBalloons(string text);        // 1189. “气球” 的最大数量
     static vector<string> uncommonFromSentences(string A, string B);    // 884. 两句话中的不常见单词
-    static bool leafSimilar(TreeNode *root1, TreeNode *root2);        // 872. 叶子相似的树
-    static int countBinarySubstrings(string s);        // 696. 计数二进制子串
-    static double largestTriangleArea(vector<vector<int>> &points);    // 812. 最大三角形面积
+    static bool leafSimilar(TreeNode *root1, TreeNode *root2);          // 872. 叶子相似的树
+    static int countBinarySubstrings(string s);         // 696. 计数二进制子串
+    static double largestTriangleArea(vector<vector<int>> &points);     // 812. 最大三角形面积
     static int lengthOfLastWord(string s);              // 58. 最后一个单词的长度
     static bool isSameTree(TreeNode *p, TreeNode *q);   // 100. 相同的树
     static bool isSameTree2(TreeNode *p, TreeNode *q);  // 100. 相同的树(非递归方法)
     static bool detectCapitalUse(string word);          // 520. 检测大写字母520. 检测大写字母
     static int minOperations(vector<string>& logs);     // 1598. 文件夹操作日志搜集器
+    static string reformatDate(string date);            // 1507. 转变日期格式
+    static int maxLengthBetweenEqualCharacters(string s);           // 1624. 两个相同字符之间的最长子字符串
+    static int lastStoneWeight(vector<int>& stones);    // 1046. 最后一块石头的重量
+    static int binaryGap(int n);                        // 868. 二进制间距
+    static int numWays(int n, vector<vector<int>>& relation, int k);    // LCP 07. 传递信息
 };
 
 class MeduimSolutions {

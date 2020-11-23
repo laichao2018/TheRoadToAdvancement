@@ -1320,6 +1320,22 @@ bool DailyCoding::isAnagram(string s, string t) {
     return true;
 }
 
+int DailyCoding::findMinArrowShots(vector<vector<int>> &points) {
+    if (points.empty()) {
+        return 0;
+    }
+    sort(points.begin(), points.end(), [](vector<int> a, vector<int> b) { return a.back() < b.back(); });
+    int pos = points[0][1];
+    int res = 1;
+    for (vector<int> &curr:points) {
+        if(curr[0]>pos){
+            pos = curr[1];
+            res++;
+        }
+    }
+    return res;
+}
+
 
 
 

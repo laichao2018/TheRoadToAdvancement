@@ -11,6 +11,9 @@
 #include <set>
 #include <unordered_map>
 #include <cmath>
+#include <map>
+#include <unordered_map>
+#include <deque>
 
 /// ================================== GLOBAL VAR ==================================
 
@@ -579,11 +582,6 @@ int EasySolutions::sumRootToLeaf(TreeNode *root) {
     totalSum = 0;
     dfs_sumRootToLeaf(root, 0);
     return totalSum;
-}
-
-int EasySolutions::numWays(int n, vector<vector<int>> &relation, int k) {
-
-    return 0;
 }
 
 vector<vector<int>> EasySolutions::floodFill(vector<vector<int>> &image, int sr, int sc, int newColor) {
@@ -1186,6 +1184,131 @@ int EasySolutions::minOperations(vector<string> &logs) {
         }
     }
     return flag;
+}
+
+string EasySolutions::reformatDate(string date) {
+    date += ' ';
+    string res;
+    string tmp;
+    int count = 0;
+    for (int i = 0; i < date.size(); i++) {
+        if (date[i] != ' ') {
+            tmp += date[i];
+        } else {
+            if (count == 0) {
+                string sNum;
+                for (int j = 0; j < tmp.size(); j++) {
+                    if (tmp[j] >= '0' && tmp[j] <= '9') {
+                        sNum += tmp[j];
+                    }
+                }
+                if (sNum.size() == 1) {
+                    res += ("-0" + sNum);
+                } else {
+                    res += ("-" + sNum);
+                }
+            } else if (count == 1) {
+                unordered_map<string, string> hashMap{{"Jan", "01"},
+                                                      {"Feb", "02"},
+                                                      {"Mar", "03"},
+                                                      {"Apr", "04"},
+                                                      {"May", "05"},
+                                                      {"Jun", "06"},
+                                                      {"Jul", "07"},
+                                                      {"Aug", "08"},
+                                                      {"Sep", "09"},
+                                                      {"Oct", "10"},
+                                                      {"Nov", "11"},
+                                                      {"Dec", "12"}};
+                res = (("-" + hashMap[tmp]) + res);
+            } else {
+                res = tmp + res;
+            }
+            count++;
+            tmp = "";
+        }
+    }
+    return res;
+}
+
+int EasySolutions::maxLengthBetweenEqualCharacters(string s) {
+    if (s.length() < 3) {
+        return 0;
+    }
+    vector<int> all_lengths;
+    for (int i = 0; i < s.length(); i++) {
+        char curr_pre = s[i];
+        int j = s.length() - 1;
+        for (int j = s.length() - 1; j > i; j--) {
+            if (curr_pre == s[j]) {
+                all_lengths.push_back(j - i - 1);;
+                break;
+            }
+        }
+    }
+    if (!all_lengths.empty()) {
+        sort(all_lengths.begin(), all_lengths.end());
+        return all_lengths.back();
+    }
+    return -1;
+}
+
+int EasySolutions::lastStoneWeight(vector<int> &stones) {
+    if (stones.size() == 1) {
+        return stones[0];
+    }
+    while (stones.size() >= 2) {
+        sort(stones.begin(), stones.end(), [](int a, int b) { return a > b; });
+        vector<int>::iterator pos = stones.begin();
+        if (stones[0] == stones[1]) {
+            for (int i = 0; i < 2; i++) {
+                stones.erase(pos);
+            }
+        } else {
+            stones[0] = stones[0] - stones[1];
+            pos++;
+            stones.erase(pos);
+        }
+    }
+    if (stones.empty()) {
+        return 0;
+    }
+    return stones.front();
+}
+
+int EasySolutions::binaryGap(int n) {
+    if (n < 2) {
+        return 0;
+    }
+    string sBinNum;
+    while (n) {
+        sBinNum += to_string(n % 2);
+        n /= 2;
+    }
+    reverse(sBinNum.begin(), sBinNum.end());
+    int distance_res = 0;
+    for (int i = 0; i < sBinNum.size() - 1; i++) {
+        if (sBinNum[i] == '1') {
+            for (int j = i + 1; j < sBinNum.size(); j++) {
+                if (sBinNum[j] == '1') {
+                    distance_res = max(distance_res, j - i);
+                    break;
+                }
+            }
+        }
+    }
+    return distance_res;
+}
+
+int EasySolutions::numWays(int n, vector<vector<int>> &relation, int k) {
+    vector<vector<int>> dpArr(10, vector<int>(15, 0));
+    dpArr[0][0] = 1;
+    for (int i = 0; i < k; i++) {
+        for (auto &rel:relation) {
+            dpArr[i + 1][rel[1]] += dpArr[i][rel[0]];
+        }
+    }
+    return dpArr[k][n - 1];
 }
 
 int MeduimSolutions::minOperations(int n) {

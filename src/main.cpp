@@ -64,7 +64,12 @@ void func(T ... args) {
 }
 
 int main() {
-    string ss = "sssdss";
-    cout << MeduimSolutions::longestPalindrome(ss) << endl;
+    vector<vector<int>> nums{{1, 2},
+                             {3, 4},
+                             {5, 6},
+                             {7, 8}};
+    vector<int> all{2, 2};
+    cout << EasySolutions::binaryGap(8) << endl;
+
     return 0;
 }
