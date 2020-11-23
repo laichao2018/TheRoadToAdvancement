@@ -91,6 +91,8 @@ public:
     static int lastStoneWeight(vector<int>& stones);    // 1046. 最后一块石头的重量
     static int binaryGap(int n);                        // 868. 二进制间距
     static int numWays(int n, vector<vector<int>>& relation, int k);    // LCP 07. 传递信息
+    static bool hasAlternatingBits(int n);              // 693. 交替位二进制数
+    static string dayOfTheWeek(int day, int month, int year);           // 1185. 一周中的第几天
 };
 
 class MeduimSolutions {

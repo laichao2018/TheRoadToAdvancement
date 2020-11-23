@@ -135,6 +135,15 @@ bool isUpChar(char c) {
     return c >= 'A' && c <= 'Z';
 }
 
+// 判断是否为闰年
+bool isSpecialYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+int daysOfYear(int year) {
+    return isSpecialYear(year) ? 366 : 365;
+}
+
 ///// ================================== CLASS FUNC ==================================
 
 int EasySolutions::cakeNumber(int n) {
@@ -1309,6 +1318,51 @@ int EasySolutions::numWays(int n, vector<vector<int>> &relation, int k) {
         }
     }
     return dpArr[k][n - 1];
+}
+
+bool EasySolutions::hasAlternatingBits(int n) {
+    if (n == 1) {
+        return true;
+    }
+    string sBinNum;
+    while (n) {
+        sBinNum += to_string(n % 2);
+        n /= 2;
+    }
+    for (int i = 0; i < sBinNum.size() - 1; i++) {
+        if (sBinNum[i] == sBinNum[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+string EasySolutions::dayOfTheWeek(int day, int month, int year) {
+    vector<string> weekdays = {
+            "Sunday", "Monday", "Tuesday", "Wednesday",
+            "Thursday", "Friday", "Saturday"
+    };
+    vector<int> dayOfTheMonth = {
+            31, 28, 31, 30,
+            31, 30, 31, 31,
+            30, 31, 30, 31
+    };
+
+    int sum = 0;
+    for (int i = 1971; i < year; i++) {
+        sum += daysOfYear(i);
+    }
+    for (int i = 1; i < month; i++) {
+        if (i == 2 && isSpecialYear(year)) {
+            sum += 29;
+        } else {
+            sum += dayOfTheMonth[i - 1];
+        }
+    }
+
+    sum += day;
+
+    return weekdays[(sum % 7 + 4) % 7];
 }
 
 int MeduimSolutions::minOperations(int n) {
