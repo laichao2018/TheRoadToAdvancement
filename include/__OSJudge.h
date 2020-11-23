@@ -31,4 +31,9 @@
 #define		my_int_max		INT_MAX
 #endif // _WIN64
 
+#ifdef _MSC_VER
+#define		my_int_min		INT_MIN
+#define		my_int_max		INT_MAX
+#endif // _MSC_VER
+
 #endif //THEROADTOADVANCEMENT___OS_JUDGE_H
