@@ -81,6 +81,7 @@ public:
     static ListNode* sortList(ListNode* head);              // 148. 排序链表
     static bool isAnagram(string s, string t);              // 242. 有效的字母异位词
     static int findMinArrowShots(vector<vector<int>>& points);          // 452. 用最少数量的箭引爆气球
+    static int countNodes(TreeNode* root);          // 222. 完全二叉树的节点个数
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

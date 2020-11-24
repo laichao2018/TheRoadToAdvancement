@@ -251,6 +251,20 @@ ListNode *helpFuncMergeSort(ListNode *head) {
     return helpFuncMergeList(head, l2);
 }
 
+bool helpFuncExists(TreeNode *root, int level, int k) {
+    int bits = 1 << (level - 1);
+    TreeNode *node = root;
+    while (node != nullptr && bits > 0) {
+        if (!(bits & k)) {
+            node = node->left;
+        } else {
+            node = node->right;
+        }
+        bits >>= 1;
+    }
+    return node != nullptr;
+}
+
 ///// ================================== CLASS FUNC ==================================
 
 int DailyCoding::numJewelsInStones(string J, string S) {
@@ -1328,12 +1342,34 @@ int DailyCoding::findMinArrowShots(vector<vector<int>> &points) {
     int pos = points[0][1];
     int res = 1;
     for (vector<int> &curr:points) {
-        if(curr[0]>pos){
+        if (curr[0] > pos) {
             pos = curr[1];
             res++;
         }
     }
     return res;
+}
+
+int DailyCoding::countNodes(TreeNode *root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    int level = 0;
+    TreeNode *node = root;
+    while (node->left != nullptr) {
+        level++;
+        node = node->left;
+    }
+    int low = 1 << level, high = (1 << (level + 1)) - 1;
+    while (low < high) {
+        int mid = (high - low + 1) / 2 + low;
+        if (helpFuncExists(root, level, mid)) {
+            low = mid;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return low;
 }
 
 
