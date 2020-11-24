@@ -93,6 +93,8 @@ public:
     static int numWays(int n, vector<vector<int>>& relation, int k);    // LCP 07. 传递信息
     static bool hasAlternatingBits(int n);              // 693. 交替位二进制数
     static string dayOfTheWeek(int day, int month, int year);           // 1185. 一周中的第几天
+    static vector<string> stringMatching(vector<string>& words);        // 1408. 数组中的字符串匹配
+    static int rotatedDigits(int N);                    // 788. 旋转数字
 };
 
 class MeduimSolutions {

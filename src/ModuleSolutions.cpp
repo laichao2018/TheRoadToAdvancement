@@ -1365,6 +1365,47 @@ string EasySolutions::dayOfTheWeek(int day, int month, int year) {
     return weekdays[(sum % 7 + 4) % 7];
 }
 
+vector<string> EasySolutions::stringMatching(vector<string> &words) {
+    if (words.empty()) {
+        return {};
+    }
+    vector<string> res;
+    vector<int> exist(words.size(), 0);
+    for (int i = 0; i < words.size(); i++) {
+        if (exist[i]) {
+            continue;
+        }
+        for (int j = 0; j < words.size(); j++) {
+            if (j == i || exist[j]) {
+                continue;
+            }
+            if (words[i].find(words[j]) != words[i].npos) {
+                res.push_back(words[j]);
+                exist[i] = 1;
+            }
+        }
+    }
+    return res;
+}
+
+int EasySolutions::rotatedDigits(int N) {
+    // dp数组存储3种值，   0：不包含3、4、7的坏数，
+    //                  1：含有3、4、7的坏数，
+    //                  2：好数
+
+    int res = 0;
+    vector<int> dpArr(N + 1, 0);
+    for (int i = 1; i <= N; i++) {
+        if (i == 3 || i == 4 || i == 7 || dpArr[i % 10] == 1 || dpArr[i / 10] == 1) {
+            dpArr[i] = 1;
+        } else if (i == 2 || i == 5 || i == 6 || i == 9 || dpArr[i % 10] == 2 || dpArr[i / 10] == 2) {
+            dpArr[i] = 2;
+            res++;
+        }
+    }
+    return res;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
