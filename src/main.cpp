@@ -69,7 +69,7 @@ int main() {
                              {5, 6},
                              {7, 8}};
     vector<int> all{2, 2};
-    cout << EasySolutions::binaryGap(8) << endl;
+    cout << EasySolutions::thousandSeparator(987) << endl;
 
     return 0;
 }

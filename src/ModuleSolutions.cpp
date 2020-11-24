@@ -1406,6 +1406,39 @@ int EasySolutions::rotatedDigits(int N) {
     return res;
 }
 
+string EasySolutions::toGoatLatin(string S) {
+    string res = "";
+    istringstream ss(S);
+    string ex = "a", tmp;
+    while (ss >> tmp) {
+        char ch = tolower(tmp[0]);
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+            res += tmp + "ma" + ex;
+        } else {
+            res += string(tmp.begin() + 1, tmp.end()) + tmp[0] + "ma" + ex;
+        }
+        res += " ";
+        ex += "a";
+    }
+    res.pop_back();
+    return res;
+}
+
+string EasySolutions::thousandSeparator(int n) {
+    string res;
+    int count = 0;
+    do {
+        res += to_string(n % 10);
+        n /= 10;
+        ++count;
+        if (count % 3 == 0 && n) {
+            res += ".";
+        }
+    } while (n);
+    reverse(res.begin(), res.end());
+    return res;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {

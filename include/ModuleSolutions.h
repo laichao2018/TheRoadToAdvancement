@@ -85,16 +85,21 @@ public:
     static bool isSameTree(TreeNode *p, TreeNode *q);   // 100. 相同的树
     static bool isSameTree2(TreeNode *p, TreeNode *q);  // 100. 相同的树(非递归方法)
     static bool detectCapitalUse(string word);          // 520. 检测大写字母520. 检测大写字母
-    static int minOperations(vector<string>& logs);     // 1598. 文件夹操作日志搜集器
+    static int minOperations(vector<string> &logs);     // 1598. 文件夹操作日志搜集器
     static string reformatDate(string date);            // 1507. 转变日期格式
     static int maxLengthBetweenEqualCharacters(string s);           // 1624. 两个相同字符之间的最长子字符串
-    static int lastStoneWeight(vector<int>& stones);    // 1046. 最后一块石头的重量
+    static int lastStoneWeight(vector<int> &stones);    // 1046. 最后一块石头的重量
     static int binaryGap(int n);                        // 868. 二进制间距
-    static int numWays(int n, vector<vector<int>>& relation, int k);    // LCP 07. 传递信息
+    static int numWays(int n, vector<vector<int>> &relation, int k);    // LCP 07. 传递信息
     static bool hasAlternatingBits(int n);              // 693. 交替位二进制数
     static string dayOfTheWeek(int day, int month, int year);           // 1185. 一周中的第几天
-    static vector<string> stringMatching(vector<string>& words);        // 1408. 数组中的字符串匹配
+    static vector<string> stringMatching(vector<string> &words);        // 1408. 数组中的字符串匹配
     static int rotatedDigits(int N);                    // 788. 旋转数字
+    static string toGoatLatin(string S);                // 824. 山羊拉丁文
+    static string thousandSeparator(int n);             // 1556. 千位分隔数
+
+    /// NoN-Definition
+    static vector<int> sumEvenAfterQueries(vector<int>& A, vector<vector<int>>& queries);       // 985. 查询后的偶数和
 };
 
 class MeduimSolutions {
