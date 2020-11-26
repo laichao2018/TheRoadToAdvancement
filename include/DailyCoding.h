@@ -83,6 +83,7 @@ public:
     static int findMinArrowShots(vector<vector<int>>& points);          // 452. 用最少数量的箭引爆气球
     static int countNodes(TreeNode* root);          // 222. 完全二叉树的节点个数
     static string sortString(string s);             // 1370. 上升下降字符串
+    static int maximumGap(vector<int>& nums);       // 164. 最大间距
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

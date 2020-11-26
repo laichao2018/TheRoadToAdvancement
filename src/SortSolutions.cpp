@@ -5,6 +5,7 @@
 #include "../include/SortSolutions.h"
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -84,4 +85,31 @@ void SortSolution::selectionSort(vector<int> &nums) {
         }
         swap(nums[minIndex], nums[i]);
     }
+}
+
+void SortSolution::radixSort(vector<int> &nums) {
+    if (nums.size() < 2) {
+        return;
+    }
+    int exp = 1;
+    vector<int> buff(nums.size());
+    int maxVal = *max_element(nums.begin(), nums.end());
+    while (maxVal >= exp) {
+        vector<int> cnt(10);
+        for (int i = 0; i < nums.size(); i++) {
+            int digit = (nums[i] / exp) % 10;
+            cnt[digit]++;
+        }
+        for (int i = 1; i < 10; i++) {
+            cnt[i] += cnt[i - 1];
+        }
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            int digit = (nums[i] / exp) % 10;
+            buff[cnt[digit] - 1] = nums[i];
+            cnt[digit]--;
+        }
+        copy(buff.begin(), buff.end(), nums.begin());
+        exp *= 10;
+    }
+    return;
 }

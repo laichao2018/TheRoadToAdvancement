@@ -1,5 +1,6 @@
 #include "DailyCoding.h"
 #include "ModuleSolutions.h"
+#include "SortSolutions.h"
 #include <iostream>
 #include <thread>
 #include <future>
@@ -64,12 +65,8 @@ void func(T ... args) {
 }
 
 int main() {
-    vector<vector<int>> nums{{1, 2},
-                             {3, 4},
-                             {5, 6},
-                             {7, 8}};
-    vector<int> all{2, 2};
-    cout << EasySolutions::thousandSeparator(987) << endl;
+    vector<int> nums{1, 15, 12, 6, 16, 87, 36};
+    SortSolution::radixSort(nums);
 
     return 0;
 }
