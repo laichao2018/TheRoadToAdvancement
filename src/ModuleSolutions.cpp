@@ -1439,6 +1439,39 @@ string EasySolutions::thousandSeparator(int n) {
     return res;
 }
 
+vector<int> EasySolutions::sumEvenAfterQueries(vector<int> &A, vector<vector<int>> &queries) {
+    vector<int> res(queries.size());
+    int evenSum = 0;
+    for (int i:A) {
+        if (i % 2 == 0) {
+            evenSum += i;
+        }
+    }
+    for (int i = 0; i < queries.size(); i++) {
+        int val = queries[i][0], index = queries[i][1];
+        if (A[index] % 2 == 0) {
+            evenSum -= A[index];
+        }
+        A[index] += val;
+        if (A[index] % 2 == 0) {
+            evenSum += A[index];
+        }
+        res[i] = evenSum;
+    }
+    return res;
+}
+
+bool EasySolutions::arrayStringsAreEqual(vector<string> &word1, vector<string> &word2) {
+    string str01, str02;
+    for (string s:word1) {
+        str01 += s;
+    }
+    for (string s:word2) {
+        str02 += s;
+    }
+    return str01 == str02;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {

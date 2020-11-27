@@ -97,9 +97,8 @@ public:
     static int rotatedDigits(int N);                    // 788. 旋转数字
     static string toGoatLatin(string S);                // 824. 山羊拉丁文
     static string thousandSeparator(int n);             // 1556. 千位分隔数
-
-    /// NoN-Definition
     static vector<int> sumEvenAfterQueries(vector<int>& A, vector<vector<int>>& queries);       // 985. 查询后的偶数和
+    static bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2);             // 1662. 检查两个字符串数组是否相等
 };
 
 class MeduimSolutions {
