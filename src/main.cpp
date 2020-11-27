@@ -66,7 +66,11 @@ void func(T ... args) {
 
 int main() {
     vector<int> nums{1, 15, 12, 6, 16, 87, 36};
-    SortSolution::radixSort(nums);
+    vector<int> nums02;
+    nums.insert(nums.end(), nums02.begin(), nums02.end());
+    for (int i:nums) {
+        cout << i << " ";
+    }
 
     return 0;
 }

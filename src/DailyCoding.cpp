@@ -1427,6 +1427,22 @@ int DailyCoding::maximumGap(vector<int> &nums) {
     return res;
 }
 
+int DailyCoding::fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D) {
+    unordered_map<int, int> hashMap;
+    for (int i:A) {
+        for (int j:B) {
+            ++hashMap[i + j];
+        }
+    }
+    int res = 0;
+    for (int i:C) {
+        for (int j:D) {
+            res += hashMap[-i - j];
+        }
+    }
+    return res;
+}
+
 
 
 
