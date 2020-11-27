@@ -1,6 +1,7 @@
 #include "DailyCoding.h"
 #include "ModuleSolutions.h"
 #include "SortSolutions.h"
+#include "DynamicProgramming.h"
 #include <iostream>
 #include <thread>
 #include <future>
