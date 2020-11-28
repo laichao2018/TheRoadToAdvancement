@@ -85,6 +85,7 @@ public:
     static string sortString(string s);             // 1370. 上升下降字符串
     static int maximumGap(vector<int>& nums);       // 164. 最大间距
     static int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D);    // 454. 四数相加 II
+    static int reversePairs(vector<int>& nums);     // 493. 翻转对
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

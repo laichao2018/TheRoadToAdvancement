@@ -66,12 +66,8 @@ void func(T ... args) {
 }
 
 int main() {
-    vector<int> nums{1, 15, 12, 6, 16, 87, 36};
-    vector<int> nums02;
-    nums.insert(nums.end(), nums02.begin(), nums02.end());
-    for (int i:nums) {
-        cout << i << " ";
-    }
+    vector<int> nums{1, 3, 2, 3, 1};
+    cout << DailyCoding::reversePairs(nums) << endl;
 
     return 0;
 }
