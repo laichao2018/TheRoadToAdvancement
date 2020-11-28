@@ -99,6 +99,9 @@ public:
     static string thousandSeparator(int n);             // 1556. 千位分隔数
     static vector<int> sumEvenAfterQueries(vector<int>& A, vector<vector<int>>& queries);       // 985. 查询后的偶数和
     static bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2);             // 1662. 检查两个字符串数组是否相等
+    static int specialArray(vector<int>& nums);         // 1608. 特殊数组的特征值
+    static char firstUniqChar(string s);                // 剑指 Offer 50. 第一个只出现一次的字符
+    static int maxSubArray(vector<int>& nums);          // 剑指 Offer 42. 连续子数组的最大和
 };
 
 class MeduimSolutions {

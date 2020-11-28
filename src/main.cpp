@@ -7,6 +7,7 @@
 #include <future>
 #include <vector>
 #include <mutex>
+#include <algorithm>
 
 using namespace std;
 
@@ -65,9 +66,11 @@ void func(T ... args) {
     cout << sizeof...(args) << endl;
 }
 
+//    cout << upper_bound(nums.begin(), nums.end(), 2) - nums.begin() << endl;
+
 int main() {
-    vector<int> nums{1, 3, 2, 3, 1};
-    cout << DailyCoding::reversePairs(nums) << endl;
+    vector<int> nums{-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    cout << EasySolutions::maxSubArray(nums) << endl;
 
     return 0;
 }

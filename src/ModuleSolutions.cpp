@@ -1472,6 +1472,51 @@ bool EasySolutions::arrayStringsAreEqual(vector<string> &word1, vector<string> &
     return str01 == str02;
 }
 
+int EasySolutions::specialArray(vector<int> &nums) {
+    int n = nums.size();
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i <= nums.size(); i++) {
+        int d = nums.end() - lower_bound(nums.begin(), nums.end(), i);
+        if (d == i) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+char EasySolutions::firstUniqChar(string s) {
+    if (s.empty()) {
+        return ' ';
+    }
+    if (s.length() == 1) {
+        return s[0];
+    }
+    unordered_map<char, int> dic;
+    unordered_map<char, int>::const_iterator pIter;
+    for (char c:s) {
+        dic[c]++;
+    }
+    for (char c:s) {
+        pIter = dic.find(c);
+        if (pIter->second == 1) {
+            return pIter->first;
+        }
+    }
+    return ' ';
+}
+
+int EasySolutions::maxSubArray(vector<int> &nums) {
+    int n = nums.size();
+    int maxSum = nums[0];
+    for (int i = 1; i < nums.size(); i++) {
+        if (nums[i - 1] > 0) {
+            nums[i] += nums[i - 1];
+        }
+        maxSum = max(maxSum, nums[i]);
+    }
+    return maxSum;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
