@@ -1517,6 +1517,32 @@ int EasySolutions::maxSubArray(vector<int> &nums) {
     return maxSum;
 }
 
+string EasySolutions::shortestCompletingWord(string licensePlate, vector<string> &words) {
+    vector<int> hashMap(26, 0);
+    int charCount = 0;
+    for (char c:licensePlate) {
+        c = isupper(c) ? tolower(c) : c;
+        if (islower(c)) {
+            charCount++;
+            hashMap[c - 'a']++;
+        }
+    }
+    stable_sort(words.begin(), words.end(), [](const string &a, const string &b) { return a.size() < b.size(); });
+    for (string str:words) {
+        vector<int> letter = hashMap;
+        int cpCount = charCount;
+        for (char c:str) {
+            if (letter[c - 'a']-- <= 0) {
+                continue;
+            }
+            if (--cpCount == 0) {
+                return str;
+            }
+        }
+    }
+    return {};
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {

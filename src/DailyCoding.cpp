@@ -1492,6 +1492,19 @@ int DailyCoding::reversePairs(vector<int> &nums) {
     return reversePairsRecursive(nums, 0, nums.size() - 1);
 }
 
+int DailyCoding::largestPerimeter(vector<int> &A) {
+    if (A.size() < 3) {
+        return 0;
+    }
+    sort(A.begin(), A.end());
+    for (int i = A.size() - 1; i >= 2; i--) {
+        if (A[i - 2] + A[i - 1] > A[i]) {
+            return A[i] + A[i - 1] + A[i - 2];
+        }
+    }
+    return 0;
+}
+
 
 
 

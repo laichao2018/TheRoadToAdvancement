@@ -102,6 +102,7 @@ public:
     static int specialArray(vector<int>& nums);         // 1608. 特殊数组的特征值
     static char firstUniqChar(string s);                // 剑指 Offer 50. 第一个只出现一次的字符
     static int maxSubArray(vector<int>& nums);          // 剑指 Offer 42. 连续子数组的最大和
+    static string shortestCompletingWord(string licensePlate, vector<string>& words);           // 748. 最短补全词
 };
 
 class MeduimSolutions {

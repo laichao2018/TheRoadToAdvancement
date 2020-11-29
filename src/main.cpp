@@ -23,42 +23,6 @@ void measured_function(T &&func) {
     cout << "elapsed " << diff.count() << " seconds" << endl;   // 执行时间
 }
 
-
-class posStr {
-public:
-    string gjName;        // 工井名
-    string mxName;        // 模型名
-    string jmName;        // 截面名
-    string KongHao;        // 孔号
-    string syPoint;        // 示意点
-};
-
-vector<posStr> analysisData(vector<string> &data) {
-    vector<posStr> vRes;
-    for (string str : data) {
-        posStr pp;
-        auto p1 = str.find("-MX");
-        pp.gjName = str.substr(0, p1);
-
-        auto p2 = str.find("-JM");
-        pp.mxName = str.substr(p1 + 1, p2 - p1 - 1);
-
-        string jmBeh = str.substr(p2 + 1);
-        auto pp1 = jmBeh.find("-");
-        pp.jmName = jmBeh.substr(0, pp1);
-
-        auto pp2 = jmBeh.find_last_of("-");
-        pp.KongHao = jmBeh.substr(pp1 + 1, pp2 - pp1 - 1);
-
-
-        auto p3 = str.find_last_of("SY");
-        pp.syPoint = str.substr(p3 - 1);
-
-        vRes.push_back(pp);
-    }
-    return vRes;
-}
-
 // 可变参数模板
 template<typename ...T>
 void func(T ... args) {
@@ -69,8 +33,10 @@ void func(T ... args) {
 //    cout << upper_bound(nums.begin(), nums.end(), 2) - nums.begin() << endl;
 
 int main() {
-    vector<int> nums{-2, 1, -3, 4, -1, 2, 1, -5, 4};
-    cout << EasySolutions::maxSubArray(nums) << endl;
+    vector<int> nums{3, 1, 1, 4};
+    string ss = "1s3 PSt";
+    vector<string> words{"step", "steps", "stripe", "stepple"};
+    cout << EasySolutions::shortestCompletingWord(ss, words) << endl;
 
     return 0;
 }
