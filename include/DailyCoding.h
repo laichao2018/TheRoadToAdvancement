@@ -87,6 +87,7 @@ public:
     static int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D);    // 454. 四数相加 II
     static int reversePairs(vector<int>& nums);     // 493. 翻转对
     static int largestPerimeter(vector<int>& A);    // 976. 三角形的最大周长
+    static string reorganizeString(string S);       // 767. 重构字符串
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
