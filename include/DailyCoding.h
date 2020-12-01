@@ -87,6 +87,9 @@ public:
     static int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D);    // 454. 四数相加 II
     static int reversePairs(vector<int>& nums);     // 493. 翻转对
     static int largestPerimeter(vector<int>& A);    // 976. 三角形的最大周长
+    static vector<int> searchRange(vector<int>& nums, int target);      // 34. 在排序数组中查找元素的第一个和最后一个位置
+    static int maxProfit(vector<int>& prices);      // 122. 买卖股票的最佳时机 II
+    static vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval);    // 57. 插入区间
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
