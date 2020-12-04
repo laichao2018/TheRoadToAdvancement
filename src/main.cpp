@@ -33,12 +33,11 @@ void func(T ... args) {
 //    cout << upper_bound(nums.begin(), nums.end(), 2) - nums.begin() << endl;
 
 int main() {
-    vector<int> nums{1, 2, 3, 3, 4, 4, 5};
-    if (DailyCoding::isPossible(nums)) {
-        cout << "Yes.\n";
-    } else {
-        cout << "No.\n";
-    }
+    vector<int> nums{91, 4, 64, 78};
+    vector<vector<int>> nums01{{78},
+                               {4, 64},
+                               {91}};
+    EasySolutions::canFormArray(nums, nums01);
 
 
     return 0;

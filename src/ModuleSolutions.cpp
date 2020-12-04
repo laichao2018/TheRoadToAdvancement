@@ -3,6 +3,7 @@
 //
 
 #include "..//include//ModuleSolutions.h"
+#include <iostream>
 #include <queue>
 #include <stack>
 #include <algorithm>
@@ -14,6 +15,8 @@
 #include <map>
 #include <unordered_map>
 #include <deque>
+
+using namespace std;
 
 /// ================================== GLOBAL VAR ==================================
 
@@ -142,6 +145,14 @@ bool isSpecialYear(int year) {
 
 int daysOfYear(int year) {
     return isSpecialYear(year) ? 366 : 365;
+}
+
+template<typename T>
+void printVec(vector<T> &vec) {
+    for (auto &i:vec) {
+        cout << i << "  ";
+    }
+    cout << endl;
 }
 
 ///// ================================== CLASS FUNC ==================================
@@ -1541,6 +1552,85 @@ string EasySolutions::shortestCompletingWord(string licensePlate, vector<string>
         }
     }
     return {};
+}
+
+bool EasySolutions::canFormArray(vector<int> &arr, vector<vector<int>> &pieces) {
+    int arrPtr = 0;
+    while (arrPtr < arr.size()) {
+        int pos = 0;
+        for (int i = 0; i < pieces.size(); i++) {
+            if (pieces[i][0] == arr[arrPtr]) {
+                pos = i;
+                break;
+            }
+        }
+        int j = 0;
+        while (arrPtr < arr.size() && j < pieces[pos].size()) {
+            if (arr[arrPtr] == pieces[pos][j]) {
+                arrPtr++;
+                j++;
+            } else {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+double EasySolutions::trimMean(vector<int> &arr) {
+    int numCounts = arr.size();
+    int delCount = numCounts * 0.05;
+    sort(arr.begin(), arr.end());
+    vector<int>::iterator left = arr.begin();
+    vector<int>::iterator right = arr.end();
+    while (delCount) {
+        left++;
+        right--;
+        delCount--;
+    }
+    double totalSum = accumulate(left, right, 0.0);
+    return totalSum / (double) (arr.size() - arr.size() * 0.1);
+}
+
+vector<int> EasySolutions::decrypt(vector<int> &code, int k) {
+    vector<int> res(code.size(), 0);
+    if (k == 0) {
+        return res;
+    }
+    if (k > 0) {
+        for (int i = 0; i < code.size(); i++) {
+            int tmp = 0;
+            int j = i + 1;
+            int r = k;
+            while (r) {
+                if (j == code.size()) {
+                    j = 0;
+                }
+                tmp += code[j];
+                j++;
+                r--;
+            }
+            res[i] = tmp;
+        }
+    }
+    if (k < 0) {
+        k = -k;
+        for (int i = 0; i < code.size(); i++) {
+            int tmp = 0;
+            int j = i - 1;
+            int r = k;
+            while (r) {
+                if (j < 0) {
+                    j = code.size() - 1;
+                }
+                tmp += code[j];
+                j--;
+                r--;
+            }
+            res[i] = tmp;
+        }
+    }
+    return res;
 }
 
 int MeduimSolutions::minOperations(int n) {

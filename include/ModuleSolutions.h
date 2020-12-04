@@ -103,6 +103,9 @@ public:
     static char firstUniqChar(string s);                // 剑指 Offer 50. 第一个只出现一次的字符
     static int maxSubArray(vector<int>& nums);          // 剑指 Offer 42. 连续子数组的最大和
     static string shortestCompletingWord(string licensePlate, vector<string>& words);           // 748. 最短补全词
+    static bool canFormArray(vector<int>& arr, vector<vector<int>>& pieces);                    // 1640. 能否连接形成数组
+    static double trimMean(vector<int>& arr);           // 1619. 删除某些元素后的数组均值
+    static vector<int> decrypt(vector<int>& code, int k);               // 1652. 拆炸弹
 };
 
 class MeduimSolutions {
