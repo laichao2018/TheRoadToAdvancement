@@ -69,27 +69,28 @@ public:
     static bool uniqueOccurrences(vector<int> &arr);        // 1207. 独一无二的出现次数
     static int sumNumbers(TreeNode *root);          // 129. 求根到叶子节点数字之和
     static int sumNumbers2(TreeNode *root);         // 129. 求根到叶子节点数字之和 (BFS)
-    static bool validMountainArray(vector<int>& A);         // 941. 有效的山脉数组
-    static vector<int> sortByBits(vector<int>& arr);        // 1356. 根据数字二进制下 1 的数目排序
-    static vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2);         // 1122. 数组的相对排序
+    static bool validMountainArray(vector<int> &A);         // 941. 有效的山脉数组
+    static vector<int> sortByBits(vector<int> &arr);        // 1356. 根据数字二进制下 1 的数目排序
+    static vector<int> relativeSortArray(vector<int> &arr1, vector<int> &arr2);         // 1122. 数组的相对排序
     static string removeKdigits(string num, int k);         // 402. 移掉K位数字
-    static vector<vector<int>> reconstructQueue(vector<vector<int>>& people);           // ***406. 根据身高重建队列
+    static vector<vector<int>> reconstructQueue(vector<vector<int>> &people);           // ***406. 根据身高重建队列
     static vector<vector<int>> allCellsDistOrder(int R, int C, int r0, int c0);         // 1030. 距离顺序排列矩阵单元格
-    static ListNode* oddEvenList(ListNode* head);           // 328. 奇偶链表
+    static ListNode *oddEvenList(ListNode *head);           // 328. 奇偶链表
     static void moveZeroes(vector<int> &nums);              // 283. 移动零
-    static ListNode* insertionSortList(ListNode* head);     // 147. 对链表进行插入排序
-    static ListNode* sortList(ListNode* head);              // 148. 排序链表
+    static ListNode *insertionSortList(ListNode *head);     // 147. 对链表进行插入排序
+    static ListNode *sortList(ListNode *head);              // 148. 排序链表
     static bool isAnagram(string s, string t);              // 242. 有效的字母异位词
-    static int findMinArrowShots(vector<vector<int>>& points);          // 452. 用最少数量的箭引爆气球
-    static int countNodes(TreeNode* root);          // 222. 完全二叉树的节点个数
+    static int findMinArrowShots(vector<vector<int>> &points);          // 452. 用最少数量的箭引爆气球
+    static int countNodes(TreeNode *root);          // 222. 完全二叉树的节点个数
     static string sortString(string s);             // 1370. 上升下降字符串
-    static int maximumGap(vector<int>& nums);       // 164. 最大间距
-    static int fourSumCount(vector<int>& A, vector<int>& B, vector<int>& C, vector<int>& D);    // 454. 四数相加 II
-    static int reversePairs(vector<int>& nums);     // 493. 翻转对
-    static int largestPerimeter(vector<int>& A);    // 976. 三角形的最大周长
-    static vector<int> searchRange(vector<int>& nums, int target);      // 34. 在排序数组中查找元素的第一个和最后一个位置
-    static int maxProfit(vector<int>& oprices);      // 122. 买卖股票的最佳时机 II
-    static vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval);        // 57. 插入区间
+    static int maximumGap(vector<int> &nums);       // 164. 最大间距
+    static int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D);    // 454. 四数相加 II
+    static int reversePairs(vector<int> &nums);     // 493. 翻转对
+    static int largestPerimeter(vector<int> &A);    // 976. 三角形的最大周长
+    static vector<int> searchRange(vector<int> &nums, int target);      // 34. 在排序数组中查找元素的第一个和最后一个位置
+    static int maxProfit(vector<int> &oprices);     // 122. 买卖股票的最佳时机 II
+    static vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval);        // 57. 插入区间
+    static bool isPossible(vector<int> &nums);      // 659. 分割数组为连续子序列
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

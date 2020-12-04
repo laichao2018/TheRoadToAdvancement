@@ -33,10 +33,13 @@ void func(T ... args) {
 //    cout << upper_bound(nums.begin(), nums.end(), 2) - nums.begin() << endl;
 
 int main() {
-    vector<int> nums{3, 1, 1, 4};
-    string ss = "1s3 PSt";
-    vector<string> words{"step", "steps", "stripe", "stepple"};
-    cout << EasySolutions::shortestCompletingWord(ss, words) << endl;
+    vector<int> nums{1, 2, 3, 3, 4, 4, 5};
+    if (DailyCoding::isPossible(nums)) {
+        cout << "Yes.\n";
+    } else {
+        cout << "No.\n";
+    }
+
 
     return 0;
 }
