@@ -91,6 +91,7 @@ public:
     static int maxProfit(vector<int> &oprices);     // 122. 买卖股票的最佳时机 II
     static vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval);        // 57. 插入区间
     static bool isPossible(vector<int> &nums);      // 659. 分割数组为连续子序列
+    static int countPrimes(int n);                  // 204. 计数质数
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

@@ -307,6 +307,15 @@ int reversePairsRecursive(vector<int> &nums, int left, int right) {
     }
 }
 
+bool isPrimer(int n) {
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
 ///// ================================== CLASS FUNC ==================================
 
 int DailyCoding::numJewelsInStones(string J, string S) {
@@ -1573,8 +1582,8 @@ vector<vector<int>> DailyCoding::insert(vector<vector<int>> &intervals, vector<i
 
 bool DailyCoding::isPossible(vector<int> &nums) {
     unordered_map<int, int> nc, tail;
-    //
-   for (auto num : nums) {
+    // 保存原数组中数字i的长度
+    for (auto num : nums) {
         nc[num]++;
     }
 
@@ -1595,4 +1604,12 @@ bool DailyCoding::isPossible(vector<int> &nums) {
         }
     }
     return true;
+}
+
+int DailyCoding::countPrimes(int n) {
+    int res = 0;
+    for (int i = 2; i < n; i++) {
+        res += isPrimer(i);
+    }
+    return res;
 }
