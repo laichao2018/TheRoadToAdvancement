@@ -1570,25 +1570,3 @@ vector<vector<int>> DailyCoding::insert(vector<vector<int>> &intervals, vector<i
     }
     return ans;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
