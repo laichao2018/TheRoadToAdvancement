@@ -92,6 +92,7 @@ public:
     static vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval);        // 57. 插入区间
     static bool isPossible(vector<int> &nums);      // 659. 分割数组为连续子序列
     static int countPrimes(int n);                  // 204. 计数质数
+    static int leastInterval(vector<char>& tasks, int n);               // 621. 任务调度器
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
