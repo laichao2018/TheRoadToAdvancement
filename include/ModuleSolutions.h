@@ -8,6 +8,7 @@
 #include "./__OSJudge.h"
 #include ".//DataStructure//Tree.h"
 #include ".//DataStructure//List.h"
+#include ".//LeetCodeDefinition.h"
 #include <vector>
 #include <string>
 
@@ -106,6 +107,8 @@ public:
     static bool canFormArray(vector<int>& arr, vector<vector<int>>& pieces);                    // 1640. 能否连接形成数组
     static double trimMean(vector<int>& arr);           // 1619. 删除某些元素后的数组均值
     static vector<int> decrypt(vector<int>& code, int k);               // 1652. 拆炸弹
+    static int bitwiseComplement(int N);                // 1009. 十进制整数的反码
+    static int getImportance(vector<Employee*> employees, int id);      // 690. 员工的重要性
 };
 
 class MeduimSolutions {

@@ -1633,6 +1633,35 @@ vector<int> EasySolutions::decrypt(vector<int> &code, int k) {
     return res;
 }
 
+int EasySolutions::bitwiseComplement(int N) {
+    if (N == 0) {
+        return 1;
+    }
+    int temp1 = 1;
+    int temp2 = N;
+    while (temp2 > 0) {
+        N ^= temp1;
+        temp1 = temp1 << 1;
+        temp2 = temp2 >> 1;
+    }
+    return N;
+}
+
+int EasySolutions::getImportance(vector<Employee *> employees, int id) {
+    int pos = 0;
+    for (int i = 0; i < employees.size(); i++) {
+        if (employees[i]->id == id) {
+            pos = i;
+            break;
+        }
+    }
+    int res = employees[pos]->importance;
+    for (int i = 0; i < employees[pos]->subordinates.size(); i++) {
+        res += getImportance(employees, employees[pos]->subordinates[i]);
+    }
+    return res;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
