@@ -93,6 +93,7 @@ public:
     static bool isPossible(vector<int> &nums);      // 659. 分割数组为连续子序列
     static int countPrimes(int n);                  // 204. 计数质数
     static int leastInterval(vector<char>& tasks, int n);               // 621. 任务调度器
+    static vector<vector<int>> generate(int numRows);                   // 118. 杨辉三角
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
