@@ -34,11 +34,10 @@ void func(T ... args) {
 
 int main() {
     vector<int> nums{91, 4, 64, 78};
-    vector<vector<int>> nums01{{78},
-                               {4, 64},
-                               {91}};
-    EasySolutions::canFormArray(nums, nums01);
-
+    vector<vector<int>> nums01{{0, 1},
+                               {1, 1}};
+//    EasySolutions::canFormArray(nums, nums01);
+    cout << DailyCoding::matrixScore(nums01) << endl;
 
     return 0;
 }

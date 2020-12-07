@@ -12,6 +12,7 @@
 #include <stack>
 #include <string>
 #include <list>
+#include <cmath>
 
 using namespace std;
 
@@ -1642,6 +1643,43 @@ vector<vector<int>> DailyCoding::generate(int numRows) {
         for (int j = 1; j < i; ++j) {
             res[i][j] = res[i - 1][j] + res[i - 1][j - 1];
         }
+    }
+    return res;
+}
+
+int DailyCoding::matrixScore(vector<vector<int>> &A) {
+    if (A.empty()) {
+        return 0;
+    }
+    for (int i = 0; i < A.size(); i++) {
+        if (A[i][0] == 0) {
+            for (int j = 0; j < A[i].size(); j++) {
+                A[i][j] = (A[i][j] == 0 ? 1 : 0);
+            }
+        }
+    }
+    for (int j = 0; j < A[0].size(); j++) {
+        int col_zero_count = 0;
+        for (int i = 0; i < A.size(); i++) {
+            if (A[i][j] == 0) {
+                col_zero_count++;
+            }
+        }
+        if (col_zero_count > (A.size() / 2)) {  // 翻转该列
+            for (int i = 0; i < A.size(); i++) {
+                A[i][j] = (A[i][j] == 0 ? 1 : 0);
+            }
+        }
+    }
+    int res = 0;
+    for (int i = 0; i < A.size(); i++) {
+        int temp = 0;
+        int k = A[i].size() - 1;
+        for (int j = 0; j < A[i].size(); j++) {
+            temp += (pow(2, k) * A[i][j]);
+            k--;
+        }
+        res += temp;
     }
     return res;
 }

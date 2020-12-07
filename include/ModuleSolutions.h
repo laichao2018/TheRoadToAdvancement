@@ -109,6 +109,7 @@ public:
     static vector<int> decrypt(vector<int>& code, int k);               // 1652. 拆炸弹
     static int bitwiseComplement(int N);                // 1009. 十进制整数的反码
     static int getImportance(vector<Employee*> employees, int id);      // 690. 员工的重要性
+    static vector<string> reorderLogFiles(vector<string>& logs)         // 937. 重新排列日志文件
 };
 
 class MeduimSolutions {

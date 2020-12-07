@@ -1662,6 +1662,11 @@ int EasySolutions::getImportance(vector<Employee *> employees, int id) {
     return res;
 }
 
+vector<string> EasySolutions::reorderLogFiles(vector<string> &logs) {
+
+
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
