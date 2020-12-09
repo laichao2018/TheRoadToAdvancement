@@ -95,6 +95,7 @@ public:
     static int leastInterval(vector<char>& tasks, int n);               // 621. 任务调度器
     static vector<vector<int>> generate(int numRows);                   // 118. 杨辉三角
     static int matrixScore(vector<vector<int>>& A);                     // 861. 翻转矩阵后的得分
+    static int uniquePaths(int m, int n);           // 62. 不同路径
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

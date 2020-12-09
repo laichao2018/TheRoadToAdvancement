@@ -1683,3 +1683,22 @@ int DailyCoding::matrixScore(vector<vector<int>> &A) {
     }
     return res;
 }
+
+int DailyCoding::uniquePaths(int m, int n) {
+    if (m == 0 || n == 0) {
+        return 0;
+    }
+    vector<vector<int>> dpArr(m, vector<int>(n, 0));
+    for (int i = 0; i < m; i++) {
+        dpArr[i][0] = 1;
+    }
+    for (int i = 1; i < n; i++) {
+        dpArr[0][i] = 1;
+    }
+    for (int i = 1; i < m; i++) {
+        for (int j = 1; j < n; j++) {
+            dpArr[i][j] = dpArr[i][j - 1] + dpArr[i - 1][j];
+        }
+    }
+    return dpArr[m - 1][n - 1];
+}
