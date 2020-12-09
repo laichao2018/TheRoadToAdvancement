@@ -33,11 +33,8 @@ void func(T ... args) {
 //    cout << upper_bound(nums.begin(), nums.end(), 2) - nums.begin() << endl;
 
 int main() {
-    vector<int> nums{91, 4, 64, 78};
-    vector<vector<int>> nums01{{0, 1},
-                               {1, 1}};
-//    EasySolutions::canFormArray(nums, nums01);
-    cout << DailyCoding::matrixScore(nums01) << endl;
+    vector<int> nums{1, 2, 3, 4};
+    cout << EasySolutions::distanceBetweenBusStops(nums, 0, 3) << endl;
 
     return 0;
 }

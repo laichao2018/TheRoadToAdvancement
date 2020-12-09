@@ -51,12 +51,25 @@ void dfs_sumRootToLeaf(TreeNode *node, int num) {
     dfs_sumRootToLeaf(node->right, num);
 }
 
+// 得到二叉树的高度
 int treeHeight(TreeNode *node) {
     // 求二叉树的高度的递归函数
     if (node == nullptr) {
         return 0;
     }
     return max(treeHeight(node->left), treeHeight(node->right)) + 1;
+}
+
+// 判断二叉树是否对称
+bool isTreeSymmertic(TreeNode *left, TreeNode *right) {
+    if (left == nullptr && right == nullptr) {
+        return true;
+    }
+    if (left == nullptr || right == nullptr) {
+        return false;
+    }
+    return (left->val == right->val) && isTreeSymmertic(left->left, right->right) &&
+           isTreeSymmertic(left->right, right->left);
 }
 
 bool checkNumber(vector<vector<int>> &mat, int x, int y) {
@@ -100,6 +113,7 @@ void traverseTree(TreeNode *root, int &currCount, int &maxCount, vector<int> &nu
     traverseTree(root->right, currCount, maxCount, nums);
 }
 
+// 分割字符串
 void splitStr(string &s, vector<string> &strs, char flag = ' ') {
     strs.clear();
     istringstream ss(s);
@@ -134,6 +148,7 @@ void titlePossibilitiesDFS(string &str, vector<int> &visit) {
     }
 }
 
+// 是否为大写字母
 bool isUpChar(char c) {
     return c >= 'A' && c <= 'Z';
 }
@@ -143,6 +158,7 @@ bool isSpecialYear(int year) {
     return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
 
+// 获取某年的天数
 int daysOfYear(int year) {
     return isSpecialYear(year) ? 366 : 365;
 }
@@ -630,12 +646,8 @@ vector<vector<int>> EasySolutions::floodFill(vector<vector<int>> &image, int sr,
 }
 
 bool EasySolutions::isBalanced(TreeNode *root) {
-    if (root == nullptr) {
-        return true;
-    }
-    /// 这里要求左右子树的高度差不超过1，并且左右子树都是平衡树
-    // return (__abs(treeHeight(root->left) - treeHeight(root->right)) < 2) && (isBalanced(root->left)) && isBalanced(root->right);
-    return false;
+    return !root ? true : abs(treeHeight(root->left) - treeHeight(root->right)) < 2 && isBalanced(root->left) &&
+                          isBalanced(root->right);
 }
 
 vector<vector<int>> EasySolutions::subsetsWithDup(vector<int> &nums) {
@@ -1665,6 +1677,71 @@ int EasySolutions::getImportance(vector<Employee *> employees, int id) {
 vector<string> EasySolutions::reorderLogFiles(vector<string> &logs) {
 
 
+}
+
+string EasySolutions::replaceSpaces(string S, int length) {
+    string res;
+    for (int i = 0; i < length; i++) {
+        if (S[i] == ' ') {
+            res += "%20";
+        } else {
+            res += S[i];
+        }
+    }
+    return res;
+}
+
+int EasySolutions::add(int a, int b) {
+    while (b != 0) {
+        int sum = (a ^ b);
+        int carry = (unsigned int) (a & b) << 1;
+        a = sum;
+        b = carry;
+    }
+    return a;
+}
+
+bool EasySolutions::isSymmetric(TreeNode *root) {
+    if (root == nullptr) {
+        return true;
+    }
+    return isTreeSymmertic(root->left, root->right);
+}
+
+int EasySolutions::distanceBetweenBusStops(vector<int> &distance, int start, int destination) {
+    if (start == destination) {
+        return 0;
+    }
+    // 分别计算顺时针和逆时针的距离，返回小的那一个即可
+    int ClockWise = 0, AntiClockWise = 0;
+    int totalSum = accumulate(distance.begin(), distance.end(), 0);
+    int begin = start < destination ? start : destination;
+    int end = start > destination ? start : destination;
+    for (int i = begin; i != end; i++) {
+        if (i == distance.size()) {
+            i = 0;
+        }
+        ClockWise += distance[i];
+    }
+    AntiClockWise = totalSum - ClockWise;
+    return ClockWise < AntiClockWise ? ClockWise : AntiClockWise;
+}
+
+int EasySolutions::maxPower(string s) {
+    if (s.length() < 2) {
+        return s.length();
+    }
+    int res = 0;
+    int left = 0, right = 0;
+    while (right < s.length()) {
+        if (s[left] == s[right]) {
+            right++;
+        } else {
+            res = max(right - left, res);
+            left = right;
+        }
+    }
+    return max(right - left, res);
 }
 
 int MeduimSolutions::minOperations(int n) {

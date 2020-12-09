@@ -98,18 +98,23 @@ public:
     static int rotatedDigits(int N);                    // 788. 旋转数字
     static string toGoatLatin(string S);                // 824. 山羊拉丁文
     static string thousandSeparator(int n);             // 1556. 千位分隔数
-    static vector<int> sumEvenAfterQueries(vector<int>& A, vector<vector<int>>& queries);       // 985. 查询后的偶数和
-    static bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2);             // 1662. 检查两个字符串数组是否相等
-    static int specialArray(vector<int>& nums);         // 1608. 特殊数组的特征值
+    static vector<int> sumEvenAfterQueries(vector<int> &A, vector<vector<int>> &queries);       // 985. 查询后的偶数和
+    static bool arrayStringsAreEqual(vector<string> &word1, vector<string> &word2);             // 1662. 检查两个字符串数组是否相等
+    static int specialArray(vector<int> &nums);         // 1608. 特殊数组的特征值
     static char firstUniqChar(string s);                // 剑指 Offer 50. 第一个只出现一次的字符
-    static int maxSubArray(vector<int>& nums);          // 剑指 Offer 42. 连续子数组的最大和
-    static string shortestCompletingWord(string licensePlate, vector<string>& words);           // 748. 最短补全词
-    static bool canFormArray(vector<int>& arr, vector<vector<int>>& pieces);                    // 1640. 能否连接形成数组
-    static double trimMean(vector<int>& arr);           // 1619. 删除某些元素后的数组均值
-    static vector<int> decrypt(vector<int>& code, int k);               // 1652. 拆炸弹
+    static int maxSubArray(vector<int> &nums);          // 剑指 Offer 42. 连续子数组的最大和
+    static string shortestCompletingWord(string licensePlate, vector<string> &words);           // 748. 最短补全词
+    static bool canFormArray(vector<int> &arr, vector<vector<int>> &pieces);                    // 1640. 能否连接形成数组
+    static double trimMean(vector<int> &arr);           // 1619. 删除某些元素后的数组均值
+    static vector<int> decrypt(vector<int> &code, int k);               // 1652. 拆炸弹
     static int bitwiseComplement(int N);                // 1009. 十进制整数的反码
-    static int getImportance(vector<Employee*> employees, int id);      // 690. 员工的重要性
-    static vector<string> reorderLogFiles(vector<string>& logs)         // 937. 重新排列日志文件
+    static int getImportance(vector<Employee *> employees, int id);      // 690. 员工的重要性
+    static vector<string> reorderLogFiles(vector<string> &logs);        // 937. 重新排列日志文件
+    static string replaceSpaces(string S, int length);  // 面试题 01.03. URL化
+    static int add(int a, int b);                       // 面试题 17.01. 不用加号的加法
+    static bool isSymmetric(TreeNode* root);            // 剑指 Offer 28. 对称的二叉树
+    static int distanceBetweenBusStops(vector<int>& distance, int start, int destination);      // 1184. 公交站间的距离
+    static int maxPower(string s);                      // 1446. 连续字符
 };
 
 class MeduimSolutions {
