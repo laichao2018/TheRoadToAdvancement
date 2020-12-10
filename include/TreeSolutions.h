@@ -23,6 +23,8 @@ public:
     static bool isBSTree(TreeNode *root);                       // 判定一棵二叉树是否是二叉搜索树
     static bool hasPathSum(TreeNode *root, int sum);            // 判定二叉树是否存在和为给定值的路径
     static void mirrorTree(TreeNode *root);                     // 二叉树镜像
+    static bool sameTree(TreeNode *a, TreeNode *b);             // 判定两棵二叉树结构是否相同
+    static int countBSTree(int numKeys);                        // 二叉搜索树的数目
 
     static int deepestLeavesSum(TreeNode *root);                // 1302. 层数最深叶子节点的和
     static int sumEvenGrandparent(TreeNode *root);              // 1315. 祖父节点值为偶数的节点和

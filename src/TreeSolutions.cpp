@@ -287,3 +287,29 @@ void TreeSolution::mirrorTree(TreeNode *root) {
     mirrorTree(root->left);
     mirrorTree(root->right);
 }
+
+bool TreeSolution::sameTree(TreeNode *a, TreeNode *b) {
+    if (a == nullptr && b == nullptr) {
+        return true;
+    } else if (a != nullptr && b != nullptr) {
+        return a->val == b->val && sameTree(a->left, b->left) && sameTree(a->right, b->right);
+    } else {
+        return false;
+    }
+}
+
+int TreeSolution::countBSTree(int numKeys) {
+    // 给定结点数目num，结点的data值为1，2，3...num。给出这些结点能够构造的二叉搜索树数目。
+    if (numKeys < 2) {
+        return 1;
+    } else {
+        int sum = 0;
+        int left, right, root;
+        for (root = 1; root < numKeys + 1; root++) {
+            left = countBSTree(root - 1);
+            right = countBSTree(numKeys - root);
+            sum += (left * right);
+        }
+        return sum;
+    }
+}
