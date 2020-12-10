@@ -16,22 +16,22 @@ using namespace std;
 
 class EasySolutions {
 public:
-    static int cakeNumber(int n);                                      // NC-12
-    static long long IncreasingArray(vector<int> &array);              // NC-31
-    static vector<int> runningSum(vector<int> &nums);                  // Leetcode-easy 1480
-    static int numIdenticalPairs(vector<int> &nums);                   // Leetcode-easy 1512
-    static int maxDepth(TreeNode *root);                               // Leetcode-easy 104
-    static vector<int> shuffle(vector<int> &nums, int n);              // Leetcode-easy 1470
-    static int xorOperation(int n, int start);                         // Leetcode-easy 1486
+    static int cakeNumber(int n);                                       // NC-12
+    static long long IncreasingArray(vector<int> &array);               // NC-31
+    static vector<int> runningSum(vector<int> &nums);                   // Leetcode-easy 1480
+    static int numIdenticalPairs(vector<int> &nums);                    // Leetcode-easy 1512
+    static int maxDepth(TreeNode *root);                                // Leetcode-easy 104
+    static vector<int> shuffle(vector<int> &nums, int n);               // Leetcode-easy 1470
+    static int xorOperation(int n, int start);                          // Leetcode-easy 1486
     static vector<bool> kidsWithCandies(vector<int> &candies, int extraCandies);    // Leetcode-easy 1431
-    static string restoreString(string s, vector<int> &indices);       // Leetcode-easy 1528
+    static string restoreString(string s, vector<int> &indices);        // Leetcode-easy 1528
     static int busyStudent(vector<int> &startTime, vector<int> &endTime, int queryTime);    // Leetcode-easy 1450
-    static int maxProduct(vector<int> &nums);                          // Leetcode-easy 1464
-    static string destCity(vector<vector<string>> &paths);            // Leetcode-easy 1436
-    static bool canMakeArithmeticProgression(vector<int> &arr);        // Leetcode-easy 1502
-    static bool canBeEqual(vector<int> &target, vector<int> &arr);     // Leetcode-easy 1460
-    static vector<int> finalPrices(vector<int> &prices);               // Leetcode-easy 1475
-    static string generateTheString(int n);                            // Leetcode-easy 1374
+    static int maxProduct(vector<int> &nums);                           // Leetcode-easy 1464
+    static string destCity(vector<vector<string>> &paths);              // Leetcode-easy 1436
+    static bool canMakeArithmeticProgression(vector<int> &arr);         // Leetcode-easy 1502
+    static bool canBeEqual(vector<int> &target, vector<int> &arr);      // Leetcode-easy 1460
+    static vector<int> finalPrices(vector<int> &prices);                // Leetcode-easy 1475
+    static string generateTheString(int n);                             // Leetcode-easy 1374
     static int findMagicIndex(vector<int> &nums);
 
     static int numTeams(vector<int> &rating);
