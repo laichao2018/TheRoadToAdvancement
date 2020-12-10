@@ -13,6 +13,17 @@ using namespace std;
 
 class TreeSolution {
 public:
+    static TreeNode *newNode(int data);                         // 二叉搜索树创建结点
+    static TreeNode *insertNode(TreeNode *root, int data);      // 二叉搜索树插入结点
+    static TreeNode *insertNode2(TreeNode *root, int data);     // 二叉搜索树插入节点(非递归)
+    static int sizeTreeNode(TreeNode *root);                    // 二叉树结点数目（不需要是二叉搜索树）
+    static int maxDepth(TreeNode *root);                        // 二叉树深度（根结点到最远叶结点距离，空树深度为0）
+    static int minValue(TreeNode *root);                        // 二叉搜索树最小值（最大值类似，查询右子树即可）
+    static bool findData(TreeNode *root, int target);           // 查找二叉搜索树中是否存在某个值
+    static bool isBSTree(TreeNode *root);                       // 判定一棵二叉树是否是二叉搜索树
+    static bool hasPathSum(TreeNode *root, int sum);            // 判定二叉树是否存在和为给定值的路径
+    static void mirrorTree(TreeNode *root);                     // 二叉树镜像
+
     static int deepestLeavesSum(TreeNode *root);                // 1302. 层数最深叶子节点的和
     static int sumEvenGrandparent(TreeNode *root);              // 1315. 祖父节点值为偶数的节点和
 

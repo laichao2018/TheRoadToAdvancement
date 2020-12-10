@@ -2,6 +2,7 @@
 #include "ModuleSolutions.h"
 #include "SortSolutions.h"
 #include "DynamicProgramming.h"
+#include "TreeSolutions.h"
 #include <iostream>
 #include <thread>
 #include <future>
@@ -33,8 +34,8 @@ void func(T ... args) {
 //    cout << upper_bound(nums.begin(), nums.end(), 2) - nums.begin() << endl;
 
 int main() {
-    vector<int> nums{1, 2, 3, 4};
-    cout << EasySolutions::distanceBetweenBusStops(nums, 0, 3) << endl;
+    vector<int> nums{5, 5, 5, 10, 20};
+    cout << DailyCoding::lemonadeChange(nums) << endl;
 
     return 0;
 }

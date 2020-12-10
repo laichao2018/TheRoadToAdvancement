@@ -92,10 +92,11 @@ public:
     static vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval);        // 57. 插入区间
     static bool isPossible(vector<int> &nums);      // 659. 分割数组为连续子序列
     static int countPrimes(int n);                  // 204. 计数质数
-    static int leastInterval(vector<char>& tasks, int n);               // 621. 任务调度器
+    static int leastInterval(vector<char> &tasks, int n);               // 621. 任务调度器
     static vector<vector<int>> generate(int numRows);                   // 118. 杨辉三角
-    static int matrixScore(vector<vector<int>>& A);                     // 861. 翻转矩阵后的得分
+    static int matrixScore(vector<vector<int>> &A);                     // 861. 翻转矩阵后的得分
     static int uniquePaths(int m, int n);           // 62. 不同路径
+    static bool lemonadeChange(vector<int> &bills);                     // 860. 柠檬水找零
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

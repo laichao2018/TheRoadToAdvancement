@@ -9,6 +9,20 @@
 
 using namespace std;
 
+///// ================================== HELP FUNC ==================================
+
+bool isBSTreeUtil(TreeNode *node, int min, int max) {
+    if (node == nullptr) {
+        return true;
+    }
+    if (node->val <= min || node->val >= max) {
+        return false;
+    }
+    return isBSTreeUtil(node->left, min, node->val) && isBSTreeUtil(node->right, node->val, max);
+}
+
+///// ================================== CLASS FUNC ==================================
+
 int TreeSolution::deepestLeavesSum(TreeNode *root) {
     if (root == nullptr) {
         return 0;
@@ -163,4 +177,113 @@ vector<int> TreeSolution::postorderTraversal(TreeNode *root) {
     }
     reverse(vRes.begin(), vRes.end());
     return vRes;
+}
+
+TreeNode *TreeSolution::newNode(int data) {
+    TreeNode *node = (TreeNode *) malloc(sizeof(TreeNode *));
+    node->val = data;
+    node->left = node->right = nullptr;
+    return node;
+}
+
+TreeNode *TreeSolution::insertNode(TreeNode *root, int data) {
+    if (root == nullptr) {
+        return newNode(data);
+    } else {
+        if (root->val >= data) {
+            root->left = insertNode(root->left, data);
+        } else {
+            root->right = insertNode(root->right, data);
+        }
+    }
+    return root;
+}
+
+TreeNode *TreeSolution::insertNode2(TreeNode *root, int data) {
+    TreeNode *node = root;
+    TreeNode *addNode = newNode(data);
+    if (node == nullptr) {
+        return addNode;
+    }
+    TreeNode *parent = nullptr;
+    TreeNode *curr = node;
+    while (curr != nullptr) {
+        parent = curr;
+        if (curr->val >= data) {
+            curr = curr->left;
+        } else {
+            curr = curr->right;
+        }
+    }
+    if (parent->val >= data) {
+        parent->left = addNode;
+    } else {
+        parent->right = addNode;
+    }
+    return node;
+}
+
+int TreeSolution::sizeTreeNode(TreeNode *root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    return sizeTreeNode(root->left) + sizeTreeNode(root->right) + 1;
+}
+
+int TreeSolution::maxDepth(TreeNode *root) {
+    if (root == nullptr) {
+        return 0;
+    } else {
+        int leftDepth = maxDepth(root->left);
+        int rightDepth = maxDepth(root->right);
+        return leftDepth > rightDepth ? leftDepth + 1 : rightDepth + 1;
+    }
+}
+
+int TreeSolution::minValue(TreeNode *root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    TreeNode *curr = root;
+    while (curr != nullptr) {
+        curr = curr->left;
+    }
+    return curr->val;
+}
+
+bool TreeSolution::findData(TreeNode *root, int target) {
+    if (root == nullptr) {
+        return false;
+    }
+    if (root->val == target) {
+        return true;
+    } else if (root->val > target) {
+        return findData(root->left, target);
+    } else {
+        return findData(root->right, target);
+    }
+}
+
+bool TreeSolution::isBSTree(TreeNode *root) {
+    return isBSTreeUtil(root, -99999, 99999);
+}
+
+bool TreeSolution::hasPathSum(TreeNode *root, int sum) {
+    if (root == nullptr) {
+        return sum == 0;
+    }
+    // 递归判断左右子树
+    return hasPathSum(root->left, sum - root->val) || hasPathSum(root->right, sum - root->val);
+}
+
+void TreeSolution::mirrorTree(TreeNode *root) {
+    // 自顶向下完成镜像
+    if (root == nullptr) {
+        return;
+    }
+    TreeNode *tmp = root->left;
+    root->left = root->right;
+    root->right = tmp;
+    mirrorTree(root->left);
+    mirrorTree(root->right);
 }
