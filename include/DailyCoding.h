@@ -97,6 +97,7 @@ public:
     static int matrixScore(vector<vector<int>> &A);                     // 861. 翻转矩阵后的得分
     static int uniquePaths(int m, int n);           // 62. 不同路径
     static bool lemonadeChange(vector<int> &bills);                     // 860. 柠檬水找零
+    static int wiggleMaxLength(vector<int>& nums);                      // 376. 摆动序列
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
