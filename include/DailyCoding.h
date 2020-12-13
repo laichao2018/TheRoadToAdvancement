@@ -98,6 +98,7 @@ public:
     static int uniquePaths(int m, int n);           // 62. 不同路径
     static bool lemonadeChange(vector<int> &bills);                     // 860. 柠檬水找零
     static int wiggleMaxLength(vector<int>& nums);                      // 376. 摆动序列
+    static bool containsDuplicate(vector<int>& nums);                   // 217. 存在重复元素
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

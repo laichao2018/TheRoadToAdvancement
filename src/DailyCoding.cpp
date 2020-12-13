@@ -1747,3 +1747,16 @@ int DailyCoding::wiggleMaxLength(vector<int> &nums) {
     }
     return max(up[n - 1], down[n - 1]);
 }
+
+bool DailyCoding::containsDuplicate(vector<int> &nums) {
+    if (nums.size() < 2) {
+        return false;
+    }
+    sort(nums.begin(), nums.end());
+    for (int i = 1; i < nums.size(); i++) {
+        if (nums[i] == nums[i - 1]) {
+            return true;
+        }
+    }
+    return false;
+}
