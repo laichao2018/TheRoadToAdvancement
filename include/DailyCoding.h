@@ -99,6 +99,7 @@ public:
     static bool lemonadeChange(vector<int> &bills);                     // 860. 柠檬水找零
     static int wiggleMaxLength(vector<int>& nums);                      // 376. 摆动序列
     static bool containsDuplicate(vector<int>& nums);                   // 217. 存在重复元素
+    static vector<vector<string>> groupAnagrams(vector<string>& strs);  // 49. 字母异位词分组
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
