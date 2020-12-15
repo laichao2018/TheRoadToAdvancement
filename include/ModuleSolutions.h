@@ -108,13 +108,16 @@ public:
     static double trimMean(vector<int> &arr);           // 1619. 删除某些元素后的数组均值
     static vector<int> decrypt(vector<int> &code, int k);               // 1652. 拆炸弹
     static int bitwiseComplement(int N);                // 1009. 十进制整数的反码
-    static int getImportance(vector<Employee *> employees, int id);      // 690. 员工的重要性
+    static int getImportance(vector<Employee *> employees, int id);     // 690. 员工的重要性
     static vector<string> reorderLogFiles(vector<string> &logs);        // 937. 重新排列日志文件
     static string replaceSpaces(string S, int length);  // 面试题 01.03. URL化
     static int add(int a, int b);                       // 面试题 17.01. 不用加号的加法
     static bool isSymmetric(TreeNode* root);            // 剑指 Offer 28. 对称的二叉树
     static int distanceBetweenBusStops(vector<int>& distance, int start, int destination);      // 1184. 公交站间的距离
     static int maxPower(string s);                      // 1446. 连续字符
+    static int maxDepth(string s);                      // 1614. 括号的最大嵌套深度
+    static int sumOddLengthSubarrays(vector<int>& arr);                 // 1588. 所有奇数长度子数组的和
+    static int numberOfMatches(int n);                  // 1688. 比赛中的配对次数
 };
 
 class MeduimSolutions {

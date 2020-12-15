@@ -100,6 +100,7 @@ public:
     static int wiggleMaxLength(vector<int>& nums);                      // 376. 摆动序列
     static bool containsDuplicate(vector<int>& nums);                   // 217. 存在重复元素
     static vector<vector<string>> groupAnagrams(vector<string>& strs);  // 49. 字母异位词分组
+    static int monotoneIncreasingDigits(int N);            // 738. 单调递增的数字
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

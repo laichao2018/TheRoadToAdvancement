@@ -35,17 +35,7 @@ void func(T ... args) {
 //    cout << upper_bound(nums.begin(), nums.end(), 2) - nums.begin() << endl;
 
 int main() {
-    vector<int> nums{78, 5, 25, 31, 2};
-    // cout << DailyCoding::lemonadeChange(nums) << endl;
-    // sort(nums.begin(), nums.end(), [](int a, int b) -> bool { return a > b; });
-    // for_each(nums.cbegin(), nums.cend(), [=](int a) { cout << a << " "; });
-
-    int a = accumulate(nums.begin(), nums.end(), 0);
-    cout << a << endl;
-    //  int a = 100;
-    //    auto fun = [&a]() { cout << ++a << endl; };
-    //    a = 101;
-    //    fun();
-
+    vector<int> nums{1, 4, 2, 5, 3};
+    cout << EasySolutions::sumOddLengthSubarrays(nums) << endl;
     return 0;
 }

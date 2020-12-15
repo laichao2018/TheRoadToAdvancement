@@ -1744,6 +1744,37 @@ int EasySolutions::maxPower(string s) {
     return max(right - left, res);
 }
 
+int EasySolutions::maxDepth(string s) {
+    if (s.empty()) {
+        return 0;
+    }
+    int res = 0;
+    stack<int> sSta;
+    for (int i = 0; i < s.length(); i++) {
+        if (s[i] == '(') {
+            sSta.push(1);
+            res = res > sSta.size() ? res : sSta.size();
+        } else if (s[i] == ')') {
+            sSta.pop();
+        } else {
+            continue;
+        }
+    }
+    return sSta.empty() ? res : 0;
+}
+
+int EasySolutions::sumOddLengthSubarrays(vector<int> &arr) {
+    int sum = 0;
+    for (int i = 1; i <= arr.size(); i += 2) {
+        for (int j = 0; j + i <= arr.size(); j++) {
+            for (int k = j; k < j + i; k++) {
+                sum += arr[k];
+            }
+        }
+    }
+    return sum;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
