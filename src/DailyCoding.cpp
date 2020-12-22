@@ -1793,3 +1793,38 @@ int DailyCoding::monotoneIncreasingDigits(int N) {
     }
     return stoi(strN);
 }
+
+vector<vector<int>> DailyCoding::zigzagLevelOrder(TreeNode *root) {
+    if (root == nullptr) {
+        return {};
+    }
+    vector<vector<int>> res;
+    queue<TreeNode *> qNodes;
+    qNodes.push(root);
+    while (!qNodes.empty()) {
+        int currentSize = qNodes.size();
+        vector<int> tmpVec;
+        for (int i = 0; i < currentSize; i++) {
+            TreeNode *currentNode = qNodes.front();
+            qNodes.pop();
+            tmpVec.push_back(currentNode->val);
+            if (currentNode->left != nullptr) {
+                qNodes.push(currentNode->left);
+            }
+            if (currentNode->right != nullptr) {
+                qNodes.push(currentNode->right);
+            }
+        }
+        res.push_back(tmpVec);
+    }
+    bool flag = false;
+    for (int i = 0; i < res.size(); i++) {
+        if (flag) {
+            reverse(res[i].begin(), res[i].end());
+            flag = false;
+        } else {
+            flag = true;
+        }
+    }
+    return res;
+}

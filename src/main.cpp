@@ -34,6 +34,25 @@ void func(T ... args) {
 
 //    cout << upper_bound(nums.begin(), nums.end(), 2) - nums.begin() << endl;
 
+// 折半查找元素
+template<typename T>
+int binarySearch(vector<T>&a, const T& x){
+    int left=0,right=a.size();
+    while (left<=right){
+        int middle=(left+right)/2;
+        if(x==a[middle]){
+            return middle;
+        }
+        if(x>a[middle]){
+            left=middle+1;
+        }else{
+            right=middle-1;
+        }
+    }
+    return -1;  // 没有找到
+}
+
+
 int main() {
     vector<int> nums{1, 4, 2, 5, 3};
     cout << EasySolutions::sumOddLengthSubarrays(nums) << endl;
