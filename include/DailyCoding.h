@@ -97,11 +97,12 @@ public:
     static int matrixScore(vector<vector<int>> &A);                     // 861. 翻转矩阵后的得分
     static int uniquePaths(int m, int n);           // 62. 不同路径
     static bool lemonadeChange(vector<int> &bills);                     // 860. 柠檬水找零
-    static int wiggleMaxLength(vector<int>& nums);                      // 376. 摆动序列
-    static bool containsDuplicate(vector<int>& nums);                   // 217. 存在重复元素
-    static vector<vector<string>> groupAnagrams(vector<string>& strs);  // 49. 字母异位词分组
+    static int wiggleMaxLength(vector<int> &nums);                      // 376. 摆动序列
+    static bool containsDuplicate(vector<int> &nums);                   // 217. 存在重复元素
+    static vector<vector<string>> groupAnagrams(vector<string> &strs);  // 49. 字母异位词分组
     static int monotoneIncreasingDigits(int N);            // 738. 单调递增的数字
-    static vector<vector<int>> zigzagLevelOrder(TreeNode* root);        // 103. 二叉树的锯齿形层序遍历
+    static vector<vector<int>> zigzagLevelOrder(TreeNode *root);        // 103. 二叉树的锯齿形层序遍历
+    static int firstUniqChar(string s);             // 387. 字符串中的第一个唯一字符
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
