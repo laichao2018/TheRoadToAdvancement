@@ -112,11 +112,11 @@ public:
     static vector<string> reorderLogFiles(vector<string> &logs);        // 937. 重新排列日志文件
     static string replaceSpaces(string S, int length);  // 面试题 01.03. URL化
     static int add(int a, int b);                       // 面试题 17.01. 不用加号的加法
-    static bool isSymmetric(TreeNode* root);            // 剑指 Offer 28. 对称的二叉树
-    static int distanceBetweenBusStops(vector<int>& distance, int start, int destination);      // 1184. 公交站间的距离
+    static bool isSymmetric(TreeNode *root);            // 剑指 Offer 28. 对称的二叉树
+    static int distanceBetweenBusStops(vector<int> &distance, int start, int destination);      // 1184. 公交站间的距离
     static int maxPower(string s);                      // 1446. 连续字符
     static int maxDepth(string s);                      // 1614. 括号的最大嵌套深度
-    static int sumOddLengthSubarrays(vector<int>& arr);                 // 1588. 所有奇数长度子数组的和
+    static int sumOddLengthSubarrays(vector<int> &arr);                 // 1588. 所有奇数长度子数组的和
     static int numberOfMatches(int n);                  // 1688. 比赛中的配对次数
 };
 
@@ -137,6 +137,8 @@ public:
     static int maximalSquare(vector<vector<char>> &matrix);         // 221. 最大正方形
     static string longestPalindrome(string s);          // 5. 最长回文子串
     static string convert(string s, int numRows);       // 6. Z 字形变换
+    static bool isValidSudoku(vector<vector<char>> &board);         // 36. 有效的数独
+    static bool isValidBST(TreeNode* root);             // 98. 验证二叉搜索
 };
 
 #endif //THEROADTOADVANCEMENT_MODULESOLUTIONS_H

@@ -171,6 +171,17 @@ void printVec(vector<T> &vec) {
     cout << endl;
 }
 
+bool helpIsValidBST(TreeNode *currNode, long long lower, long long upper) {
+    if (currNode == nullptr) {
+        return true;
+    }
+    if (currNode->val <= lower || currNode->val >= upper) {
+        return false;
+    }
+    return helpIsValidBST(currNode->left, lower, currNode->val) &&
+           helpIsValidBST(currNode->right, currNode->val, upper);
+}
+
 ///// ================================== CLASS FUNC ==================================
 
 int EasySolutions::cakeNumber(int n) {
@@ -2003,4 +2014,28 @@ string MeduimSolutions::convert(string s, int numRows) {
         }
     }
     return res;
+}
+
+bool MeduimSolutions::isValidSudoku(vector<vector<char>> &board) {
+    int row[9][10] = {0};
+    int col[9][10] = {0};
+    int box[9][10] = {0};
+
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (board[i][j] == '.') {
+                continue;
+            }
+            int currNumber = board[i][j] - '0';
+            if (row[i][currNumber] || col[j][currNumber] || box[j / 3 + (i / 3) * 3][currNumber]) {
+                return false;
+            }
+            row[i][currNumber] = col[j][currNumber] = box[j / 3 + (i / 3) * 3][currNumber] = 1;
+        }
+    }
+    return true;
+}
+
+bool MeduimSolutions::isValidBST(TreeNode *root) {
+    return helpIsValidBST(root, LONG_MIN, LONG_MAX);
 }
