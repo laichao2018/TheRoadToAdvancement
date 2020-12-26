@@ -36,17 +36,17 @@ void func(T ... args) {
 
 // 折半查找元素
 template<typename T>
-int binarySearch(vector<T>&a, const T& x){
-    int left=0,right=a.size();
-    while (left<=right){
-        int middle=(left+right)/2;
-        if(x==a[middle]){
+int binarySearch(vector<T> &a, const T &x) {
+    int left = 0, right = a.size();
+    while (left <= right) {
+        int middle = (left + right) / 2;
+        if (x == a[middle]) {
             return middle;
         }
-        if(x>a[middle]){
-            left=middle+1;
-        }else{
-            right=middle-1;
+        if (x > a[middle]) {
+            left = middle + 1;
+        } else {
+            right = middle - 1;
         }
     }
     return -1;  // 没有找到
@@ -54,7 +54,7 @@ int binarySearch(vector<T>&a, const T& x){
 
 
 int main() {
-    vector<int> nums{1, 4, 2, 5, 3};
-    cout << EasySolutions::sumOddLengthSubarrays(nums) << endl;
+    vector<int> nums{4, 2, 4, 5, 6};
+    cout << MeduimSolutions::maximumUniqueSubarray(nums) << endl;
     return 0;
 }

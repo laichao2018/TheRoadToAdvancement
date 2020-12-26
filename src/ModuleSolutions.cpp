@@ -1786,6 +1786,32 @@ int EasySolutions::sumOddLengthSubarrays(vector<int> &arr) {
     return sum;
 }
 
+string EasySolutions::reformatNumber(string number) {
+    string s;
+    for (char c:number) {
+        if (c != ' ' && c != '-') {
+            s += c;
+        }
+    }
+    string res;
+    for (int i = 0; i < s.size();) {
+        if (s.size() - i > 4) {
+            res += s.substr(i, 3);
+            i += 3;
+        } else {
+            if (s.size() - i < 4) {
+                res += s.substr(i, s.size() - i);
+            } else {
+                res += (s.substr(i, 2) + "-" + s.substr(i + 2));
+            }
+            i += 4;
+        }
+        res += "-";
+    }
+    res.pop_back();
+    return res;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
@@ -2038,4 +2064,21 @@ bool MeduimSolutions::isValidSudoku(vector<vector<char>> &board) {
 
 bool MeduimSolutions::isValidBST(TreeNode *root) {
     return helpIsValidBST(root, LONG_MIN, LONG_MAX);
+}
+
+int MeduimSolutions::maximumUniqueSubarray(vector<int> &nums) {
+    unordered_map<int, int> hash;
+    int res = 0;
+    // j 是用来保存i的初始位置的
+    for (int i = 0, j = 0, s = 0; i < nums.size(); i++) {
+        int x = nums[i];
+        hash[x]++;
+        s += x;
+        while (hash[x] > 1) {
+            s -= nums[j];
+            hash[nums[j++]]--;
+        }
+        res = max(s, res);
+    }
+    return res;
 }

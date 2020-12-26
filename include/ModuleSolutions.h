@@ -118,6 +118,7 @@ public:
     static int maxDepth(string s);                      // 1614. 括号的最大嵌套深度
     static int sumOddLengthSubarrays(vector<int> &arr);                 // 1588. 所有奇数长度子数组的和
     static int numberOfMatches(int n);                  // 1688. 比赛中的配对次数
+    static string reformatNumber(string number);        // 1694. 重新格式化电话号码
 };
 
 class MeduimSolutions {
@@ -139,6 +140,7 @@ public:
     static string convert(string s, int numRows);       // 6. Z 字形变换
     static bool isValidSudoku(vector<vector<char>> &board);         // 36. 有效的数独
     static bool isValidBST(TreeNode* root);             // 98. 验证二叉搜索
+    static int maximumUniqueSubarray(vector<int>& nums);            // 1695. 删除子数组的最大得分
 };
 
 #endif //THEROADTOADVANCEMENT_MODULESOLUTIONS_H

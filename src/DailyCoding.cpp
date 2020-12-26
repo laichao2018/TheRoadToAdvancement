@@ -1841,3 +1841,39 @@ int DailyCoding::firstUniqChar(string s) {
     }
     return -1;
 }
+
+int DailyCoding::maximalRectangle(vector<vector<char>> &matrix) {
+    if (matrix.empty()) {
+        return 0;
+    }
+    int rows = matrix.size(), cols = matrix[0].size();
+    int maxArea = 0;
+    vector<vector<int>> rect(rows, vector<int>(cols, 0));
+    for (int i = 0; i < rows; i++) {
+        //针对每一行计算[0,col]能够形成的最大矩形
+        for (int j = 0; j < cols; j++) {
+            if (matrix[i][j] == '1') {
+                //如果当前是第一个元素需要单独处理
+                if (j == 0) {
+                    rect[i][j] = 1;
+                } else {
+                    rect[i][j] = rect[i][j - 1] + 1;
+                }
+            } else {
+                rect[i][j] = 0;
+            }
+            int minWidth = rect[i][j];
+            for (int row = i; row >= 0; row--) {
+                if (rect[row][j] == 0) {
+                    break;
+                }
+                int height = i - row + 1;
+                minWidth = min(minWidth, rect[row][j]);
+                maxArea = max(maxArea, height * minWidth);
+            }
+        }
+    }
+    return maxArea;
+}
+
+
