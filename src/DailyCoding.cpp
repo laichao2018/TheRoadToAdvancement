@@ -1876,4 +1876,24 @@ int DailyCoding::maximalRectangle(vector<vector<char>> &matrix) {
     return maxArea;
 }
 
+bool DailyCoding::isIsomorphic(string s, string t) {
+    if (s.empty() && t.empty()) {
+        return true;
+    }
+    if (s.empty() || t.empty()) {
+        return false;
+    }
+    int m1[256] = {0};
+    int m2[256] = {0};
+    int n = s.length();
+    for (int i = 0; i < n; i++) {
+        if (m1[s[i]] != m2[t[i]]) {
+            return false;
+        }
+        m1[s[i]] = i + 1;
+        m2[t[i]] = i + 1;
+    }
+    return true;
+}
+
 

@@ -104,6 +104,7 @@ public:
     static vector<vector<int>> zigzagLevelOrder(TreeNode *root);        // 103. 二叉树的锯齿形层序遍历
     static int firstUniqChar(string s);             // 387. 字符串中的第一个唯一字符
     static int maximalRectangle(vector<vector<char>>& matrix);          // 85. 最大矩形
+    static bool isIsomorphic(string s, string t);   // 205. 同构字符串
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
