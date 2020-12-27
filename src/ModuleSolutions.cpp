@@ -182,6 +182,18 @@ bool helpIsValidBST(TreeNode *currNode, long long lower, long long upper) {
            helpIsValidBST(currNode->right, currNode->val, upper);
 }
 
+int countsOfVowel(string s) {
+    int res = 0;
+    set<char> sStr({'a', 'e', 'i', 'o', 'u'});
+    for (char c:s) {
+        c = tolower(c);
+        if (sStr.count(c)) {
+            res++;
+        }
+    }
+    return res;
+}
+
 ///// ================================== CLASS FUNC ==================================
 
 int EasySolutions::cakeNumber(int n) {
@@ -1810,6 +1822,11 @@ string EasySolutions::reformatNumber(string number) {
     }
     res.pop_back();
     return res;
+}
+
+bool EasySolutions::halvesAreAlike(string s) {
+    int n = s.size() / 2;
+    return countsOfVowel(s.substr(0, n)) == countsOfVowel(s.substr(n));
 }
 
 int MeduimSolutions::minOperations(int n) {

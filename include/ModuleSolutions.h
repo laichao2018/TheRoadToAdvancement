@@ -119,6 +119,7 @@ public:
     static int sumOddLengthSubarrays(vector<int> &arr);                 // 1588. 所有奇数长度子数组的和
     static int numberOfMatches(int n);                  // 1688. 比赛中的配对次数
     static string reformatNumber(string number);        // 1694. 重新格式化电话号码
+    static bool halvesAreAlike(string s);               // 5637. 判断字符串的两半是否相似
 };
 
 class MeduimSolutions {
