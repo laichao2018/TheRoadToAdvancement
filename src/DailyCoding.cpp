@@ -1896,4 +1896,29 @@ bool DailyCoding::isIsomorphic(string s, string t) {
     return true;
 }
 
+bool DailyCoding::canPlaceFlowers(vector<int> &flowerbed, int n) {
+    int count = 0;
+    int m = flowerbed.size();
+    int prev = -1;
+    for (int i = 0; i < n; i++) {
+        if (flowerbed[i] == 1) {
+            if (prev < 0) {
+                count += i / 2;
+            } else {
+                count += (i - prev - 2) / 2;
+            }
+            if (count >= n) {
+                return true;
+            }
+            prev = i;
+        }
+    }
+    if (prev < 0) {
+        count += (m + 1) / 2;
+    } else {
+        count += (m - prev - 1) / 2;
+    }
+    return count >= n;
+}
+
 
