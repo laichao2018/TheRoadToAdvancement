@@ -1,41 +1,172 @@
 //
 // Created by LaiChao on 2020/11/5.
+// 最优解答方案
 //
 
 #include "OfferSolutions.h"
-#include <queue>
+#include <iostream>
 #include <vector>
 #include <set>
+#include <stack>
+#include <queue>
 
 using namespace std;
 
-int OfferSolutions::TreeDepth(TreeNode *pRoot) {
-    if (pRoot == nullptr) {
+/// ================================== GLOBAL VAR ==================================
+int gIndex = 0;    // buildTree中使用
+int gRows = 0, gCols = 0;   // exist中使用
+
+///// ================================== HELP FUNC ==================================
+TreeNode *rebuild_func(vector<int> &preOrder, vector<int> &inOrder, int left, int right) {
+    if (gIndex == preOrder.size() || left == right) {
+        return nullptr;
+    }
+    TreeNode *head = nullptr;
+    for (int i = left; i < right; i++) {
+        if (preOrder[gIndex] == inOrder[i]) {  // 找到分界条件
+            head = new TreeNode(preOrder[gIndex]);
+            gIndex++;   // 前序遍历的index往后移
+            head->left = rebuild_func(preOrder, inOrder, left, i);      // 切分左子树（左闭右开）
+            head->right = rebuild_func(preOrder, inOrder, i + 1, right);    // 切分右子树
+            break;
+        }
+    }
+    return head;
+}
+
+bool dfs_exist(vector<vector<char>> &board, string &word, int i, int j, int k) {
+    if (i < 0 || i > gRows - 1 || j < 0 || j > gCols - 1 || board[i][j] != word[k]) {
+        return false;
+    }
+    if (k == word.size() - 1) {
+        return true;
+    }
+    board[i][j] = '\0';
+    bool res = dfs_exist(board, word, i + 1, j, k + 1) || dfs_exist(board, word, i - 1, j, k + 1) ||
+               dfs_exist(board, word, i, j + 1, k + 1) || dfs_exist(board, word, i, j - 1, k + 1);
+    board[i][j] = word[k];  // 回退
+    return res;
+}
+
+int dfs_movingCount(int i, int j, int si, int sj, vector<vector<bool>> &isVisited, int m, int n, int k) {
+    if (i > m - 1 || j > n - 1 || si + sj > k || isVisited[i][j]) {
         return 0;
     }
+    isVisited[i][j] = true;
+    return 1 + dfs_movingCount(i + 1, j, ((i + 1) % 10) == 0 ? si - 8 : si + 1, sj, isVisited, m, n, k) +
+           dfs_movingCount(i, j + 1, si, ((j + 1) % 10) == 0 ? sj - 8 : sj + 1, isVisited, m, n, k);
+}
+
+int split_number(int n) {
     int res = 0;
-    queue<TreeNode *> qNodes;
-    qNodes.push(pRoot);
-    while (!qNodes.empty()) {
-        int currSize = qNodes.size();
-        for (int i = 0; i < currSize; i++) {
-            res++;
-            TreeNode *currNode = qNodes.front();
-            qNodes.pop();
-            if (currNode->left != nullptr) {
-                qNodes.push(currNode->left);
+    while (n) {
+        res += (n % 10);
+        n /= 10;
+    }
+    return res;
+}
+
+///// ================================== CLASS FUNC ==================================
+int OfferSolutions::findRepeatNumber(vector<int> &nums) {
+    if (nums.empty()) {
+        return -1;
+    }
+    // 每次把一个正确的数放在正确的位置上，如果在放的时候发现已经重复了，则返回
+    int len = nums.size();
+    for (int i = 0; i < len; i++) {
+        while (nums[i] != i) {
+            if (nums[i] == nums[nums[i]]) {
+                return nums[i];
             }
-            if (currNode->right != nullptr) {
-                qNodes.push(currNode->right);
-            }
+            swap(nums[i], nums[nums[i]]);
+        }
+    }
+    return -1;
+}
+
+bool OfferSolutions::findNumberIn2DArray(vector<vector<int>> &matrix, int target) {
+    if (matrix.empty() || matrix[0].empty()) {
+        return false;
+    }
+    if (target < matrix[0][0] || target > matrix[matrix.size() - 1][matrix[0].size()] - 1) {
+        return false;
+    }
+    int r = 0, c = matrix[0].size() - 1;
+    while (r < matrix.size() && c >= 0) {
+        if (matrix[r][c] == target) {
+            return true;
+        } else if (matrix[r][c] > target) {
+            c--;
+        } else {
+            r++;
+        }
+    }
+    return false;
+}
+
+string OfferSolutions::replaceSpace(string s) {
+    if (s.empty()) {
+        return nullptr;
+    }
+    string res;
+    for (int i = 0; i < s.length(); i++) {
+        if (s[i] != ' ') {
+            res += s[i];
+        } else {
+            res += "%20";
         }
     }
     return res;
 }
 
+vector<int> OfferSolutions::reversePrint(ListNode *head) {
+    // 使用stack后比使用reverse算法，速度更快一些
+    vector<int> res;
+    if (head == nullptr) {
+        return res;
+    }
+    ListNode *tmpNode = head;
+    stack<int> sNumbers;
+    while (tmpNode != nullptr) {
+        sNumbers.push(tmpNode->val);
+        tmpNode = tmpNode->next;
+    }
+    while (!sNumbers.empty()) {
+        res.push_back(sNumbers.top());
+        sNumbers.pop();
+    }
+//    reverse(res.begin(), res.end());
+    return res;
+}
+
+TreeNode *OfferSolutions::buildTree(vector<int> &preorder, vector<int> &inorder) {
+    TreeNode *head;
+    int left = 0;
+    int right = inorder.size();   // 起始条件
+    return rebuild_func(preorder, inorder, left, right);
+}
+
+int OfferSolutions::fib(int n) {
+    if (n < 2) {
+        return n;
+    }
+    unsigned long long x = 0, y = 1, m = 1;
+    while (m++ < n) {
+        unsigned long long t = y;
+        y = (x + y) % 1000000007L;
+        x = t;
+    }
+    return y % 1000000007;
+}
+
 int OfferSolutions::numWays(int n) {
+    if (n == 0) {
+        return 1;
+    }
+    if (n < 3) {
+        return n;
+    }
     vector<int> dpArr(n + 1, 0);
-    dpArr[0] = 1;
     dpArr[1] = 1;
     dpArr[2] = 2;
     for (int i = 3; i <= n; i++) {
@@ -44,224 +175,260 @@ int OfferSolutions::numWays(int n) {
     return dpArr[n];
 }
 
-vector<int> OfferSolutions::multiply(const vector<int> &A) {
-    if (A.empty()) {
-        return {};
-    }
-    vector<int> result;
-    for (int i = 0; i < A.size(); i++) {
-        int tmpValue = 1;
-        for (int j = 0; j < A.size(); j++) {
-            if (i != j) {
-                tmpValue *= A[j];
-            }
-        }
-        result.push_back(tmpValue);
-    }
-    return result;
-}
-
-int OfferSolutions::Add(int num1, int num2) {
-    /*_asm
-    {
-        MOV EAX, a
-        MOV ECX, b
-        ADD EAX, ECX
-    }*/
-
-    while (num2) {
-        int temp = num1 ^num2;
-        num2 = (num1 & num2) << 1;
-        num1 = temp;
-    }
-    return num1;
-}
-
-void OfferSolutions::Mirror(TreeNode *pRoot) {
-    if (pRoot == nullptr) {
-        return;
-    }
-    if (pRoot->left == nullptr && pRoot->right == nullptr) {
-        return;
-    }
-    swap(pRoot->left, pRoot->right);
-
-    if (pRoot->left != nullptr) {
-        Mirror(pRoot->left);
-    }
-    if (pRoot->right != nullptr) {
-        Mirror(pRoot->right);
-    }
-}
-
-vector<int> OfferSolutions::twoSum(vector<int> &nums, int target) {
-    if (nums.size() < 2) {
-        return {};
-    }
-    vector<int> result;
-    int minIndex = 0, maxIndex = nums.size() - 1;
-    while (minIndex < maxIndex) {
-        int currSum = nums[minIndex] + nums[maxIndex];
-        if (currSum > target) {
-            maxIndex--;
-        } else if (currSum < target) {
-            minIndex++;
-        } else {
-            result.push_back(nums[minIndex]);
-            result.push_back(nums[maxIndex]);
-            return result;
-        }
-    }
-    return result;
-}
-
-vector<int> OfferSolutions::exchange(vector<int> &nums) {
-    deque<int> lNums;
-    for (int i = 0; i < nums.size(); i++) {
-        if (nums[i] % 2) {
-            lNums.push_front(nums[i]);
-        } else {
-            lNums.push_back(nums[i]);
-        }
-    }
-    vector<int> res;
-    auto pList = lNums.begin();
-    while (pList != lNums.end()) {
-        res.push_back(*pList++);
-    }
-    return res;
-}
-
-vector<int> OfferSolutions::exchange2(vector<int> &nums) {
-    /// ===== 双 指 针 法 =====
-    int left = 0, right = nums.size() - 1;
+int OfferSolutions::minArray(vector<int> &numbers) {
+    int left = 0, right = numbers.size() - 1;
     while (left < right) {
-        if (nums[left] % 2 == 0) {
-            while (left < right && nums[right] % 2 == 0) {
-                right--;
-            }
-            swap(nums[left], nums[right--]);
+        int mid = left + (right - left) / 2;
+        if (numbers[mid] > numbers[right]) {
+            left = mid + 1; // 如果中间值大于最右边的值，说明旋转之后最小的数字肯定在mid的右边，
+        } else if (numbers[mid] < numbers[right]) {
+            right = mid;
+        } else {
+            right--;
         }
-        left++;
     }
-    return nums;
+    return numbers[left];
 }
 
-bool OfferSolutions::findNumberIn2DArray(vector<vector<int>> &matrix, int target) {
-    if (matrix.size() == 0) {
-        return false;
-    }
-    int matrixRow = matrix.size();
-    int matrixCol = matrix[0].size();
-    int posRow = matrixRow - 1, posCol = 0;
-    while (posRow >= 0 && posCol < matrixCol) {
-        int currNumber = matrix[posRow][posCol];
-        if (target == currNumber) {
-            return true;
-        } else if (currNumber < target) {
-            posCol++;
-        } else {
-            posRow--;
+bool OfferSolutions::exist(vector<vector<char>> &board, string word) {
+    gRows = board.size();
+    gCols = board[0].size();
+    for (int i = 0; i < gRows; i++) {
+        for (int j = 0; j < gCols; j++) {
+            if (dfs_exist(board, word, i, j, 0)) {
+                return true;
+            }
         }
     }
     return false;
 }
 
-int OfferSolutions::minArray(vector<int> &numbers) {
-    if (numbers.empty()) {
-        return {};
-    }
-    if (numbers.size() == 1) {
-        return numbers[0];
-    }
-    for (int forword = 1, behind = 0; forword < numbers.size() && behind < numbers.size(); forword++, behind++) {
-        if (numbers[forword] < numbers[behind]) {
-            return numbers[forword];
-        }
-    }
-    return numbers[0];
+int OfferSolutions::movingCount(int m, int n, int k) {
+    vector<vector<bool>> isVisited(m, vector<bool>(n, false));
+    return dfs_movingCount(0, 0, 0, 0, isVisited, m, n, k);
 }
 
-int OfferSolutions::Sum_Solution(int n) {
-    int result = n;
-    result && (result += Sum_Solution(n - 1));
-    return result;
-}
-
-int OfferSolutions::FindGreatestSumOfSubArray(vector<int> array) {
-    if (array.empty()) {
-        return 0;
-    }
-    int max_sum = -99999;
-    int curr_sum = array[0];
-    for (int i = 1; i < array.size(); i++) {
-        curr_sum = curr_sum > 0 ? curr_sum + array[i] : array[i];
-        max_sum = max(max_sum, curr_sum);
-    }
-    return max_sum;
-}
-
-int OfferSolutions::jumpFloor(int number) {
-    if (number < 1) {
-        return 0;
-    }
-    if (number == 1) {
+int OfferSolutions::movingCount_bfs(int m, int n, int k) {
+    if (!k) {
         return 1;
     }
-    if (number == 2) {
-        return 2;
-    }
-    return jumpFloor(number - 1) + jumpFloor(number - 2);
-}
-
-void OfferSolutions::FindNumsAppearOnce(vector<int> data, int *num1, int *num2) {
-    if (data.size() < 2) {
-        return;
-    }
-    set<int> save;
-    set<int>::iterator pSave;
-    for (int i = 0; i < data.size(); i++) {
-        if (save.find(data[i]) == save.end()) {        //// 没找到
-            save.insert(data[i]);
-        } else {    /// 找到的话直接删除
-            pSave = save.find(data[i]);
-            save.erase(pSave);
+    queue<pair<int, int>> q;
+    // 向右和向下
+    int dx[2] = {1, 0};
+    int dy[2] = {0, 1};
+    vector<vector<int>> isVisited(m, vector<int>(n, 0));
+    q.push(make_pair(0, 0));
+    isVisited[0][0] = 1;
+    int res = 1;
+    while (!q.empty()) {
+        auto[x, y]=q.front();
+        q.pop();
+        for (int i = 0; i < 2; i++) {
+            int tx = x + dx[i];
+            int ty = y + dy[i];
+            if (tx > m - 1 || ty > n - 1 || isVisited[tx][ty] || split_number(tx) + split_number(ty) > k) {
+                continue;
+            }
+            q.push(make_pair(tx, ty));
+            isVisited[tx][ty] = 1;
+            res++;
         }
     }
-    pSave = save.begin();
-    *num1 = *pSave;
-    *num2 = *(++pSave);
+    return res;
 }
 
-ListNode *OfferSolutions::FindFirstCommonNode(ListNode *pHead1, ListNode *pHead2) {
-    if (pHead1 == nullptr || pHead2 == nullptr) {
-        return {};
+int OfferSolutions::cuttingRope(int n) {
+    if (n <= 3) {
+        return 1 * (n - 1);
     }
-    ListNode *p1 = pHead1, *p2 = pHead2;
-    while (p1 != p2) {
-        p1 = (p1 == nullptr) ? pHead2 : p1->next;
-        p2 = (p2 == nullptr) ? pHead1 : p2->next;
+    int res = 1;
+    if (n % 3 == 1) {   // 拆出来一个 4, 因为肯定不会拆出来 1
+        res *= 4;
+        n -= 4;
     }
-    return p1;
+    if (n % 3 == 2) {   // 拆出来一个 2
+        res *= 2;
+        n -= 2;
+    }
+    while (n) {     // 通过上面两个if保证现在 n 可以整除 3
+        res *= 3;
+        n -= 3;
+    }
+    return res;
 }
 
-ListNode *OfferSolutions::EntryNodeOfLoop(ListNode *pHead) {
-    //// 使用快慢指针
-    ListNode *pFastNode = pHead, *pSlowNode = pHead;
-    while (pFastNode && pFastNode->next) {
-        pFastNode = pFastNode->next->next;
-        pSlowNode = pSlowNode->next;
-        if (pFastNode == pSlowNode) {
+int OfferSolutions::cuttingRope02(int n) {
+    if (n <= 3) {
+        return 1 * (n - 1);
+    }
+    long long res = 1;
+    if (n % 3 == 1) {
+        res *= 4, n -= 4;
+    }
+    if (n % 3 == 2) {
+        res *= 2, n -= 2;
+    }
+    while (n) {
+        res = res * 3 % 1000000007;
+        n -= 3;
+    }
+    return res;
+}
+
+int OfferSolutions::hammingWeight(uint32_t n) {
+    int res = 0;
+    while (n) {
+        res += (n & 1);
+        n >>= 1;
+    }
+    return res;
+}
+
+double OfferSolutions::myPow(double x, int n) {
+    double res = 1.;
+    bool flag = n < 0;
+    while (n) {
+        if (n & 1) {
+            res *= x;
+        }
+        x *= x;
+        n /= 2;     // 不能是 n>>=1 因为负数的情况会出现死循环
+    }
+    return flag ? 1. / res : res;
+}
+
+vector<int> OfferSolutions::printNumbers(int n) {
+    vector<int> res;
+    int max_num = pow(10, n);
+    for (int i = 1; i < max_num; i++) {
+        res.push_back(i);
+    }
+    return res;
+}
+
+ListNode *OfferSolutions::deleteNode(ListNode *head, int val) {
+    if (head == nullptr) {
+        return nullptr;
+    }
+    if (head->val == val) {
+        ListNode *node = head->next;
+        return node;
+    }
+    ListNode *fast = head->next, *slow = head;
+    while (fast != nullptr && slow != nullptr) {
+        if (fast->val == val) {
             break;
         }
+        fast = fast->next;
+        slow = slow->next;
     }
-    if (!pFastNode || !pFastNode->next) {
-        return nullptr;        //// 说明是没有环的
-    }
-    pSlowNode = pHead;    //// 重新从链表前出发
-    while (pSlowNode != pFastNode) {
-        pFastNode = pFastNode->next;    //// fast 指针从相遇点出发
-        pSlowNode = pSlowNode->next;
-    }
-    return pSlowNode;
+    slow->next = fast->next;
+    fast->next = nullptr;
+    return head;
 }
+
+bool OfferSolutions::isMatch(string s, string p) {
+/// =============================================================================
+///       ～～～～～～～ 不 会 做 ～～～～～～～～ 我 抄 的 ～～～～～～～～
+/// =============================================================================
+    int m = s.size();
+    int n = p.size();
+
+    auto matches = [&](int i, int j) -> bool {
+        if (i == 0) {
+            return false;
+        }
+        if (p[j - 1] == '.') {
+            return true;
+        }
+        return s[i - 1] == p[j - 1];
+    };
+
+    vector<vector<int>> dpArr(m + 1, vector<int>(n + 1, 0));
+    dpArr[0][0] = true;
+    for (int i = 0; i < m + 1; i++) {
+        for (int j = 1; j < n + 1; j++) {
+            if (p[j - 1] == '*') {
+                dpArr[i][j] |= dpArr[i][j - 2];
+                if (matches(i, j - 1)) {
+                    dpArr[i][j] |= dpArr[i - 1][j];
+                }
+            } else {
+                if (matches(i, j)) {
+                    dpArr[i][j] |= dpArr[i - 1][j - 1];
+                }
+            }
+        }
+    }
+    return dpArr[m][n];
+/// =============================================================================
+}
+
+bool OfferSolutions::isNumber(string s) {
+    int n = s.size();
+    int index = -1;
+    bool hasDot = false, hasE = false, hasOp = false, hasNum = false;
+    while (index < n && s[++index] == ' ');
+    while (index < n) {
+        if ('0' <= s[index] && s[index] <= '9') {
+            hasNum = true;
+        } else if (s[index] == 'e' || s[index] == 'E') {
+            if (hasE || !hasNum) return false;
+            hasE = true;
+            hasOp = false;
+            hasDot = false;
+            hasNum = false;
+        } else if (s[index] == '+' || s[index] == '-') {
+            if (hasOp || hasNum || hasDot) return false;
+            hasOp = true;
+        } else if (s[index] == '.') {
+            if (hasDot || hasE) return false;
+            hasDot = true;
+        } else if (s[index] == ' ') {
+            break;
+        } else {
+            return false;
+        }
+        ++index;
+    }
+    while (index < n && s[++index] == ' ');
+    return hasNum && index == n;
+}
+
+/// ================================== SPECIAL CASE ==================================
+// 剑指 Offer 09. 用两个栈实现队列
+class CQueue {
+public:
+    CQueue() {
+        while (!sta01.empty()) {
+            sta01.pop();
+        }
+        while (!sta02.empty()) {
+            sta02.pop();
+        }
+    }
+
+    void appendTail(int value) {
+        sta01.push(value);
+    }
+
+    int deleteHead() {
+        if (sta02.empty()) {
+            while (!sta01.empty()) {
+                sta02.push(sta01.top());
+                sta01.pop();
+            }
+        }
+        if (sta02.empty()) {
+            return -1;
+        } else {
+            int delNumber = sta02.top();
+            sta02.pop();
+            return delNumber;
+        }
+    }
+
+private:
+    stack<int> sta01;
+    stack<int> sta02;
+};

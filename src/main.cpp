@@ -3,6 +3,7 @@
 #include "SortSolutions.h"
 #include "DynamicProgramming.h"
 #include "TreeSolutions.h"
+#include "OfferSolutions.h"
 #include <iostream>
 #include <numeric>
 #include <thread>
@@ -52,9 +53,14 @@ int binarySearch(vector<T> &a, const T &x) {
     return -1;  // 没有找到
 }
 
+class base {
+public:
+    virtual void my() = 0;
+};
 
 int main() {
     vector<int> nums{4, 2, 4, 5, 6};
-    cout << MeduimSolutions::maximumUniqueSubarray(nums) << endl;
+    // 1, 1, 2, 3, 5, 8
+//    cout << OfferSolutions::movingCount_bfs(5, 1, 1) << endl;
     return 0;
 }
