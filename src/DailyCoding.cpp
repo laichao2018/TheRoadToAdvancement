@@ -1921,4 +1921,25 @@ bool DailyCoding::canPlaceFlowers(vector<int> &flowerbed, int n) {
     return count >= n;
 }
 
+vector<int> DailyCoding::maxSlidingWindow(vector<int> &nums, int k) {
+    if (k == 1) {
+        return nums;
+    }
+    if (k == nums.size()) {
+        return {*max_element(nums.begin(), nums.end())};
+    }
+    vector<int> res;
+    for (int i = 0; i <= nums.size() - k; i++) {
+        int ck = k;
+        int j = i;
+        int tmpMAX = nums[i];
+        while (ck) {
+            tmpMAX = max(tmpMAX, nums[j++]);
+            ck--;
+        }
+        res.push_back(tmpMAX);
+    }
+    return res;
+}
+
 
