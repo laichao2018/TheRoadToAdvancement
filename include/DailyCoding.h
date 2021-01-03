@@ -108,6 +108,7 @@ public:
     static bool isIsomorphic(string s, string t);   // 205. 同构字符串
     static bool canPlaceFlowers(vector<int> &flowerbed, int n);         // 605. 种花问题
     static vector<int> maxSlidingWindow(vector<int> &nums, int k);      // 239. 滑动窗口最大值
+    static ListNode *partition(ListNode *head, int x);      // 86. 分隔链表
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

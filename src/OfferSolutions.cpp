@@ -529,6 +529,87 @@ vector<int> OfferSolutions::spiralOrder(vector<vector<int>> &matrix) {
     return res;
 }
 
+bool OfferSolutions::validateStackSequences(vector<int> &pushed, vector<int> &popped) {
+    stack<int> sta;
+    int k = 0;
+    for (int i:pushed) {
+        sta.push(i);
+        while (!sta.empty() && sta.top() == popped[k]) {
+            sta.pop();
+            k++;
+        }
+    }
+    return sta.empty();
+}
+
+vector<int> OfferSolutions::levelOrder(TreeNode *root) {
+    if (root == nullptr) return {};
+    vector<int> res;
+    queue<TreeNode *> qNodes;
+    qNodes.push(root);
+    while (!qNodes.empty()) {
+        int curr_size = qNodes.size();
+        for (int i = 0; i < curr_size; i++) {
+            TreeNode *tmpNode = qNodes.front();
+            qNodes.pop();
+            res.push_back(tmpNode->val);
+            if (tmpNode->left != nullptr) qNodes.push(tmpNode->left);
+            if (tmpNode->right != nullptr) qNodes.push(tmpNode->right);
+        }
+    }
+    return res;
+}
+
+vector<vector<int>> OfferSolutions::levelOrder02(TreeNode *root) {
+    if (root == nullptr) return {};
+    vector<vector<int>> res;
+    queue<TreeNode *> qNodes;
+    qNodes.push(root);
+    while (!qNodes.empty()) {
+        int curr_size = qNodes.size();
+        vector<int> tmp_vec;
+        for (int i = 0; i < curr_size; i++) {
+            TreeNode *tmp_node = qNodes.front();
+            qNodes.pop();
+            tmp_vec.push_back(tmp_node->val);
+            if (tmp_node->left != nullptr) qNodes.push(tmp_node->left);
+            if (tmp_node->right != nullptr) qNodes.push(tmp_node->right);
+        }
+        res.push_back(tmp_vec);
+    }
+    return res;
+}
+
+vector<vector<int>> OfferSolutions::levelOrder03(TreeNode *root) {
+    if (root == nullptr) return {};
+    vector<vector<int>> res;
+    queue<TreeNode *> qNodes;
+    qNodes.push(root);
+    bool flag = false;
+    while (!qNodes.empty()) {
+        int curr_size = qNodes.size();
+        vector<int> tmp_vec;
+        for (int i = 0; i < curr_size; i++) {
+            TreeNode *tmp_node = qNodes.front();
+            qNodes.pop();
+            tmp_vec.push_back(tmp_node->val);
+            if (tmp_node->left != nullptr) qNodes.push(tmp_node->left);
+            if (tmp_node->right != nullptr) qNodes.push(tmp_node->right);
+        }
+        if (flag) {
+            reverse(tmp_vec.begin(), tmp_vec.end());
+        }
+        flag = !flag;
+        res.push_back(tmp_vec);
+    }
+    return res;
+}
+
+bool OfferSolutions::verifyPostorder(vector<int> &postorder) {
+    if (postorder.size() < 2) return true;
+
+}
+
 /// ================================== SPECIAL CASE ==================================
 // 剑指 Offer 09. 用两个栈实现队列
 class CQueue {
@@ -565,4 +646,34 @@ public:
 private:
     stack<int> sta01;
     stack<int> sta02;
+};
+
+// 剑指 Offer 30. 包含min函数的栈
+class MinStack {
+public:
+    MinStack() {
+        while (!s.empty()) s.pop();
+        while (!m.empty()) m.pop();
+    }
+
+    void push(int x) {
+        s.push(x);
+        if (m.empty() || x <= m.top()) m.push(x);
+    }
+
+    void pop() {
+        if (s.top() == m.top()) m.pop();
+        s.pop();
+    }
+
+    int top() {
+        return s.top();
+    }
+
+    int min() {
+        return m.top();
+    }
+
+private:
+    stack<int> s, m;
 };

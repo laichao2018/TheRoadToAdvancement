@@ -45,6 +45,11 @@ public:
     static TreeNode *mirrorTree02(TreeNode *root);      // *** 剑指 Offer 27. 二叉树的镜像(非递归) ***
     static bool isSymmetric(TreeNode *root);            // *** 剑指 Offer 28. 对称的二叉树 ***
     static vector<int> spiralOrder(vector<vector<int>> &matrix);    // 剑指 Offer 29. 顺时针打印矩阵
+    static bool validateStackSequences(vector<int> &pushed, vector<int> &popped);   // 剑指 Offer 31. 栈的压入、弹出序列
+    static vector<int> levelOrder(TreeNode *root);      // 剑指 Offer 32 - I. 从上到下打印二叉树
+    static vector<vector<int>> levelOrder02(TreeNode *root);        // 剑指 Offer 32 - II. 从上到下打印二叉树 II
+    static vector<vector<int>> levelOrder03(TreeNode *root);        // 剑指 Offer 32 - III. 从上到下打印二叉树 III
+    static bool verifyPostorder(vector<int> &postorder);    // 剑指 Offer 33. 二叉搜索树的后序遍历序列
 };
 
 #endif //THEROADTOADVANCEMENT_OFFERSOLUTIONS_H
