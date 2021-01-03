@@ -1,5 +1,6 @@
 //
 // Created by LaiChao on 2020/10/31.
+// +++++++ LeetCode 每日一题 +++++++
 //
 
 #ifndef THEROADTOADVANCEMENT_DAILYCODING_H
@@ -103,10 +104,10 @@ public:
     static int monotoneIncreasingDigits(int N);            // 738. 单调递增的数字
     static vector<vector<int>> zigzagLevelOrder(TreeNode *root);        // 103. 二叉树的锯齿形层序遍历
     static int firstUniqChar(string s);             // 387. 字符串中的第一个唯一字符
-    static int maximalRectangle(vector<vector<char>>& matrix);          // 85. 最大矩形
+    static int maximalRectangle(vector<vector<char>> &matrix);          // 85. 最大矩形
     static bool isIsomorphic(string s, string t);   // 205. 同构字符串
-    static bool canPlaceFlowers(vector<int>& flowerbed, int n);         // 605. 种花问题
-    static vector<int> maxSlidingWindow(vector<int>& nums, int k);      // 239. 滑动窗口最大值
+    static bool canPlaceFlowers(vector<int> &flowerbed, int n);         // 605. 种花问题
+    static vector<int> maxSlidingWindow(vector<int> &nums, int k);      // 239. 滑动窗口最大值
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

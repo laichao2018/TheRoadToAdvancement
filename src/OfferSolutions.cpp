@@ -34,7 +34,7 @@ TreeNode *rebuild_func(vector<int> &preOrder, vector<int> &inOrder, int left, in
     return head;
 }
 
-bool dfs_exist(vector<vector<char>> &board, string &word, int i, int j, int k) {
+bool dfs_exist_func(vector<vector<char>> &board, string &word, int i, int j, int k) {
     if (i < 0 || i > gRows - 1 || j < 0 || j > gCols - 1 || board[i][j] != word[k]) {
         return false;
     }
@@ -42,19 +42,19 @@ bool dfs_exist(vector<vector<char>> &board, string &word, int i, int j, int k) {
         return true;
     }
     board[i][j] = '\0';
-    bool res = dfs_exist(board, word, i + 1, j, k + 1) || dfs_exist(board, word, i - 1, j, k + 1) ||
-               dfs_exist(board, word, i, j + 1, k + 1) || dfs_exist(board, word, i, j - 1, k + 1);
+    bool res = dfs_exist_func(board, word, i + 1, j, k + 1) || dfs_exist_func(board, word, i - 1, j, k + 1) ||
+               dfs_exist_func(board, word, i, j + 1, k + 1) || dfs_exist_func(board, word, i, j - 1, k + 1);
     board[i][j] = word[k];  // 回退
     return res;
 }
 
-int dfs_movingCount(int i, int j, int si, int sj, vector<vector<bool>> &isVisited, int m, int n, int k) {
+int dfs_movingCount_func(int i, int j, int si, int sj, vector<vector<bool>> &isVisited, int m, int n, int k) {
     if (i > m - 1 || j > n - 1 || si + sj > k || isVisited[i][j]) {
         return 0;
     }
     isVisited[i][j] = true;
-    return 1 + dfs_movingCount(i + 1, j, ((i + 1) % 10) == 0 ? si - 8 : si + 1, sj, isVisited, m, n, k) +
-           dfs_movingCount(i, j + 1, si, ((j + 1) % 10) == 0 ? sj - 8 : sj + 1, isVisited, m, n, k);
+    return 1 + dfs_movingCount_func(i + 1, j, ((i + 1) % 10) == 0 ? si - 8 : si + 1, sj, isVisited, m, n, k) +
+           dfs_movingCount_func(i, j + 1, si, ((j + 1) % 10) == 0 ? sj - 8 : sj + 1, isVisited, m, n, k);
 }
 
 int split_number(int n) {
@@ -64,6 +64,19 @@ int split_number(int n) {
         n /= 10;
     }
     return res;
+}
+
+bool isPart_func(TreeNode *t1, TreeNode *t2) {
+    if (t2 == nullptr) return true;
+    if (t1 == nullptr || t1->val != t2->val) return false;
+    return isPart_func(t1->left, t2->left) && isPart_func(t1->right, t2->right);
+}
+
+bool isSymmetric_func(TreeNode *left, TreeNode *right) {
+    if (left == nullptr && right == nullptr) return true;
+    if (left == nullptr || right == nullptr) return false;
+    return (left->val == right->val) && isSymmetric_func(left->left, right->right) &&
+           isSymmetric_func(left->right, right->left);
 }
 
 ///// ================================== CLASS FUNC ==================================
@@ -195,7 +208,7 @@ bool OfferSolutions::exist(vector<vector<char>> &board, string word) {
     gCols = board[0].size();
     for (int i = 0; i < gRows; i++) {
         for (int j = 0; j < gCols; j++) {
-            if (dfs_exist(board, word, i, j, 0)) {
+            if (dfs_exist_func(board, word, i, j, 0)) {
                 return true;
             }
         }
@@ -205,7 +218,7 @@ bool OfferSolutions::exist(vector<vector<char>> &board, string word) {
 
 int OfferSolutions::movingCount(int m, int n, int k) {
     vector<vector<bool>> isVisited(m, vector<bool>(n, false));
-    return dfs_movingCount(0, 0, 0, 0, isVisited, m, n, k);
+    return dfs_movingCount_func(0, 0, 0, 0, isVisited, m, n, k);
 }
 
 int OfferSolutions::movingCount_bfs(int m, int n, int k) {
@@ -393,6 +406,126 @@ bool OfferSolutions::isNumber(string s) {
     }
     while (index < n && s[++index] == ' ');
     return hasNum && index == n;
+}
+
+vector<int> OfferSolutions::exchange(vector<int> &nums) {
+    if (nums.size() < 2) {
+        return nums;
+    }
+    int odd = 0, tmp = 0;
+    for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] % 2) {
+            if (i != odd) {
+                tmp = nums[i];
+                nums[i] = nums[odd];
+                nums[odd] = tmp;
+            }
+            odd++;
+        }
+    }
+    return nums;
+}
+
+ListNode *OfferSolutions::getKthFromEnd(ListNode *head, int k) {
+    ListNode *fast = head, *slow = head;
+    while (k) {
+        fast = fast->next;
+        k--;
+    }
+    while (fast != nullptr) {
+        fast = fast->next;
+        slow = slow->next;
+    }
+    return slow;
+}
+
+ListNode *OfferSolutions::reverseList(ListNode *head) {
+    if (head == nullptr || head->next == nullptr) {
+        return head;
+    }
+    ListNode *curr = nullptr, *pre = head;
+    while (pre != nullptr) {
+        ListNode *tmp = pre->next;
+        pre->next = curr;
+        curr = pre;
+        pre = tmp;
+    }
+    return curr;
+}
+
+ListNode *OfferSolutions::mergeTwoLists(ListNode *l1, ListNode *l2) {
+    if (l1 == nullptr) return l2;
+    if (l2 == nullptr) return l1;
+    ListNode *tmp = new ListNode(0);
+    ListNode *head = tmp;
+    while (l1 != nullptr && l2 != nullptr) {
+        if (l1->val < l2->val) {
+            tmp->next = l1;
+            l1 = l1->next;
+        } else {
+            tmp->next = l2;
+            l2 = l2->next;
+        }
+        tmp = tmp->next;
+    }
+    if (l1 == nullptr) tmp->next = l2;
+    if (l2 == nullptr) tmp->next = l1;
+    return head->next;
+}
+
+bool OfferSolutions::isSubStructure(TreeNode *A, TreeNode *B) {
+    if (A == nullptr || B == nullptr) return false;
+    if (isPart_func(A, B)) return true;
+    return isSubStructure(A->left, B) || isSubStructure(A->right, B);
+}
+
+TreeNode *OfferSolutions::mirrorTree(TreeNode *root) {
+    if (root == nullptr) return root;
+    TreeNode *left, *right;
+    left = mirrorTree(root->left);
+    right = mirrorTree(root->right);
+    root->left = right, root->right = left;
+    return root;
+}
+
+TreeNode *OfferSolutions::mirrorTree02(TreeNode *root) {
+    if (root == nullptr) return root;
+    stack<TreeNode *> sNodes;
+    sNodes.push(root);
+    while (!sNodes.empty()) {
+        TreeNode *tmpNode = sNodes.top();
+        sNodes.pop();
+        swap(tmpNode->left, tmpNode->right);
+        if (tmpNode->left != nullptr) sNodes.push(tmpNode->left);
+        if (tmpNode->right != nullptr) sNodes.push(tmpNode->right);
+    }
+    return root;
+}
+
+bool OfferSolutions::isSymmetric(TreeNode *root) {
+    if (root == nullptr) return true;
+    return isSymmetric_func(root->left, root->right);
+}
+
+vector<int> OfferSolutions::spiralOrder(vector<vector<int>> &matrix) {
+    vector<int> res;
+    int m = matrix.size();
+    if (!m) return res;
+    int n = matrix[0].size();
+    int dx[4] = {0, 1, 0, -1}, dy[4] = {1, 0, -1, 0};
+    int x = 0, y = 0, d = 0;
+    vector<vector<bool>> isVisited(m, vector<bool>(n, false));
+    for (int i = 0; i < m * n; i++) {
+        res.push_back(matrix[x][y]);
+        isVisited[x][y] = true;
+        int a = x + dx[d], b = y + dy[d];
+        if (a < 0 || a > m - 1 || b < 0 || b > n - 1 || isVisited[a][b]) {
+            d = (d + 1) % 4;
+            a = x + dx[d], b = y + dy[d];
+        }
+        x = a, y = b;
+    }
+    return res;
 }
 
 /// ================================== SPECIAL CASE ==================================
