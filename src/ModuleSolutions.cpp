@@ -2080,7 +2080,7 @@ bool MeduimSolutions::isValidSudoku(vector<vector<char>> &board) {
 }
 
 bool MeduimSolutions::isValidBST(TreeNode *root) {
-    return helpIsValidBST(root, LONG_MIN, LONG_MAX);
+    return helpIsValidBST(root, -9999.99, 9999.99);
 }
 
 int MeduimSolutions::maximumUniqueSubarray(vector<int> &nums) {
