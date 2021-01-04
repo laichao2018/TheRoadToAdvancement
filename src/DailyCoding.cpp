@@ -1958,4 +1958,16 @@ ListNode *DailyCoding::partition(ListNode *head, int x) {
     return small_head->next;
 }
 
+int DailyCoding::fib(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    int left = 0, right = 1, temp;
+    for (int i = 2; i <= n; i++) {
+        temp = right;
+        right += left;
+        left = temp;
+    }
+    return right;
+}
+
 

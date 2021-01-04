@@ -61,6 +61,7 @@ public:
 int main() {
 //    vector<int> nums{4, 2, 4, 5, 6};
     // 1, 1, 2, 3, 5, 8
-    cout << OfferSolutions::movingCount_bfs(5, 1, 1) << endl;
+    // 0 1 1 2 3 5
+    cout << DailyCoding::fib(4) << endl;
     return 0;
 }
