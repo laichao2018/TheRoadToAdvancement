@@ -1970,4 +1970,21 @@ int DailyCoding::fib(int n) {
     return right;
 }
 
+vector<vector<int>> DailyCoding::largeGroupPositions(string s) {
+    if (s.size() < 3) {
+        return {};
+    }
+    vector<vector<int>> res;
+    int i = 0, j = 1, count = 1;
+    while (i < s.length() && j < s.length()) {
+        if (s[i] != s[j]) {
+            if (count > 2) res.push_back({i, j - 1});
+            i++;
+            count = 0;
+        } else j++, count++;
+    }
+    if (count > 2) res.push_back({i, j - 1});
+    return res;
+}
+
 

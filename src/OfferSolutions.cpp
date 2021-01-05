@@ -10,12 +10,16 @@
 #include <stack>
 #include <queue>
 #include <cmath>
+#include <unordered_map>
 
 using namespace std;
 
 /// ================================== GLOBAL VAR ==================================
-int gIndex = 0;    // buildTree中使用
-int gRows = 0, gCols = 0;   // exist中使用
+int gIndex = 0;    // 剑指 Offer 07 - buildTree
+int gRows = 0, gCols = 0;   // 剑指 Offer 12 - exist
+vector<vector<int>> gPathSumRes;    // 剑指 Offer 34 - pathSum
+vector<int> gTempPathSum;           // 剑指 Offer 34 - pathSum
+
 
 ///// ================================== HELP FUNC ==================================
 TreeNode *rebuild_func(vector<int> &preOrder, vector<int> &inOrder, int left, int right) {
@@ -78,6 +82,27 @@ bool isSymmetric_func(TreeNode *left, TreeNode *right) {
     if (left == nullptr || right == nullptr) return false;
     return (left->val == right->val) && isSymmetric_func(left->left, right->right) &&
            isSymmetric_func(left->right, right->left);
+}
+
+bool verifyPostorder_func(vector<int> &postOrder, int i, int j) {
+    if (i >= j) return true;
+    int p = i;
+    while (postOrder[p] < postOrder[j]) p++;
+    int m = p;
+    while (postOrder[p] > postOrder[j]) p++;
+    return p == j && verifyPostorder_func(postOrder, i, m - 1) && verifyPostorder_func(postOrder, m, j - 1);
+}
+
+void pathSum_func(TreeNode *root, int sum) {
+    if (root == nullptr) return;
+    gTempPathSum.push_back(root->val);
+    sum -= root->val;
+    if (sum == 0 && root->left == nullptr && root->right == nullptr) {
+        gPathSumRes.push_back(gTempPathSum);
+    }
+    pathSum_func(root->left, sum);
+    pathSum_func(root->right, sum);
+    gTempPathSum.pop_back();
 }
 
 ///// ================================== CLASS FUNC ==================================
@@ -606,8 +631,31 @@ vector<vector<int>> OfferSolutions::levelOrder03(TreeNode *root) {
 }
 
 bool OfferSolutions::verifyPostorder(vector<int> &postorder) {
-    if (postorder.size() < 2) return true;
+    // 分治算法
+    return verifyPostorder_func(postorder, 0, postorder.size() - 1);
+}
 
+vector<vector<int>> OfferSolutions::pathSum(TreeNode *root, int sum) {
+    // 经典的 DFS 问题
+    pathSum_func(root, sum);
+    return gPathSumRes;
+}
+
+RandomNode *OfferSolutions::copyRandomList(RandomNode *head) {
+    if (head == nullptr) return head;
+    RandomNode *curr = head;
+    unordered_map<RandomNode *, RandomNode *> mapNode;
+    while (curr != nullptr) {
+        mapNode[curr] = new RandomNode(curr->val);
+        curr = curr->next;
+    }
+    curr = head;
+    while (curr != nullptr) {
+        mapNode[curr]->next = mapNode[curr->next];
+        mapNode[curr]->random = mapNode[curr->random];
+        curr = curr->next;
+    }
+    return mapNode[head];
 }
 
 /// ================================== SPECIAL CASE ==================================

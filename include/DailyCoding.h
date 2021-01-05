@@ -110,6 +110,7 @@ public:
     static vector<int> maxSlidingWindow(vector<int> &nums, int k);      // 239. 滑动窗口最大值
     static ListNode *partition(ListNode *head, int x);      // 86. 分隔链表
     static int fib(int n);      // 509. 斐波那契数
+    static vector<vector<int>> largeGroupPositions(string s);           // 830. 较大分组的位置
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
