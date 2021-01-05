@@ -37,7 +37,7 @@ public:
             : val(_val), left(_left), right(_right), next(_next) {}
 };
 
-// 剑指offer 35 复杂链表的复制
+// 剑指offer 35. 复杂链表的复制
 // 原名： Node
 class RandomNode {
 public:
@@ -49,6 +49,29 @@ public:
         val = _val;
         next = nullptr;
         random = nullptr;
+    }
+};
+
+// 剑指 Offer 36. 二叉搜索树与双向链表
+// 原名： Node
+class searchNode {
+public:
+    int val;
+    searchNode *left;
+    searchNode *right;
+
+    searchNode() = default;
+
+    searchNode(int _val) {
+        val = _val;
+        left = nullptr;
+        right = nullptr;
+    }
+
+    searchNode(int _val, searchNode *_left, searchNode *_right) {
+        val = _val;
+        left = _left;
+        right = _right;
     }
 };
 

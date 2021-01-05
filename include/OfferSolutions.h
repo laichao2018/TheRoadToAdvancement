@@ -51,7 +51,8 @@ public:
     static vector<vector<int>> levelOrder03(TreeNode *root);        // 剑指 Offer 32 - III. 从上到下打印二叉树 III
     static bool verifyPostorder(vector<int> &postorder);    // *** 剑指 Offer 33. 二叉搜索树的后序遍历序列 ***
     static vector<vector<int>> pathSum(TreeNode *root, int sum);    // *** 剑指 Offer 34. 二叉树中和为某一值的路径 ***
-    static RandomNode* copyRandomList(RandomNode* head);            // ??? 剑指 Offer 35. 复杂链表的复制 ???
+    static RandomNode *copyRandomList(RandomNode *head);            // ??? 剑指 Offer 35. 复杂链表的复制 ???
+    static searchNode *treeToDoublyList(searchNode *root);          // 剑指 Offer 36. 二叉搜索树与双向链表
 };
 
 #endif //THEROADTOADVANCEMENT_OFFERSOLUTIONS_H

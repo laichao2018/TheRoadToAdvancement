@@ -19,7 +19,7 @@ int gIndex = 0;    // 剑指 Offer 07 - buildTree
 int gRows = 0, gCols = 0;   // 剑指 Offer 12 - exist
 vector<vector<int>> gPathSumRes;    // 剑指 Offer 34 - pathSum
 vector<int> gTempPathSum;           // 剑指 Offer 34 - pathSum
-
+searchNode *gHead, *gTail;            // 剑指 Offer 36 - treeToDoublyList
 
 ///// ================================== HELP FUNC ==================================
 TreeNode *rebuild_func(vector<int> &preOrder, vector<int> &inOrder, int left, int right) {
@@ -103,6 +103,16 @@ void pathSum_func(TreeNode *root, int sum) {
     pathSum_func(root->left, sum);
     pathSum_func(root->right, sum);
     gTempPathSum.pop_back();
+}
+
+void treeToDoublyList_func(searchNode *root) {
+    // 中序遍历的方法
+    if (root == nullptr) return;
+    treeToDoublyList_func(root->left);
+    if (!gTail) gHead = root;   // 当tail还不存在，也就是root此时在整个BST的最左边的节点，这个节点就是head
+    else gTail->right = root, root->left = gTail;   // 前一个节点的right是当前节点, 当前节点的left是前一个节点
+    gTail = root;  // 将前一个节点更新为当前节点（所以到最后，tail就会挪到整个BST的最右边的节点，这个节点就是链表的尾节点）
+    treeToDoublyList_func(root->right);
 }
 
 ///// ================================== CLASS FUNC ==================================
@@ -658,6 +668,14 @@ RandomNode *OfferSolutions::copyRandomList(RandomNode *head) {
     return mapNode[head];
 }
 
+searchNode *OfferSolutions::treeToDoublyList(searchNode *root) {
+    if (root == nullptr) return root;
+    treeToDoublyList_func(root);
+    gHead->left = gTail;
+    gTail->right = gHead;
+    return gHead;
+}
+
 /// ================================== SPECIAL CASE ==================================
 // 剑指 Offer 09. 用两个栈实现队列
 class CQueue {
@@ -724,4 +742,19 @@ public:
 
 private:
     stack<int> s, m;
+};
+
+// 剑指 Offer 37. 序列化二叉树
+class Codec {
+public:
+
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
+
+    }
+
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+
+    }
 };
