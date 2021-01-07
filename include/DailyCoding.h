@@ -111,6 +111,7 @@ public:
     static ListNode *partition(ListNode *head, int x);      // 86. 分隔链表
     static int fib(int n);      // 509. 斐波那契数
     static vector<vector<int>> largeGroupPositions(string s);           // 830. 较大分组的位置
+    static int findCircleNum(vector<vector<int>> &isConnected);         // 547. 省份数量
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
