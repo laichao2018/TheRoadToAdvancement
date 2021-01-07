@@ -5,6 +5,7 @@
 
 #include "OfferSolutions.h"
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <set>
 #include <stack>
@@ -19,7 +20,8 @@ int gIndex = 0;    // 剑指 Offer 07 - buildTree
 int gRows = 0, gCols = 0;   // 剑指 Offer 12 - exist
 vector<vector<int>> gPathSumRes;    // 剑指 Offer 34 - pathSum
 vector<int> gTempPathSum;           // 剑指 Offer 34 - pathSum
-searchNode *gHead, *gTail;            // 剑指 Offer 36 - treeToDoublyList
+searchNode *gHead, *gTail;          // 剑指 Offer 36 - treeToDoublyList
+vector<string> gPermutationRes;     // 剑指 Offer 38 - permutation
 
 ///// ================================== HELP FUNC ==================================
 TreeNode *rebuild_func(vector<int> &preOrder, vector<int> &inOrder, int left, int right) {
@@ -113,6 +115,25 @@ void treeToDoublyList_func(searchNode *root) {
     else gTail->right = root, root->left = gTail;   // 前一个节点的right是当前节点, 当前节点的left是前一个节点
     gTail = root;  // 将前一个节点更新为当前节点（所以到最后，tail就会挪到整个BST的最右边的节点，这个节点就是链表的尾节点）
     treeToDoublyList_func(root->right);
+}
+
+void permutation_func(string s, string &path, vector<bool> &used) {
+    if (path.size() == s.size()) {
+        gPermutationRes.push_back(path);
+        return;
+    }
+    for (int i = 0; i < s.length(); i++) {
+        if (!used[i]) {
+            if (i > 0 && s[i - 1] == s[i] && !used[i - 1]) {
+                continue;
+            }
+            path.push_back(s[i]);
+            used[i] = true;
+            permutation_func(s, path, used);
+            used[i] = false;
+            path.pop_back();
+        }
+    }
 }
 
 ///// ================================== CLASS FUNC ==================================
@@ -676,6 +697,17 @@ searchNode *OfferSolutions::treeToDoublyList(searchNode *root) {
     return gHead;
 }
 
+vector<string> OfferSolutions::permutation(string s) {
+    if (s.empty()) {
+        return {};
+    }
+    string tmp = "";
+    sort(s.begin(), s.end() );
+    vector<bool> used(s.length());
+    permutation_func(s, tmp, used);
+    return gPermutationRes;
+}
+
 /// ================================== SPECIAL CASE ==================================
 // 剑指 Offer 09. 用两个栈实现队列
 class CQueue {
@@ -745,16 +777,45 @@ private:
 };
 
 // 剑指 Offer 37. 序列化二叉树
-class Codec {
+class SerializeTreeNode {
 public:
 
     // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
-
+    string serialize(TreeNode *root) {
+        if (root == nullptr)
+            return "";
+        ostringstream out;
+        serialize(root, out);
+        return out.str();
     }
 
     // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
+    TreeNode *deserialize(string data) {
+        if (data.empty())
+            return nullptr;
+        istringstream in(data);
+        return deserialize(in);
+    }
 
+private:
+    void serialize(TreeNode *root, ostringstream &out) {
+        if (root == nullptr) {
+            out << "# ";
+            return;
+        }
+        out << to_string(root->val) << " ";
+        serialize(root->left, out);
+        serialize(root->right, out);
+    }
+
+    TreeNode *deserialize(istringstream &in) {
+        string val;
+        in >> val;
+        if (val == "#")
+            return nullptr;
+        auto root = new TreeNode(atoi(val.c_str()));
+        root->left = deserialize(in);
+        root->right = deserialize(in);
+        return root;
     }
 };
