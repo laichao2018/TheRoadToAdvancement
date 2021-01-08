@@ -2011,4 +2011,14 @@ int DailyCoding::findCircleNum(vector<vector<int>> &isConnected) {
     return circles;
 }
 
+void DailyCoding::rotate(vector<int> &nums, int k) {
+    k %= nums.size();
+    while (k) {
+        int tmp = nums.back();
+        nums.insert(nums.begin(), tmp);
+        nums.pop_back();
+        k--;
+    }
+}
+
 

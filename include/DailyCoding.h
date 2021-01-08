@@ -112,6 +112,7 @@ public:
     static int fib(int n);      // 509. 斐波那契数
     static vector<vector<int>> largeGroupPositions(string s);           // 830. 较大分组的位置
     static int findCircleNum(vector<vector<int>> &isConnected);         // 547. 省份数量
+    static void rotate(vector<int> &nums, int k);           // 189. 旋转数组
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
