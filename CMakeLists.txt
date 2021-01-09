@@ -15,7 +15,7 @@ include_directories(./include/DataStructure)
 # CMAKE_CURRENT_SOURCE_DIR: 路径指向当前正在处理的源目录
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_MAIN)
 
-add_executable(TheRoadToAdvancement ${SRC_MAIN} include/DataStructure/LeetCodeDefinition.h)
+add_executable(TheRoadToAdvancement ${SRC_MAIN})
 
 # 添加需要链接的库文件目录
 # LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/lib)
