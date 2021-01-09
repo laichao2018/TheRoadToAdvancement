@@ -1543,7 +1543,7 @@ vector<int> DailyCoding::searchRange(vector<int> &nums, int target) {
     return res;
 }
 
-int DailyCoding::maxProfit(vector<int> &prices) {
+int DailyCoding::maxProfit02(vector<int> &prices) {
     int res = 0;
     for (int i = 1; i < prices.size(); i++) {
         if (prices[i] > prices[i - 1]) {
@@ -2019,6 +2019,19 @@ void DailyCoding::rotate(vector<int> &nums, int k) {
         nums.pop_back();
         k--;
     }
+}
+
+int DailyCoding::maxProfit03(vector<int> &prices) {
+    int n = prices.size();
+    int buy01 = prices[0], sell01 = 0;
+    int buy02 = prices[0], sell02 = 0;
+    for (int i = 1; i < n; i++) {
+        buy01 = min(buy01, prices[i]);
+        sell01 = max(sell01, prices[i] - buy01);
+        buy02 = min(buy02, prices[i] - sell01);
+        sell02 = max(sell02, prices[i] - buy02);
+    }
+    return sell02;
 }
 
 

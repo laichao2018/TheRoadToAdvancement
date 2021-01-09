@@ -702,10 +702,44 @@ vector<string> OfferSolutions::permutation(string s) {
         return {};
     }
     string tmp = "";
-    sort(s.begin(), s.end() );
+    sort(s.begin(), s.end());
     vector<bool> used(s.length());
     permutation_func(s, tmp, used);
     return gPermutationRes;
+}
+
+int OfferSolutions::majorityElement(vector<int> &nums) {
+    int val = -1, cnt = 0;
+    for (int i:nums) {
+        if (!cnt)
+            val = i, cnt = 1;
+        else {
+            if (i == val) cnt++;
+            else cnt--;
+        }
+    }
+    return val;
+}
+
+vector<int> OfferSolutions::getLeastNumbers(vector<int> &arr, int k) {
+    if (k == 0) return {};
+    if (k == arr.size())
+        return arr;
+    vector<int> res;
+    priority_queue<int> q;
+    for (int i = 0; i < k; i++)
+        q.push(arr[i]);
+    for (int i = k; i < arr.size(); i++) {
+        if (arr[i] < q.top()) {
+            q.pop();
+            q.push(arr[i]);
+        }
+    }
+    for (int i = 0; i < k; i++) {
+        res.push_back(q.top());
+        q.pop();
+    }
+    return res;
 }
 
 /// ================================== SPECIAL CASE ==================================

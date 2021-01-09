@@ -54,6 +54,8 @@ public:
     static RandomNode *copyRandomList(RandomNode *head);            // ??? 剑指 Offer 35. 复杂链表的复制 ???
     static searchNode *treeToDoublyList(searchNode *root);          // *** 剑指 Offer 36. 二叉搜索树与双向链表 ***
     static vector<string> permutation(string s);        // *** 剑指 Offer 38. 字符串的排列 ***
+    static int majorityElement(vector<int> &nums);      // 剑指 Offer 39. 数组中出现次数超过一半的数字
+    static vector<int> getLeastNumbers(vector<int> &arr, int k);    // 剑指 Offer 40. 最小的k个数
 };
 
 #endif //THEROADTOADVANCEMENT_OFFERSOLUTIONS_H
