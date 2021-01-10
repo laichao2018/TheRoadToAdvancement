@@ -56,6 +56,11 @@ public:
     static vector<string> permutation(string s);        // *** 剑指 Offer 38. 字符串的排列 ***
     static int majorityElement(vector<int> &nums);      // 剑指 Offer 39. 数组中出现次数超过一半的数字
     static vector<int> getLeastNumbers(vector<int> &arr, int k);    // 剑指 Offer 40. 最小的k个数
+    static int maxSubArray(vector<int> &nums);          // 剑指 Offer 42. 连续子数组的最大和
+    static int countDigitOne(int n);            // ??? 剑指 Offer 43. 1～n 整数中 1 出现的次数 ???
+    static int findNthDigit(int n);             // ??? 剑指 Offer 44. 数字序列中某一位的数字 ???
+    static string minNumber(vector<int> &nums);         // 剑指 Offer 45. 把数组排成最小的数
+    static int translateNum(int num);           // 剑指 Offer 46. 把数字翻译成字符串
 };
 
 #endif //THEROADTOADVANCEMENT_OFFERSOLUTIONS_H

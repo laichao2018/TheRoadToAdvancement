@@ -742,6 +742,78 @@ vector<int> OfferSolutions::getLeastNumbers(vector<int> &arr, int k) {
     return res;
 }
 
+int OfferSolutions::maxSubArray(vector<int> &nums) {
+    int res = nums[0];
+    for (int i = 1; i < nums.size(); i++) {
+        if (nums[i - 1] > 0) {
+            nums[i] += nums[i - 1];
+        }
+        res = max(res, nums[i]);
+    }
+    return res;
+}
+
+int OfferSolutions::countDigitOne(int n) {
+    if (n == 0) return 0;
+    vector<int> number;
+    while (n) number.push_back(n % 10), n /= 10;
+    int res = 0;
+    for (int i = number.size() - 1; i >= 0; i--) {
+        auto left = 0, right = 0, t = 1;
+        for (int j = number.size() - 1; j > i; j--) left = left * 10 + number[j];
+        for (int j = i - 1; j >= 0; j--) right = right * 10 + number[j], t *= 10;
+        res += left * t;
+        if (number[i] == 1) res += right + 1;
+        else if (number[i] > 1) res += t;
+    }
+    return res;
+}
+
+int OfferSolutions::findNthDigit(int n) {
+    // 计算该数字由几位数字组成
+    long base = 9, digits = 1;
+    while (n - base * digits > 0) {
+        n -= base * digits;
+        base *= 10;
+        digits++;
+    }
+    // 计算真实代表的数字是多少
+    int idx = n % digits;
+    if (idx == 0) idx = digits;
+    long number = 1;
+    for (int i = 1; i < digits; i++) {
+        number *= 10;
+    }
+    number += (idx == digits) ? n / digits - 1 : n / digits;
+
+    // 从真实的数字中找到我们想要的那个数字
+    for (int i = idx; i < digits; i++) number /= 10;
+    return number % 10;
+}
+
+string OfferSolutions::minNumber(vector<int> &nums) {
+    if (nums.size() == 1) return to_string(nums[0]);
+    vector<string> store;
+    string res;
+    for (int i:nums) store.push_back(to_string(i));
+    sort(store.begin(), store.end(), [](string s1, string s2) { return s1 + s2 < s2 + s1; });
+    for (string s:store) res += s;
+    return res;
+}
+
+int OfferSolutions::translateNum(int num) {
+    string s = to_string(num);
+    int n = s.length();
+    vector<int> dpArr(n + 1, 0);
+    dpArr[0] = 1;
+    for (int i = 1; i <= n; i++) {
+        dpArr[i] = dpArr[i - 1];
+        int t = (s[i - 2] - '0') * 10 + s[i - 1] - '0';
+        if (t > 9 && t < 26) dpArr[i] += dpArr[i - 2];
+    }
+    return dpArr[n];
+}
+
 /// ================================== SPECIAL CASE ==================================
 // 剑指 Offer 09. 用两个栈实现队列
 class CQueue {
@@ -851,5 +923,36 @@ private:
         root->left = deserialize(in);
         root->right = deserialize(in);
         return root;
+    }
+};
+
+// *** 剑指 Offer 41. 数据流中的中位数 ***
+// 使用两个根堆将数据分成大的那部分和小的那部分
+// 求中位数只需要计算两个堆顶元素即可～
+class MedianFinder {
+public:
+    priority_queue<int> max_heap;
+    priority_queue<int, vector<int>, greater<int>> min_heap;
+
+    MedianFinder() = default;
+
+    void addNum(int num) {
+        max_heap.push(num); // 无条件先放入大根堆
+        if (min_heap.size() && max_heap.top() > min_heap.top()) {
+            auto maxV = max_heap.top(), minV = min_heap.top();
+            max_heap.pop(), min_heap.pop();
+            max_heap.push(minV), min_heap.push(maxV);
+        }
+        if (max_heap.size() > min_heap.size() + 1) {
+            min_heap.push(max_heap.top());
+            max_heap.pop();
+        }
+    }
+
+    double findMedian() {
+        if (max_heap.size() + min_heap.size() & 1)  // 奇数个数
+            return max_heap.top();
+        else
+            return ((max_heap.top() + min_heap.top()) / 2.0);
     }
 };

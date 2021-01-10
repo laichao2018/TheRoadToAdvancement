@@ -114,6 +114,7 @@ public:
     static int findCircleNum(vector<vector<int>> &isConnected);         // 547. 省份数量
     static void rotate(vector<int> &nums, int k);           // 189. 旋转数组
     static int maxProfit03(vector<int> &prices);            // *** 123. 买卖股票的最佳时机 III ***
+    static vector<string> summaryRanges(vector<int> &nums);             // 228. 汇总区间
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

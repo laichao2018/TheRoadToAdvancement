@@ -2034,4 +2034,25 @@ int DailyCoding::maxProfit03(vector<int> &prices) {
     return sell02;
 }
 
+vector<string> DailyCoding::summaryRanges(vector<int> &nums) {
+    vector<string> res;
+    int i = 0;
+    int n = nums.size();
+    while (i < n) {
+        int low = i;
+        i++;
+        while (i < n && nums[i] == nums[i - 1] + 1) {
+            i++;
+        }
+        int high = i - 1;
+        string tmp = to_string(nums[low]);
+        if (low < high) {
+            tmp.append("->");
+            tmp.append(to_string(nums[high]));
+        }
+        res.push_back(move(tmp));
+    }
+    return res;
+}
+
 
