@@ -65,6 +65,7 @@ public:
     static int lengthOfLongestSubstring(string s);      // *** 剑指 Offer 48. 最长不含重复字符的子字符串 ***
     static int nthUglyNumber(int n);            // ??? 剑指 Offer 49. 丑数 ???
     static char firstUniqChar(string s);        // 剑指 Offer 50. 第一个只出现一次的字符
+    static int reversePairs(vector<int>& nums);         // 剑指 Offer 51. 数组中的逆序对
 };
 
 #endif //THEROADTOADVANCEMENT_OFFERSOLUTIONS_H

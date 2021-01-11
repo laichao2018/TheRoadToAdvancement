@@ -12,6 +12,7 @@
 #include <queue>
 #include <cmath>
 #include <unordered_map>
+#include <algorithm>
 
 using namespace std;
 
@@ -858,6 +859,16 @@ char OfferSolutions::firstUniqChar(string s) {
         if (hash_vec[s[i]] == 1) return s[i];
     }
     return ' ';
+}
+
+int OfferSolutions::reversePairs(vector<int> &nums) {
+    int res = 0;
+    for (int i = 0; i < nums.size() - 1; i++) {
+        for (int j = i + 1; j < nums.size(); j++) {
+            if (nums[i] > nums[j]) res++;
+        }
+    }
+    return res;
 }
 
 /// ================================== SPECIAL CASE ==================================

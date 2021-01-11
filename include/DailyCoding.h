@@ -115,6 +115,7 @@ public:
     static void rotate(vector<int> &nums, int k);           // 189. 旋转数组
     static int maxProfit03(vector<int> &prices);            // *** 123. 买卖股票的最佳时机 III ***
     static vector<string> summaryRanges(vector<int> &nums);             // 228. 汇总区间
+    static string smallestStringWithSwaps(string s, vector<vector<int>> &pairs);   // ??? 1202. 交换字符串中的元素 ???
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

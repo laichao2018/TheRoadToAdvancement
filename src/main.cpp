@@ -7,11 +7,10 @@
 #include "TreeSolutions.h"
 #include "OfferSolutions.h"
 
-
 using namespace std;
 
 int main() {
-    vector<int> nums{0, 1, 2, 4, 5, 7};
-    auto res = OfferSolutions::translateNum(12258);
+    vector<int> nums{7, 5, 6, 4};
+    cout << OfferSolutions::reversePairs(nums);
     return 0;
 }
