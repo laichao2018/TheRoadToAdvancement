@@ -6,13 +6,7 @@
 #include "DynamicProgramming.h"
 #include "TreeSolutions.h"
 #include "OfferSolutions.h"
-#include <iostream>
-#include <numeric>
-#include <thread>
-#include <future>
-#include <vector>
-#include <mutex>
-#include <algorithm>
+
 
 using namespace std;
 

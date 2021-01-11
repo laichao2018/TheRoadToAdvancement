@@ -5,6 +5,13 @@
 
 #ifndef __INTERESTING_FUNCTIONS__
 #define __INTERESTING_FUNCTIONS__
+#include <iostream>
+#include <numeric>
+#include <thread>
+#include <future>
+#include <vector>
+#include <mutex>
+#include <algorithm>
 
 /// 测量函数执行时间的复用函数
 template<typename T>
