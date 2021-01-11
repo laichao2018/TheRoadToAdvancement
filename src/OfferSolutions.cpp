@@ -814,6 +814,52 @@ int OfferSolutions::translateNum(int num) {
     return dpArr[n];
 }
 
+int OfferSolutions::maxValue(vector<vector<int>> &grid) {
+    int m = grid.size(), n = grid[0].size();
+    vector<vector<int>> dpArr(m + 1, vector<int>(n + 1));
+    for (int i = 1; i <= m; i++)
+        for (int j = 1; j <= n; j++)
+            dpArr[i][j] = max(dpArr[i - 1][j], dpArr[i][j - 1]) + grid[i - 1][j - 1];
+    return dpArr[m][n];
+}
+
+int OfferSolutions::lengthOfLongestSubstring(string s) {
+    int pre = 0;
+    int res = 0;
+    vector<int> pos(128, -1);
+    for (int i = 0; i < s.length(); i++) {
+        if (pos[s[i]] >= pre) pre = pos[s[i]] + 1;
+        pos[s[i]] = i;  // 记录最后出现的位置
+        res = max(res, i - pre + 1);
+    }
+    return res;
+}
+
+int OfferSolutions::nthUglyNumber(int n) {
+    int two = 0, three = 0, five = 0;
+    vector<int> dpArr(n);
+    dpArr[0] = 1;
+    for (int i = 1; i < n; i++) {
+        int t1 = dpArr[two] * 2, t2 = dpArr[three] * 3, t3 = dpArr[five] * 5;
+        dpArr[i] = min(min(t1, t2), t3);
+        if (dpArr[i] == t1) two++;
+        if (dpArr[i] == t2) three++;
+        if (dpArr[i] == t3) five++;
+    }
+    return dpArr.back();
+}
+
+char OfferSolutions::firstUniqChar(string s) {
+    vector<int> hash_vec(128, 0);
+    for (int i = 0; i < s.length(); i++) {
+        hash_vec[s[i]]++;
+    }
+    for (int i = 0; i < s.length(); i++) {
+        if (hash_vec[s[i]] == 1) return s[i];
+    }
+    return ' ';
+}
+
 /// ================================== SPECIAL CASE ==================================
 // 剑指 Offer 09. 用两个栈实现队列
 class CQueue {

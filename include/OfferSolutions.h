@@ -61,6 +61,10 @@ public:
     static int findNthDigit(int n);             // ??? 剑指 Offer 44. 数字序列中某一位的数字 ???
     static string minNumber(vector<int> &nums);         // 剑指 Offer 45. 把数组排成最小的数
     static int translateNum(int num);           // 剑指 Offer 46. 把数字翻译成字符串
+    static int maxValue(vector<vector<int>> &grid);     // 剑指 Offer 47. 礼物的最大价值
+    static int lengthOfLongestSubstring(string s);      // *** 剑指 Offer 48. 最长不含重复字符的子字符串 ***
+    static int nthUglyNumber(int n);            // ??? 剑指 Offer 49. 丑数 ???
+    static char firstUniqChar(string s);        // 剑指 Offer 50. 第一个只出现一次的字符
 };
 
 #endif //THEROADTOADVANCEMENT_OFFERSOLUTIONS_H
