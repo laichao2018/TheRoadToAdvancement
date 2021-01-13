@@ -117,7 +117,7 @@ public:
     static vector<string> summaryRanges(vector<int> &nums);             // 228. 汇总区间
     static string smallestStringWithSwaps(string s, vector<vector<int>> &pairs);   // ??? 1202. 交换字符串中的元素 ???
     static vector<int> sortItems(int n, int m, vector<int> &group, vector<vector<int>> &beforeItems);   // ??? 1203. 项目管理 ???
-    static vector<int> findRedundantConnection(vector<vector<int>> &edges);         // 684. 冗余连接
+    static vector<int> findRedundantConnection(vector<vector<int>> &edges);         // *** 684. 冗余连接 ***(并查集)
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
