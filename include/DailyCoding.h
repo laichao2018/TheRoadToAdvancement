@@ -116,8 +116,10 @@ public:
     static int maxProfit03(vector<int> &prices);            // *** 123. 买卖股票的最佳时机 III ***
     static vector<string> summaryRanges(vector<int> &nums);             // 228. 汇总区间
     static string smallestStringWithSwaps(string s, vector<vector<int>> &pairs);   // ??? 1202. 交换字符串中的元素 ???
-    static vector<int> sortItems(int n, int m, vector<int> &group, vector<vector<int>> &beforeItems);   // ??? 1203. 项目管理 ???
+    static vector<int>
+    sortItems(int n, int m, vector<int> &group, vector<vector<int>> &beforeItems);   // ??? 1203. 项目管理 ???
     static vector<int> findRedundantConnection(vector<vector<int>> &edges);         // *** 684. 冗余连接 ***(并查集)
+    static vector<bool> prefixesDivBy5(vector<int> &A);     // 018. 可被 5 整除的二进制前缀
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
