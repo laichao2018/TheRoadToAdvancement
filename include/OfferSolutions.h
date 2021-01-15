@@ -65,7 +65,20 @@ public:
     static int lengthOfLongestSubstring(string s);      // *** 剑指 Offer 48. 最长不含重复字符的子字符串 ***
     static int nthUglyNumber(int n);            // ??? 剑指 Offer 49. 丑数 ???
     static char firstUniqChar(string s);        // 剑指 Offer 50. 第一个只出现一次的字符
-    static int reversePairs(vector<int>& nums);         // 剑指 Offer 51. 数组中的逆序对
+    static int reversePairs(vector<int> &nums);         // *** 剑指 Offer 51. 数组中的逆序对 ***(归并排序)
+    static ListNode *getIntersectionNode(ListNode *headA, ListNode *headB);     // 剑指 Offer 52. 两个链表的第一个公共节点
+    static int search(vector<int> &nums, int target);   // 剑指 Offer 53 - I. 在排序数组中查找数字 I
+    static int missingNumber(vector<int> &nums);        // 剑指 Offer 53 - II. 0～n-1中缺失的数字
+    static int kthLargest(TreeNode *root, int k);       // 剑指 Offer 54. 二叉搜索树的第k大节点
+    static int maxDepth(TreeNode *root);        // 剑指 Offer 55 - I. 二叉树的深度
+    static bool isBalanced(TreeNode *root);     // 剑指 Offer 55 - II. 平衡二叉树
+    static vector<int> singleNumbers(vector<int> &nums);        // *** 剑指 Offer 56 - I. 数组中数字出现的次数 ***(位运算)
+    static int singleNumber(vector<int> &nums);       // 剑指 Offer 56 - II. 数组中数字出现的次数 II
+    static vector<int> twoSum(vector<int> &nums, int target);   // 剑指 Offer 57. 和为s的两个数字
+    static vector<vector<int>> findContinuousSequence(int target);      // 剑指 Offer 57 - II. 和为s的连续正数序列
+    static string reverseWords(string s);       // 剑指 Offer 58 - I. 翻转单词顺序
+    static string reverseLeftWords(string s, int n);            // 剑指 Offer 58 - II. 左旋转字符串
+    static vector<int> maxSlidingWindow(vector<int> &nums, int k);      // 剑指 Offer 59 - I. 滑动窗口的最大值(除了暴力法，优秀解法还没看懂~)
 };
 
 #endif //THEROADTOADVANCEMENT_OFFERSOLUTIONS_H

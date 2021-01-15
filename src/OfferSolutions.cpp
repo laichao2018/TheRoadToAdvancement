@@ -13,6 +13,7 @@
 #include <cmath>
 #include <unordered_map>
 #include <algorithm>
+#include <deque>
 
 using namespace std;
 
@@ -135,6 +136,47 @@ void permutation_func(string s, string &path, vector<bool> &used) {
             path.pop_back();
         }
     }
+}
+
+int mergeAndCount_func(vector<int> &nums, int left, int mid, int right, vector<int> &helper) {
+    for (int i = left; i <= right; i++) {
+        helper[i] = nums[i];
+    }
+    int i = left, j = mid + 1;
+    int count = 0;
+    for (int k = left; k <= right; k++) {
+        if (i == mid + 1) {
+            nums[k] = helper[j];
+            ++j;
+        } else if (j == right + 1) {
+            nums[k] = helper[i];
+            ++i;
+        } else if (helper[i] <= helper[j]) {
+            nums[k] = helper[i];
+            ++i;
+        } else {
+            nums[k] = helper[j];
+            count += mid - i + 1;
+            ++j;
+        }
+    }
+    return count;
+}
+
+int reversePairs_func(vector<int> &nums, int left, int right, vector<int> &helper) {
+    if (left == right) return 0;
+    int mid = left + (right - left) / 2;
+    int left_pairs = reversePairs_func(nums, left, mid, helper);
+    int right_pairs = reversePairs_func(nums, mid + 1, right, helper);
+    if (nums[mid] <= nums[mid + 1]) return left_pairs + right_pairs;
+    int cross_pairs = mergeAndCount_func(nums, left, mid, right, helper);
+    return left_pairs + cross_pairs + right_pairs;
+}
+
+int treeHeight_func(TreeNode *root) {
+    if (root == nullptr) return 0;
+    if (root->left == nullptr && root->right == nullptr) return 1;
+    return max(treeHeight_func(root->left), treeHeight_func(root->right)) + 1;
 }
 
 ///// ================================== CLASS FUNC ==================================
@@ -862,12 +904,172 @@ char OfferSolutions::firstUniqChar(string s) {
 }
 
 int OfferSolutions::reversePairs(vector<int> &nums) {
+    int len = nums.size();
+    if (len < 2) return 0;
+    vector<int> helper(len);
+    return reversePairs_func(nums, 0, len - 1, helper);
+}
+
+ListNode *OfferSolutions::getIntersectionNode(ListNode *headA, ListNode *headB) {
+    ListNode *pHead_A = headA, *pHead_B = headB;
+    while (pHead_A != pHead_B) {
+        pHead_A = pHead_A == nullptr ? headB : pHead_A->next;
+        pHead_B = pHead_B == nullptr ? headA : pHead_B->next;
+    }
+    return pHead_A;
+}
+
+int OfferSolutions::search(vector<int> &nums, int target) {
     int res = 0;
-    for (int i = 0; i < nums.size() - 1; i++) {
-        for (int j = i + 1; j < nums.size(); j++) {
-            if (nums[i] > nums[j]) res++;
+    for (int i:nums) {
+        if (i == target) res++;
+    }
+    return res;
+}
+
+int OfferSolutions::missingNumber(vector<int> &nums) {
+    int flag = 0;
+    for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] == flag) flag++;
+        else return flag;
+    }
+    return nums.back() + 1;
+}
+
+int OfferSolutions::kthLargest(TreeNode *root, int k) {
+    priority_queue<int> qVal;
+    queue<TreeNode *> qNodes;
+    qNodes.push(root);
+    while (!qNodes.empty()) {
+        int curr_size = qNodes.size();
+        for (int i = 0; i < curr_size; i++) {
+            TreeNode *curr_node = qNodes.front();
+            qNodes.pop();
+            qVal.push(curr_node->val);
+            if (curr_node->left != nullptr) qNodes.push(curr_node->left);
+            if (curr_node->right != nullptr) qNodes.push(curr_node->right);
         }
     }
+    for (int i = 1; i < k; i++) qVal.pop();
+    return qVal.top();
+}
+
+int OfferSolutions::maxDepth(TreeNode *root) {
+    if (root == nullptr) return 0;
+    int left_depth = maxDepth(root->left);
+    int right_depth = maxDepth(root->right);
+    return max(left_depth, right_depth) + 1;
+}
+
+bool OfferSolutions::isBalanced(TreeNode *root) {
+    if (root == nullptr) return true;
+    int left_height = treeHeight_func(root->left);
+    int right_height = treeHeight_func(root->right);
+    // 保证每一个孩子节点都是平衡二叉树
+    return isBalanced(root->left) && isBalanced(root->right) && abs(left_height - right_height) < 2;
+}
+
+vector<int> OfferSolutions::singleNumbers(vector<int> &nums) {
+    int res = 0;
+    for (int i:nums) res ^= i;
+    int div = 1;
+    while ((div & res) == 0) div <<= 1;
+    int a = 0, b = 0;
+    for (int i:nums) {
+        if (div & i) a ^= i;
+        else b ^= i;
+    }
+    return {a, b};
+}
+
+int OfferSolutions::singleNumber(vector<int> &nums) {
+    vector<int> binary(32, 0);
+    //将 nums 的所有元素转为二进制并加起来
+    for (int i:nums) {
+        for (int j = 31; j >= 0; j--) {
+            binary[j] += i & 1;
+            i >>= 1;
+        }
+    }
+    int res = 0;
+    //哪一位不能被3整除，就说明目标数字的二进制在那一位是 1
+    for (int i = 31; i >= 0; i--) {
+        if (binary[i] % 3) res += pow(2, 31 - i);
+    }
+    return res;
+}
+
+vector<int> OfferSolutions::twoSum(vector<int> &nums, int target) {
+    int left = 0, right = nums.size() - 1;
+    while (left < right) {
+        if (nums[left] + nums[right] == target) return {nums[left], nums[right]};
+        else if (nums[left] + nums[right] < target) left++;
+        else right--;
+    }
+    return {};
+}
+
+vector<vector<int>> OfferSolutions::findContinuousSequence(int target) {
+    vector<vector<int>> res;
+    for (int i = 1; i < target; i++) {
+        int curr_sum = i, num = i;
+        vector<int> tmp_nums;
+        tmp_nums.push_back(i);
+        while (curr_sum < target) {
+            num++;
+            curr_sum += num;
+            tmp_nums.push_back(num);
+        }
+        if (curr_sum == target) {
+            res.push_back(tmp_nums);
+        }
+    }
+    return res;
+}
+
+string OfferSolutions::reverseWords(string s) {
+    vector<string> all_words;
+    string tmp_str;
+    for (int i = 0; i < s.length(); i++) {
+        if (s[i] != ' ') tmp_str += s[i];
+        else {
+            if (tmp_str != "") {
+                all_words.push_back(tmp_str);
+                tmp_str = "";
+            } else continue;
+        }
+    }
+    if (tmp_str != "") all_words.push_back(tmp_str);
+    reverse(all_words.begin(), all_words.end());
+    string res;
+    for (int i = 0; i < all_words.size(); i++) {
+        if (i != all_words.size() - 1) res += all_words[i], res += " ";
+        else res += all_words[i];
+    }
+    return res;
+}
+
+string OfferSolutions::reverseLeftWords(string s, int n) {
+    n %= s.length();
+    string tmp_str = s.substr(0, n);
+    s = s.substr(n);
+    s += tmp_str;
+    return s;
+}
+
+vector<int> OfferSolutions::maxSlidingWindow(vector<int> &nums, int k) {
+    if (nums.empty() || k > nums.size() || k <= 0) return {};
+
+    vector<int> res;
+    deque<int> find_max;
+
+    for (int i = 0; i < nums.size(); i++) {
+        if (i >= k && !find_max.empty()) res.push_back(nums[find_max.front()]);
+        while (!find_max.empty() && nums[i] >= nums[find_max.back()]) find_max.pop_back();
+        if (!find_max.empty() && i - find_max.front() >= k) find_max.pop_front();
+        find_max.push_back(i);
+    }
+    res.push_back(nums[find_max.front()]);
     return res;
 }
 
