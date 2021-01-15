@@ -372,6 +372,40 @@ public:
     }
 };
 
+// 并查集的类02
+class DisjointSetUnion {
+private:
+    unordered_map<int, int> f, rank;
+public:
+    int find(int x) {
+        if (!f.count(x)) {
+            f[x] = x;
+            rank[x] = 1;
+        }
+        return f[x] == x ? x : f[x] = find(f[x]);
+    }
+
+    void unionSet(int x, int y) {
+        int fx = find(x), fy = find(y);
+        if (fx == fy) return;
+        if (rank[fx] < rank[fy]) {
+            swap(fx, fy);
+        }
+        rank[fx] += rank[fy];
+        f[fy] = fx;
+    }
+
+    int number_of_connected() {
+        int num = 0;
+        for (auto &[x, fa]:f) {
+            if (x == fa) {
+                num++;
+            }
+        }
+        return num;
+    }
+};
+
 ///// ================================== CLASS FUNC ==================================
 
 int DailyCoding::numJewelsInStones(string J, string S) {
@@ -2221,4 +2255,12 @@ vector<bool> DailyCoding::prefixesDivBy5(vector<int> &A) {
         list.emplace_back(prefix == 0);
     }
     return list;
+}
+
+int DailyCoding::removeStones(vector<vector<int>> &stones) {
+    DisjointSetUnion _dsu;
+    for (int i = 0; i < stones.size(); i++) {
+        _dsu.unionSet(stones[i][0], stones[i][1] + 10000);
+    }
+    return stones.size() - _dsu.number_of_connected();
 }
