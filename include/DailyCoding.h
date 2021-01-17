@@ -122,6 +122,7 @@ public:
     static vector<bool> prefixesDivBy5(vector<int> &A);     // 018. 可被 5 整除的二进制前缀
     static int removeStones(vector<vector<int>> &stones);   // *** 947. 移除最多的同行或同列石头 ***(并查集)
     static vector<int> hitBricks(vector<vector<int>> &grid, vector<vector<int>> &hits);     // 803. 打砖块
+    static bool checkStraightLine(vector<vector<int>> &coordinates);        // 1232. 缀点成线
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

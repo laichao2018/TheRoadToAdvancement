@@ -2348,3 +2348,15 @@ vector<int> DailyCoding::hitBricks(vector<vector<int>> &grid, vector<vector<int>
     }
     return ret;
 }
+
+bool DailyCoding::checkStraightLine(vector<vector<int>> &coordinates) {
+    int n = coordinates.size();
+    int x0 = coordinates[0][0], y0 = coordinates[0][1];
+    int x = coordinates[1][0] - x0, y = coordinates[1][1] - y0;
+    for (int i = 2; i < n; i++) {
+        int xi = coordinates[i][0] - x0;
+        int yi = coordinates[i][1] - y0;
+        if (x * yi - y * xi) return false;
+    }
+    return true;
+}
