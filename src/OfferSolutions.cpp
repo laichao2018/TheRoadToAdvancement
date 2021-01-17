@@ -1064,13 +1064,158 @@ vector<int> OfferSolutions::maxSlidingWindow(vector<int> &nums, int k) {
     deque<int> find_max;
 
     for (int i = 0; i < nums.size(); i++) {
-        if (i >= k && !find_max.empty()) res.push_back(nums[find_max.front()]);
-        while (!find_max.empty() && nums[i] >= nums[find_max.back()]) find_max.pop_back();
-        if (!find_max.empty() && i - find_max.front() >= k) find_max.pop_front();
+        if (i >= k && !find_max.empty())
+            res.push_back(nums[find_max.front()]);
+        while (!find_max.empty() && nums[i] >= nums[find_max.back()])
+            find_max.pop_back();
+        if (!find_max.empty() && i - find_max.front() >= k)
+            find_max.pop_front();
         find_max.push_back(i);
     }
     res.push_back(nums[find_max.front()]);
     return res;
+}
+
+vector<double> OfferSolutions::dicesProbability(int n) {
+    vector<int> dpArr(70);
+    for (int i = 1; i <= 6; i++) {
+        dpArr[i] = 1;
+    }
+    for (int i = 2; i <= n; i++) {
+        for (int j = 6 * i; j >= i; j--) {
+            dpArr[j] = 0;
+            for (int cur = 1; cur <= 6; cur++) {
+                if (j - cur < i - 1) {
+                    break;
+                }
+                dpArr[j] += dpArr[j - cur];
+            }
+        }
+    }
+    int all = pow(6, n);
+    vector<double> ret;
+    for (int i = n; i <= 6 * n; i++) {
+        ret.push_back(dpArr[i] * 1.0 / all);
+    }
+    return ret;
+}
+
+bool OfferSolutions::isStraight(vector<int> &nums) {
+    sort(nums.begin(), nums.end());
+    int zero_counts = 0;
+    for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] == 0) {
+            zero_counts++;
+            continue;
+        }
+        int j = i + 1;
+        if (j < nums.size()) {
+            if (nums[i] == nums[j]) return false;
+            int tmp = nums[j] - nums[i];
+            while (tmp > 1) {
+                if (zero_counts == 0) return false;
+                zero_counts--;
+                tmp--;
+            }
+        }
+    }
+    return true;
+}
+
+int OfferSolutions::lastRemaining(int n, int m) {
+    int f = 0;
+    for (int i = 2; i != n + 1; ++i) {
+        f = (m + f) % i;
+    }
+    return f;
+}
+
+int OfferSolutions::maxProfit(vector<int> &prices) {
+    if (prices.size() < 2) return 0;
+    int min_price = 1e9, max_profit = 0;
+    for (int price:prices) {
+        max_profit = max(max_profit, price - min_price);
+        min_price = min(price, min_price);
+    }
+    return max_profit;
+}
+
+int OfferSolutions::sumNums(int n) {
+    // 如果 a 为 false，那计算机会直接返回 a && b = false，而不会再去运行 b 语句了
+    n && (n += sumNums(n - 1));
+    return n;
+}
+
+int OfferSolutions::add(int a, int b) {
+    if (a == 0 || b == 0) return a == 0 ? b : a;
+    int sum = 0, carry = 0;
+    while (b != 0) {
+        sum = a ^ b;
+        carry = (unsigned int) (a & b) << 1;    // C++ 不允许负数进行左移操作，故要加 unsigned int
+
+        a = sum;
+        b = carry;
+    }
+    return a;
+}
+
+vector<int> OfferSolutions::constructArr(vector<int> &a) {
+    int len = a.size();
+    if (len < 2) return len < 1 ? vector<int>() : vector<int>(1, -10086);
+    vector<int> res(len, 1);
+    vector<int> left(len, 1), right(len, 1);
+    left[0] = 1;
+    left[1] = a[0];
+
+    for (int i = 2; i < len; ++i) {
+        left[i] = left[i - 1] * a[i - 1]; // 从前往后填充 left 数组
+    }
+
+    right[len - 1] = 1; // 初始化
+    right[len - 2] = a[len - 1]; // 初始化
+
+    res[len - 1] = left[len - 1] * right[len - 1]; // 填充 b[len - 1]
+    res[len - 2] = left[len - 2] * right[len - 2]; // 填充 b[len - 2]
+
+    for (int i = len - 3; i >= 0; --i) {
+        right[i] = right[i + 1] * a[i + 1]; // 从后往前填充 right 数组
+        res[i] = left[i] * right[i]; // 填充 b[len - 3] 至 b[0]
+    }
+
+    return res;
+}
+
+int OfferSolutions::strToInt(string str) {
+    int i = 0, flag = 1;
+    long res = 0; //默认flag = 1，正数
+    while (str[i] == ' ') i++;
+    if (str[i] == '-') flag = -1;
+    if (str[i] == '-' || str[i] == '+') i++;
+    for (; i < str.size() && isdigit(str[i]); i++) {
+        res = res * 10 + (str[i] - '0');
+        if (res >= INT32_MAX && flag == 1) return INT32_MAX;
+        if (res > INT32_MAX && flag == -1) return INT32_MIN;
+    }
+    return flag * res;
+}
+
+TreeNode *OfferSolutions::lowestCommonAncestor_search_tree(TreeNode *root, TreeNode *p, TreeNode *q) {
+    if (root == nullptr) return nullptr;
+    while (root) {
+        if (p->val > root->val && q->val > root->val) root = root->right;
+        else if (p->val < root->val && q->val < root->val) root = root->left;
+        else return root;
+    }
+    return root;
+}
+
+TreeNode *OfferSolutions::lowestCommonAncestor_tree(TreeNode *root, TreeNode *p, TreeNode *q) {
+    if (root == nullptr || root == p || root == q) return root;
+    TreeNode *left_node = lowestCommonAncestor_tree(root->left, p, q);
+    TreeNode *right_node = lowestCommonAncestor_tree(root->right, p, q);
+    if (left_node == nullptr) return right_node;
+    if (right_node == nullptr) return left_node;
+    return root;
 }
 
 /// ================================== SPECIAL CASE ==================================
@@ -1213,5 +1358,32 @@ public:
             return max_heap.top();
         else
             return ((max_heap.top() + min_heap.top()) / 2.0);
+    }
+};
+
+// 剑指 Offer 59 - II. 队列的最大值
+class MaxQueue {
+private:
+    deque<int> max_num;
+    queue<int> all_nums;
+public:
+    MaxQueue() = default;
+
+    int max_value() {
+        return max_num.empty() ? -1 : max_num.front();
+    }
+
+    void push_back(int value) {
+        all_nums.push(value);
+        while (!max_num.empty() && value >= max_num.back()) max_num.pop_back();
+        max_num.push_back(value);
+    }
+
+    int pop_front() {
+        if (all_nums.empty()) return -1;
+        int res = all_nums.front();
+        all_nums.pop();
+        if (res == max_num.front()) max_num.pop_front();
+        return res;
     }
 };

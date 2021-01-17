@@ -79,6 +79,16 @@ public:
     static string reverseWords(string s);       // 剑指 Offer 58 - I. 翻转单词顺序
     static string reverseLeftWords(string s, int n);            // 剑指 Offer 58 - II. 左旋转字符串
     static vector<int> maxSlidingWindow(vector<int> &nums, int k);      // 剑指 Offer 59 - I. 滑动窗口的最大值(除了暴力法，优秀解法还没看懂~)
+    static vector<double> dicesProbability(int n);      // ??? 剑指 Offer 60. n个骰子的点数 ???
+    static bool isStraight(vector<int> &nums);          // 剑指 Offer 61. 扑克牌中的顺子
+    static int lastRemaining(int n, int m);     // ??? 剑指 Offer 62. 圆圈中最后剩下的数字 ???
+    static int maxProfit(vector<int> &prices);          // 剑指 Offer 63. 股票的最大利润
+    static int sumNums(int n);          // 剑指 Offer 64. 求1+2+…+n
+    static int add(int a, int b);       // ??? 剑指 Offer 65. 不用加减乘除做加法 ???
+    static vector<int> constructArr(vector<int> &a);    // ??? 剑指 Offer 66. 构建乘积数组 ???
+    static int strToInt(string str);            // 剑指 Offer 67. 把字符串转换成整数
+    static TreeNode *lowestCommonAncestor_search_tree(TreeNode *root, TreeNode *p, TreeNode *q);    // *** 剑指 Offer 68 - I. 二叉搜索树的最近公共祖先 ***
+    static TreeNode *lowestCommonAncestor_tree(TreeNode *root, TreeNode *p, TreeNode *q);           // *** 剑指 Offer 68 - II. 二叉树的最近公共祖先 ***
 };
 
 #endif //THEROADTOADVANCEMENT_OFFERSOLUTIONS_H
