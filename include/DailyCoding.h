@@ -123,6 +123,7 @@ public:
     static int removeStones(vector<vector<int>> &stones);   // *** 947. 移除最多的同行或同列石头 ***(并查集)
     static vector<int> hitBricks(vector<vector<int>> &grid, vector<vector<int>> &hits);     // 803. 打砖块
     static bool checkStraightLine(vector<vector<int>> &coordinates);        // 1232. 缀点成线
+    static vector<vector<string>> accountsMerge(vector<vector<string>> &accounts);          // 721. 账户合并
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
