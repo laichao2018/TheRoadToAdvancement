@@ -16,7 +16,6 @@ include_directories(./include/DataStructure)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_MAIN)
 
 add_executable(TheRoadToAdvancement
-                    ./include/DailyCoding.h
                     ${SRC_MAIN}
                     ./src/InterestingFunctions.hpp)
 
