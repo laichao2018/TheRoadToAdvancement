@@ -334,11 +334,11 @@ int OfferSolutions::movingCount_bfs(int m, int n, int k) {
     isVisited[0][0] = 1;
     int res = 1;
     while (!q.empty()) {
-        auto[x, y]=q.front();
+        auto _xy = q.front();
         q.pop();
         for (int i = 0; i < 2; i++) {
-            int tx = x + dx[i];
-            int ty = y + dy[i];
+            int tx = _xy.first + dx[i];
+            int ty = _xy.second + dy[i];
             if (tx > m - 1 || ty > n - 1 || isVisited[tx][ty] || split_number(tx) + split_number(ty) > k) {
                 continue;
             }

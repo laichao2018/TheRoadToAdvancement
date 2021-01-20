@@ -398,8 +398,8 @@ public:
 
     int number_of_connected() {
         int num = 0;
-        for (auto &[x, fa]:f) {
-            if (x == fa) {
+        for (auto &_xfa:f) {
+            if (_xfa.first == _xfa.second) {
                 num++;
             }
         }
@@ -2209,12 +2209,12 @@ string DailyCoding::smallestStringWithSwaps(string s, vector<vector<int>> &pairs
     for (int i = 0; i < n; i++) um[ds.find(i)].push_back(i);
 
     // 同一并查集按字典序排序
-    for (auto&[k, v] : um) {
-        vector<int> c = v;
-        sort(v.begin(), v.end(), [&](int a, int b) {
+    for (auto&_kv : um) {
+        vector<int> c = _kv.second;
+        sort(_kv.second.begin(), _kv.second.end(), [&](int a, int b) {
             return s[a] < s[b];
         });
-        for (int i = 0; i < c.size(); i++) rs[c[i]] = s[v[i]];
+        for (int i = 0; i < c.size(); i++) rs[c[i]] = s[_kv.second[i]];
     }
 
     s = "";
@@ -2357,8 +2357,8 @@ vector<int> DailyCoding::hitBricks(vector<vector<int>> &grid, vector<vector<int>
         if (r == 0) {
             uf.merge(c, h * w);
         }
-        for (const auto[dr, dc]: directions) {
-            int nr = r + dr, nc = c + dc;
+        for (const auto _drc: directions) {
+            int nr = r + _drc.first, nc = c + _drc.second;
 
             if (nr >= 0 && nr < h && nc >= 0 && nc < w) {
                 if (status[nr][nc] == 1) {
@@ -2412,19 +2412,19 @@ vector<vector<string>> DailyCoding::accountsMerge(vector<vector<string>> &accoun
         }
     }
     map<int, vector<string>> indexToEmails;
-    for (auto& [email, _] : emailToIndex) {
-        int index = uf.find(emailToIndex[email]);
+    for (auto& _email_ : emailToIndex) {
+        int index = uf.find(emailToIndex[_email_.first]);
         vector<string>& account = indexToEmails[index];
-        account.emplace_back(email);
+        account.emplace_back(_email_.first);
         indexToEmails[index] = account;
     }
     vector<vector<string>> merged;
-    for (auto& [_, emails] : indexToEmails) {
-        sort(emails.begin(), emails.end());
-        string& name = emailToName[emails[0]];
+    for (auto& __email : indexToEmails) {
+        sort(__email.second.begin(), __email.second.end());
+        string& name = emailToName[__email.second[0]];
         vector<string> account;
         account.emplace_back(name);
-        for (auto& email : emails) {
+        for (auto& email : __email.second) {
             account.emplace_back(email);
         }
         merged.emplace_back(account);
