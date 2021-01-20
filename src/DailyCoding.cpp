@@ -2209,7 +2209,7 @@ string DailyCoding::smallestStringWithSwaps(string s, vector<vector<int>> &pairs
     for (int i = 0; i < n; i++) um[ds.find(i)].push_back(i);
 
     // 同一并查集按字典序排序
-    for (auto&_kv : um) {
+    for (auto &_kv : um) {
         vector<int> c = _kv.second;
         sort(_kv.second.begin(), _kv.second.end(), [&](int a, int b) {
             return s[a] < s[b];
@@ -2389,11 +2389,11 @@ vector<vector<string>> DailyCoding::accountsMerge(vector<vector<string>> &accoun
     map<string, int> emailToIndex;
     map<string, string> emailToName;
     int emailsCount = 0;
-    for (auto& account : accounts) {
-        string& name = account[0];
+    for (auto &account : accounts) {
+        string &name = account[0];
         int size = account.size();
         for (int i = 1; i < size; i++) {
-            string& email = account[i];
+            string &email = account[i];
             if (!emailToIndex.count(email)) {
                 emailToIndex[email] = emailsCount++;
                 emailToName[email] = name;
@@ -2401,33 +2401,43 @@ vector<vector<string>> DailyCoding::accountsMerge(vector<vector<string>> &accoun
         }
     }
     UnionFind_accountsMerge uf(emailsCount);
-    for (auto& account : accounts) {
-        string& firstEmail = account[1];
+    for (auto &account : accounts) {
+        string &firstEmail = account[1];
         int firstIndex = emailToIndex[firstEmail];
         int size = account.size();
         for (int i = 2; i < size; i++) {
-            string& nextEmail = account[i];
+            string &nextEmail = account[i];
             int nextIndex = emailToIndex[nextEmail];
             uf.union_set(firstIndex, nextIndex);
         }
     }
     map<int, vector<string>> indexToEmails;
-    for (auto& _email_ : emailToIndex) {
+    for (auto &_email_ : emailToIndex) {
         int index = uf.find(emailToIndex[_email_.first]);
-        vector<string>& account = indexToEmails[index];
+        vector<string> &account = indexToEmails[index];
         account.emplace_back(_email_.first);
         indexToEmails[index] = account;
     }
     vector<vector<string>> merged;
-    for (auto& __email : indexToEmails) {
+    for (auto &__email : indexToEmails) {
         sort(__email.second.begin(), __email.second.end());
-        string& name = emailToName[__email.second[0]];
+        string &name = emailToName[__email.second[0]];
         vector<string> account;
         account.emplace_back(name);
-        for (auto& email : __email.second) {
+        for (auto &email : __email.second) {
             account.emplace_back(email);
         }
         merged.emplace_back(account);
     }
     return merged;
+}
+
+int DailyCoding::maximumProduct(vector<int> &nums) {
+    // 最大乘积的结果只有两种可能的情况
+    sort(nums.begin(), nums.end());
+    int size = nums.size();
+    int a = INT32_MIN, b = INT32_MIN;
+    if (nums[0] < 0 && nums[1] < 0) a = nums[0] * nums[1] * nums.back();
+    b = nums[size - 1] * nums[size - 2] * nums[size - 3];
+    return max(a, b);
 }
