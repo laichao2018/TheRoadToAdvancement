@@ -26,9 +26,8 @@ public:
     static ListNode *deleteDuplicates(ListNode *headNode);        // 83. 删除排序链表中的重复元素
     static ListNode *removeNthFromEnd(ListNode *headNode, int n);    // 19. 删除链表的倒数第N个节点
     static ListNode *swapPairs(ListNode *headNode);        // 24. 两两交换链表中的节点
-    static ListNode *addTwoNumbers(ListNode *l1, ListNode *l2);    // 445. 两数相加 II
     static bool isPalindrome(ListNode *headNode);          // 234. 回文链表
-    static vector<ListNode *> splitListToParts(ListNode *root, int k);    // 725. 分隔链表 ***
+    static vector<ListNode *> splitListToParts(ListNode *root, int k);    // *** 725. 分隔链表 ***
     static ListNode *oddEvenList(ListNode *head);          // 328. 奇偶链表
     static ListNode *deleteNode(ListNode *head, int val);      // 剑指 Offer 18. 删除链表的节点
     static vector<ListNode *> listOfDepth(TreeNode *tree);     // 面试题 04.03. 特定深度节点链表

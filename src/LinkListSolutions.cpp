@@ -250,3 +250,30 @@ ListNode *LinkListSolution::swapPairs(ListNode *headNode) {
     }
     return preNode->next;
 }
+
+bool LinkListSolution::isPalindrome(ListNode *headNode) {
+    int len = 0;
+    ListNode *tmp_node = headNode;
+    while (tmp_node != nullptr) {
+        tmp_node = tmp_node->next;
+        len++;
+    }
+    stack<int> sNodes;
+    int n = len / 2;
+    tmp_node = headNode;
+    while (n) {
+        sNodes.push(tmp_node->val);
+        tmp_node = tmp_node->next;
+        n--;
+    }
+    if (len % 2) tmp_node = tmp_node->next;
+    while (!sNodes.empty() && tmp_node != nullptr) {
+        if (sNodes.top() != tmp_node->val) return false;
+        sNodes.pop(), tmp_node = tmp_node->next;
+    }
+    return true;
+}
+
+vector<ListNode *> LinkListSolution::splitListToParts(ListNode *root, int k) {
+
+}

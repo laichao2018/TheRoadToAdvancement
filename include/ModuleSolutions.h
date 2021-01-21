@@ -140,8 +140,8 @@ public:
     static string longestPalindrome(string s);          // 5. 最长回文子串
     static string convert(string s, int numRows);       // 6. Z 字形变换
     static bool isValidSudoku(vector<vector<char>> &board);         // 36. 有效的数独
-    static bool isValidBST(TreeNode* root);             // 98. 验证二叉搜索
-    static int maximumUniqueSubarray(vector<int>& nums);            // 1695. 删除子数组的最大得分
+    static bool isValidBST(TreeNode *root);             // 98. 验证二叉搜索
+    static int maximumUniqueSubarray(vector<int> &nums);            // 1695. 删除子数组的最大得分
 };
 
 #endif //THEROADTOADVANCEMENT_MODULESOLUTIONS_H
