@@ -2441,3 +2441,22 @@ int DailyCoding::maximumProduct(vector<int> &nums) {
     b = nums[size - 1] * nums[size - 2] * nums[size - 3];
     return max(a, b);
 }
+
+vector<int> DailyCoding::addToArrayForm(vector<int> &A, int K) {
+    vector<int> res;
+    for (int i = A.size() - 1; i >= 0; i--) {
+        int sum = A[i] + K % 10;
+        K /= 10;
+        if (sum > 9) {
+            sum -= 10;
+            K++;
+        }
+        res.push_back(sum);
+    }
+    while (K) {
+        res.push_back(K % 10);
+        K /= 10;
+    }
+    reverse(res.begin(), res.end());
+    return res;
+}

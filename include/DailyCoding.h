@@ -125,6 +125,7 @@ public:
     static bool checkStraightLine(vector<vector<int>> &coordinates);        // 1232. 缀点成线
     static vector<vector<string>> accountsMerge(vector<vector<string>> &accounts);          // 721. 账户合并
     static int maximumProduct(vector<int> &nums);           // 628. 三个数的最大乘积
+    static vector<int> addToArrayForm(vector<int> &A, int K);           // 989. 数组形式的整数加法
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
