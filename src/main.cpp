@@ -11,6 +11,7 @@ using namespace std;
 
 int main() {
     vector<int> nums{7, 5, 6, 4};
-    cout << OfferSolutions::reversePairs(nums);
+    float a = 1.3;
+    // cout << OfferSolutions::reversePairs(nums);
     return 0;
 }

@@ -5,6 +5,7 @@
 
 #ifndef __INTERESTING_FUNCTIONS__
 #define __INTERESTING_FUNCTIONS__
+
 #include <iostream>
 #include <numeric>
 #include <thread>
@@ -61,6 +62,17 @@ void dis_to_bin(int data, int i = 32) {
             else
                 printf("-");
     }
+}
+
+// 汉诺塔问题递归求解
+void hanoi(int n, char _a, char _b, char _c) {
+    if (n == 1) {
+        std::cout << ":  " << _a << "  --->  " << _c << endl;
+        return;
+    }
+    hanoi(n - 1, _a, _c, _b);
+    std::cout << ":  " << _a << "  --->  " << _c << endl;
+    hanoi(n - 1, _b, _a, _c);
 }
 
 #endif
