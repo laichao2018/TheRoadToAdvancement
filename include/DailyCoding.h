@@ -126,6 +126,7 @@ public:
     static vector<vector<string>> accountsMerge(vector<vector<string>> &accounts);          // 721. 账户合并
     static int maximumProduct(vector<int> &nums);           // 628. 三个数的最大乘积
     static vector<int> addToArrayForm(vector<int> &A, int K);           // 989. 数组形式的整数加法
+    static int findLengthOfLCIS(vector<int> &nums);         // 674. 最长连续递增序列
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
