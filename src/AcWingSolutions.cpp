@@ -12,6 +12,10 @@
 
 using namespace std;
 
+// _________________________________HELP　VAR__________________________________
+vector<vector<int>> gVec2Int;
+vector<int> gVecInt;
+
 // _________________________________HELP　FUNC_________________________________
 
 void HelpFunc_quick_sort(vector<int> &q, int l, int r) {
@@ -59,6 +63,24 @@ void HelpFunc_merge_sort(vector<int> q, int l, int r) {
 
     for (k = 0, i = l; i <= r; k++, i++) {
         q[i] = tmp[k];
+    }
+}
+
+inline bool isVaildPosition(int &curr_x, int &curr_y, int &row, int &col) {
+    return curr_x >= 0 && curr_y >= 0 && curr_x < row && curr_y < col;
+}
+
+void dfs_permutation(vector<int> &nums, int u, int start, int state) {
+    if (u == nums.size()) {
+        gVec2Int.push_back(gVecInt);
+        return;
+    }
+    if (!u || nums[u] == nums[u - 1]) start = 0;
+    for (int i = start; i < nums.size(); i++) {
+        if (!(state >> i & 1)) {
+            gVecInt[i] = nums[u];
+            dfs_permutation(nums, u + 1, i + 1, state + (1 << i));  //上一个放的位置是i；
+        }
     }
 }
 
@@ -129,6 +151,44 @@ vector<int> AcStar::findNumbersWithSum(vector<int> &nums, int target) {
         else hash.insert(nums[i]);
     }
     return {};
+}
+
+vector<int> AcStar::printMatrix(vector<vector<int>> matrix) {
+    if (matrix.empty()) return {};
+    if (matrix.size() == 1) return matrix[0];
+    vector<int> res;
+    int row = matrix.size(), col = matrix[0].size();
+    vector<vector<bool>> isVisited(row, vector<bool>(col, false));
+    int dx[4] = {0, 1, 0, -1}, dy[4] = {1, 0, -1, 0};
+    int px = 0, py = 0, go = 0;
+
+    for (int i = 0; i < row * col; i++) {
+        res.push_back(matrix[px][py]);
+        isVisited[px][py] = true;
+        int a = px + dx[go], b = py + dy[go];
+        if (a < 0 || a >= row || b < 0 || b >= col || isVisited[a][b]) {
+            go = (go + 1) % 4;
+            a = px + dx[go], b = py + dy[go];
+        }
+        px = a, py = b;
+    }
+    return res;
+}
+
+vector<vector<int>> AcStar::permutation(vector<int> &nums) {
+    gVecInt.resize(nums.size());
+    dfs_permutation(nums, 0, 0, 0); // 数组，当前要放的元素位置，上一个放的位置，当前的放的状态
+    return gVec2Int;
+}
+
+int AcStar::NumberOf1(int n) {
+    int res = 0;
+    unsigned int num = n;   // 因为有负数的情况出现
+    while (num) {
+        res += (num & 1);
+        num >>= 1;
+    }
+    return res;
 }
 
 // _________________________________OTHER CLASS_________________________________
