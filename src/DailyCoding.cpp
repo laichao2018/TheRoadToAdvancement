@@ -14,6 +14,7 @@
 #include <string>
 #include <list>
 #include <cmath>
+#include <list>
 
 using namespace std;
 
@@ -342,6 +343,53 @@ int find_func(vector<int> &parent, int index) { // findRedundantConnection - 并
 
 void union_func(vector<int> &parent, int index01, int index02) {
     parent[find_func(parent, index01)] = find_func(parent, index02);
+}
+
+void backTrack_subsets(vector<vector<int>> &res, vector<int> &tmp, vector<int> &nums, int index) {
+    res.push_back(tmp);
+    for (int i = index; i < nums.size(); i++) {
+        tmp.push_back(nums[i]);
+        backTrack_subsets(res, tmp, nums, i + 1);
+        tmp.pop_back();
+    }
+}
+
+TreeNode *backTrack_buildTree(vector<int>::iterator ib, vector<int>::iterator ie, vector<int>::iterator pb,
+                              vector<int>::iterator pe) {
+    // 左闭右开
+    if (ib == ie) return nullptr;
+    vector<int>::iterator pe1 = pe - 1;
+    TreeNode *tree = new TreeNode(*pe1);
+    auto pos = find(ib, ie, *pe1);
+    tree->left = backTrack_buildTree(ib, pos, pb, pb + (pos - ib));
+    tree->right = backTrack_buildTree(pos + 1, ie, pb + (pos - ib), pe1);
+    return tree;
+}
+
+void dfs_permuteUnique(vector<int> &nums, int level, vector<vector<int>> &ans, vector<bool> &used, vector<int> &path) {
+    if (level == nums.size()) {
+        ans.push_back(path);
+        return;
+    }
+    for (int i = 0; i < nums.size(); i++) {
+        if (used[i] || (i > 0 && nums[i] == nums[i - 1] && !used[i - 1])) continue;
+        used[i] = true;
+        path.push_back(nums[i]);
+        dfs_permuteUnique(nums, level + 1, ans, used, path);
+        path.pop_back();
+        used[i] = false;
+    }
+}
+
+void backTrack_combine(vector<vector<int>> &res, vector<int> &path, int pos, int num, int n, int k) {
+    if (pos == k) {
+        res.push_back(path);
+        return;
+    }
+    for (int i = num; i <= n - (k - pos - 1); i++) {
+        path[pos] = i;
+        backTrack_combine(res, path, pos + 1, i + 1, n, k);
+    }
 }
 
 ///// ================================== HELP CLASS ==================================
@@ -1151,21 +1199,18 @@ vector<vector<int>> DailyCoding::levelOrderBottom(TreeNode *root) {
 }
 
 vector<int> DailyCoding::topKFrequent(vector<int> &nums, int k) {
-    unordered_map<int, int> numsHash;
-    for (int i = 0; i < nums.size(); i++) {
-        numsHash[nums[i]]++;
-    }
-    vector<pair<int, int>> vNumberCounts;
-    for (int i = 0; i < nums.size(); i++) {
-        if (numsHash[nums[i]]) {
-            vNumberCounts.push_back(make_pair(numsHash[nums[i]], nums[i]));
+    unordered_map<int, int> freq;
+    for (int i:nums) freq[i]++;     // 先统计每个元素出现的个数
+
+    list<int> buckets[nums.size() + 1];
+    for (auto pos = freq.begin(); pos != freq.end(); pos++) buckets[pos->second].push_back(pos->first);
+    vector<int> res(k);
+    int cnt = 0;
+    for (int i = nums.size(); i > 0; i--) {
+        for (auto num:buckets[i]) {
+            res[cnt++] = num;
+            if (cnt == k) return res;
         }
-    }
-    sort(vNumberCounts.begin(), vNumberCounts.end(),
-         [](pair<int, int> a, pair<int, int> b) { return a.first > b.first; });
-    vector<int> res;
-    for (int i = 0; i < k; i++) {
-        res.push_back(vNumberCounts[i].second);
     }
     return res;
 }
@@ -1204,12 +1249,8 @@ int DailyCoding::sumOfLeftLeaves2(TreeNode *root) {
     return res + sumOfLeftLeaves2(root->left) + sumOfLeftLeaves2(root->right);
 }
 
-int DailyCoding::minCameraCover(TreeNode *root) {
-    return 0;
-}
-
 TreeNode *DailyCoding::buildTree(vector<int> &inorder, vector<int> &postorder) {
-    return nullptr;
+    return backTrack_buildTree(inorder.begin(), inorder.end(), postorder.begin(), postorder.end());
 }
 
 vector<vector<int>> DailyCoding::findSubsequences(vector<int> &nums) {
@@ -1284,7 +1325,11 @@ vector<vector<string>> DailyCoding::solveNQueens(int n) {
 }
 
 vector<vector<int>> DailyCoding::combine(int n, int k) {
-    return {};
+    vector<vector<int>> res;
+    vector<int> path(k, 0);
+    int pos = 0, num = 1;
+    backTrack_combine(res, path, pos, num, n, k);
+    return res;
 }
 
 vector<string> DailyCoding::binaryTreePaths(TreeNode *root) {
@@ -2474,4 +2519,37 @@ int DailyCoding::findLengthOfLCIS(vector<int> &nums) {
         }
     }
     return max(res, fast - slow);
+}
+
+int DailyCoding::numEquivDominoPairs(vector<vector<int>> &dominoes) {
+    int res = 0;
+    vector<int> nums(100);
+    for (auto &v:dominoes) {
+        int val = v[0] > v[1] ? v[0] * 10 + v[1] : v[1] * 10 + v[0];
+        res += nums[val];
+        nums[val]++;
+    }
+    return res;
+}
+
+vector<vector<int>> DailyCoding::subsets(vector<int> &nums) {
+    vector<vector<int>> res;
+    vector<int> tmp;
+    backTrack_subsets(res, tmp, nums, 0);
+    return res;
+}
+
+TreeNode *DailyCoding::lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
+    if (root->val > p->val && root->val > q->val) return lowestCommonAncestor(root->left, p, q);
+    else if (root->val < p->val && root->val < q->val) return lowestCommonAncestor(root->right, p, q);
+    return root;
+}
+
+vector<vector<int>> DailyCoding::permuteUnique(vector<int> &nums) {
+    vector<bool> used(nums.size(), false);
+    vector<int> path;
+    vector<vector<int>> res;
+    sort(nums.begin(), nums.end());
+    dfs_permuteUnique(nums, 0, res, used, path);
+    return res;
 }

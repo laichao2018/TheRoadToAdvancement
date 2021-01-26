@@ -32,17 +32,16 @@ public:
     static vector<string> binaryTreePaths(TreeNode *root);          // 257. 二叉树的所有路径 (深度优先遍历--递归)
     static vector<vector<int>> levelOrderBottom(TreeNode *root);    // 107. 二叉树的层次遍历 II
     static vector<int> topKFrequent(vector<int> &nums, int k);      // 347. 前 K 个高频元素
-    static vector<vector<int>> combine(int n, int k);        // 77. 组合
+    static vector<vector<int>> combine(int n, int k);        // ??? 77. 组合 ???
     static vector<vector<int>> combinationSum2(vector<int> &candidates, int target);    // 40. 组合总和 II
     static vector<vector<int>> combinationSum3(int k, int n);       // 216. 组合总和 III
-    static vector<vector<int>> permuteUnique(vector<int> &nums);    // 47. 全排列 II
+    static vector<vector<int>> permuteUnique(vector<int> &nums);    // *** 47. 全排列 II ***
     static int sumOfLeftLeaves(TreeNode *root);        // 404. 左叶子之和
     static int sumOfLeftLeaves2(TreeNode *root);        // 404. 左叶子之和(递归方法)
     static vector<vector<int>> subsets(vector<int> &nums);        // 78. 子集
     static TreeNode *convertBST(TreeNode *root);        // 538. 把二叉搜索树转换为累加树
-    static int minCameraCover(TreeNode *root);            // 968. 监控二叉树
     static TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder);    // 106. 从中序与后序遍历序列构造二叉树
-    static TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q);    // 235. 二叉搜索树的最近公共祖先
+    static TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q);    // *** 235. 二叉搜索树的最近公共祖先 ***
     static int numJewelsInStones(string J, string S);        // 771. 宝石与石头
     static vector<int> twoSum(vector<int> &nums, int target);    // 1. 两数之和
     static void sortColors(vector<int> &nums);        // 75. 颜色分类
@@ -115,18 +114,19 @@ public:
     static void rotate(vector<int> &nums, int k);           // 189. 旋转数组
     static int maxProfit03(vector<int> &prices);            // *** 123. 买卖股票的最佳时机 III ***
     static vector<string> summaryRanges(vector<int> &nums);             // 228. 汇总区间
-    static string smallestStringWithSwaps(string s, vector<vector<int>> &pairs);   // ??? 1202. 交换字符串中的元素 ???
+    static string smallestStringWithSwaps(string s, vector<vector<int>> &pairs);        // ??? 1202. 交换字符串中的元素 ???
     static vector<int>
-    sortItems(int n, int m, vector<int> &group, vector<vector<int>> &beforeItems);   // ??? 1203. 项目管理 ???
-    static vector<int> findRedundantConnection(vector<vector<int>> &edges);         // *** 684. 冗余连接 ***(并查集)
+    sortItems(int n, int m, vector<int> &group, vector<vector<int>> &beforeItems);      // ??? 1203. 项目管理 ???
+    static vector<int> findRedundantConnection(vector<vector<int>> &edges);             // *** 684. 冗余连接 ***(并查集)
     static vector<bool> prefixesDivBy5(vector<int> &A);     // 018. 可被 5 整除的二进制前缀
     static int removeStones(vector<vector<int>> &stones);   // *** 947. 移除最多的同行或同列石头 ***(并查集)
     static vector<int> hitBricks(vector<vector<int>> &grid, vector<vector<int>> &hits);     // 803. 打砖块
     static bool checkStraightLine(vector<vector<int>> &coordinates);        // 1232. 缀点成线
     static vector<vector<string>> accountsMerge(vector<vector<string>> &accounts);          // 721. 账户合并
     static int maximumProduct(vector<int> &nums);           // 628. 三个数的最大乘积
-    static vector<int> addToArrayForm(vector<int> &A, int K);           // 989. 数组形式的整数加法
+    static vector<int> addToArrayForm(vector<int> &A, int K);               // 989. 数组形式的整数加法
     static int findLengthOfLCIS(vector<int> &nums);         // 674. 最长连续递增序列
+    static int numEquivDominoPairs(vector<vector<int>> &dominoes);          // 1128. 等价多米诺骨牌对的数量
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
