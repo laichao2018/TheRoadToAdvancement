@@ -73,7 +73,7 @@ public:
     static int maxDepth(TreeNode *root);        // 剑指 Offer 55 - I. 二叉树的深度
     static bool isBalanced(TreeNode *root);     // 剑指 Offer 55 - II. 平衡二叉树
     static vector<int> singleNumbers(vector<int> &nums);        // *** 剑指 Offer 56 - I. 数组中数字出现的次数 ***(位运算)
-    static int singleNumber(vector<int> &nums);       // 剑指 Offer 56 - II. 数组中数字出现的次数 II
+    static int singleNumber(vector<int> &nums);         // 剑指 Offer 56 - II. 数组中数字出现的次数 II
     static vector<int> twoSum(vector<int> &nums, int target);   // 剑指 Offer 57. 和为s的两个数字
     static vector<vector<int>> findContinuousSequence(int target);      // 剑指 Offer 57 - II. 和为s的连续正数序列
     static string reverseWords(string s);       // 剑指 Offer 58 - I. 翻转单词顺序

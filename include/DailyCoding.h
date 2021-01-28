@@ -42,19 +42,19 @@ public:
     static TreeNode *convertBST(TreeNode *root);        // 538. 把二叉搜索树转换为累加树
     static TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder);    // 106. 从中序与后序遍历序列构造二叉树
     static TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q);    // *** 235. 二叉搜索树的最近公共祖先 ***
-    static int numJewelsInStones(string J, string S);        // 771. 宝石与石头
-    static vector<int> twoSum(vector<int> &nums, int target);    // 1. 两数之和
-    static void sortColors(vector<int> &nums);        // 75. 颜色分类
-    static void reverseString(vector<char> &s);    // 344. 反转字符串
+    static int numJewelsInStones(string J, string S);           // 771. 宝石与石头
+    static vector<int> twoSum(vector<int> &nums, int target);   // 1. 两数之和
+    static void sortColors(vector<int> &nums);          // 75. 颜色分类
+    static void reverseString(vector<char> &s);         // 344. 反转字符串
     static char findTheDifference(string s, string t);        // 389. 找不同
-    static bool hasCycle(ListNode *head);        // 141. 环形链表
-    static bool canPartition(vector<int> &nums);    // 416. 分割等和子集
+    static bool hasCycle(ListNode *head);               // 141. 环形链表
+    static bool canPartition(vector<int> &nums);        // 416. 分割等和子集
     static int getMinimumDifference(TreeNode *root);    // 530. 二叉搜索树的最小绝对差
-    static ListNode *swapPairs(ListNode *head);    // 24. 两两交换链表中的节点
+    static ListNode *swapPairs(ListNode *head);         // 24. 两两交换链表中的节点
     static vector<string> commonChars(vector<string> &A);    // 1002. 查找常用字符
-    static Node *connect(Node *root);        // 116. 填充每个节点的下一个右侧节点指针
+    static Node *connect(Node *root);                   // 116. 填充每个节点的下一个右侧节点指针
     static vector<int> sortedSquares(vector<int> &A);        // 977. 有序数组的平方
-    static int totalNQueens(int n);    // 52. N皇后 II ***
+    static int totalNQueens(int n);    // ??? 52. N皇后 II ???
     static ListNode *removeNthFromEnd(ListNode *head, int n);    // 19. 删除链表的倒数第N个节点
     static ListNode *removeNthFromEnd2(ListNode *head, int n);    // 19. 删除链表的倒数第N个节点(版本2)
     static bool backspaceCompare(string S, string T);        // 844. 比较含退格的字符串
@@ -127,6 +127,7 @@ public:
     static vector<int> addToArrayForm(vector<int> &A, int K);               // 989. 数组形式的整数加法
     static int findLengthOfLCIS(vector<int> &nums);         // 674. 最长连续递增序列
     static int numEquivDominoPairs(vector<vector<int>> &dominoes);          // 1128. 等价多米诺骨牌对的数量
+    static int pivotIndex(vector<int> &nums);               // 724. 寻找数组的中心索引
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

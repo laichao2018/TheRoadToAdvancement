@@ -2553,3 +2553,16 @@ vector<vector<int>> DailyCoding::permuteUnique(vector<int> &nums) {
     dfs_permuteUnique(nums, 0, res, used, path);
     return res;
 }
+
+int DailyCoding::pivotIndex(vector<int> &nums) {
+    if (nums.empty()) return -1;
+    if (nums.size() == 1) return nums[0];
+    int res_index = 0;
+    int left_sum = 0, right_sum = accumulate(nums.begin() + 1, nums.end(), 0);
+    while (left_sum != right_sum && res_index < nums.size() - 1) {
+        left_sum += nums[res_index];
+        right_sum -= nums[res_index + 1];
+        res_index++;
+    }
+    return left_sum == right_sum ? res_index : -1;
+}
