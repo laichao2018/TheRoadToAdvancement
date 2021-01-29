@@ -2566,3 +2566,38 @@ int DailyCoding::pivotIndex(vector<int> &nums) {
     }
     return left_sum == right_sum ? res_index : -1;
 }
+
+int DailyCoding::minimumEffortPath(vector<vector<int>> &heights) {
+    if (heights.empty()) return 0;
+    vector<vector<int>> directions{{-1, 0},
+                                   {1,  0},
+                                   {0,  -1},
+                                   {0,  1}};
+    int m = heights.size(), n = heights[0].size();
+    int left = 0, right = 999999, res = 0;
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        queue<pair<int, int>> q;
+        q.emplace(0, 0);
+        vector<int> seen(m * n);
+        seen[0] = 1;
+        while (!q.empty()) {
+            auto[x, y]=q.front();
+            q.pop();
+            for (int i = 0; i < 4; i++) {
+                int nx = x + directions[i][0];
+                int ny = y + directions[i][1];
+                if (nx >= 0 && nx < m && ny >= 0 && ny < n && !seen[nx * n + ny] &&
+                    abs(heights[x][y] - heights[nx][ny]) <= mid) {
+                    q.emplace(nx, ny);
+                    seen[nx * n + ny] = 1;
+                }
+            }
+        }
+        if (seen[m * n - 1]) {
+            res = mid;
+            right = mid - 1;
+        } else left = mid + 1;
+    }
+    return res;
+}
