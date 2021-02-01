@@ -2601,3 +2601,19 @@ int DailyCoding::minimumEffortPath(vector<vector<int>> &heights) {
     }
     return res;
 }
+
+vector<int> DailyCoding::fairCandySwap(vector<int> &A, vector<int> &B) {
+    int sum_a = accumulate(A.begin(), A.end(), 0);
+    int sum_b = accumulate(B.begin(), B.end(), 0);
+    int delta = (sum_a - sum_b) / 2;
+    unordered_set<int> rec(A.begin(), A.end());
+    vector<int> res;
+    for (auto &y:B) {
+        int x = y + delta;
+        if (rec.count(x)) {
+            res = vector<int>{x, y};
+            break;
+        }
+    }
+    return res;
+}

@@ -129,6 +129,7 @@ public:
     static int numEquivDominoPairs(vector<vector<int>> &dominoes);          // 1128. 等价多米诺骨牌对的数量
     static int pivotIndex(vector<int> &nums);               // 724. 寻找数组的中心索引
     static int minimumEffortPath(vector<vector<int>> &heights);             // *** 1631. 最小体力消耗路径 ***
+    static vector<int> fairCandySwap(vector<int> &A, vector<int> &B);       // 888. 公平的糖果棒交换
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
