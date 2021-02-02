@@ -130,6 +130,7 @@ public:
     static int pivotIndex(vector<int> &nums);               // 724. 寻找数组的中心索引
     static int minimumEffortPath(vector<vector<int>> &heights);             // *** 1631. 最小体力消耗路径 ***
     static vector<int> fairCandySwap(vector<int> &A, vector<int> &B);       // 888. 公平的糖果棒交换
+    static int characterReplacement(string s, int k);       // *** 424. 替换后的最长重复字符 ***
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

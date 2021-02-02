@@ -16,10 +16,10 @@ void help_quickSort(int left, int right, vector<int> &arr) {
     if (left < 0 || right >= arr.size()) {
         std::cout << "error args! array bound." << endl;
         return;
-    }                       //非法输入判断,防止数组越界
+    }                       // 非法输入判断,防止数组越界
     int i, j, base, temp;
     i = left, j = right;
-    base = arr[left];       //取最左边的数为基准数
+    base = arr[left];       // 取最左边的数为基准数
     while (i < j) {
         while (arr[j] <= base && i < j)
             j--;
@@ -31,11 +31,11 @@ void help_quickSort(int left, int right, vector<int> &arr) {
             arr[j] = temp;
         }
     }
-    //基准数归位
+    // 基准数归位
     arr[left] = arr[i];
     arr[i] = base;
-    help_quickSort(left, i - 1, arr);    //递归左边
-    help_quickSort(i + 1, right, arr);   //递归右边
+    help_quickSort(left, i - 1, arr);   // 递归左边
+    help_quickSort(i + 1, right, arr);   // 递归右边
 }
 
 void SortSolution::bubleSort(vector<int> &nums) {

@@ -2617,3 +2617,20 @@ vector<int> DailyCoding::fairCandySwap(vector<int> &A, vector<int> &B) {
     }
     return res;
 }
+
+int DailyCoding::characterReplacement(string s, int k) {
+    vector<int> nums(26);
+    int n = s.length();
+    int max_num = 0;
+    int left = 0, right = 0;
+    while (right < n) {
+        nums[s[right] - 'A']++;
+        max_num = max(max_num, nums[s[right] - 'A']);
+        if (right - left + 1 - max_num > k) {
+            nums[left - 'A']--;
+            left++;
+        }
+        right++;
+    }
+    return right - left;
+}
