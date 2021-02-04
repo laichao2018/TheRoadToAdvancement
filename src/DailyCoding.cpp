@@ -2582,13 +2582,14 @@ int DailyCoding::minimumEffortPath(vector<vector<int>> &heights) {
         vector<int> seen(m * n);
         seen[0] = 1;
         while (!q.empty()) {
-            auto[x, y]=q.front();
+            pair<int, int> x_y = q.front();
+//            auto[x, y]=q.front();
             q.pop();
             for (int i = 0; i < 4; i++) {
-                int nx = x + directions[i][0];
-                int ny = y + directions[i][1];
+                int nx = x_y.first + directions[i][0];
+                int ny = x_y.second + directions[i][1];
                 if (nx >= 0 && nx < m && ny >= 0 && ny < n && !seen[nx * n + ny] &&
-                    abs(heights[x][y] - heights[nx][ny]) <= mid) {
+                    abs(heights[x_y.first][x_y.second] - heights[nx][ny]) <= mid) {
                     q.emplace(nx, ny);
                     seen[nx * n + ny] = 1;
                 }
@@ -2633,4 +2634,17 @@ int DailyCoding::characterReplacement(string s, int k) {
         right++;
     }
     return right - left;
+}
+
+double DailyCoding::findMaxAverage(vector<int> &nums, int k) {
+    if (k >= nums.size()) return (double) (accumulate(nums.begin(), nums.end(), 0) / (double) nums.size());
+    double res = (double) INT32_MIN;
+    int left = 0, right = k - 1;
+    double curr_sum = accumulate(nums.begin(), nums.begin() + k - 1, 0);
+    while (right < nums.size()) {
+        curr_sum += nums[right++];
+        res = max(res, (double) (curr_sum / (double) k));
+        curr_sum -= nums[left++];
+    }
+    return res;
 }

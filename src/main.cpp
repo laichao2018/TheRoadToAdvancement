@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-    vector<int> nums{-1, -1, -1, 1, 1, -1};
-    cout << DailyCoding::pivotIndex(nums);
+    vector<int> nums{0, 1, 1, 3, 3};
+    cout << DailyCoding::findMaxAverage(nums, 4);
     return 0;
 }
