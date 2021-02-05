@@ -7,7 +7,9 @@
 using namespace std;
 
 int main() {
-    vector<int> nums{0, 1, 1, 3, 3};
-    cout << DailyCoding::findMaxAverage(nums, 4);
+//    vector<int> nums{0, 1, 1, 3, 3};
+    string s = "krrgw";
+    string t = "zjxss";
+    cout << DailyCoding::equalSubstring(s, t, 19);
     return 0;
 }

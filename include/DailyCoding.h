@@ -132,6 +132,7 @@ public:
     static vector<int> fairCandySwap(vector<int> &A, vector<int> &B);       // 888. 公平的糖果棒交换
     static int characterReplacement(string s, int k);       // *** 424. 替换后的最长重复字符 ***
     static double findMaxAverage(vector<int> &nums, int k); // 643. 子数组最大平均数 I
+    static int equalSubstring(string s, string t, int maxCost);             // 1208. 尽可能使字符串相等
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

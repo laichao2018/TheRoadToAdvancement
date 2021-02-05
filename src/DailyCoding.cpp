@@ -2648,3 +2648,22 @@ double DailyCoding::findMaxAverage(vector<int> &nums, int k) {
     }
     return res;
 }
+
+int DailyCoding::equalSubstring(string s, string t, int maxCost) {
+    // 要求转换后的字符连续
+    vector<int> diff(s.size(), 0);
+    for (int i = 0; i < s.size(); i++) diff[i] = abs(s[i] - t[i]);
+    int res = 0;
+    int start = 0, end = 0;
+    int sum = 0;
+    while (end < s.size()) {
+        sum += diff[end];
+        while (sum > maxCost) {
+            sum -= diff[start];
+            start++;
+        }
+        res = max(res, end - start + 1);
+        end++;
+    }
+    return res;
+}
