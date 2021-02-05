@@ -7,9 +7,7 @@
 using namespace std;
 
 int main() {
-//    vector<int> nums{0, 1, 1, 3, 3};
-    string s = "krrgw";
-    string t = "zjxss";
-    cout << DailyCoding::equalSubstring(s, t, 19);
+    vector<int> nums{6, 3, 2, 7, 5, 1, 4, 0, 8, 9};
+
     return 0;
 }
