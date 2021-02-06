@@ -2667,3 +2667,15 @@ int DailyCoding::equalSubstring(string s, string t, int maxCost) {
     }
     return res;
 }
+
+int DailyCoding::maxScore(vector<int> &cardPoints, int k) {
+    int n = cardPoints.size();
+    int windows_size = n - k;
+    int sum = accumulate(cardPoints.begin(), cardPoints.begin() + windows_size, 0);
+    int min_sum = sum;
+    for (int i = windows_size; i < n; i++) {
+        sum += cardPoints[i] - cardPoints[i - windows_size];
+        min_sum = min(min_sum, sum);
+    }
+    return accumulate(cardPoints.begin(), cardPoints.end(), 0) - min_sum;
+}

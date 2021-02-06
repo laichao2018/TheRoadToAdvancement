@@ -133,6 +133,7 @@ public:
     static int characterReplacement(string s, int k);       // *** 424. 替换后的最长重复字符 ***
     static double findMaxAverage(vector<int> &nums, int k); // 643. 子数组最大平均数 I
     static int equalSubstring(string s, string t, int maxCost);             // 1208. 尽可能使字符串相等
+    static int maxScore(vector<int> &cardPoints, int k);    // 1423. 可获得的最大点数
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
