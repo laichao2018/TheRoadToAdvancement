@@ -2679,3 +2679,17 @@ int DailyCoding::maxScore(vector<int> &cardPoints, int k) {
     }
     return accumulate(cardPoints.begin(), cardPoints.end(), 0) - min_sum;
 }
+
+bool DailyCoding::checkPossibility(vector<int> &nums) {
+    if (nums.size() < 3) return true;
+    int count = 0;
+    for (int i = 0; i < nums.size() - 1; i++) {
+        int curr = nums[i], next = nums[i + 1];
+        if (curr > next) {
+            count++;
+            if (count > 1) return false;
+            if (i > 0 && next < nums[i - 1]) nums[i + 1] = curr;
+        }
+    }
+    return count < 2;
+}
