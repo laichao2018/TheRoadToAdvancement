@@ -7,7 +7,8 @@
 using namespace std;
 
 int main() {
-    vector<int> nums{6, 3, 2, 7, 5, 1, 4, 0, 8, 9};
+    vector<int> nums{9, 4, 2, 10, 7, 8, 8, 1, 9};
+    cout << DailyCoding::maxTurbulenceSize(nums);
 
     return 0;
 }

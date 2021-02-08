@@ -135,6 +135,7 @@ public:
     static int equalSubstring(string s, string t, int maxCost);             // 1208. 尽可能使字符串相等
     static int maxScore(vector<int> &cardPoints, int k);    // 1423. 可获得的最大点数
     static bool checkPossibility(vector<int> &nums);        // 665. 非递减数列
+    static int maxTurbulenceSize(vector<int> &arr);         // 978. 最长湍流子数组
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

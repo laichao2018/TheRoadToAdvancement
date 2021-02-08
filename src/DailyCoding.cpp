@@ -2693,3 +2693,20 @@ bool DailyCoding::checkPossibility(vector<int> &nums) {
     }
     return count < 2;
 }
+
+int DailyCoding::maxTurbulenceSize(vector<int> &arr) {
+    if (arr.size() < 2) return arr.size();
+    int len = arr.size();
+    int left = 0, right = 1;
+    bool pre = false;
+    int res = 1;
+    while (right < len) {
+        bool curr = arr[right - 1] < arr[right];
+        if (pre == curr) left = right - 1;
+        if (arr[right - 1] == arr[right]) left = right;
+        right++;
+        res = max(res, right - left);
+        pre = curr;
+    }
+    return res;
+}
