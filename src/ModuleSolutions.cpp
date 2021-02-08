@@ -1829,6 +1829,17 @@ bool EasySolutions::halvesAreAlike(string s) {
     return countsOfVowel(s.substr(0, n)) == countsOfVowel(s.substr(n));
 }
 
+bool EasySolutions::kLengthApart(vector<int> &nums, int k) {
+    int t = -(k + 1);
+    for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] == 1) {
+            if (i - t >= k + 1) t = i;
+            else return false;
+        }
+    }
+    return true;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
@@ -2099,3 +2110,59 @@ int MeduimSolutions::maximumUniqueSubarray(vector<int> &nums) {
     }
     return res;
 }
+
+// 706. 设计哈希映射
+struct _Node_Hash_ {
+    int nKey;
+    int nVal;
+    _Node_Hash_ *next;
+
+    _Node_Hash_(int key, int val) : nKey(key), nVal(val), next(nullptr) {}
+};
+
+// 706. 设计哈希映射
+int max_len = 1000;
+
+// 706. 设计哈希映射
+class MyHashMap {
+    vector<_Node_Hash_ *> arr;
+
+    MyHashMap() {
+        arr = vector<_Node_Hash_ *>(max_len, new _Node_Hash_(-1, -1));
+    }
+
+    void put(int key, int value) {
+        int tmp = key % max_len;
+        _Node_Hash_ *h = arr[tmp];
+        _Node_Hash_ *prev;
+        while (h) {
+            if (h->nKey == key) {   // 找到对应的键
+                h->nVal = value;
+                return;
+            }
+            prev = h;
+            h = h->next;
+        }
+        _Node_Hash_ *node = new _Node_Hash_(key, value);
+        prev->next = node;
+    }
+
+    int get(int key) {
+        int tmp = key % max_len;
+        _Node_Hash_ *h = arr[tmp];
+        while (h) {
+            if (h->nKey == key) return h->nVal;
+            h = h->next;
+        }
+        return -1;
+    }
+
+    void remove(int key) {
+        int tmp = key % max_len;
+        _Node_Hash_ *h = arr[tmp];
+        while (h) {
+            if (h->nKey == key) h->nVal = -1;
+            h = h->next;
+        }
+    }
+};
