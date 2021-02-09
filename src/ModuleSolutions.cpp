@@ -2166,3 +2166,56 @@ class MyHashMap {
         }
     }
 };
+
+// 705. 设计哈希集合
+class MyHashSet {
+private:
+    vector<ListNode *> arr;
+    int max_len = 1e4;
+public:
+    MyHashSet() {
+        arr = vector<ListNode *>(max_len);
+    }
+
+    void add(int key) {
+        int idx = key % max_len;
+        if (arr[idx] == nullptr) arr[idx] = new ListNode(key);
+        else {
+            ListNode *node = arr[idx];
+            if (node->val == key) return;
+            while (node->next != nullptr) {
+                if (node->next->val == key) return; // 数组中已经存在该数据
+                node = node->next;
+            }
+            node->next = new ListNode(key); // 新建
+        }
+    }
+
+    void remove(int key) {
+        int idx = key % max_len;
+        if (arr[idx] == nullptr) return;
+        if (arr[idx]->val == key) arr[idx] = arr[idx]->next;
+        else {
+            ListNode *prev = arr[idx];
+            ListNode *node = prev->next;
+            while (node != nullptr) {
+                if (node->val == key) {
+                    prev->next = node->next;
+                    return;
+                }
+                prev = node;
+                node = node->next;
+            }
+        }
+    }
+
+    bool contains(int key) {
+        int idx = key % max_len;
+        ListNode *node = arr[idx];
+        while (node != nullptr) {
+            if (node->val == key) return true;
+            node = node->next;
+        }
+        return false;
+    }
+};
