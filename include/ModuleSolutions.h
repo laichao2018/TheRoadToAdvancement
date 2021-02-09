@@ -121,6 +121,7 @@ public:
     static string reformatNumber(string number);        // 1694. 重新格式化电话号码
     static bool halvesAreAlike(string s);               // 5637. 判断字符串的两半是否相似
     static bool kLengthApart(vector<int> &nums, int k);                 // 1437. 是否所有 1 都至少相隔 k 个元素
+    static bool findTarget(TreeNode *root, int k);      // 653. 两数之和 IV - 输入 BST
 };
 
 class MeduimSolutions {

@@ -1840,6 +1840,35 @@ bool EasySolutions::kLengthApart(vector<int> &nums, int k) {
     return true;
 }
 
+bool EasySolutions::findTarget(TreeNode *root, int k) {
+    if (root == nullptr) return false;
+    vector<int> nums;
+    stack<TreeNode *> sNodes;
+    sNodes.push(root);
+    TreeNode *node;
+    while (sNodes.size()) {
+        node = sNodes.top();
+        if (node->left == nullptr && node->right == nullptr) {
+            nums.push_back(node->val);
+            sNodes.pop();
+        } else if (node->left != nullptr) {
+            sNodes.push(node->left);
+            node->left = nullptr;
+        } else if (node->right != nullptr) {
+            sNodes.pop();
+            nums.push_back(node->val);
+            sNodes.push(node->right);
+        }
+    }
+    int i = 0, j = nums.size() - 1;
+    while (i != j) {
+        if (nums[i] + nums[j] == k) return true;
+        else if (nums[i] + nums[j] < k) i++;
+        else j--;
+    }
+    return false;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
