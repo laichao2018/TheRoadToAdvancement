@@ -2710,3 +2710,23 @@ int DailyCoding::maxTurbulenceSize(vector<int> &arr) {
     }
     return res;
 }
+
+bool DailyCoding::checkInclusion(string s1, string s2) {
+    // =====  滑动窗口法  =====
+    // 由于排列不会改变字符串中每个字符的个数
+    // 所以只有当两个字符串每个字符的个数均相等时，一个字符串才是另一个字符串的排列。
+    int n = s1.length(), m = s2.length();
+    if (n > m) return false;
+    vector<int> cnt01(26), cnt02(26);
+    for (int i = 0; i < n; i++) {
+        ++cnt01[s1[i] - 'a'];
+        ++cnt02[s2[i] - 'a'];
+    }
+    if (cnt01 == cnt02) return true;
+    for (int i = n; i < m; i++) {
+        ++cnt02[s2[i] - 'a'];
+        --cnt02[s2[i - n] - 'a'];
+        if (cnt01 == cnt02) return true;
+    }
+    return false;
+}
