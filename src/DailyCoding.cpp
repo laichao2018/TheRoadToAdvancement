@@ -2730,3 +2730,21 @@ bool DailyCoding::checkInclusion(string s1, string s2) {
     }
     return false;
 }
+
+// 703. 数据流中的第 K 大元素
+class KthLargest {
+public:
+    priority_queue<int, vector<int>, greater<int>> data;
+    int k;
+
+    KthLargest(int k, vector<int> &nums) {
+        this->k = k;
+        for (int &i:nums) add(i);
+    }
+
+    int add(int val) {
+        data.push(val);
+        if (data.size() > k) data.pop();
+        return data.top();
+    }
+};
