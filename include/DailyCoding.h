@@ -138,6 +138,7 @@ public:
     static int maxTurbulenceSize(vector<int> &arr);         // 978. 最长湍流子数组
     static bool checkInclusion(string s1, string s2);       // 567. 字符串的排列
     static vector<int> getRow(int rowIndex);                // 119. 杨辉三角 II
+    static vector<int> findDisappearedNumbers(vector<int> &nums);           // 448. 找到所有数组中消失的数字
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

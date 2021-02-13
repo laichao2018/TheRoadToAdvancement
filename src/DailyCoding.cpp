@@ -2740,6 +2740,19 @@ vector<int> DailyCoding::getRow(int rowIndex) {
     return all_rows;
 }
 
+vector<int> DailyCoding::findDisappearedNumbers(vector<int> &nums) {
+    if (nums.empty()) return nums;
+    vector<int> res;
+    for (int i = 0; i < nums.size(); ++i) {
+        int index = (nums[i] - 1) % nums.size();
+        nums[index] += nums.size();
+    }
+    for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] <= nums.size()) res.push_back(i + 1);
+    }
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

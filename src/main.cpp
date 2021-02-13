@@ -7,8 +7,10 @@
 using namespace std;
 
 int main() {
-    vector<int> nums{9, 4, 2, 10, 7, 8, 8, 1, 9};
-    cout << DailyCoding::maxTurbulenceSize(nums);
+    vector<int> nums{4, 3, 2, 7, 8, 2, 3, 1};
+    auto res = DailyCoding::findDisappearedNumbers(nums);
+    for (int i:res) cout << i << " ";
+    cout << endl;
 
     return 0;
 }
