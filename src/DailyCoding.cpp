@@ -2731,6 +2731,15 @@ bool DailyCoding::checkInclusion(string s1, string s2) {
     return false;
 }
 
+vector<int> DailyCoding::getRow(int rowIndex) {
+    vector<int> all_rows(rowIndex + 1);
+    all_rows[0] = 1;
+    for (int i = 1; i <= rowIndex; i++) {
+        all_rows[i] = 1LL * all_rows[i - 1] * (rowIndex - i + 1) / i;
+    }
+    return all_rows;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
