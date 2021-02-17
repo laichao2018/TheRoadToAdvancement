@@ -2753,6 +2753,18 @@ vector<int> DailyCoding::findDisappearedNumbers(vector<int> &nums) {
     return res;
 }
 
+vector<vector<int>> DailyCoding::matrixReshape(vector<vector<int>> &nums, int r, int c) {
+    int m = nums.size();
+    int n = nums[0].size();
+    if (m * n != r * c) return nums;
+
+    vector<vector<int>> res(r, vector<int>(c));
+    for (int x = 0; x < m * n; ++x) {
+        res[x / c][x % c] = nums[x / n][x % n];
+    }
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

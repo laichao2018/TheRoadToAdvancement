@@ -139,6 +139,7 @@ public:
     static bool checkInclusion(string s1, string s2);       // 567. 字符串的排列
     static vector<int> getRow(int rowIndex);                // 119. 杨辉三角 II
     static vector<int> findDisappearedNumbers(vector<int> &nums);           // 448. 找到所有数组中消失的数字
+    static vector<vector<int>> matrixReshape(vector<vector<int>> &nums, int r, int c);      // 566. 重塑矩阵
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
