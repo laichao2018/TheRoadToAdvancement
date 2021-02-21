@@ -2765,6 +2765,27 @@ vector<vector<int>> DailyCoding::matrixReshape(vector<vector<int>> &nums, int r,
     return res;
 }
 
+int DailyCoding::longestSubarray(vector<int> &nums, int limit) {
+    deque<int> qMax, qMin;
+    int n = nums.size();
+    int left = 0, right = 0;
+    int res = 0;
+    while (right < n) {
+        while (!qMax.empty() && qMax.back() < nums[right]) qMax.pop_back();
+        while (!qMin.empty() && qMin.back() > nums[right]) qMin.pop_back();
+        qMax.push_back(nums[right]);
+        qMin.push_back(nums[right]);
+        while (!qMin.empty() && !qMax.empty() && qMax.front() - qMin.front() > limit) {
+            if (nums[left] == qMin.front()) qMin.pop_front();
+            if (nums[left] == qMax.front()) qMax.pop_front();
+            left++;
+        }
+        res = max(res, right - left + 1);
+        right++;
+    }
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
