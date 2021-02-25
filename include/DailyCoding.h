@@ -141,6 +141,7 @@ public:
     static vector<int> findDisappearedNumbers(vector<int> &nums);           // 448. 找到所有数组中消失的数字
     static vector<vector<int>> matrixReshape(vector<vector<int>> &nums, int r, int c);      // 566. 重塑矩阵
     static int longestSubarray(vector<int>& nums, int limit);               // 1438. 绝对差不超过限制的最长连续子数组
+    static vector<vector<int>> transpose(vector<vector<int>>& matrix);      // 867. 转置矩阵
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
