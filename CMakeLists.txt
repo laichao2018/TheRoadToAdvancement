@@ -17,7 +17,7 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_MAIN)
 
 add_executable(TheRoadToAdvancement
                     ${SRC_MAIN}
-                    ./src/InterestingFunctions.hpp)
+                    ./src/InterestingFunctions.hpp src/main.cpp)
 
 # 添加需要链接的库文件目录
 # LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/lib)
