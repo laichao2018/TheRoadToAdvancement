@@ -142,6 +142,8 @@ public:
     static vector<vector<int>> matrixReshape(vector<vector<int>> &nums, int r, int c);      // 566. 重塑矩阵
     static int longestSubarray(vector<int> &nums, int limit);               // 1438. 绝对差不超过限制的最长连续子数组
     static vector<vector<int>> transpose(vector<vector<int>> &matrix);      // 867. 转置矩阵
+    static int evalRPN(vector<string> &tokens);             // 150. 逆波兰表达式求值
+    static void setZeroes(vector<vector<int>> &matrix);     // 矩阵置零
     static int hammingWeight(uint32_t n);                   // 191. 位1的个数
 };
 

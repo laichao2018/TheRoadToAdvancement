@@ -2805,6 +2805,54 @@ int DailyCoding::hammingWeight(uint32_t n) {
     return res;
 }
 
+void DailyCoding::setZeroes(vector<vector<int>> &matrix) {
+    if (matrix.empty()) return;
+    vector<int> rows, cols;
+    for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix[i].size(); j++) {
+            if (matrix[i][j] == 0) {
+                rows.push_back(i);
+                cols.push_back(j);
+            }
+        }
+    }
+    rows.erase(unique(rows.begin(), rows.end()), rows.end());
+    cols.erase(unique(cols.begin(), cols.end()), cols.end());
+    while (!rows.empty()) {
+        int curr_row = rows.back();
+        rows.pop_back();
+        for (int i = 0; i < matrix[0].size(); i++) matrix[curr_row][i] = 0;
+    }
+    while (!cols.empty()) {
+        int curr_col = cols.back();
+        cols.pop_back();
+        for (int i = 0; i < matrix.size(); i++) matrix[i][curr_col] = 0;
+    }
+}
+
+int DailyCoding::evalRPN(vector<string> &tokens) {
+    if (tokens.size() == 1) return atoi(tokens[0].c_str());
+    int res = 0;
+    stack<int> nums;
+    for (int i = 0; i < tokens.size(); i++) {
+        if (tokens[i] == "+" || tokens[i] == "-" || tokens[i] == "*" || tokens[i] == "/") {
+            int first_num = nums.top();
+            nums.pop();
+            int second_num = nums.top();
+            nums.pop();
+            int tmp = 0;
+            if (tokens[i] == "+") tmp = first_num + second_num;
+            else if (tokens[i] == "-") tmp = second_num - first_num;
+            else if (tokens[i] == "*") tmp = first_num * second_num;
+            else tmp = second_num / first_num;
+            nums.push(tmp);
+        } else {
+            nums.push(atoi(tokens[i].c_str()));
+        }
+    }
+    return nums.top();
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

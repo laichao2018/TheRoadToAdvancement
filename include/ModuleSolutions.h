@@ -144,6 +144,7 @@ public:
     static bool isValidSudoku(vector<vector<char>> &board);         // 36. 有效的数独
     static bool isValidBST(TreeNode *root);             // 98. 验证二叉搜索
     static int maximumUniqueSubarray(vector<int> &nums);            // 1695. 删除子数组的最大得分
+    static double myPow(double x, int n);               // 50. Pow(x, n) ****
 };
 
 #endif //THEROADTOADVANCEMENT_MODULESOLUTIONS_H
