@@ -2796,6 +2796,15 @@ vector<vector<int>> DailyCoding::transpose(vector<vector<int>> &matrix) {
     return res;
 }
 
+int DailyCoding::hammingWeight(uint32_t n) {
+    int res = 0;
+    while (n) {
+        res += (n & 1);
+        n >>= 1;
+    }
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

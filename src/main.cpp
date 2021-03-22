@@ -7,10 +7,7 @@
 using namespace std;
 
 int main() {
-    vector<int> nums{4, 3, 2, 7, 8, 2, 3, 1};
-    auto res = DailyCoding::findDisappearedNumbers(nums);
-    for (int i:res) cout << i << " ";
-    cout << endl;
+    cout << DailyCoding::hammingWeight(00000000000000000000000010000000) << endl;
 
     return 0;
 }
