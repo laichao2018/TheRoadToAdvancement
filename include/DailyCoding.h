@@ -145,6 +145,7 @@ public:
     static int evalRPN(vector<string> &tokens);             // 150. 逆波兰表达式求值
     static void setZeroes(vector<vector<int>> &matrix);     // 矩阵置零
     static int hammingWeight(uint32_t n);                   // 191. 位1的个数
+    static bool find132pattern(vector<int> &nums);          // 456. 132模式
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

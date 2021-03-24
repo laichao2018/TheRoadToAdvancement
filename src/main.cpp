@@ -7,7 +7,8 @@
 using namespace std;
 
 int main() {
-    cout << DailyCoding::hammingWeight(00000000000000000000000010000000) << endl;
+    vector<int> nums{3, 1, 4, 2};
+    cout << DailyCoding::find132pattern(nums) << endl;
 
     return 0;
 }
