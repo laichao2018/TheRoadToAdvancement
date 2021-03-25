@@ -1,4 +1,6 @@
 // 用于代码测试
+#include <algorithm>
+#include <iterator>
 #include "DailyCoding.h"
 #include "DynamicProgramming.h"
 #include "OfferSolutions.h"
@@ -7,8 +9,6 @@
 using namespace std;
 
 int main() {
-    vector<int> nums{3, 1, 4, 2};
-    cout << DailyCoding::find132pattern(nums) << endl;
 
     return 0;
 }

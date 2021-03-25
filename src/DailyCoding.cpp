@@ -2874,6 +2874,21 @@ bool DailyCoding::find132pattern(vector<int> &nums) {
     return false;
 }
 
+ListNode *DailyCoding::deleteDuplicates(ListNode *head) {
+    if (head == nullptr) return head;
+    ListNode *dummy = new ListNode(0, head);
+    ListNode *currNode = dummy;
+    while (currNode->next != nullptr && currNode->next->next != nullptr) {
+        if (currNode->next->val == currNode->next->next->val) {
+            int nodeVal = currNode->next->val;
+            while (currNode->next && currNode->next->val == nodeVal) currNode->next = currNode->next->next;
+        } else {
+            currNode = currNode->next;
+        }
+    }
+    return dummy->next;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
