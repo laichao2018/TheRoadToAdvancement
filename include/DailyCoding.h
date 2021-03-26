@@ -147,6 +147,7 @@ public:
     static int hammingWeight(uint32_t n);                   // 191. 位1的个数
     static bool find132pattern(vector<int> &nums);          // 456. 132模式
     static ListNode *deleteDuplicates(ListNode *head);      // 82. 删除排序链表中的重复元素 II
+    static ListNode *deleteDuplicates01(ListNode *head);    // 83. 删除排序链表中的重复元素
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

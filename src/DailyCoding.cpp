@@ -2880,13 +2880,21 @@ ListNode *DailyCoding::deleteDuplicates(ListNode *head) {
     ListNode *currNode = dummy;
     while (currNode->next != nullptr && currNode->next->next != nullptr) {
         if (currNode->next->val == currNode->next->next->val) {
-            int nodeVal = currNode->next->val;
-            while (currNode->next && currNode->next->val == nodeVal) currNode->next = currNode->next->next;
-        } else {
-            currNode = currNode->next;
-        }
+            int dupVal = currNode->next->val;
+            while (currNode->next && currNode->next->val == dupVal) currNode->next = currNode->next->next;
+        } else currNode = currNode->next;
     }
     return dummy->next;
+}
+
+ListNode *DailyCoding::deleteDuplicates01(ListNode *head) {
+    if (head == nullptr) return head;
+    ListNode *currNode = head;
+    while (currNode != nullptr && currNode->next != nullptr) {
+        if (currNode->val == currNode->next->val) currNode->next = currNode->next->next;
+        else currNode = currNode->next;
+    }
+    return head;
 }
 
 // 703. 数据流中的第 K 大元素
