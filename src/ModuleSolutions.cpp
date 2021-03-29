@@ -2158,6 +2158,14 @@ double MeduimSolutions::myPow(double x, int n) {
     return N >= 0 ? quickMul(x, N) : 1.0 / quickMul(x, -N);
 }
 
+int MeduimSolutions::findKthLargest(vector<int> &nums, int k) {
+    if (nums.empty()) return -1;
+    priority_queue<int> maxHeap;
+    for (int i:nums) maxHeap.push(i);
+    while (--k) maxHeap.pop();
+    return maxHeap.top();
+}
+
 // 706. 设计哈希映射
 struct _Node_Hash_ {
     int nKey;

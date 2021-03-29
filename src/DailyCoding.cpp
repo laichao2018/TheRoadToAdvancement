@@ -2933,7 +2933,7 @@ uint32_t DailyCoding::reverseBits(uint32_t n) {
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
-    priority_queue<int, vector<int>, greater<int>> data;
+    priority_queue<int, vector<int>, greater<int>> data;    // 维护小根堆
     int k;
 
     KthLargest(int k, vector<int> &nums) {
@@ -2943,7 +2943,7 @@ public:
 
     int add(int val) {
         data.push(val);
-        if (data.size() > k) data.pop();
+        if (data.size() > k) data.pop();    // 数据中保持k个数
         return data.top();
     }
 };
