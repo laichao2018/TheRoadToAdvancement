@@ -12,8 +12,9 @@
 using namespace std;
 
 int main() {
-    if (addNoise("..//source//bunny.ply")) {
-
+    int x = 10;
+    while (x --> 0) {
+        cout << x << endl;
     }
 
     return 0;
