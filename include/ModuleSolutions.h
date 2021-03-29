@@ -146,6 +146,7 @@ public:
     static int maximumUniqueSubarray(vector<int> &nums);            // 1695. 删除子数组的最大得分
     static double myPow(double x, int n);               // 50. Pow(x, n) ****
     static int findKthLargest(vector<int> &nums, int k);            // 215. 数组中的第K个最大元素
+    static vector<int> topKFrequent(vector<int> &nums, int k);      // 347. 前 K 个高频元素
 };
 
 #endif //THEROADTOADVANCEMENT_MODULESOLUTIONS_H
