@@ -2921,6 +2921,15 @@ ListNode *DailyCoding::rotateRight(ListNode *head, int k) {
     return ret;
 }
 
+uint32_t DailyCoding::reverseBits(uint32_t n) {
+    uint32_t res = 0;   // 必须初始化
+    for (int i = 0; i < 32 && n > 0; i++) {
+        res |= (n & 1) << (31 - i);
+        n >>= 1;
+    }
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

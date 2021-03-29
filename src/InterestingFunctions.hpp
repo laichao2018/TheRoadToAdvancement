@@ -7,6 +7,8 @@
 #define __INTERESTING_FUNCTIONS__
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <numeric>
 #include <thread>
 #include <future>
@@ -15,6 +17,7 @@
 #include <algorithm>
 #include <queue>
 #include <map>
+#include "DataStructure/PointCloud.h"
 
 using namespace std;
 
@@ -156,6 +159,96 @@ void testResult(map<char, string> &result) {
         cout << iter->first << " : " << iter->second << endl;
         ++iter;
     }
+}
+
+// 生成范围随机数
+template<typename T>
+T getRangeRand(T _min, T _max) {
+    T temp;
+    if (_min > _max) {
+        temp = _max;
+        _max = _min;
+        _min = temp;
+    }
+    return rand() / (double) RAND_MAX * (_max - _min) + _min;
+}
+
+bool addNoise(string fileName) {
+    ifstream plyFile(fileName);
+    if (!plyFile.is_open()) return false;
+    string tmp;
+    vector<string> headStr;
+    for (int i = 0; i < 12; i++) {
+        getline(plyFile, tmp);
+        headStr.push_back(tmp);
+    }
+    vector<PointCloud> pointData;
+    while (getline(plyFile, tmp)) {
+        PointCloud currPoint;
+        stringstream ss(tmp);
+        string splitStr;
+        int flag = 0;
+        while (ss >> splitStr) {
+            if (flag == 0) {
+                currPoint.x = atof(splitStr.c_str());
+            } else if (flag == 1) {
+                currPoint.y = atof(splitStr.c_str());
+            } else if (flag == 2) {
+                currPoint.z = atof(splitStr.c_str());
+            } else if (flag == 3) {
+                currPoint.R = atoi(splitStr.c_str());
+            } else if (flag == 4) {
+                currPoint.G = atoi(splitStr.c_str());
+            } else {
+                currPoint.B = atoi(splitStr.c_str());
+            }
+            flag++;
+        }
+        pointData.push_back(currPoint);
+    }
+    int pointNums = pointData.size();
+    int addPoints = 1000;
+    vector<PointCloud> tmpPoints;
+    for (int i = 0; i < 20; i++) {
+        tmpPoints.push_back(pointData[i]);
+    }
+    float x_max, x_min, y_max, y_min, z_max, z_min;
+    sort(tmpPoints.begin(), tmpPoints.end(), [](PointCloud a, PointCloud b) { return a.x < b.x; });
+    x_min = tmpPoints[0].x;
+    x_max = tmpPoints.back().x;
+
+    sort(tmpPoints.begin(), tmpPoints.end(), [](PointCloud a, PointCloud b) { return a.y < b.y; });
+    y_min = tmpPoints[0].y;
+    y_max = tmpPoints.back().y;
+
+    sort(tmpPoints.begin(), tmpPoints.end(), [](PointCloud a, PointCloud b) { return a.z < b.z; });
+    z_min = tmpPoints[0].z;
+    z_max = tmpPoints.back().z;
+
+    for (int i = 0; i < 2000; i++) {
+        PointCloud p;
+        p.x = getRangeRand(x_min, x_max);
+        p.y = getRangeRand(y_min, y_max);
+        p.z = getRangeRand(z_min, z_max);
+        p.R = 255;
+        p.G = 0;
+        p.B = 0;
+        pointData.push_back(p);
+    }
+
+    ofstream outPlyFile;
+    outPlyFile.open("bunny_noise.ply", ios::app);
+    if (!outPlyFile.is_open()) return false;
+    for (int i = 0; i < headStr.size(); i++) {
+        outPlyFile << headStr[i] << endl;
+    }
+    for (auto p:pointData) {
+        outPlyFile << p.x << " " << p.y << " " << p.z << " " << p.R << " " << p.G << " " << p.B << endl;
+    }
+    outPlyFile.close();
+
+    plyFile.close();
+    return true;
 }
 
 //int main() {
