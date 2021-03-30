@@ -2930,6 +2930,21 @@ uint32_t DailyCoding::reverseBits(uint32_t n) {
     return res;
 }
 
+bool DailyCoding::searchMatrix(vector<vector<int>> &matrix, int target) {
+    int row = matrix.size(), col = matrix[0].size();
+    int low = 0, high = row * col - 1;
+    while (low < high) {
+        int mid = (high - low) / 2 + low;
+        int curr = matrix[mid / col][mid % col];    // 准确定位中间元素
+        if (curr < target) {
+            low = mid + 1;
+        } else if (curr > target) {
+            high = mid - 1;
+        } else return true;
+    }
+    return false;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

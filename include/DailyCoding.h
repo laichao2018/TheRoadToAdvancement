@@ -150,6 +150,7 @@ public:
     static ListNode *deleteDuplicates01(ListNode *head);    // 83. 删除排序链表中的重复元素
     static ListNode *rotateRight(ListNode *head, int k);    // *** 61. 旋转链表 ***
     static uint32_t reverseBits(uint32_t n);                // 190. 颠倒二进制位
+    static bool searchMatrix(vector<vector<int>> &matrix, int target);      // 74. 搜索二维矩阵
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
