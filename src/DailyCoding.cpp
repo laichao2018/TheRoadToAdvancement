@@ -26,6 +26,10 @@ unordered_map<string, priority_queue<string, vector<string>, std::greater<string
 vector<string> gSTK;
 vector<vector<int>> gWinnerDPArr(21, vector<int>(21, 0));
 
+// 通用
+vector<vector<int>> vvRes;
+vector<int> vRes, vPath;
+
 ///// ================================== HELP FUNC ==================================
 void findSubsequencesbackTracking(vector<int> &nums, vector<vector<int>> &res, vector<int> &subSeq, int startIndex) {
     if (subSeq.size() > 1) {
@@ -389,6 +393,18 @@ void backTrack_combine(vector<vector<int>> &res, vector<int> &path, int pos, int
     for (int i = num; i <= n - (k - pos - 1); i++) {
         path[pos] = i;
         backTrack_combine(res, path, pos + 1, i + 1, n, k);
+    }
+}
+
+void backTrack_subsetsWithDup(vector<int> &nums, int startIndex, vector<bool> &used) {
+    vvRes.push_back(vPath);
+    for (int i = startIndex; i < nums.size(); i++) {
+        if (i > 0 && nums[i] == nums[i - 1] && used[i - 1] == false)　continue;
+        vPath.push_back(nums[i]);
+        used[i] = true;
+        backTrack_subsetsWithDup(nums, i + 1, used);
+        vPath.pop_back();
+        used[i] = false;
     }
 }
 
@@ -2943,6 +2959,15 @@ bool DailyCoding::searchMatrix(vector<vector<int>> &matrix, int target) {
         } else return true;
     }
     return false;
+}
+
+vector<vector<int>> DailyCoding::subsetsWithDup(vector<int> &nums) {
+    vvRes.clear();
+    vPath.clear();
+    vector<bool> used(nums.size(), false);
+    sort(nums.begin(), nums.end());     // 去重全排列要先排序
+    backTrack_subsetsWithDup(nums, 0, used);
+    return vvRes;
 }
 
 // 703. 数据流中的第 K 大元素
