@@ -17,6 +17,9 @@
 #include <algorithm>
 #include <queue>
 #include <map>
+#include <string>
+#include <cstring>
+#include <string.h>
 #include "DataStructure/PointCloud.h"
 
 using namespace std;
@@ -251,30 +254,74 @@ bool addNoise(string fileName) {
     return true;
 }
 
-//int main() {
-//    priority_queue<HuffmanNode> q;
-//    int nodeNum;
-//
-//    //初始化字符信息
-//    cout << "请输入结点个数: ";
-//    cin >> nodeNum;
-//    initNode(q, nodeNum);
-//    //showNode(q);
-//
-//    //构造哈夫曼树
-//    huffmanTree(q);
-//
-//    //构造哈夫曼编码
-//    HuffmanNode root = q.top();
-//    string prefix = "";
-//    map<char, string> result;
-//    huffmanCode(&root, prefix, result);
-//
-//    //检验结果是否正确
-//    testResult(result);
-//    return 0;
-//}
 
+// 实现String类的写时拷贝
+class MyString {
+    // 重载<<运算符，这个写法需要记住，需要设置成友元函数，这样就不属于该类，可以直接调用
+    friend ostream &operator<<(ostream &_cout, const MyString &_s);
+
+private:
+    char *_pStr;
+
+    int &GetCount() {   // 用来得到该对象所属内存空间的引用计数
+        return *((int *) (_pStr - 4));
+    }
+
+    inline void Release() {
+        // 先--引用计数，如果引用计数为0了，表示该内存空间上已经没有对象存在了,就释放这块内存空间
+        if (--GetCount() == 0 && _pStr) {
+            delete[](_pStr - 4);    // 注意要连引用计数所占的空间一起释放了
+        }
+    }
+
+public:
+    MyString(char *s = "") : _pStr(new char[strlen(s) + 1 + 4]) {
+        *((int *) _pStr) = 1;   // 每次新构造一个对象将前4个字节赋值为1，表示新开辟的空间引用计数为1
+        _pStr += 4;     // 让_pstr下移int大小的位置，开始用来存放字符串
+        strcpy(_pStr, s);
+    }
+
+    MyString(const MyString &s) : _pStr(s._pStr) {
+        GetCount()++;   // 将该内存空间上的引用计数+1 .... 还可以这样加的？？？
+    }
+
+    MyString &operator=(const MyString &s) {
+        if (this != &s) {
+            Release();
+            // 一个对象要对它进行赋值，那么首先，它肯定是已经创建好的
+            // 不管它是通过构造函数创建还是拷贝构造函数创建，它的引用计数肯定是大于0的
+            // 通过构造函数创建引用计数为1，通过拷贝构造创建引用计数一定大于1
+            // 即它自己一个人用一块内存空间或是和别人共用一块内存空间
+            // 那么在对它进行赋值的时候，它就不属于原来那份内存空间了，属于一块新的内存空间
+            // 这个时候就要对原来的内存空间的引用计数--，对新的内存空间的引用计数++
+            _pStr = s._pStr;
+            ++GetCount();   // 对新的内存空间的引用计数++
+        }
+        return *this;
+    }
+
+    ~MyString() {
+        Release();
+    }
+
+    // *** 写时拷贝，要进行写操作的时候再进行拷贝
+    char &operator[](std::size_t index) {
+        if (GetCount() > 1) {
+            --GetCount();
+            char *pStr = new char[strlen(_pStr) + 1 + 4];
+            *((int *) pStr) = 1;    // 下面三步和构造函数的意义相同，将新空间的引用计数置为1
+            pStr += 4;
+            strcpy(pStr, _pStr);
+            _pStr = pStr;
+        }
+        return *(_pStr + index);
+    }
+};
+
+ostream &operator<<(ostream &_cout, const MyString &_s) {
+    _cout << _s._pStr;
+    return _cout;
+}
 // ================================================================================================
 
 #endif
