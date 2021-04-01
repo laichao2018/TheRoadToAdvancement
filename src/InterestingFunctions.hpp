@@ -325,5 +325,8 @@ ostream &operator<<(ostream &_cout, const MyString &_s) {
 }
 // ================================================================================================
 
+// 打印变量地址的方式
+// printf("s2地址：%x\n", (unsigned int)s2.C_str());
+
 #endif
 
