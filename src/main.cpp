@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <iterator>
 #include <vector>
-//#include "DailyCoding.h"
+#include "DailyCoding.h"
 //#include "DynamicProgramming.h"
 //#include "OfferSolutions.h"
 //#include "SortSolutions.h"
@@ -12,6 +12,7 @@
 using namespace std;
 
 int main() {
+    cout << DailyCoding::clumsy(10) << endl;
 
     return 0;
 }

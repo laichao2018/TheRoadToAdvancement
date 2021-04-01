@@ -2170,28 +2170,28 @@ int MeduimSolutions::findKthLargest(vector<int> &nums, int k) {
     return maxHeap.top();
 }
 
-vector<int> MeduimSolutions::topKFrequent(vector<int> &nums, int k) {
-    unordered_map<int, int> occurrences;
-    for (int &i:nums) occurrences[i]++;
-    // pair 的第一个元素代表数组的值，第二个元素代表了该值出现的次数
-    priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmpFunc)> heap(cmpFunc);
-    for (auto&[num, count]:occurrences) {
-        if (heap.size() == k) {
-            if (heap.top().second < count) {
-                heap.pop();
-                heap.emplace(num, count);
-            }
-        } else {
-            heap.emplace(num, count);
-        }
-    }
-    vector<int> res;
-    while (!heap.empty()) {
-        res.push_back(heap.top().first);
-        heap.pop();
-    }
-    return res;
-}
+//vector<int> MeduimSolutions::topKFrequent(vector<int> &nums, int k) {
+//    unordered_map<int, int> occurrences;
+//    for (int &i:nums) occurrences[i]++;
+//    // pair 的第一个元素代表数组的值，第二个元素代表了该值出现的次数
+//    priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmpFunc)> heap(cmpFunc);
+//    for (auto&[num, count]:occurrences) {
+//        if (heap.size() == k) {
+//            if (heap.top().second < count) {
+//                heap.pop();
+//                heap.emplace(num, count);
+//            }
+//        } else {
+//            heap.emplace(num, count);
+//        }
+//    }
+//    vector<int> res;
+//    while (!heap.empty()) {
+//        res.push_back(heap.top().first);
+//        heap.pop();
+//    }
+//    return res;
+//}
 
 // 706. 设计哈希映射
 struct _Node_Hash_ {

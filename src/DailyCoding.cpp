@@ -399,7 +399,7 @@ void backTrack_combine(vector<vector<int>> &res, vector<int> &path, int pos, int
 void backTrack_subsetsWithDup(vector<int> &nums, int startIndex, vector<bool> &used) {
     vvRes.push_back(vPath);
     for (int i = startIndex; i < nums.size(); i++) {
-        if (i > 0 && nums[i] == nums[i - 1] && used[i - 1] == false)　continue;
+        if (i > 0 && nums[i] == nums[i - 1] && used[i - 1] == false) continue;
         vPath.push_back(nums[i]);
         used[i] = true;
         backTrack_subsetsWithDup(nums, i + 1, used);
@@ -2869,26 +2869,26 @@ int DailyCoding::evalRPN(vector<string> &tokens) {
     return nums.top();
 }
 
-bool DailyCoding::find132pattern(vector<int> &nums) {
-    int n = nums.size();
-    stack<int> candidate_k;
-    candidate_k.push(nums[n - 1]);
-    int max_k = INT_MIN;
-
-    for (int i = n - 2; i >= 0; i--) {
-        if (nums[i] < max_k) {
-            return true;
-        }
-        while (!candidate_k.empty() && nums[i] > candidate_k.top()) {
-            max_k = candidate_k.top();
-            candidate_k.pop();
-        }
-        if (nums[i] > max_k) {
-            candidate_k.push(nums[i]);
-        }
-    }
-    return false;
-}
+//bool DailyCoding::find132pattern(vector<int> &nums) {
+//    int n = nums.size();
+//    stack<int> candidate_k;
+//    candidate_k.push(nums[n - 1]);
+//    int max_k = INT_MIN;
+//
+//    for (int i = n - 2; i >= 0; i--) {
+//        if (nums[i] < max_k) {
+//            return true;
+//        }
+//        while (!candidate_k.empty() && nums[i] > candidate_k.top()) {
+//            max_k = candidate_k.top();
+//            candidate_k.pop();
+//        }
+//        if (nums[i] > max_k) {
+//            candidate_k.push(nums[i]);
+//        }
+//    }
+//    return false;
+//}
 
 ListNode *DailyCoding::deleteDuplicates(ListNode *head) {
     if (head == nullptr) return head;
@@ -2968,6 +2968,18 @@ vector<vector<int>> DailyCoding::subsetsWithDup(vector<int> &nums) {
     sort(nums.begin(), nums.end());     // 去重全排列要先排序
     backTrack_subsetsWithDup(nums, 0, used);
     return vvRes;
+}
+
+int DailyCoding::clumsy(int N) {
+    if (N == 1) return 1;
+    else if (N == 2) return 2;
+    else if (N == 3) return 6;
+    else if (N == 4) return 7;
+
+    // 从第五个数字开始变得有规律
+    if (N % 4 == 0) return N + 1;
+    else if (N % 4 < 3) return N + 2;
+    else return N - 1;
 }
 
 // 703. 数据流中的第 K 大元素
