@@ -305,6 +305,7 @@ public:
     }
 
     // *** 写时拷贝，要进行写操作的时候再进行拷贝
+    // 在对该类对象做下标修改时，会触发写时拷贝
     char &operator[](std::size_t index) {
         if (GetCount() > 1) {
             --GetCount();
