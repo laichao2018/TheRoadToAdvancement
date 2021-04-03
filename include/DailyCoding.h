@@ -153,6 +153,7 @@ public:
     static bool searchMatrix(vector<vector<int>> &matrix, int target);      // 74. 搜索二维矩阵
     static vector<vector<int>> subsetsWithDup(vector<int> &nums);           // 90. 子集 II
     static int clumsy(int N);           // 1006. 笨阶乘
+    static int longestCommonSubsequence(string text1, string text2);        // 1143. 最长公共子序列
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
