@@ -154,6 +154,7 @@ public:
     static vector<vector<int>> subsetsWithDup(vector<int> &nums);           // 90. 子集 II
     static int clumsy(int N);           // 1006. 笨阶乘
     static int longestCommonSubsequence(string text1, string text2);        // 1143. 最长公共子序列
+    static void merge(vector<int> &nums1, int m, vector<int> &nums2, int n);// 88. 合并两个有序数组
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

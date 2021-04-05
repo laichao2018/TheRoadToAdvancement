@@ -2999,6 +2999,20 @@ int DailyCoding::longestCommonSubsequence(string text1, string text2) {
     return dpArr[m][n];
 }
 
+void DailyCoding::merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
+    if (nums2.empty()) return;
+    int p1 = m - 1, p2 = n - 1;
+    int tail = m + n - 1;
+    int curr = 0;
+    while (p1 >= 0 || p2 >= 0) {
+        if (p1 < 0) curr = nums2[p2--];
+        else if (p2 < 0) curr = nums1[p1--];
+        else if (nums1[p1] < nums2[p2]) curr = nums2[p2--];
+        else curr = nums1[p1--];
+        nums1[tail--] = curr;
+    }
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
