@@ -12,7 +12,8 @@
 using namespace std;
 
 int main() {
-    cout << DailyCoding::clumsy(10) << endl;
+    vector<int> data{1, 1, 1, 2, 2, 3, 3, 3, 3};
+    cout << DailyCoding::removeDuplicates(data) << endl;
 
     return 0;
 }

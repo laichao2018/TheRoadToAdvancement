@@ -3013,6 +3013,25 @@ void DailyCoding::merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
     }
 }
 
+int DailyCoding::removeDuplicates(vector<int> &nums) {
+    if (nums.size() < 3) return nums.size();
+    int preNum = nums[0];
+    int flag = 1;
+    auto pIter = nums.begin() + 1;
+    while (pIter != nums.end()) {
+        if (*pIter == preNum) {
+            flag++;
+            if (flag > 2) nums.erase(pIter);
+            else pIter++;
+        } else {
+            flag = 1;
+            preNum = *pIter;
+            pIter++;
+        }
+    }
+    return nums.size();
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
