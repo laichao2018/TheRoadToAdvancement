@@ -156,6 +156,7 @@ public:
     static int longestCommonSubsequence(string text1, string text2);        // 1143. 最长公共子序列
     static void merge(vector<int> &nums1, int m, vector<int> &nums2, int n);// 88. 合并两个有序数组
     static int removeDuplicates(vector<int> &nums);         // 80. 删除有序数组中的重复项 II
+    static bool search(vector<int> &nums, int target);      // 81. 搜索旋转排序数组 II
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
