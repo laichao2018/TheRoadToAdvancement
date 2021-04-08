@@ -3051,6 +3051,16 @@ bool DailyCoding::search(vector<int> &nums, int target) {
     return false;
 }
 
+int DailyCoding::findMin(vector<int> &nums) {
+    int low = 0, high = nums.size() - 1;
+    while (low < high) {
+        int pivot = low + (high - low) / 2;
+        if (nums[pivot] < nums[high]) high = pivot;
+        else low = pivot + 1;
+    }
+    return nums[low];
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

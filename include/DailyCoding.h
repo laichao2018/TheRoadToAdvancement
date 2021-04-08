@@ -157,6 +157,7 @@ public:
     static void merge(vector<int> &nums1, int m, vector<int> &nums2, int n);// 88. 合并两个有序数组
     static int removeDuplicates(vector<int> &nums);         // 80. 删除有序数组中的重复项 II
     static bool search(vector<int> &nums, int target);      // 81. 搜索旋转排序数组 II
+    static int findMin(vector<int> &nums);                  // 153. 寻找旋转排序数组中的最小值
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
