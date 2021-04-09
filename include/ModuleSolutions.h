@@ -122,6 +122,7 @@ public:
     static bool halvesAreAlike(string s);               // 5637. 判断字符串的两半是否相似
     static bool kLengthApart(vector<int> &nums, int k);                 // 1437. 是否所有 1 都至少相隔 k 个元素
     static bool findTarget(TreeNode *root, int k);      // 653. 两数之和 IV - 输入 BST
+    static string mergeAlternately(string word1, string word2);         // 1768. 交替合并字符串
 };
 
 class MeduimSolutions {

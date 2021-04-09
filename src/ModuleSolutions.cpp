@@ -1886,6 +1886,24 @@ bool EasySolutions::findTarget(TreeNode *root, int k) {
     return false;
 }
 
+string EasySolutions::mergeAlternately(string word1, string word2) {
+    string res;
+    int s01 = 0, s02 = 0;
+    while (s01 < word1.length() || s02 < word2.length()) {
+        if (s01 < word1.length() && s02 < word2.length()) {
+            res += word1[s01++];
+            res += word2[s02++];
+        } else if (s01 < word1.length()) {
+            res += word1.substr(s01);
+            break;
+        } else {
+            res += word2.substr(s02);
+            break;
+        }
+    }
+    return res;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {

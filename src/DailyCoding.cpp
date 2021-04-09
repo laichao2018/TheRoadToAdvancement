@@ -3061,6 +3061,11 @@ int DailyCoding::findMin(vector<int> &nums) {
     return nums[low];
 }
 
+int DailyCoding::findMin02(vector<int> &nums) {
+    // 放弃治疗，实际上这是力扣的困难题
+    return *min_element(nums.begin(), nums.end());
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
