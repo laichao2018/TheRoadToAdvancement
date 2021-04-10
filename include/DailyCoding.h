@@ -159,6 +159,7 @@ public:
     static bool search(vector<int> &nums, int target);      // 81. 搜索旋转排序数组 II
     static int findMin(vector<int> &nums);                  // 153. 寻找旋转排序数组中的最小值
     static int findMin02(vector<int> &nums);                // 154. 寻找旋转排序数组中的最小值 II
+    static bool isUgly(int n);          // 263. 丑数
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
