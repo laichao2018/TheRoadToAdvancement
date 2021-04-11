@@ -3074,6 +3074,28 @@ bool DailyCoding::isUgly(int n) {
     return n == 1;
 }
 
+int DailyCoding::nthUglyNumber(int n) {
+    vector<int> factor{2, 3, 5};
+    unordered_set<long> seen;   // 用于去重
+    priority_queue<long, vector<long>, greater<long>> heap;
+    seen.insert(1l);    // 最小的丑数
+    heap.push(1l);
+    int uglyRes = 0;
+    for (int i = 0; i < n; i++) {
+        long curr = heap.top();
+        heap.pop();
+        uglyRes = (int) curr;
+        for (int fac:factor) {
+            long next = fac * curr;
+            if (!seen.count(next)) {
+                seen.insert(next);
+                heap.push(next);
+            }
+        }
+    }
+    return uglyRes;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
