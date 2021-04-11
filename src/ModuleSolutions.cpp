@@ -14,6 +14,7 @@
 #include <cmath>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <deque>
 
 using namespace std;
@@ -1902,6 +1903,80 @@ string EasySolutions::mergeAlternately(string word1, string word2) {
         }
     }
     return res;
+}
+
+vector<int> EasySolutions::intersection(vector<int> &nums1, vector<int> &nums2) {
+    if (nums1.empty() || nums2.empty()) return {};
+    unordered_map<int, int> numCounts;
+    for (int i:nums1) numCounts[i]++;
+    vector<int> res;
+    for (int i:nums2) if (numCounts[i]) res.push_back(i);
+    sort(res.begin(), res.end());
+    res.erase(unique(res.begin(), res.end()), res.end());
+    return res;
+}
+
+bool EasySolutions::isHappy(int n) {
+    unordered_set<int> flag;
+    while (n != 1) {
+        int sum = 0;
+        flag.insert(n);
+        while (n) {
+            sum += pow(n % 10, 2);
+            n /= 10;
+        }
+        n = sum;
+        if (flag.count(sum)) return false;
+    }
+    return true;
+}
+
+vector<int> EasySolutions::twoSum(vector<int> &nums, int target) {
+    unordered_map<int, int> numsWithIndex;
+    for (int i = 0; i < nums.size(); i++) {
+        if (numsWithIndex.count(target - nums[i])) {
+            return {numsWithIndex[target - nums[i]], i};
+        } else numsWithIndex[nums[i]] = i;
+    }
+    return {};
+}
+
+bool EasySolutions::isIsomorphic(string s, string t) {
+    if (s.empty() && t.empty()) return true;
+    int sCharIndex[256] = {0};
+    int tCharIndex[256] = {0};
+    for (int i = 0; i < s.length(); i++) {
+        if (sCharIndex[s[i]] != tCharIndex[t[i]]) return false;
+        sCharIndex[s[i]] = i + 1;
+        tCharIndex[t[i]] = i + 1;
+    }
+    return true;
+}
+
+vector<string> EasySolutions::findRestaurant(vector<string> &list1, vector<string> &list2) {
+    vector<string> res;
+    unordered_map<string, int> sName;
+    int minValue = 2000;
+    for (int i = 0; i < list1.size(); i++) sName[list1[i]] = i;
+    for (int i = 0; i < list2.size(); i++) {
+        if (sName.count(list2[i])) {
+            if (sName[list2[i]] + i < minValue) {   // 更小的索引
+                res.clear();
+                res.push_back(list2[i]);
+                minValue = sName[list2[i]] + i;
+            } else if (sName[list2[i]] + i == minValue) res.push_back(list2[i]);    // 存在不止一个解
+        }
+    }
+    return res;
+}
+
+int EasySolutions::firstUniqChar01(string s) {
+    unordered_map<char, int> charCounts;
+    for (char c:s) charCounts[c]++;
+    for (int i = 0; i < s.length(); i++) {
+        if (charCounts[s[i]] == 1) return i;
+    }
+    return -1;
 }
 
 int MeduimSolutions::minOperations(int n) {

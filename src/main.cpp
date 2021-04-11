@@ -10,12 +10,15 @@
 //#include "SortSolutions.h"
 #include "./InterestingFunctions.hpp"
 #include "ModuleSolutions.h"
+#include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
 int main() {
-    string s1 = "abc", s2 = "defg";
-    cout << EasySolutions::mergeAlternately(s1, s2) << endl;
+    vector<string> s01{"Shogun", "Tapioca Express", "Burger King", "KFC"};
+    vector<string> s02{"KFC", "Shogun", "Burger King"};
+    auto res = EasySolutions::findRestaurant(s01, s02);
 
     return 0;
 }

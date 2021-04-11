@@ -123,6 +123,12 @@ public:
     static bool kLengthApart(vector<int> &nums, int k);                 // 1437. 是否所有 1 都至少相隔 k 个元素
     static bool findTarget(TreeNode *root, int k);      // 653. 两数之和 IV - 输入 BST
     static string mergeAlternately(string word1, string word2);         // 1768. 交替合并字符串
+    static vector<int> intersection(vector<int> &nums1, vector<int> &nums2);                    // 349. 两个数组的交集
+    static bool isHappy(int n);                         // 202. 快乐数
+    static vector<int> twoSum(vector<int> &nums, int target);           // 1. 两数之和
+    static bool isIsomorphic(string s, string t);       // 205. 同构字符串
+    static vector<string> findRestaurant(vector<string> &list1, vector<string> &list2);         // 599. 两个列表的最小索引总和
+    static int firstUniqChar01(string s);               // 387. 字符串中的第一个唯一字符
 };
 
 class MeduimSolutions {
