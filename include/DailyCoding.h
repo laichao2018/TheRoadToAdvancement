@@ -161,6 +161,7 @@ public:
     static int findMin02(vector<int> &nums);                // 154. 寻找旋转排序数组中的最小值 II
     static bool isUgly(int n);          // 263. 丑数
     static int nthUglyNumber(int n);    // 264. 丑数 II
+    static string largestNumber(vector<int>& nums);         // 179. 最大数
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

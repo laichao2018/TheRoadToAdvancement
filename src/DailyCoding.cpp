@@ -3096,6 +3096,16 @@ int DailyCoding::nthUglyNumber(int n) {
     return uglyRes;
 }
 
+string DailyCoding::largestNumber(vector<int> &nums) {
+    vector<string> sNums;
+    for (int i:nums) sNums.push_back(to_string(i));
+    sort(sNums.begin(), sNums.end(), [](string s1, string s2) { return s1 + s2 > s2 + s1; });   // 两个字符串先后组合大小降序排列
+    if (sNums[0] == "0") return "0";    // 全是0的情况
+    string res;
+    for (string s:sNums) res += s;
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
