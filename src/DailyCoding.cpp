@@ -408,6 +408,14 @@ void backTrack_subsetsWithDup(vector<int> &nums, int startIndex, vector<bool> &u
     }
 }
 
+void inorder_minDiffInBST(TreeNode *root, TreeNode *&pre, int &res) {
+    if (root == nullptr) return;
+    inorder_minDiffInBST(root->left, pre, res);
+    if (pre != nullptr) res = min(res, root->val - pre->val);
+    pre = root;
+    inorder_minDiffInBST(root->right, pre, res);
+}
+
 ///// ================================== HELP CLASS ==================================
 class Djset {
 public:
@@ -3103,6 +3111,14 @@ string DailyCoding::largestNumber(vector<int> &nums) {
     if (sNums[0] == "0") return "0";    // 全是0的情况
     string res;
     for (string s:sNums) res += s;
+    return res;
+}
+
+int DailyCoding::minDiffInBST(TreeNode *root) {
+    if (root == nullptr) return 0;
+    int res = 9999999;
+    TreeNode *pre = nullptr;
+    inorder_minDiffInBST(root, pre, res);
     return res;
 }
 

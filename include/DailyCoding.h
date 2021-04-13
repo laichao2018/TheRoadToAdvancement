@@ -161,7 +161,8 @@ public:
     static int findMin02(vector<int> &nums);                // 154. 寻找旋转排序数组中的最小值 II
     static bool isUgly(int n);          // 263. 丑数
     static int nthUglyNumber(int n);    // 264. 丑数 II
-    static string largestNumber(vector<int>& nums);         // 179. 最大数
+    static string largestNumber(vector<int> &nums);         // 179. 最大数
+    static int minDiffInBST(TreeNode *root);                // 783. 二叉搜索树节点最小距离
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
