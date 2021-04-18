@@ -3122,6 +3122,20 @@ int DailyCoding::minDiffInBST(TreeNode *root) {
     return res;
 }
 
+int DailyCoding::removeDuplicates01(vector<int> &nums) {
+    unordered_map<int, int> numCounts;
+    vector<int>::iterator pIter = nums.begin();
+    while (pIter != nums.end()) {
+        int currNum = *pIter;
+        if(numCounts[currNum]) nums.erase(pIter);
+        else {
+            numCounts[currNum]++;
+            pIter++;
+        }
+    }
+    return nums.size();
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
@@ -3175,7 +3189,7 @@ public:
 
     /** Returns if the word is in the trie. */
     bool search(string word) {
-        Trie* node = this->searchPrefix(word);
+        Trie *node = this->searchPrefix(word);
         return node != nullptr && node->isEnd;
     }
 

@@ -1,24 +1,21 @@
-// 用于代码测试
 #include <iostream>
-#include <algorithm>
-#include <iterator>
-#include <string>
-#include <vector>
-#include "DailyCoding.h"
-//#include "DynamicProgramming.h"
-//#include "OfferSolutions.h"
-//#include "SortSolutions.h"
-#include "./InterestingFunctions.hpp"
-#include "ModuleSolutions.h"
-#include <unordered_map>
-#include <unordered_set>
+#include <pthread.h>
+
+#define  THREAD_NUMS  5
 
 using namespace std;
 
-int main() {
-    vector<string> s01{"Shogun", "Tapioca Express", "Burger King", "KFC"};
-    vector<string> s02{"KFC", "Shogun", "Burger King"};
-    auto res = EasySolutions::findRestaurant(s01, s02);
+void *sayHello(void *args) {
+    cout << "hello...\n";
+}   // 函数返回函数指针
 
+int main() {
+    pthread_t tids[THREAD_NUMS];    // 线程id
+    for (int i = 0; i < THREAD_NUMS; i++) {
+        // 参数：创建的线程id，线程参数，线程运行函数的起始地址，运行函数的参数
+        int ret = pthread_create(&tids[i], nullptr, sayHello, nullptr);
+        if (ret) cout << "pthread_create error: error_code = " << ret << " .\n";// 线程创建成功返回0
+    }
+    pthread_exit(nullptr);  // 等待各个线程退出，进程结束，否则进程强制结束，线程处于未终止状态
     return 0;
 }
