@@ -163,7 +163,8 @@ public:
     static int nthUglyNumber(int n);    // 264. 丑数 II
     static string largestNumber(vector<int> &nums);         // 179. 最大数
     static int minDiffInBST(TreeNode *root);                // 783. 二叉搜索树节点最小距离
-    static int removeDuplicates01(vector<int> &nums);         // 26. 删除有序数组中的重复项
+    static int removeDuplicates01(vector<int> &nums);       // 26. 删除有序数组中的重复项
+    static int removElement(vector<int> &nums, int val);   // 27. 移除元素
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

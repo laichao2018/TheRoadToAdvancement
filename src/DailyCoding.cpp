@@ -3127,11 +3127,21 @@ int DailyCoding::removeDuplicates01(vector<int> &nums) {
     vector<int>::iterator pIter = nums.begin();
     while (pIter != nums.end()) {
         int currNum = *pIter;
-        if(numCounts[currNum]) nums.erase(pIter);
+        if (numCounts[currNum]) nums.erase(pIter);
         else {
             numCounts[currNum]++;
             pIter++;
         }
+    }
+    return nums.size();
+}
+
+int DailyCoding::removElement(vector<int> &nums, int val) {
+    vector<int>::iterator pIter = nums.begin();
+    while (pIter != nums.end()) {
+        int currNum = *pIter;
+        if (currNum == val) nums.erase(pIter);
+        else pIter++;
     }
     return nums.size();
 }
