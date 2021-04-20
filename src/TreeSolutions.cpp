@@ -6,6 +6,7 @@
 #include <queue>
 #include <stack>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -312,4 +313,119 @@ int TreeSolution::countBSTree(int numKeys) {
         }
         return sum;
     }
+}
+
+///// ================================== Balanced Binary Tree Functions ==================================
+
+void BalancedTree::createBTree(vector<int> &nums) {
+    this->root = nullptr;
+    for (int i:nums) insertBTNode(this->root, i);
+}
+
+BalancedTree::BTreeNode *BalancedTree::insertBTNode(BalancedTree::BTreeNode *&root, int val) {
+    if (root == nullptr) {
+        return new BTreeNode(val);
+    }
+    if (root->val == val) return root;  // 已有该元素，直接返回
+    else if (root->val > val) {         // 插入到左孩子
+        root = insertBTNode(root->left, val);
+        return balanceTree(root);       // 完成平衡化操作
+    } else {                            // 插入到右孩子
+        root = insertBTNode(root->right, val);
+        return balanceTree(root);       // 完成平衡化操作
+    }
+}
+
+void BalancedTree::midorderShowBTree() {
+    midorderShowBTreeCore(this->root);
+}
+
+void BalancedTree::levelShowBTree() {
+    levelShowBTreeCore(this->root);
+}
+
+int BalancedTree::getHeight() {
+    return getHeightCore(this->root);
+}
+
+BalancedTree::~BalancedTree() {
+    releaseBTreeCore(this->root);
+}
+
+void BalancedTree::levelShowBTreeCore(BalancedTree::BTreeNode *root) {
+    int pos = 0;    // 记录层级
+    queue<BalancedTree::BTreeNode *> qNodes;
+    qNodes.push(root);
+    while (!qNodes.empty()) {
+        cout << ++pos << "-level: ";
+        for (int i = 0; i < qNodes.size(); i++) {
+            BTreeNode *currNode = qNodes.front();
+            qNodes.pop();
+            if (currNode->left != nullptr) qNodes.push(currNode->left);
+            if (currNode->right != nullptr) qNodes.push(currNode->right);
+            cout << currNode->val << ", ";
+        }
+        cout << endl;
+    }
+}
+
+void BalancedTree::midorderShowBTreeCore(const BalancedTree::BTreeNode *root) {
+    if (root == nullptr) return;
+    midorderShowBTreeCore(root->left);
+    cout << root->val << ", ";
+    midorderShowBTreeCore(root->right);
+}
+
+int BalancedTree::getHeightCore(const BalancedTree::BTreeNode *root) {
+    if (root == nullptr) return 0;
+    return max(getHeightCore(root->left), getHeightCore(root->right)) + 1;
+}
+
+int BalancedTree::diff(BalancedTree::BTreeNode *root) {
+    if (root == nullptr) return 0;
+    return getHeightCore(root->left) - getHeightCore(root->right);
+}
+
+void BalancedTree::releaseBTreeCore(BalancedTree::BTreeNode *root) {
+    if (root == nullptr) return;
+    releaseBTreeCore(root->left);
+    releaseBTreeCore(root->right);
+    delete root;
+    root = nullptr;
+}
+
+BalancedTree::BTreeNode *BalancedTree::balanceTree(BalancedTree::BTreeNode *root) {
+    int dis = diff(root);   // 计算根节点的平衡因子
+    if (dis > 1) {          // 左边多
+        if (diff(root->left) > 0) LL_RotateTree(root);
+        else LR_RotateTree(root);
+    } else if (dis < -1) {       // 右边多
+        if (diff(root->right) > 0) RR_RotateTree(root);
+        else RL_RotateTree(root);
+    }
+    return root;    // 已经平衡，无需转换
+}
+
+BalancedTree::BTreeNode *BalancedTree::LL_RotateTree(BalancedTree::BTreeNode *root) {
+    BTreeNode *tmpNode = root->left;
+    root->left = tmpNode->right;
+    tmpNode->right = root;
+    return tmpNode;
+}
+
+BalancedTree::BTreeNode *BalancedTree::RR_RotateTree(BalancedTree::BTreeNode *root) {
+    BTreeNode *tmpNode = root->right;
+    root->right = tmpNode->left;
+    tmpNode->left = root;
+    return tmpNode;
+}
+
+BalancedTree::BTreeNode *BalancedTree::LR_RotateTree(BalancedTree::BTreeNode *root) {
+    root->left = RR_RotateTree(root->left);
+    return LL_RotateTree(root);
+}
+
+BalancedTree::BTreeNode *BalancedTree::RL_RotateTree(BalancedTree::BTreeNode *root) {
+    root->right = LL_RotateTree(root->right);
+    return RR_RotateTree(root);
 }

@@ -3146,6 +3146,11 @@ int DailyCoding::removElement(vector<int> &nums, int val) {
     return nums.size();
 }
 
+int DailyCoding::strStr(string haystack, string needle) {
+    // 理想解法 KMP，=== mark 0420 ===
+    return (int) haystack.find(needle);
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
