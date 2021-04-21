@@ -317,23 +317,13 @@ int TreeSolution::countBSTree(int numKeys) {
 
 ///// ================================== Balanced Binary Tree Functions ==================================
 
+BalancedTree::~BalancedTree() {
+    releaseBTreeCore(this->root);
+}
+
 void BalancedTree::createBTree(vector<int> &nums) {
     this->root = nullptr;
     for (int i:nums) insertBTNode(this->root, i);
-}
-
-BalancedTree::BTreeNode *BalancedTree::insertBTNode(BalancedTree::BTreeNode *&root, int val) {
-    if (root == nullptr) {
-        return new BTreeNode(val);
-    }
-    if (root->val == val) return root;  // 已有该元素，直接返回
-    else if (root->val > val) {         // 插入到左孩子
-        root = insertBTNode(root->left, val);
-        return balanceTree(root);       // 完成平衡化操作
-    } else {                            // 插入到右孩子
-        root = insertBTNode(root->right, val);
-        return balanceTree(root);       // 完成平衡化操作
-    }
 }
 
 void BalancedTree::midorderShowBTree() {
@@ -348,8 +338,45 @@ int BalancedTree::getHeight() {
     return getHeightCore(this->root);
 }
 
-BalancedTree::~BalancedTree() {
-    releaseBTreeCore(this->root);
+int BalancedTree::diff(BalancedTree::BTreeNode *root) {
+    if (root == nullptr) return 0;
+    return getHeightCore(root->left) - getHeightCore(root->right);
+}
+
+void BalancedTree::releaseBTreeCore(BalancedTree::BTreeNode *root) {
+    if (root == nullptr) return;
+    releaseBTreeCore(root->left);
+    releaseBTreeCore(root->right);
+    delete root;
+    root = nullptr;
+}
+
+BalancedTree::BTreeNode *BalancedTree::balanceTree(BalancedTree::BTreeNode *root) {
+    int dis = diff(root);
+    if (dis > 1) {
+        if (diff(root->left)) LL_RotateTree(root);
+        else LR_RotateTree(root);
+    } else if (dis < -1) {
+        if (diff(root->right)) RL_RotateTree(root);
+        else RR_RotateTree(root);
+    }else return root;
+}
+
+BalancedTree::BTreeNode *BalancedTree::insertBTNode(BalancedTree::BTreeNode *&root, int val) {
+    if (root == nullptr) {
+        root = new BTreeNode(val);
+        return root;
+    }
+    if (root->val == val) return root;
+    if (root->val > val) {
+        insertBTNode(root->left, val);
+        root = balanceTree(root);
+        return root;
+    } else {
+        insertBTNode(root->right, val);
+        root = balanceTree(root);
+        return root;
+    }
 }
 
 void BalancedTree::levelShowBTreeCore(BalancedTree::BTreeNode *root) {
@@ -379,31 +406,6 @@ void BalancedTree::midorderShowBTreeCore(const BalancedTree::BTreeNode *root) {
 int BalancedTree::getHeightCore(const BalancedTree::BTreeNode *root) {
     if (root == nullptr) return 0;
     return max(getHeightCore(root->left), getHeightCore(root->right)) + 1;
-}
-
-int BalancedTree::diff(BalancedTree::BTreeNode *root) {
-    if (root == nullptr) return 0;
-    return getHeightCore(root->left) - getHeightCore(root->right);
-}
-
-void BalancedTree::releaseBTreeCore(BalancedTree::BTreeNode *root) {
-    if (root == nullptr) return;
-    releaseBTreeCore(root->left);
-    releaseBTreeCore(root->right);
-    delete root;
-    root = nullptr;
-}
-
-BalancedTree::BTreeNode *BalancedTree::balanceTree(BalancedTree::BTreeNode *root) {
-    int dis = diff(root);   // 计算根节点的平衡因子
-    if (dis > 1) {          // 左边多
-        if (diff(root->left) > 0) LL_RotateTree(root);
-        else LR_RotateTree(root);
-    } else if (dis < -1) {       // 右边多
-        if (diff(root->right) > 0) RR_RotateTree(root);
-        else RL_RotateTree(root);
-    }
-    return root;    // 已经平衡，无需转换
 }
 
 BalancedTree::BTreeNode *BalancedTree::LL_RotateTree(BalancedTree::BTreeNode *root) {
