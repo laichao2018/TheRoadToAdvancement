@@ -3151,6 +3151,18 @@ int DailyCoding::strStr(string haystack, string needle) {
     return (int) haystack.find(needle);
 }
 
+int DailyCoding::numDecodings(string s) {
+    if (s[0] == '0') return 0;
+    vector<int> dpArr(s.size() + 1);
+    dpArr[0] = 1;
+    for (int i = 1; i < s.size() + 1; i++) {
+        // 两个不同的状态转移方程
+        if (s[i - 1] != '0') dpArr[i] += dpArr[i - 1];
+        if (i > 1 && s[i - 2] != '0' && ((s[i - 2] - '0') * 10 + s[i - 1] - '0' <= 26)) dpArr[i] += dpArr[i - 2];
+    }
+    return dpArr.back();
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
