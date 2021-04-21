@@ -62,11 +62,11 @@ private:
 
     BTreeNode *insertBTNode(BTreeNode *&root, int val);     // 插入结点
 
-    void levelShowBTreeCore(BTreeNode *root);
+    void levelShowBTreeCore(BTreeNode *root);   // 层次遍历
 
-    void midorderShowBTreeCore(const BTreeNode *root);
+    void midorderShowBTreeCore(const BTreeNode *root);      // 中序遍历（有序数组）
 
-    int getHeightCore(const BTreeNode *root);
+    int getHeightCore(const BTreeNode *root);   // 获取树高度（递归）
 
     BTreeNode *LL_RotateTree(BTreeNode *root);  // 顺时针旋转
 
