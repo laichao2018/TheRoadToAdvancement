@@ -212,6 +212,11 @@ bool cmpFunc(pair<int, int> &m, pair<int, int> &n) {
     return m.second > n.second;
 }
 
+// 获取两点之间的曼哈顿距离
+int getManhattanDis(int cx, int cy, int dx, int dy) {
+    return abs(cx - dx) + abs(cy - dy);
+}
+
 ///// ================================== CLASS FUNC ==================================
 
 int EasySolutions::cakeNumber(int n) {
@@ -1977,6 +1982,30 @@ int EasySolutions::firstUniqChar01(string s) {
         if (charCounts[s[i]] == 1) return i;
     }
     return -1;
+}
+
+int EasySolutions::nearestValidPoint(int x, int y, vector<vector<int>> &points) {
+    int minManhattan = INT16_MAX;
+    int minIndex = INT16_MAX;
+    int res = -1;
+    for (int i = 0; i < points.size(); i++) {
+        int currX = points[i][0];
+        int currY = points[i][1];
+        if (currX == x || currY == y) {
+            int currManhattanDis = getManhattanDis(x, y, currX, currY);
+            if (minManhattan > currManhattanDis) {
+                minManhattan = currManhattanDis;
+                minIndex = currX + currY;
+                res = i;
+            } else if (minManhattan == currManhattanDis) {
+                if (currX + currY < minIndex) {
+                    minIndex = currX + currY;
+                    res = i;
+                }
+            } else ;    // do nothing
+        }
+    }
+    return res;
 }
 
 int MeduimSolutions::minOperations(int n) {
