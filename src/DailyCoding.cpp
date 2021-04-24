@@ -3163,6 +3163,17 @@ int DailyCoding::numDecodings(string s) {
     return dpArr.back();
 }
 
+int DailyCoding::combinationSum4(vector<int> &nums, int target) {
+    vector<int> dpArr(target + 1);
+    dpArr[0] = 1;
+    for (int i = 1; i <= target; i++) {
+        for (int &num:nums) {
+            if (num <= i && dpArr[i - num] < INT16_MAX - dpArr[i]) dpArr[i] += dpArr[i - num];
+        }
+    }
+    return dpArr.back();
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

@@ -167,6 +167,7 @@ public:
     static int removElement(vector<int> &nums, int val);    // 27. 移除元素
     static int strStr(string haystack, string needle);      // 28. 实现 strStr()
     static int numDecodings(string s);                      // 91. 解码方法
+    static int combinationSum4(vector<int> &nums, int target);              // 377. 组合总和 Ⅳ
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
