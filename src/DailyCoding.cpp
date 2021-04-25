@@ -416,6 +416,17 @@ void inorder_minDiffInBST(TreeNode *root, TreeNode *&pre, int &res) {
     inorder_minDiffInBST(root->right, pre, res);
 }
 
+void increasingBST_func(TreeNode *root, TreeNode *&parentHead, TreeNode *preHead) {
+    if (!root) return;
+    if (root->left) increasingBST_func(root->left, parentHead, preHead);
+    if (root) {
+        TreeNode *tmpNode = new TreeNode(root->val);
+        parentHead->right = tmpNode;
+        parentHead = parentHead->right;
+    }
+    if (root->right) increasingBST_func(root->right, parentHead, preHead);
+}
+
 ///// ================================== HELP CLASS ==================================
 class Djset {
 public:
@@ -3172,6 +3183,13 @@ int DailyCoding::combinationSum4(vector<int> &nums, int target) {
         }
     }
     return dpArr.back();
+}
+
+TreeNode *DailyCoding::increasingBST(TreeNode *root) {
+    TreeNode *dummyNode = new TreeNode(-1);
+    TreeNode *parentHead = dummyNode;
+    increasingBST_func(root, parentHead, dummyNode);
+    return dummyNode->right;
 }
 
 // 703. 数据流中的第 K 大元素
