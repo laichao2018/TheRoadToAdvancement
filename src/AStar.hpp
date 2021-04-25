@@ -34,7 +34,7 @@ private:
     bool isCanReach(const Point *point, const Point *target, bool isIgnoreCorner) const;
 
     // 判断开启/关闭列表中是否包含某点
-    bool isInList(const list<Point *> &list, const Point *point) const;
+    Point *isInList(const list<Point *> &list, const Point *point) const;
 
     // 从开启列表中返回 F 值最小的节点
     Point *getLeastFPoint();
@@ -63,12 +63,20 @@ void AStar::initAStar(vector<vector<int>> &_maze) {
 }
 
 list<Point *> AStar::getPath(Point &startPoint, Point &endPoint, bool isIgnoreCorner) {
-
+    Point *result = findPath(startPoint, endPoint, isIgnoreCorner);
+    list<Point *> path;
+    while (result) {
+        path.push_front(result);
+        result = result->parent;
+    }
+    openList.clear();
+    closeList.clear();
+    return path;
 }
 
 int AStar::calG(Point *startPoint, Point *endPoint) {
     // 检查是否斜走
-    int extraG = (abs(startPoint.x - endPoint.x) + abs(startPoint.y - endPoint.y)) == 1 ? kCost01 : kCost02;
+    int extraG = (abs(startPoint->x - endPoint->x) + abs(startPoint->y - endPoint->y)) == 1 ? kCost01 : kCost02;
     // 如果是初始节点，则其父节点是空
     int parentG = endPoint->parent == nullptr ? 0 : endPoint->parent->G;
     return extraG + parentG;
@@ -96,12 +104,12 @@ Point *AStar::getLeastFPoint() {
     return nullptr;
 }
 
-bool AStar::isInList(const list<Point *> &list, const Point *point) const {
+Point *AStar::isInList(const list<Point *> &list, const Point *point) const {
     // 判断某个节点是否在列表中，这里不能比较指针，因为每次加入列表是新开辟的节点，只能比较坐标
     for (auto &curr:list) {
-        if (curr->x == point->x && curr->y == point->y) return true;
+        if (curr->x == point->x && curr->y == point->y) return curr;
     }
-    return false;
+    return nullptr;
 }
 
 bool AStar::isCanReach(const Point *point, const Point *target, bool isIgnoreCorner) const {
@@ -141,11 +149,24 @@ Point *AStar::findPath(Point &startPoint, Point &endPoint, bool isIgnoreCorner) 
             // 2, 对某一个格子，如果它不在开启列表中，加入到开启列表，设置当前格为其父节点，计算F G H
             if (!isInList(openList, tmpPoint)) {
                 tmpPoint->parent = currPoint;
-                tmpPoint->G=
+                tmpPoint->G = calG(currPoint, tmpPoint);
+                tmpPoint->H = calH(currPoint, tmpPoint);
+                tmpPoint->F = calF(currPoint);
+                openList.push_back(tmpPoint);
+            } else {
+                // 3, 对某一个格子，它在开启列表中，计算G值, 如果比原来的大, 就什么都不做, 否则设置它的父节点为当前点,并更新G和F
+                int tmpG = calG(currPoint, tmpPoint);
+                if (tmpG < tmpPoint->G) {
+                    tmpPoint->parent = currPoint;
+                    tmpPoint->G = tmpG;
+                    tmpPoint->F = calF(tmpPoint);
+                }
             }
+            Point *resPoint = isInList(openList, &endPoint);
+            if (resPoint) return resPoint;
         }
-
     }
+    return nullptr;
 }
 
 #endif
