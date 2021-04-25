@@ -162,6 +162,7 @@ Point *AStar::findPath(Point &startPoint, Point &endPoint, bool isIgnoreCorner) 
                     tmpPoint->F = calF(tmpPoint);
                 }
             }
+            // 结束条件：如果终点被访问到了
             Point *resPoint = isInList(openList, &endPoint);
             if (resPoint) return resPoint;
         }
