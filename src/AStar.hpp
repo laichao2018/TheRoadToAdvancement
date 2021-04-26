@@ -76,6 +76,7 @@ list<Point *> AStar::getPath(Point &startPoint, Point &endPoint, bool isIgnoreCo
 
 int AStar::calG(Point *startPoint, Point *endPoint) {
     // 检查是否斜走
+    // 每次都只能走一步，所以extraG只有kCost01、kCost02两种值
     int extraG = (abs(startPoint->x - endPoint->x) + abs(startPoint->y - endPoint->y)) == 1 ? kCost01 : kCost02;
     // 如果是初始节点，则其父节点是空
     int parentG = endPoint->parent == nullptr ? 0 : endPoint->parent->G;
