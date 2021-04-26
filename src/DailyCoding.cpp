@@ -3192,6 +3192,27 @@ TreeNode *DailyCoding::increasingBST(TreeNode *root) {
     return dummyNode->right;
 }
 
+int DailyCoding::shipWithinDays(vector<int> &weights, int D) {
+    // ***** 二分查找mark，暂时没看懂 *****
+    int left = *max_element(weights.begin(), weights.end()), right = accumulate(weights.begin(), weights.end(), 0);
+    while (left < right) {
+        int mid = (left + right) / 2;
+        // need 为需要运送的天数
+        // cur 为当前这一天已经运送的包裹重量之和
+        int need = 1, curr = 0;
+        for (int &weight:weights) {
+            if (curr + weight > mid) {
+                ++need;
+                curr = 0;
+            }
+            curr += weight;
+        }
+        if (need <= D) right = mid;
+        else left = mid + 1;
+    }
+    return left;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

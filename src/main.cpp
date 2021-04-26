@@ -1,26 +1,12 @@
+#include "DailyCoding.h"
 #include <iostream>
 #include <vector>
-#include "AStar.hpp"
 
 using namespace std;
 
 int main() {
-    vector<vector<int>> maze = {
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1},
-            {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1},
-            {1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1},
-            {1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1},
-            {1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
-            {1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-    };
-    AStar pStar;
-    pStar.initAStar(maze);
-    Point start(1, 1);
-    Point end(6, 10);
-    list<Point *> path = pStar.getPath(start, end, false);
-    for (auto &p:path) cout << p->x << ", " << p->y << endl;
+    vector<int> weights{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    cout << DailyCoding::shipWithinDays(weights, 5) << endl;
 
     return 0;
 }
