@@ -3213,6 +3213,13 @@ int DailyCoding::shipWithinDays(vector<int> &weights, int D) {
     return left;
 }
 
+int DailyCoding::rangeSumBST(TreeNode *root, int low, int high) {
+    if (root == nullptr) return 0;
+    if (root->val < low) return rangeSumBST(root->right, low, high);
+    if (root->val > high) return rangeSumBST(root->left, low, high);
+    return root->val + rangeSumBST(root->left, low, high) + rangeSumBST(root->right, low, high);
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

@@ -170,6 +170,7 @@ public:
     static int combinationSum4(vector<int> &nums, int target);              // 377. 组合总和 Ⅳ
     static TreeNode *increasingBST(TreeNode *root);         // 897. 递增顺序搜索树
     static int shipWithinDays(vector<int> &weights, int D); // 1011. 在 D 天内送达包裹的能力
+    static int rangeSumBST(TreeNode *root, int low, int high);              // 938. 二叉搜索树的范围和
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
