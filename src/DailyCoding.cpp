@@ -3220,6 +3220,17 @@ int DailyCoding::rangeSumBST(TreeNode *root, int low, int high) {
     return root->val + rangeSumBST(root->left, low, high) + rangeSumBST(root->right, low, high);
 }
 
+int DailyCoding::singleNumber(vector<int> &nums) {
+    if (nums.size() == 1) return nums[0];
+    sort(nums.begin(), nums.end());
+    int pos = 0;
+    while (pos < nums.size() - 1) {
+        if (nums[pos] == nums[pos + 1]) pos += 3;
+        else return nums[pos];
+    }
+    return nums.back();
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

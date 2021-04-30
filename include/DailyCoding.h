@@ -171,6 +171,7 @@ public:
     static TreeNode *increasingBST(TreeNode *root);         // 897. 递增顺序搜索树
     static int shipWithinDays(vector<int> &weights, int D); // 1011. 在 D 天内送达包裹的能力
     static int rangeSumBST(TreeNode *root, int low, int high);              // 938. 二叉搜索树的范围和
+    static int singleNumber(vector<int> &nums);             // 137. 只出现一次的数字 II
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
