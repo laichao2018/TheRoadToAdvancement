@@ -18,3 +18,5 @@
 + git merge local
 ####推送到远程仓库
 + git push
+####保存git中的账号密码
++ git config --global credential.helper store
