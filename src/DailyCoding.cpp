@@ -3231,6 +3231,25 @@ int DailyCoding::singleNumber(vector<int> &nums) {
     return nums.back();
 }
 
+int DailyCoding::getImportance(vector<Employee *> employees, int id) {
+    int res = 0;
+    queue<int> toRead;
+    toRead.push(id);    // 用于存储id
+    vector<bool> isVisit(2000, false);  // 题目设置了人数最多2000
+    map<int, Employee *> allData;  // 用于根据id查询员工信息
+    for (auto &init:employees) allData.insert(make_pair(init->id, init));
+    while (!toRead.empty()) {
+        int curr_id = toRead.front();
+        toRead.pop();
+        isVisit[curr_id] = true;
+        res += allData[curr_id]->importance;
+        for (int &i:allData[curr_id]->subordinates) {
+            if (!isVisit[i]) toRead.push(i);
+        }
+    }
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

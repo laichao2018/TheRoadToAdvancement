@@ -9,6 +9,7 @@
 #include "./__OSJudge.h"
 #include "../DataStructure/Tree.h"
 #include "../DataStructure//List.h"
+#include "../DataStructure/LeetCodeDefinition.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -172,6 +173,7 @@ public:
     static int shipWithinDays(vector<int> &weights, int D); // 1011. 在 D 天内送达包裹的能力
     static int rangeSumBST(TreeNode *root, int low, int high);              // 938. 二叉搜索树的范围和
     static int singleNumber(vector<int> &nums);             // 137. 只出现一次的数字 II
+    static int getImportance(vector<Employee *> employees, int id);         // 690. 员工的重要性
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
