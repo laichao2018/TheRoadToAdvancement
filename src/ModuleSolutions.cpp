@@ -2018,6 +2018,13 @@ bool EasySolutions::canConstruct(string ransomNote, string magazine) {
     return true;
 }
 
+int EasySolutions::sumBase(int n, int k) {
+    // 短除法，同样适用于k大于10的情况
+    int res = 0;
+    while (n) res += n % k, n /= k;
+    return res;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
