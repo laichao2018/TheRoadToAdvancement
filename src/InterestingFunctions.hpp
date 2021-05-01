@@ -328,5 +328,28 @@ ostream &operator<<(ostream &_cout, const MyString &_s) {
 // 打印变量地址的方式
 // printf("s2地址：%x\n", (unsigned int)s2.C_str());
 
+// 数组全排列问题(递归实现)
+void printArr(vector<int> &arr) {
+    for (int &i:arr) cout << i;
+    cout << endl;
+}
+
+void swapArr(vector<int> &arr, int i, int j) {
+    int tmpNum = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmpNum;
+}
+
+void permutationArr(vector<int> &arr, int index) {
+    if (index == arr.size()) {  // 全排列结束
+        printArr(arr);      // 自定义操作
+    }
+    for (int i = index; i < arr.size(); i++) {
+        swapArr(arr, index, i);     // 执行数据交换
+        permutationArr(arr, index + 1);    // 执行递归
+        swapArr(arr, index, i);     // 恢复现场
+    }
+}
+
 #endif
 
