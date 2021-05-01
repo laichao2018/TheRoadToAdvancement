@@ -1,4 +1,5 @@
-###---------- Git开发流程 ----------
+###---------- Git开发流程常用命令 ----------
+### 基本操作
 #### 预备流程
 + git checkout master
 + git pull
@@ -20,3 +21,8 @@
 + git push
 ####保存git中的账号密码
 + git config --global credential.helper store
+
+### 删除操作
+#### 1. 删除已经上传到github的文件
++ git rm -r --cached fileName             
++ git commit -m '删除了文件fileName' 
