@@ -131,6 +131,7 @@ public:
     static int firstUniqChar01(string s);               // 387. 字符串中的第一个唯一字符
     static int nearestValidPoint(int x, int y, vector<vector<int>> &points);    // 1779. 找到最近的有相同 X 或 Y 坐标的点
     static bool canConstruct(string ransomNote, string magazine);       // 383. 赎金信
+    static int sumBase(int n, int k);                   // 1837. K 进制表示下的各位数字总和
 };
 
 class MeduimSolutions {
@@ -155,7 +156,7 @@ public:
     static int maximumUniqueSubarray(vector<int> &nums);            // 1695. 删除子数组的最大得分
     static double myPow(double x, int n);               // 50. Pow(x, n) ****
     static int findKthLargest(vector<int> &nums, int k);            // 215. 数组中的第K个最大元素
-    static vector<int> topKFrequent(vector<int> &nums, int k);      // 347. 前 K 个高频元素
+//    static vector<int> topKFrequent(vector<int> &nums, int k);      // 347. 前 K 个高频元素
 };
 
 #endif //THEROADTOADVANCEMENT_MODULESOLUTIONS_H

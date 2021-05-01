@@ -13,6 +13,7 @@
 /// 生成范围随机数
 /// 实现String类的写时拷贝
 /// 数组全排列问题(递归实现)
+/// 给点云数据添加噪声（测试未通过）
 /// =================================================================
 
 #ifndef __INTERESTING_FUNCTIONS__
@@ -188,6 +189,7 @@ T getRangeRand(T _min, T _max) {
     return rand() / (double) RAND_MAX * (_max - _min) + _min;
 }
 
+// 给点云数据添加噪声（测试未通过）
 bool addNoise(string fileName) {
     ifstream plyFile(fileName);
     if (!plyFile.is_open()) return false;
