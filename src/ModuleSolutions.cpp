@@ -2002,10 +2002,20 @@ int EasySolutions::nearestValidPoint(int x, int y, vector<vector<int>> &points) 
                     minIndex = currX + currY;
                     res = i;
                 }
-            } else ;    // do nothing
+            } else;    // do nothing
         }
     }
     return res;
+}
+
+bool EasySolutions::canConstruct(string ransomNote, string magazine) {
+    vector<int> charCounts(26, 0);
+    for (char &c:magazine) charCounts[c - 'a']++;
+    for (char &c:ransomNote) {
+        charCounts[c - 'a']--;
+        if (charCounts[c - 'a'] < 0) return false;
+    }
+    return true;
 }
 
 int MeduimSolutions::minOperations(int n) {

@@ -129,7 +129,8 @@ public:
     static bool isIsomorphic(string s, string t);       // 205. 同构字符串
     static vector<string> findRestaurant(vector<string> &list1, vector<string> &list2);         // 599. 两个列表的最小索引总和
     static int firstUniqChar01(string s);               // 387. 字符串中的第一个唯一字符
-    static int nearestValidPoint(int x, int y, vector<vector<int>> &points);                    // 1779. 找到最近的有相同 X 或 Y 坐标的点
+    static int nearestValidPoint(int x, int y, vector<vector<int>> &points);    // 1779. 找到最近的有相同 X 或 Y 坐标的点
+    static bool canConstruct(string ransomNote, string magazine);       // 383. 赎金信
 };
 
 class MeduimSolutions {
