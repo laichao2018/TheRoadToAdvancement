@@ -3250,6 +3250,25 @@ int DailyCoding::getImportance(vector<Employee *> employees, int id) {
     return res;
 }
 
+int DailyCoding::leastBricks(vector<vector<int>> &wall) {
+    // 穿过的砖块数量加上从边缘经过的砖块数量之和是一个定值，即砖墙的高度。
+    // 遍历该哈希表，找到出现次数最多的砖块边缘，这就是垂线经过的砖块边缘，
+    // 而该垂线经过的砖块数量即为砖墙的高度减去该垂线经过的砖块边缘的数量。
+    int res = 0;
+    unordered_map<int, int> cnt;
+    for (int i = 0; i < wall.size(); i++) {
+        int sum = 0;
+        for (int j = 0; j < wall[i].size() - 1; j++) {
+            sum += wall[i][j];
+            cnt[sum]++; // 统计的是经过边缘
+        }
+    }
+    for (auto &init:cnt) {
+        res = max(res, init.second);
+    }
+    return wall.size() - res;   // 返回经过砖块的数量
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

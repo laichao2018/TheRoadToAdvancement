@@ -144,7 +144,7 @@ public:
     static int longestSubarray(vector<int> &nums, int limit);               // 1438. 绝对差不超过限制的最长连续子数组
     static vector<vector<int>> transpose(vector<vector<int>> &matrix);      // 867. 转置矩阵
     static int evalRPN(vector<string> &tokens);             // 150. 逆波兰表达式求值
-    static void setZeroes(vector<vector<int>> &matrix);     // 矩阵置零
+    static void setZeroes(vector<vector<int>> &matrix);     // 73. 矩阵置零
     static int hammingWeight(uint32_t n);                   // 191. 位1的个数
     static bool find132pattern(vector<int> &nums);          // 456. 132模式
     static ListNode *deleteDuplicates(ListNode *head);      // 82. 删除排序链表中的重复元素 II
@@ -174,6 +174,7 @@ public:
     static int rangeSumBST(TreeNode *root, int low, int high);              // 938. 二叉搜索树的范围和
     static int singleNumber(vector<int> &nums);             // 137. 只出现一次的数字 II
     static int getImportance(vector<Employee *> employees, int id);         // 690. 员工的重要性
+    static int leastBricks(vector<vector<int>> &wall);      // 554. 砖墙
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
