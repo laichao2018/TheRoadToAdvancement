@@ -175,6 +175,7 @@ public:
     static int singleNumber(vector<int> &nums);             // 137. 只出现一次的数字 II
     static int getImportance(vector<Employee *> employees, int id);         // 690. 员工的重要性
     static int leastBricks(vector<vector<int>> &wall);      // 554. 砖墙
+    static int reverse(int x);      // 7. 整数反转
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
