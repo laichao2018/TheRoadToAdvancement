@@ -3269,6 +3269,18 @@ int DailyCoding::leastBricks(vector<vector<int>> &wall) {
     return wall.size() - res;   // 返回经过砖块的数量
 }
 
+int DailyCoding::reverse(int x) {
+    int res = 0;
+    while (x != 0) {
+        // INT_MIN 与 INT_MAX 默认是32位
+        if (res < INT_MIN / 10 || res > INT_MAX / 10) return 0;
+        int digit = x % 10;
+        x /= 10;
+        res = res * 10 + digit;
+    }
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
