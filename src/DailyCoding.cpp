@@ -1115,7 +1115,8 @@ string DailyCoding::shortestPalindrome(string s) {
         }
     }
     string add = (best == n - 1 ? "" : s.substr(best + 1, n));
-    reverse(add.begin(), add.end());
+    std::reverse(add.begin(), add.end());
+
     return add + s;
 }
 
@@ -1126,14 +1127,14 @@ string DailyCoding::reverseWords(string s) {
         if (s[i] != ' ') {
             tmp += s[i];
         } else {
-            reverse(tmp.begin(), tmp.end());
+            std::reverse(tmp.begin(), tmp.end());
             resStr += tmp;
             resStr += ' ';
             tmp = "";
         }
     }
     if (!tmp.empty()) {
-        reverse(tmp.begin(), tmp.end());
+        std::reverse(tmp.begin(), tmp.end());
         resStr += tmp;
     }
     return resStr;
@@ -3269,7 +3270,7 @@ int DailyCoding::leastBricks(vector<vector<int>> &wall) {
     return wall.size() - res;   // 返回经过砖块的数量
 }
 
-int DailyCoding::reverse(int x) {
+int DailyCoding::reverseInt(int x) {
     int res = 0;
     while (x != 0) {
         // INT_MIN 与 INT_MAX 默认是32位

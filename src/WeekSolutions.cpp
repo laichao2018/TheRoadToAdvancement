@@ -102,8 +102,8 @@ bool WeekSolutions::splitString(string s) {
                     flag = false;
                     break;
                 }
-                pre = x;    // 可以分割
-                x = s[j + 1] - '0';
+                pre = curr;    // 可以分割
+                curr = s[j + 1] - '0';
             } else {
                 curr = curr * 10 + s[j + 1] - '0';
             }
