@@ -3281,6 +3281,19 @@ int DailyCoding::reverse(int x) {
     return res;
 }
 
+vector<int> DailyCoding::decode(vector<int> &encoded, int first) {
+    vector<int> res(encoded.size() + 1);
+    res[0] = first;
+    for (int i = 1; i < res.size(); i++) res[i] = encoded[i - 1] ^ res[i - 1];
+    return res;
+}
+
+int DailyCoding::xorOperation(int n, int start) {
+    int res = 0;
+    for (int i = 0; i < n; i++) res ^= (start + 2 * i);
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

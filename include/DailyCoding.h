@@ -176,6 +176,8 @@ public:
     static int getImportance(vector<Employee *> employees, int id);         // 690. 员工的重要性
     static int leastBricks(vector<vector<int>> &wall);      // 554. 砖墙
     static int reverse(int x);      // 7. 整数反转
+    static vector<int> decode(vector<int> &encoded, int first);             // 1720. 解码异或后的数组
+    static int xorOperation(int n, int start);              // 1486. 数组异或操作
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
