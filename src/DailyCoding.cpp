@@ -427,6 +427,22 @@ void increasingBST_func(TreeNode *root, TreeNode *&parentHead, TreeNode *preHead
     if (root->right) increasingBST_func(root->right, parentHead, preHead);
 }
 
+bool canMake_func(vector<int> &bloomDay, int days, int m, int k) {
+    int bouquets = 0;
+    int flowers = 0;
+    int lengths = bloomDay.size();
+    for (int i = 0; i < lengths && bouquets < m; i++) {
+        if (bloomDay[i] <= days) {  // 花开时间小于已经经过的时间，花已开
+            flowers++;
+            if (flowers == k) {
+                bouquets++;
+                flowers = 0;
+            }
+        } else flowers = 0; // 要求相邻
+    }
+    return bouquets >= m;
+}
+
 ///// ================================== HELP CLASS ==================================
 class Djset {
 public:
@@ -3293,6 +3309,19 @@ int DailyCoding::xorOperation(int n, int start) {
     int res = 0;
     for (int i = 0; i < n; i++) res ^= (start + 2 * i);
     return res;
+}
+
+int DailyCoding::minDays(vector<int> &bloomDay, int m, int k) {
+    if (m * k > bloomDay.size()) return -1;
+    int maxDay = *max_element(bloomDay.begin(), bloomDay.end());
+    int minDay = *min_element(bloomDay.begin(), bloomDay.end());
+    while (minDay < maxDay) {
+        int days = (maxDay - minDay) / 2 + minDay;
+        if (canMake_func(bloomDay, days, m, k)) {
+            maxDay = days;  // 更新上限，时间可能更短
+        } else minDay = days + 1;   // 更新下限，时间可能需要更长
+    }
+    return minDay;
 }
 
 // 703. 数据流中的第 K 大元素

@@ -178,6 +178,7 @@ public:
     static int reverseInt(int x);      // 7. 整数反转
     static vector<int> decode(vector<int> &encoded, int first);             // 1720. 解码异或后的数组
     static int xorOperation(int n, int start);              // 1486. 数组异或操作
+    static int minDays(vector<int> &bloomDay, int m, int k);                // 1482. 制作 m 束花所需的最少天数
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
