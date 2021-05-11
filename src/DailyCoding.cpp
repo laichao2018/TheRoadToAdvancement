@@ -443,6 +443,13 @@ bool canMake_func(vector<int> &bloomDay, int days, int m, int k) {
     return bouquets >= m;
 }
 
+void traverseTree_func(TreeNode *&root, vector<int> &leafs) {
+    if (root == nullptr) return;
+    traverseTree_func(root->left, leafs);
+    if (root->left == nullptr && root->right == nullptr) leafs.push_back(root->val);
+    traverseTree_func(root->right, leafs);
+}
+
 ///// ================================== HELP CLASS ==================================
 class Djset {
 public:
@@ -3322,6 +3329,31 @@ int DailyCoding::minDays(vector<int> &bloomDay, int m, int k) {
         } else minDay = days + 1;   // 更新下限，时间可能需要更长
     }
     return minDay;
+}
+
+bool DailyCoding::leafSimilar(TreeNode *root1, TreeNode *root2) {
+    vector<int> leafs01, leafs02;
+    traverseTree_func(root1, leafs01);
+    traverseTree_func(root2, leafs02);
+    return leafs01 == leafs02;
+}
+
+vector<int> DailyCoding::decode(vector<int> &encoded) {
+    // ================== **** 位运算 **** ===================
+    int total = 0;
+    for (int i = 1; i < encoded.size() + 1; i++) {
+        total ^= i;
+    }
+    int odd = 0;
+    for (int i = 1; i < encoded.size() - 1; i += 2) {
+        odd ^= encoded[i];
+    }
+    vector<int> perm(encoded.size() + 1);
+    perm[0] = total ^ odd;
+    for (int i = 0; i < encoded.size() - 1; i++) {
+        perm[i + 1] = perm[i] ^ encoded[i];
+    }
+    return perm;
 }
 
 // 703. 数据流中的第 K 大元素

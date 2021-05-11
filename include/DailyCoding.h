@@ -179,6 +179,8 @@ public:
     static vector<int> decode(vector<int> &encoded, int first);             // 1720. 解码异或后的数组
     static int xorOperation(int n, int start);              // 1486. 数组异或操作
     static int minDays(vector<int> &bloomDay, int m, int k);                // 1482. 制作 m 束花所需的最少天数
+    static bool leafSimilar(TreeNode *root1, TreeNode *root2);              // 872. 叶子相似的树
+    static vector<int> decode(vector<int> &encoded);        // 1734. 解码异或后的排列
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
