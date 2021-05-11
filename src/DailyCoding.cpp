@@ -3343,7 +3343,7 @@ vector<int> DailyCoding::decode(vector<int> &encoded) {
     int n = encoded.size() + 1;
     int total = 0;
     for (int i = 1; i <= n; i++) {
-        total ^= 1;
+        total ^= i;
     }
     int odd = 0;
     for (int i = 1; i < n - 1; i += 2) {
