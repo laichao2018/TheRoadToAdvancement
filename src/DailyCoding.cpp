@@ -3357,6 +3357,18 @@ vector<int> DailyCoding::decode(vector<int> &encoded) {
     return perm;
 }
 
+vector<int> DailyCoding::xorQueries(vector<int> &arr, vector<vector<int>> &queries) {
+    // ================== **** 位运算 **** ===================
+    vector<int> Xors(arr.size() + 1);
+    // 缓存部分结果
+    for (int i = 0; i < arr.size(); i++)　Xors[i + 1] = Xors[i] ^ arr[i];
+    vector<int> res(queries.size());
+    for (int i = 0; i < queries.size(); i++) {
+        res[i] = Xors[queries[i][0]] ^ Xors[queries[i][1] + 1];
+    }
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

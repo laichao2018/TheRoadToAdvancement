@@ -181,6 +181,7 @@ public:
     static int minDays(vector<int> &bloomDay, int m, int k);                // 1482. 制作 m 束花所需的最少天数
     static bool leafSimilar(TreeNode *root1, TreeNode *root2);              // 872. 叶子相似的树
     static vector<int> decode(vector<int> &encoded);        // 1734. 解码异或后的排列
+    static vector<int> xorQueries(vector<int> &arr, vector<vector<int>> &queries);      // 1310. 子数组异或查询
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

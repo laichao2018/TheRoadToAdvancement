@@ -1,12 +1,12 @@
 #include "WeekSolutions.h"
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
 int main() {
-    vector<int> weights{1, 2, 3};
-    WeekSolutions::replaceDigits("hello");
+    cout << (2 ^ 10) << endl;
 
     return 0;
 }
