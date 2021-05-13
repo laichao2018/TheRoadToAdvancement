@@ -25,6 +25,7 @@ string gDic[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wx
 unordered_map<string, priority_queue<string, vector<string>, std::greater<string>>> gvfindItine;
 vector<string> gSTK;
 vector<vector<int>> gWinnerDPArr(21, vector<int>(21, 0));
+const int MODULO = 1000000007;
 
 // 通用
 vector<vector<int>> vvRes;
@@ -3364,9 +3365,30 @@ vector<int> DailyCoding::xorQueries(vector<int> &arr, vector<vector<int>> &queri
     for (int i = 0; i < arr.size(); i++)　Xors[i + 1] = Xors[i] ^ arr[i];
     vector<int> res(queries.size());
     for (int i = 0; i < queries.size(); i++) {
+        // 使用前缀和
         res[i] = Xors[queries[i][0]] ^ Xors[queries[i][1] + 1];
     }
     return res;
+}
+
+int DailyCoding::numWays(int steps, int arrLen) {
+    int maxColumn = min(arrLen - 1, steps);
+    vector<int> dpArr(maxColumn + 1);
+    dpArr[0] = 1;
+    for (int i = 1; i <= steps; i++) {
+        vector<int> dpNext(maxColumn + 1);
+        for (int j = 0; j <= maxColumn; j++) {
+            dpNext[j] = dpArr[j];
+            if (j - 1 >= 0) {
+                dpNext[j] = (dpNext[j] + dpArr[j - 1]) % MODULO;
+            }
+            if (j + 1 <= maxColumn) {
+                dpNext[j] = (dpNext[j] + dpArr[j + 1]) % MODULO;
+            }
+        }
+        dpArr = dpNext;
+    }
+    return dpArr[0];
 }
 
 // 703. 数据流中的第 K 大元素

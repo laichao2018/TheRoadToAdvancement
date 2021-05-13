@@ -182,6 +182,7 @@ public:
     static bool leafSimilar(TreeNode *root1, TreeNode *root2);              // 872. 叶子相似的树
     static vector<int> decode(vector<int> &encoded);        // 1734. 解码异或后的排列
     static vector<int> xorQueries(vector<int> &arr, vector<vector<int>> &queries);      // 1310. 子数组异或查询
+    static int numWays(int steps, int arrLen);              // 1269. 停在原地的方案数
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
