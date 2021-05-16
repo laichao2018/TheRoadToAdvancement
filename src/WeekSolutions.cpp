@@ -15,6 +15,18 @@ struct Query {
     }
 };
 
+int getString(string &a, string &b) {
+    int x = 0, y = 0;
+    for (int i = 0; i < a.size(); i++) {
+        if (a[i] != b[i]) {
+            if (a[i] == '0') x++;
+            else y++;
+        }
+    }
+    if (x != y) return INT_MAX;
+    return x;
+}
+
 ///// =============================== CLASS Definition ===============================
 class SeatManager {
 private:
@@ -137,5 +149,33 @@ int WeekSolutions::getMinSwaps(string num, int k) {
             if (c[i] > c[j]) res++;
         }
     }
+    return res;
+}
+
+int WeekSolutions::subsetXORSum(vector<int> &nums) {
+    //********** 二进制枚举 **********
+    // 用一个长度为n的二进制数来表示所有的子集，每一位对应nums每一位取还是不取（二进制1和0）
+    // 比如：1010对应的就是nums数组的第一个数和第三个数组成的子集。
+    int n = nums.size();
+    int res = 0;
+    for (int i = 0; i < 1 << n; i++) {  // 总共有(1<<n)种子集情况
+        int s = 0;
+        for (int j = 0; j < n; j++) {
+            if (i >> j & 1) {   // 如果当前位为1，表示当前数被选入子集
+                s ^= nums[j];
+            }
+        }
+        res += s;
+    }
+    return res;
+}
+
+int WeekSolutions::minSwaps(string s) {
+    int n = s.size();
+    string a(n, '0'), b(n, '0');
+    for (int i = 1; i < a.size(); i += 2) a[i] = '1';
+    for (int i = 0; i < b.size(); i += 2) b[i] = '1';
+    int res = min(getString(s, a), getString(s, b));
+    if (res == INT_MAX) return -1;
     return res;
 }

@@ -24,6 +24,10 @@ public:
     static int getMinDistance(vector<int> &nums, int target, int start);            // 1848. 到目标元素的最小距离
     static bool splitString(string s);          // 1849. 将字符串拆分为递减的连续值
     static int getMinSwaps(string num, int k);  // 1850. 邻位交换的最小次数
+
+    //=================================== No.241 - 周塞 ===================================
+    static int subsetXORSum(vector<int> &nums);     // 5759. 找出所有子集的异或总和再求和
+    static int minSwaps(string s);              // 5760. 构成交替字符串需要的最小交换次数
 };
 
 // No.51 - 双周赛
