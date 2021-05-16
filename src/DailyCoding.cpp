@@ -26,6 +26,7 @@ unordered_map<string, priority_queue<string, vector<string>, std::greater<string
 vector<string> gSTK;
 vector<vector<int>> gWinnerDPArr(21, vector<int>(21, 0));
 const int MODULO = 1000000007;
+static constexpr int HIGH_BIT = 30; // 最高位的二进制位编号为 30
 
 // 通用
 vector<vector<int>> vvRes;
@@ -3362,7 +3363,7 @@ vector<int> DailyCoding::xorQueries(vector<int> &arr, vector<vector<int>> &queri
     // ================== **** 位运算 **** ===================
     vector<int> Xors(arr.size() + 1);
     // 缓存部分结果
-    for (int i = 0; i < arr.size(); i++)　Xors[i + 1] = Xors[i] ^ arr[i];
+    for (int i = 0; i < arr.size(); i++) Xors[i + 1] = Xors[i] ^ arr[i];
     vector<int> res(queries.size());
     for (int i = 0; i < queries.size(); i++) {
         // 使用前缀和
@@ -3389,6 +3390,37 @@ int DailyCoding::numWays(int steps, int arrLen) {
         dpArr = dpNext;
     }
     return dpArr[0];
+}
+
+int DailyCoding::findMaximumXOR(vector<int> &nums) {
+    // ******* 哈希表法 *******
+    int res = 0;
+    for (int i = HIGH_BIT; i >= 0; i--) {
+        unordered_set<int> seen;
+        for (int &num:nums) {
+            // 如果只想保留从最高位开始到第 i 个二进制位为止的部分
+            // 只需将其右移 i 位
+            seen.insert(num >> i);
+        }
+        // 目前 res 包含从最高位开始到第 i+1 个二进制位为止的部分
+        // 我们将 res 的第 i 个二进制位置为 1，即为 res = res*2+1
+        int next = res * 2 + 1;
+        bool found = false;
+        // 枚举
+        for (int &num:nums) {
+            if (seen.count(next ^ (num >> i))) {
+                found = true;
+                break;
+            }
+        }
+        if (found) res = next;
+        else {
+            // 如果没有找到满足等式的 a_i 和 a_j，那么 res 的第 i 个二进制位只能为 0
+            // 即为 res = res*2
+            res = next - 1;
+        }
+    }
+    return res;
 }
 
 // 703. 数据流中的第 K 大元素
