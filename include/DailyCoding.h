@@ -184,6 +184,7 @@ public:
     static vector<int> xorQueries(vector<int> &arr, vector<vector<int>> &queries);      // 1310. 子数组异或查询
     static int numWays(int steps, int arrLen);              // 1269. 停在原地的方案数
     static int findMaximumXOR(vector<int> &nums);           // 421. 数组中两个数的最大异或值
+    static bool isCousins(TreeNode *root, int x, int y);    // 993. 二叉树的堂兄弟节点
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

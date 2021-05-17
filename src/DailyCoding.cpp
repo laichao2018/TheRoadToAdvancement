@@ -27,6 +27,7 @@ vector<string> gSTK;
 vector<vector<int>> gWinnerDPArr(21, vector<int>(21, 0));
 const int MODULO = 1000000007;
 static constexpr int HIGH_BIT = 30; // 最高位的二进制位编号为 30
+using pTT = pair<TreeNode *, TreeNode *>;
 
 // 通用
 vector<vector<int>> vvRes;
@@ -3421,6 +3422,26 @@ int DailyCoding::findMaximumXOR(vector<int> &nums) {
         }
     }
     return res;
+}
+
+bool DailyCoding::isCousins(TreeNode *root, int x, int y) {
+    queue<pTT> q;
+    q.push({root, nullptr});
+    while (!q.empty()) {
+        int n = q.size();
+        vector<TreeNode *> rec_parents;
+        for (int i = 0; i < n; i++) {
+            auto[curr, parent]=q.front();
+            q.pop();
+            if (curr->val == x || curr->val == y) rec_parents.push_back(parent);
+            if (curr->left) q.push({curr->left, curr});
+            if (curr->right) q.push({curr->right, curr});
+        }
+        if (rec_parents.empty()) continue;
+        if (rec_parents.size() == 1) return false;
+        if (rec_parents.size() == 2) return rec_parents[0] != rec_parents[1];
+    }
+    return false;
 }
 
 // 703. 数据流中的第 K 大元素
