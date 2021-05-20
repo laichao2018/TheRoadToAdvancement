@@ -3444,6 +3444,25 @@ bool DailyCoding::isCousins(TreeNode *root, int x, int y) {
     return false;
 }
 
+vector<string> DailyCoding::topKFrequent(vector<string> &words, int k) {
+    unordered_map<string, int> cnt;
+    for (string &s:words) cnt[s]++;
+    auto cmp = [](const pair<string, int> &a, const pair<string, int> &b) {
+        return a.second == b.second ? a.first < b.first : a.second > b.second;
+    };
+    priority_queue<pair<string, int>, vector<pair<string, int>>, decltype(cmp)> que(cmp);
+    for (auto &it:cnt) {
+        que.emplace(it);
+        if (que.size() > k) que.pop();
+    }
+    vector<string> res(k);
+    for (int i = k - 1; i >= 0; i--) {
+        res[i] = que.top().first;
+        que.pop();
+    }
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:
