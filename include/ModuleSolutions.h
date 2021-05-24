@@ -139,6 +139,11 @@ public:
     static string tree2str(TreeNode *root);             // 606. 根据二叉树创建字符串
     static vector<string> findRelativeRanks(vector<int> &score);        // 506. 相对名次
     static int dayOfYear(string date);                  // 1154. 一年中的第几天
+    static bool isAlienSorted(vector<string> &words, string order);     // 953. 验证外星语词典
+    static bool isFlipedString(string s1, string s2);   // 面试题 01.09. 字符串轮转
+    static bool canPermutePalindrome(string s);         // 面试题 01.04. 回文排列
+    static int minMoves(vector<int> &nums);             // 453. 最小操作次数使数组元素相等
+    static int findString(vector<string> &words, string s);             // 面试题 10.05. 稀疏数组搜索
 };
 
 class MeduimSolutions {

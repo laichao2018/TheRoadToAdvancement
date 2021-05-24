@@ -2112,6 +2112,61 @@ int EasySolutions::dayOfYear(string date) {
     return acumu[month - 1] + day + flag;
 }
 
+bool EasySolutions::isAlienSorted(vector<string> &words, string order) {
+    unordered_map<char, int> char_with_index;
+    for (int i = 0; i < order.length(); i++) char_with_index[order[i]] = i;
+    for (string &s:words) {
+        for (int i = 0; i < s.length(); i++) {
+            int sub = char_with_index[s[i]];
+            s[i] = (char) ('a' + sub);
+        }
+    }
+    for (int i = 0; i < words.size() - 1; i++) {
+        string curr_str = words[i];
+        string next_str = words[i + 1];
+        if (curr_str > next_str) return false;
+    }
+    return true;
+}
+
+bool EasySolutions::isFlipedString(string s1, string s2) {
+    return (s1.length() == s2.length()) && (s1 + s1).find(s2) != -1;
+}
+
+bool EasySolutions::canPermutePalindrome(string s) {
+    unordered_map<char, int> char_with_counts;
+    for (char c:s) char_with_counts[c]++;
+    int flag = 0;
+    for (auto &init:char_with_counts)
+        if (init.second % 2 != 0) flag++;
+    return flag < 2;
+}
+
+int EasySolutions::minMoves(vector<int> &nums) {
+    if (nums.size() < 2) return 0;
+    int min_num = *min_element(nums.begin(), nums.end());
+    int res = 0;
+    for (int &i:nums) {
+        if (i != min_num) res += (i - min_num);
+    }
+    return res;
+}
+
+int EasySolutions::findString(vector<string> &words, string s) {
+    int left = 0, right = words.size() - 1;
+    int mid = 0;
+    while (left <= right) {
+        mid = left + (right - left) / 2;
+        if (words[mid] == "") {
+            if (words[right] == s) return right;
+            right -= 1;
+        } else if (words[mid] == s) return mid;
+        else if (words[mid] <= s) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {

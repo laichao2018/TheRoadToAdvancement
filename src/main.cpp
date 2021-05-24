@@ -7,7 +7,9 @@
 using namespace std;
 
 int main() {
-    cout << EasySolutions::dayOfYear("2019-01-09");
+    vector<string> words{"hello", "leetcode"};
+    string order = "hlabcdefgijkmnopqrstuvwxyz";
+    cout << EasySolutions::isAlienSorted(words, order);
 
     return 0;
 }
