@@ -6,6 +6,7 @@
 #define THEROADTOADVANCEMENT_DYNAMICPROGRAMMING_H
 
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -19,6 +20,7 @@ public:
     // Other DP Solutions
     static int minPathSum(vector<vector<int>> &grid);   // 64. 最小路径和
     static int lengthOfLIS(vector<int> &nums);          // 300. 最长递增子序列
+    static int strangePrinter(string s);                // 664. 奇怪的打印机
 };
 
 #endif //THEROADTOADVANCEMENT_DYNAMICPROGRAMMING_H

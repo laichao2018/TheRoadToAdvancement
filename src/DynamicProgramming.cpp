@@ -73,3 +73,19 @@ int DPSolutions::maxSubArray(vector<int> &nums) {
     }
     return max_sum;
 }
+
+int DPSolutions::strangePrinter(string s) {
+    vector<vector<int>> dpArr(s.length(), vector<int>(s.length()));
+    for (int i = s.length() - 1; i >= 0; i--) {
+        dpArr[i][i] = 1;
+        for (int j = i + 1; j < s.length(); j++) {
+            if (s[i] == s[j]) dpArr[i][j] = dpArr[i][j - 1];
+            else {
+                int minN = INT_MAX;
+                for (int k = i; k < j; k++) minN = min(minN, dpArr[i][k] + dpArr[k + 1][j]);
+                dpArr[i][j] = minN;
+            }
+        }
+    }
+    return dpArr[0][s.length() - 1];
+}
