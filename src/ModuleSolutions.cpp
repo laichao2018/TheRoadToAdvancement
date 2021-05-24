@@ -16,6 +16,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <deque>
+#include <string>
 
 using namespace std;
 
@@ -217,6 +218,10 @@ int getManhattanDis(int cx, int cy, int dx, int dy) {
     return abs(cx - dx) + abs(cy - dy);
 }
 
+// 判断给定的字符否是字母（含大小写）
+inline bool isLetter(char c) {
+    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+}
 ///// ================================== CLASS FUNC ==================================
 
 int EasySolutions::cakeNumber(int n) {
@@ -667,25 +672,25 @@ int EasySolutions::sumRootToLeaf(TreeNode *root) {
 }
 
 vector<vector<int>> EasySolutions::floodFill(vector<vector<int>> &image, int sr, int sc, int newColor) {
-    vector<int> dx{0, 0, 1, -1};
-    vector<int> dy{1, -1, 0, 0};
-    int currColor = image[sr][sc];
-    if (currColor == newColor) {
-        return image;
-    }
-    int n = image.size(), m = image[0].size();
-    queue<pair<int, int>> que;
-    que.emplace(sr, sc);
-    image[sr][sc] = newColor;
-    while (!que.empty()) {
-        int x = que.front().first, y = que.front().second;
-        que.pop();
+    vector<vector<bool>> isVisit(image.size(), vector<bool>(image[0].size(), false));
+    vector<int> dx{0, 0, -1, 1};
+    vector<int> dy{-1, 1, 0, 0};
+    int pre_color = image[sr][sc];
+    queue<pair<int, int>> qCoords;
+    qCoords.push(make_pair(sr, sc));
+    while (!qCoords.empty()) {
+        int x = qCoords.front().first;
+        int y = qCoords.front().second;
+        image[x][y] = newColor;
+        isVisit[x][y] = true;
+        qCoords.pop();
         for (int i = 0; i < 4; i++) {
-            int mx = x + dx[i], my = y + dy[i];
-            if (mx >= 0 && mx < n && my >= 0 && my < m && image[mx][my] == currColor) {
-                que.emplace(mx, my);
-                image[mx][my] = newColor;
-            }
+            int move_x = x + dx[i];
+            int move_y = y + dy[i];
+            if (move_x < 0 || move_x > image.size() - 1 || move_y < 0 || move_y > image[0].size() - 1 ||
+                isVisit[move_x][move_y])
+                continue;
+            if (image[move_x][move_y] == pre_color) qCoords.push(make_pair(move_x, move_y));
         }
     }
     return image;
@@ -2023,6 +2028,88 @@ int EasySolutions::sumBase(int n, int k) {
     int res = 0;
     while (n) res += n % k, n /= k;
     return res;
+}
+
+string EasySolutions::reverseStr(string s, int k) {
+    for (int i = 0; i < s.length(); i += (2 * k)) {
+        if (i + k < s.size()) {
+            reverse(s.begin() + i, s.begin() + i + k);
+            continue;
+        }
+        reverse(s.begin() + i, s.end());
+    }
+    return s;
+}
+
+vector<int> EasySolutions::mostVisited(int n, vector<int> &rounds) {
+    // ================ 模拟。。。 ================
+    vector<int> res;
+    int start = *rounds.begin(), end = rounds.back();
+    if (start <= end)
+        for (int i = start; i <= end; i++) res.push_back(i);
+    else {
+        for (int i = 1; i <= end; i++) res.push_back(i);
+        for (int i = start; i <= n; i++) res.push_back(i);
+    }
+    return res;
+}
+
+string EasySolutions::reverseOnlyLetters(string s) {
+    int start = 0, end = s.size() - 1;
+    while (start < end) {
+        while (start < end && !isLetter(s[start])) ++start;
+        while (start < end && !isLetter(s[end])) --end;
+        swap(s[start], s[end]);
+        ++start, --end;
+    }
+    return s;
+}
+
+int EasySolutions::search(vector<int> &nums, int target) {
+    // ***** 二分查找的模板 *****
+    int left = 0, right = nums.size() - 1;
+    int mid = 0;
+    while (left <= right) {
+        mid = left + (right - left) / 2;
+        if (nums[mid] == target) return mid;
+        if (nums[mid] > target) right = mid - 1;
+        else left = mid + 1;
+    }
+    return -1;
+}
+
+string EasySolutions::tree2str(TreeNode *root) {
+    if (!root) return "";
+    if (!root->left && !root->right) return to_string(root->val) + "";
+    if (!root->right) return to_string(root->val) + "(" + tree2str(root->left) + ")";
+    return to_string(root->val) + "(" + tree2str(root->left) + ")(" + tree2str(root->right) + ")";
+}
+
+vector<string> EasySolutions::findRelativeRanks(vector<int> &score) {
+    vector<pair<int, int>> num_with_pos;
+    for (int i = 0; i < score.size(); i++) num_with_pos.push_back(make_pair(score[i], i));
+    sort(num_with_pos.begin(), num_with_pos.end(),
+         [](pair<int, int> &a, pair<int, int> &b) { return a.first < b.first; });
+    vector<string> res(score.size());
+    for (int i = 0; i < num_with_pos.size(); i++) {
+        if (i == 0) res[num_with_pos[i].second] = "Gold Medal";
+        else if (i == 1) res[num_with_pos[i].second] = "Silver Medal";
+        else if (i == 2) res[num_with_pos[i].second] = "Bronze Medal";
+        else res[num_with_pos[i].second] = to_string(i + 1);
+    }
+    return res;
+}
+
+int EasySolutions::dayOfYear(string date) {
+    int acumu[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
+    int year = 0;
+    for (int i = 0; i < 4; i++) year = year * 10 + (date[i] - '0');
+    // 判断是否为闰年
+    bool flag = (year % 4 == 0) ? ((year % 100 == 0) ? (year % 400 == 0) : true) : false;
+    int month = (date[5] - '0') * 10 + (date[6] - '0');
+    int day = (date[8] - '0') * 10 + (date[9] - '0');
+    if (month < 3) return acumu[month - 1] + day;
+    return acumu[month - 1] + day + flag;
 }
 
 int MeduimSolutions::minOperations(int n) {

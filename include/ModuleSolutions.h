@@ -132,6 +132,13 @@ public:
     static int nearestValidPoint(int x, int y, vector<vector<int>> &points);    // 1779. 找到最近的有相同 X 或 Y 坐标的点
     static bool canConstruct(string ransomNote, string magazine);       // 383. 赎金信
     static int sumBase(int n, int k);                   // 1837. K 进制表示下的各位数字总和
+    static string reverseStr(string s, int k);          // 541. 反转字符串 II
+    static vector<int> mostVisited(int n, vector<int> &rounds);         // 1560. 圆形赛道上经过次数最多的扇区
+    static string reverseOnlyLetters(string s);         // 917. 仅仅反转字母
+    static int search(vector<int> &nums, int target);   // 704. 二分查找(模板)
+    static string tree2str(TreeNode *root);             // 606. 根据二叉树创建字符串
+    static vector<string> findRelativeRanks(vector<int> &score);        // 506. 相对名次
+    static int dayOfYear(string date);                  // 1154. 一年中的第几天
 };
 
 class MeduimSolutions {
