@@ -2167,6 +2167,22 @@ int EasySolutions::findString(vector<string> &words, string s) {
     return -1;
 }
 
+vector<int> EasySolutions::constructRectangle(int area) {
+    int max_len = sqrt(area);
+    if (max_len * max_len == area) return {max_len, max_len};
+    vector<int> res(2);
+    for (int len = max_len; len > 1; len--) {
+        if (area % len == 0) {
+            int wid = area / len;
+            if (wid > len) {
+                res[0] = wid, res[1] = len;
+            } else res[0] = len, res[1] = wid;
+            return res;
+        }
+    }
+    return {1, area};
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {

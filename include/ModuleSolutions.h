@@ -144,6 +144,7 @@ public:
     static bool canPermutePalindrome(string s);         // 面试题 01.04. 回文排列
     static int minMoves(vector<int> &nums);             // 453. 最小操作次数使数组元素相等
     static int findString(vector<string> &words, string s);             // 面试题 10.05. 稀疏数组搜索
+    static vector<int> constructRectangle(int area);    // 492. 构造矩形
 };
 
 class MeduimSolutions {
