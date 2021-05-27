@@ -145,6 +145,8 @@ public:
     static int minMoves(vector<int> &nums);             // 453. 最小操作次数使数组元素相等
     static int findString(vector<string> &words, string s);             // 面试题 10.05. 稀疏数组搜索
     static vector<int> constructRectangle(int area);    // 492. 构造矩形
+    static int maxScore(string s);          // 1422. 分割字符串的最大得分
+    static bool isPathCrossing(string path);            // 1496. 判断路径是否相交
 };
 
 class MeduimSolutions {

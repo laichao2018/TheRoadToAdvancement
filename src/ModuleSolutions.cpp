@@ -2183,6 +2183,34 @@ vector<int> EasySolutions::constructRectangle(int area) {
     return {1, area};
 }
 
+int EasySolutions::maxScore(string s) {
+    int res = 0;
+    for (int i = 1; i < s.length(); i++) {
+        int curr = count(s.begin(), s.begin() + i, '0') + count(s.begin() + i, s.end(), '1');
+        res = max(res, curr);
+    }
+    return res;
+}
+
+bool EasySolutions::isPathCrossing(string path) {
+    unordered_set<int> hashData;
+    const int hash = 10000;
+    // 记得先把原点加上
+    hashData.insert(0);
+    int x = 0, y = 0;
+    for (int i = 0; i < path.length(); i++) {
+        if (path[i] == 'N') y--;
+        else if (path[i] == 'S') y++;
+        else if (path[i] == 'E') x++;
+        else x--;
+
+        int hash_value = x * hash + y;
+        if (hashData.count(hash_value)) return true;
+        hashData.insert(hash_value);
+    }
+    return false;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {

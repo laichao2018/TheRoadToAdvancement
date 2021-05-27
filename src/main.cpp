@@ -7,6 +7,7 @@
 using namespace std;
 
 int main() {
+    cout << EasySolutions::maxScore("01001");
 
     return 0;
 }
