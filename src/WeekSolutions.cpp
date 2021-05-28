@@ -5,6 +5,7 @@
 #include "WeekSolutions.h"
 #include <algorithm>
 #include <set>
+#include <cmath>
 
 ///// ================================== HELP CLASS ==================================
 struct Query {
@@ -178,4 +179,36 @@ int WeekSolutions::minSwaps(string s) {
     int res = min(getString(s, a), getString(s, b));
     if (res == INT_MAX) return -1;
     return res;
+}
+
+bool WeekSolutions::checkZeroOnes(string s) {
+    int one = 0, zero = 0;
+    for (int i = 0, x = 0, y = 0; i < s.length(); i++) {
+        if (s[i] == '0') y++, x = 0;
+        else x++, y = 0;
+        one = max(x, one);
+        zero = max(y, zero);
+    }
+    return one > zero;
+}
+
+int WeekSolutions::minSpeedOnTime(vector<int> &dist, double hour) {
+    int n = dist.size();
+    long long hr = llround(hour * 100); // 将 hour 乘 100 以转为整数
+    // 时间必须大于路段数减1
+    if (hr <= (n - 1) * 100) return -1;
+    // 使用二分算法
+    int l = 1, r = 1e7;
+    while (l < r) {
+        int mid = l + (r - l) / 2;
+        long long t = 0;    // 判断当前时速是否满足时限
+        for (int i = 0; i < n - 1; i++) {
+            t += (dist[i] - 1) / mid + 1;
+        }
+        t *= mid;
+        t += dist[n - 1];
+        if (t * 100 <= hr * mid) r = mid;
+        else l = mid + 1;
+    }
+    return l;
 }

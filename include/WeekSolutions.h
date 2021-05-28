@@ -28,6 +28,10 @@ public:
     //=================================== No.241 - 周赛 ===================================
     static int subsetXORSum(vector<int> &nums);     // 5759. 找出所有子集的异或总和再求和
     static int minSwaps(string s);              // 5760. 构成交替字符串需要的最小交换次数
+
+    //=================================== No.242 - 周赛 ===================================
+    static bool checkZeroOnes(string s);        // 1869. 哪种连续子字符串更长
+    static int minSpeedOnTime(vector<int> &dist, double hour);          // 1870. 准时到达的列车最小时速
 };
 
 // No.51 - 双周赛
