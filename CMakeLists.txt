@@ -16,14 +16,9 @@ include_directories(./include/DataStructure)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/src SRC_MAIN)
 
 add_executable(TheRoadToAdvancement
-<<<<<<< HEAD
-                    ${SRC_MAIN}
-                    ./src/InterestingFunctions.hpp src/main.cpp)
-=======
         ${SRC_MAIN}
         ./src/InterestingFunctions.hpp
         ./src/AStar.hpp)
->>>>>>> origin
 
 # 添加需要链接的库文件目录
 # LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/lib)
