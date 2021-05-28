@@ -148,7 +148,6 @@ public:
     static int maxScore(string s);          // 1422. 分割字符串的最大得分
     static bool isPathCrossing(string path);            // 1496. 判断路径是否相交
     static int largestSumAfterKNegations(vector<int> &nums, int k);     // 1005. K 次取反后最大化的数组和
-    static string tictactoe(vector<vector<int>> &moves);                // 1275. 找出井字棋的获胜者
 };
 
 class MeduimSolutions {

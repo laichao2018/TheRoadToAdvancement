@@ -2227,10 +2227,6 @@ int EasySolutions::largestSumAfterKNegations(vector<int> &nums, int k) {
     return sum;
 }
 
-string EasySolutions::tictactoe(vector<vector<int>> &moves) {
-
-}
-
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
