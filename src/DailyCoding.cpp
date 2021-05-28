@@ -3463,6 +3463,20 @@ vector<string> DailyCoding::topKFrequent(vector<string> &words, int k) {
     return res;
 }
 
+int DailyCoding::totalHammingDistance(vector<int> &nums) {
+    // 按位统计（非按数统计）
+    int res = 0;
+    for (int i = 0; i < 30; i++) {
+        int c = 0;
+        for (int &j:nums) {
+            if (j & 1) c++;
+            j >>= 1;
+        }
+        res += c * (nums.size() - c);
+    }
+    return res;
+}
+
 // 703. 数据流中的第 K 大元素
 class KthLargest {
 public:

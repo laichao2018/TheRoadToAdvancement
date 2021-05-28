@@ -1,4 +1,4 @@
-#include "ModuleSolutions.h"
+#include "DailyCoding.h"
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -7,7 +7,8 @@
 using namespace std;
 
 int main() {
-    cout << EasySolutions::maxScore("01001");
+    vector<int> nums{4, 14, 2};
+    cout << DailyCoding::totalHammingDistance(nums);
 
     return 0;
 }

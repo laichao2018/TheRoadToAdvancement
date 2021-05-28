@@ -186,6 +186,7 @@ public:
     static int findMaximumXOR(vector<int> &nums);           // 421. 数组中两个数的最大异或值
     static bool isCousins(TreeNode *root, int x, int y);    // 993. 二叉树的堂兄弟节点
     static vector<string> topKFrequent(vector<string> &words, int k);       // 692. 前K个高频单词
+    static int totalHammingDistance(vector<int> &nums);     // 477. 汉明距离总和
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H
