@@ -2211,6 +2211,26 @@ bool EasySolutions::isPathCrossing(string path) {
     return false;
 }
 
+int EasySolutions::largestSumAfterKNegations(vector<int> &nums, int k) {
+    sort(nums.begin(), nums.end());
+    int sum = 0;
+    int minVal = INT_MAX;
+    for (int i = 0; i < nums.size(); i++) {
+        if (k > 0 && nums[i] < 0) {
+            k--;
+            nums[i] = -nums[i];
+        }
+        sum += nums[i];
+        minVal = min(minVal, nums[i]);
+    }
+    if (k && (k & 1)) sum -= (2 * minVal);
+    return sum;
+}
+
+string EasySolutions::tictactoe(vector<vector<int>> &moves) {
+
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
