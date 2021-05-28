@@ -6,6 +6,7 @@
 #include <queue>
 #include <stack>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -312,4 +313,121 @@ int TreeSolution::countBSTree(int numKeys) {
         }
         return sum;
     }
+}
+
+///// ================================== Balanced Binary Tree Functions ==================================
+
+BalancedTree::~BalancedTree() {
+    releaseBTreeCore(this->root);
+}
+
+void BalancedTree::createBTree(vector<int> &nums) {
+    this->root = nullptr;
+    for (int i:nums) insertBTNode(this->root, i);
+}
+
+void BalancedTree::midorderShowBTree() {
+    midorderShowBTreeCore(this->root);
+}
+
+void BalancedTree::levelShowBTree() {
+    levelShowBTreeCore(this->root);
+}
+
+int BalancedTree::getHeight() {
+    return getHeightCore(this->root);
+}
+
+int BalancedTree::diff(BalancedTree::BTreeNode *root) {
+    if (root == nullptr) return 0;
+    return getHeightCore(root->left) - getHeightCore(root->right);
+}
+
+void BalancedTree::releaseBTreeCore(BalancedTree::BTreeNode *root) {
+    if (root == nullptr) return;
+    releaseBTreeCore(root->left);
+    releaseBTreeCore(root->right);
+    delete root;
+    root = nullptr;
+}
+
+BalancedTree::BTreeNode *BalancedTree::balanceTree(BalancedTree::BTreeNode *root) {
+    int dis = diff(root);
+    if (dis > 1) {
+        if (diff(root->left)) LL_RotateTree(root);
+        else LR_RotateTree(root);
+    } else if (dis < -1) {
+        if (diff(root->right)) RL_RotateTree(root);
+        else RR_RotateTree(root);
+    }else return root;
+}
+
+BalancedTree::BTreeNode *BalancedTree::insertBTNode(BalancedTree::BTreeNode *&root, int val) {
+    if (root == nullptr) {
+        root = new BTreeNode(val);
+        return root;
+    }
+    if (root->val == val) return root;
+    if (root->val > val) {
+        insertBTNode(root->left, val);
+        root = balanceTree(root);
+        return root;
+    } else {
+        insertBTNode(root->right, val);
+        root = balanceTree(root);
+        return root;
+    }
+}
+
+void BalancedTree::levelShowBTreeCore(BalancedTree::BTreeNode *root) {
+    int pos = 0;    // 记录层级
+    queue<BalancedTree::BTreeNode *> qNodes;
+    qNodes.push(root);
+    while (!qNodes.empty()) {
+        cout << ++pos << "-level: ";
+        for (int i = 0; i < qNodes.size(); i++) {
+            BTreeNode *currNode = qNodes.front();
+            qNodes.pop();
+            if (currNode->left != nullptr) qNodes.push(currNode->left);
+            if (currNode->right != nullptr) qNodes.push(currNode->right);
+            cout << currNode->val << ", ";
+        }
+        cout << endl;
+    }
+}
+
+void BalancedTree::midorderShowBTreeCore(const BalancedTree::BTreeNode *root) {
+    if (root == nullptr) return;
+    midorderShowBTreeCore(root->left);
+    cout << root->val << ", ";
+    midorderShowBTreeCore(root->right);
+}
+
+int BalancedTree::getHeightCore(const BalancedTree::BTreeNode *root) {
+    if (root == nullptr) return 0;
+    return max(getHeightCore(root->left), getHeightCore(root->right)) + 1;
+}
+
+BalancedTree::BTreeNode *BalancedTree::LL_RotateTree(BalancedTree::BTreeNode *root) {
+    BTreeNode *tmpNode = root->left;
+    root->left = tmpNode->right;
+    tmpNode->right = root;
+    return tmpNode;
+}
+
+BalancedTree::BTreeNode *BalancedTree::RR_RotateTree(BalancedTree::BTreeNode *root) {
+    BTreeNode *tmpNode = root->right;
+    root->right = tmpNode->left;
+    tmpNode->left = root;
+    return tmpNode;
+}
+
+BalancedTree::BTreeNode *BalancedTree::LR_RotateTree(BalancedTree::BTreeNode *root) {
+    root->left = RR_RotateTree(root->left);
+    return LL_RotateTree(root);
+}
+
+BalancedTree::BTreeNode *BalancedTree::RL_RotateTree(BalancedTree::BTreeNode *root) {
+    root->right = LL_RotateTree(root->right);
+    return RR_RotateTree(root);
 }

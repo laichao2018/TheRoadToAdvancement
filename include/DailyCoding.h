@@ -9,6 +9,7 @@
 #include "./__OSJudge.h"
 #include "../DataStructure/Tree.h"
 #include "../DataStructure//List.h"
+#include "../DataStructure/LeetCodeDefinition.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -140,8 +141,52 @@ public:
     static vector<int> getRow(int rowIndex);                // 119. 杨辉三角 II
     static vector<int> findDisappearedNumbers(vector<int> &nums);           // 448. 找到所有数组中消失的数字
     static vector<vector<int>> matrixReshape(vector<vector<int>> &nums, int r, int c);      // 566. 重塑矩阵
-    static int longestSubarray(vector<int>& nums, int limit);               // 1438. 绝对差不超过限制的最长连续子数组
-    static vector<vector<int>> transpose(vector<vector<int>>& matrix);      // 867. 转置矩阵
+    static int longestSubarray(vector<int> &nums, int limit);               // 1438. 绝对差不超过限制的最长连续子数组
+    static vector<vector<int>> transpose(vector<vector<int>> &matrix);      // 867. 转置矩阵
+    static int evalRPN(vector<string> &tokens);             // 150. 逆波兰表达式求值
+    static void setZeroes(vector<vector<int>> &matrix);     // 73. 矩阵置零
+    static int hammingWeight(uint32_t n);                   // 191. 位1的个数
+    static bool find132pattern(vector<int> &nums);          // 456. 132模式
+    static ListNode *deleteDuplicates(ListNode *head);      // 82. 删除排序链表中的重复元素 II
+    static ListNode *deleteDuplicates01(ListNode *head);    // 83. 删除排序链表中的重复元素
+    static ListNode *rotateRight(ListNode *head, int k);    // *** 61. 旋转链表 ***
+    static uint32_t reverseBits(uint32_t n);                // 190. 颠倒二进制位
+    static bool searchMatrix(vector<vector<int>> &matrix, int target);      // 74. 搜索二维矩阵
+    static vector<vector<int>> subsetsWithDup(vector<int> &nums);           // 90. 子集 II
+    static int clumsy(int N);           // 1006. 笨阶乘
+    static int longestCommonSubsequence(string text1, string text2);        // 1143. 最长公共子序列
+    static void merge(vector<int> &nums1, int m, vector<int> &nums2, int n);// 88. 合并两个有序数组
+    static int removeDuplicates(vector<int> &nums);         // 80. 删除有序数组中的重复项 II
+    static bool search(vector<int> &nums, int target);      // 81. 搜索旋转排序数组 II
+    static int findMin(vector<int> &nums);                  // 153. 寻找旋转排序数组中的最小值
+    static int findMin02(vector<int> &nums);                // 154. 寻找旋转排序数组中的最小值 II
+    static bool isUgly(int n);          // 263. 丑数
+    static int nthUglyNumber(int n);    // 264. 丑数 II
+    static string largestNumber(vector<int> &nums);         // 179. 最大数
+    static int minDiffInBST(TreeNode *root);                // 783. 二叉搜索树节点最小距离
+    static int removeDuplicates01(vector<int> &nums);       // 26. 删除有序数组中的重复项
+    static int removElement(vector<int> &nums, int val);    // 27. 移除元素
+    static int strStr(string haystack, string needle);      // 28. 实现 strStr()
+    static int numDecodings(string s);                      // 91. 解码方法
+    static int combinationSum4(vector<int> &nums, int target);              // 377. 组合总和 Ⅳ
+    static TreeNode *increasingBST(TreeNode *root);         // 897. 递增顺序搜索树
+    static int shipWithinDays(vector<int> &weights, int D); // 1011. 在 D 天内送达包裹的能力
+    static int rangeSumBST(TreeNode *root, int low, int high);              // 938. 二叉搜索树的范围和
+    static int singleNumber(vector<int> &nums);             // 137. 只出现一次的数字 II
+    static int getImportance(vector<Employee *> employees, int id);         // 690. 员工的重要性
+    static int leastBricks(vector<vector<int>> &wall);      // 554. 砖墙
+    static int reverseInt(int x);      // 7. 整数反转
+    static vector<int> decode(vector<int> &encoded, int first);             // 1720. 解码异或后的数组
+    static int xorOperation(int n, int start);              // 1486. 数组异或操作
+    static int minDays(vector<int> &bloomDay, int m, int k);                // 1482. 制作 m 束花所需的最少天数
+    static bool leafSimilar(TreeNode *root1, TreeNode *root2);              // 872. 叶子相似的树
+    static vector<int> decode(vector<int> &encoded);        // 1734. 解码异或后的排列
+    static vector<int> xorQueries(vector<int> &arr, vector<vector<int>> &queries);      // 1310. 子数组异或查询
+    static int numWays(int steps, int arrLen);              // 1269. 停在原地的方案数
+    static int findMaximumXOR(vector<int> &nums);           // 421. 数组中两个数的最大异或值
+    static bool isCousins(TreeNode *root, int x, int y);    // 993. 二叉树的堂兄弟节点
+    static vector<string> topKFrequent(vector<string> &words, int k);       // 692. 前K个高频单词
+    static int totalHammingDistance(vector<int> &nums);     // 477. 汉明距离总和
 };
 
 #endif //THEROADTOADVANCEMENT_DAILYCODING_H

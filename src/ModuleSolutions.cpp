@@ -14,7 +14,9 @@
 #include <cmath>
 #include <map>
 #include <unordered_map>
+#include <unordered_set>
 #include <deque>
+#include <string>
 
 using namespace std;
 
@@ -194,6 +196,32 @@ int countsOfVowel(string s) {
     return res;
 }
 
+double quickMul(double x, long long N) {
+    double ans = 1.0;
+    double x_contribute = x;
+    while (N > 0) {
+        if (N % 2 == 1) {
+            ans *= x_contribute;
+        }
+        x_contribute *= x_contribute;
+        N /= 2;
+    }
+    return ans;
+}
+
+bool cmpFunc(pair<int, int> &m, pair<int, int> &n) {
+    return m.second > n.second;
+}
+
+// 获取两点之间的曼哈顿距离
+int getManhattanDis(int cx, int cy, int dx, int dy) {
+    return abs(cx - dx) + abs(cy - dy);
+}
+
+// 判断给定的字符否是字母（含大小写）
+inline bool isLetter(char c) {
+    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+}
 ///// ================================== CLASS FUNC ==================================
 
 int EasySolutions::cakeNumber(int n) {
@@ -644,25 +672,25 @@ int EasySolutions::sumRootToLeaf(TreeNode *root) {
 }
 
 vector<vector<int>> EasySolutions::floodFill(vector<vector<int>> &image, int sr, int sc, int newColor) {
-    vector<int> dx{0, 0, 1, -1};
-    vector<int> dy{1, -1, 0, 0};
-    int currColor = image[sr][sc];
-    if (currColor == newColor) {
-        return image;
-    }
-    int n = image.size(), m = image[0].size();
-    queue<pair<int, int>> que;
-    que.emplace(sr, sc);
-    image[sr][sc] = newColor;
-    while (!que.empty()) {
-        int x = que.front().first, y = que.front().second;
-        que.pop();
+    vector<vector<bool>> isVisit(image.size(), vector<bool>(image[0].size(), false));
+    vector<int> dx{0, 0, -1, 1};
+    vector<int> dy{-1, 1, 0, 0};
+    int pre_color = image[sr][sc];
+    queue<pair<int, int>> qCoords;
+    qCoords.push(make_pair(sr, sc));
+    while (!qCoords.empty()) {
+        int x = qCoords.front().first;
+        int y = qCoords.front().second;
+        image[x][y] = newColor;
+        isVisit[x][y] = true;
+        qCoords.pop();
         for (int i = 0; i < 4; i++) {
-            int mx = x + dx[i], my = y + dy[i];
-            if (mx >= 0 && mx < n && my >= 0 && my < m && image[mx][my] == currColor) {
-                que.emplace(mx, my);
-                image[mx][my] = newColor;
-            }
+            int move_x = x + dx[i];
+            int move_y = y + dy[i];
+            if (move_x < 0 || move_x > image.size() - 1 || move_y < 0 || move_y > image[0].size() - 1 ||
+                isVisit[move_x][move_y])
+                continue;
+            if (image[move_x][move_y] == pre_color) qCoords.push(make_pair(move_x, move_y));
         }
     }
     return image;
@@ -1869,6 +1897,336 @@ bool EasySolutions::findTarget(TreeNode *root, int k) {
     return false;
 }
 
+string EasySolutions::mergeAlternately(string word1, string word2) {
+    string res;
+    int s01 = 0, s02 = 0;
+    while (s01 < word1.length() || s02 < word2.length()) {
+        if (s01 < word1.length() && s02 < word2.length()) {
+            res += word1[s01++];
+            res += word2[s02++];
+        } else if (s01 < word1.length()) {
+            res += word1.substr(s01);
+            break;
+        } else {
+            res += word2.substr(s02);
+            break;
+        }
+    }
+    return res;
+}
+
+vector<int> EasySolutions::intersection(vector<int> &nums1, vector<int> &nums2) {
+    if (nums1.empty() || nums2.empty()) return {};
+    unordered_map<int, int> numCounts;
+    for (int i:nums1) numCounts[i]++;
+    vector<int> res;
+    for (int i:nums2) if (numCounts[i]) res.push_back(i);
+    sort(res.begin(), res.end());
+    res.erase(unique(res.begin(), res.end()), res.end());
+    return res;
+}
+
+bool EasySolutions::isHappy(int n) {
+    unordered_set<int> flag;
+    while (n != 1) {
+        int sum = 0;
+        flag.insert(n);
+        while (n) {
+            sum += pow(n % 10, 2);
+            n /= 10;
+        }
+        n = sum;
+        if (flag.count(sum)) return false;
+    }
+    return true;
+}
+
+vector<int> EasySolutions::twoSum(vector<int> &nums, int target) {
+    unordered_map<int, int> numsWithIndex;
+    for (int i = 0; i < nums.size(); i++) {
+        if (numsWithIndex.count(target - nums[i])) {
+            return {numsWithIndex[target - nums[i]], i};
+        } else numsWithIndex[nums[i]] = i;
+    }
+    return {};
+}
+
+bool EasySolutions::isIsomorphic(string s, string t) {
+    if (s.empty() && t.empty()) return true;
+    int sCharIndex[256] = {0};
+    int tCharIndex[256] = {0};
+    for (int i = 0; i < s.length(); i++) {
+        if (sCharIndex[s[i]] != tCharIndex[t[i]]) return false;
+        sCharIndex[s[i]] = i + 1;
+        tCharIndex[t[i]] = i + 1;
+    }
+    return true;
+}
+
+vector<string> EasySolutions::findRestaurant(vector<string> &list1, vector<string> &list2) {
+    vector<string> res;
+    unordered_map<string, int> sName;
+    int minValue = 2000;
+    for (int i = 0; i < list1.size(); i++) sName[list1[i]] = i;
+    for (int i = 0; i < list2.size(); i++) {
+        if (sName.count(list2[i])) {
+            if (sName[list2[i]] + i < minValue) {   // 更小的索引
+                res.clear();
+                res.push_back(list2[i]);
+                minValue = sName[list2[i]] + i;
+            } else if (sName[list2[i]] + i == minValue) res.push_back(list2[i]);    // 存在不止一个解
+        }
+    }
+    return res;
+}
+
+int EasySolutions::firstUniqChar01(string s) {
+    unordered_map<char, int> charCounts;
+    for (char c:s) charCounts[c]++;
+    for (int i = 0; i < s.length(); i++) {
+        if (charCounts[s[i]] == 1) return i;
+    }
+    return -1;
+}
+
+int EasySolutions::nearestValidPoint(int x, int y, vector<vector<int>> &points) {
+    int minManhattan = INT16_MAX;
+    int minIndex = INT16_MAX;
+    int res = -1;
+    for (int i = 0; i < points.size(); i++) {
+        int currX = points[i][0];
+        int currY = points[i][1];
+        if (currX == x || currY == y) {
+            int currManhattanDis = getManhattanDis(x, y, currX, currY);
+            if (minManhattan > currManhattanDis) {
+                minManhattan = currManhattanDis;
+                minIndex = currX + currY;
+                res = i;
+            } else if (minManhattan == currManhattanDis) {
+                if (currX + currY < minIndex) {
+                    minIndex = currX + currY;
+                    res = i;
+                }
+            } else;    // do nothing
+        }
+    }
+    return res;
+}
+
+bool EasySolutions::canConstruct(string ransomNote, string magazine) {
+    vector<int> charCounts(26, 0);
+    for (char &c:magazine) charCounts[c - 'a']++;
+    for (char &c:ransomNote) {
+        charCounts[c - 'a']--;
+        if (charCounts[c - 'a'] < 0) return false;
+    }
+    return true;
+}
+
+int EasySolutions::sumBase(int n, int k) {
+    // 短除法，同样适用于k大于10的情况
+    int res = 0;
+    while (n) res += n % k, n /= k;
+    return res;
+}
+
+string EasySolutions::reverseStr(string s, int k) {
+    for (int i = 0; i < s.length(); i += (2 * k)) {
+        if (i + k < s.size()) {
+            reverse(s.begin() + i, s.begin() + i + k);
+            continue;
+        }
+        reverse(s.begin() + i, s.end());
+    }
+    return s;
+}
+
+vector<int> EasySolutions::mostVisited(int n, vector<int> &rounds) {
+    // ================ 模拟。。。 ================
+    vector<int> res;
+    int start = *rounds.begin(), end = rounds.back();
+    if (start <= end)
+        for (int i = start; i <= end; i++) res.push_back(i);
+    else {
+        for (int i = 1; i <= end; i++) res.push_back(i);
+        for (int i = start; i <= n; i++) res.push_back(i);
+    }
+    return res;
+}
+
+string EasySolutions::reverseOnlyLetters(string s) {
+    int start = 0, end = s.size() - 1;
+    while (start < end) {
+        while (start < end && !isLetter(s[start])) ++start;
+        while (start < end && !isLetter(s[end])) --end;
+        swap(s[start], s[end]);
+        ++start, --end;
+    }
+    return s;
+}
+
+int EasySolutions::search(vector<int> &nums, int target) {
+    // ***** 二分查找的模板 *****
+    int left = 0, right = nums.size() - 1;
+    int mid = 0;
+    while (left <= right) {
+        mid = left + (right - left) / 2;
+        if (nums[mid] == target) return mid;
+        if (nums[mid] > target) right = mid - 1;
+        else left = mid + 1;
+    }
+    return -1;
+}
+
+string EasySolutions::tree2str(TreeNode *root) {
+    if (!root) return "";
+    if (!root->left && !root->right) return to_string(root->val) + "";
+    if (!root->right) return to_string(root->val) + "(" + tree2str(root->left) + ")";
+    return to_string(root->val) + "(" + tree2str(root->left) + ")(" + tree2str(root->right) + ")";
+}
+
+vector<string> EasySolutions::findRelativeRanks(vector<int> &score) {
+    vector<pair<int, int>> num_with_pos;
+    for (int i = 0; i < score.size(); i++) num_with_pos.push_back(make_pair(score[i], i));
+    sort(num_with_pos.begin(), num_with_pos.end(),
+         [](pair<int, int> &a, pair<int, int> &b) { return a.first < b.first; });
+    vector<string> res(score.size());
+    for (int i = 0; i < num_with_pos.size(); i++) {
+        if (i == 0) res[num_with_pos[i].second] = "Gold Medal";
+        else if (i == 1) res[num_with_pos[i].second] = "Silver Medal";
+        else if (i == 2) res[num_with_pos[i].second] = "Bronze Medal";
+        else res[num_with_pos[i].second] = to_string(i + 1);
+    }
+    return res;
+}
+
+int EasySolutions::dayOfYear(string date) {
+    int acumu[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
+    int year = 0;
+    for (int i = 0; i < 4; i++) year = year * 10 + (date[i] - '0');
+    // 判断是否为闰年
+    bool flag = (year % 4 == 0) ? ((year % 100 == 0) ? (year % 400 == 0) : true) : false;
+    int month = (date[5] - '0') * 10 + (date[6] - '0');
+    int day = (date[8] - '0') * 10 + (date[9] - '0');
+    if (month < 3) return acumu[month - 1] + day;
+    return acumu[month - 1] + day + flag;
+}
+
+bool EasySolutions::isAlienSorted(vector<string> &words, string order) {
+    unordered_map<char, int> char_with_index;
+    for (int i = 0; i < order.length(); i++) char_with_index[order[i]] = i;
+    for (string &s:words) {
+        for (int i = 0; i < s.length(); i++) {
+            int sub = char_with_index[s[i]];
+            s[i] = (char) ('a' + sub);
+        }
+    }
+    for (int i = 0; i < words.size() - 1; i++) {
+        string curr_str = words[i];
+        string next_str = words[i + 1];
+        if (curr_str > next_str) return false;
+    }
+    return true;
+}
+
+bool EasySolutions::isFlipedString(string s1, string s2) {
+    return (s1.length() == s2.length()) && (s1 + s1).find(s2) != -1;
+}
+
+bool EasySolutions::canPermutePalindrome(string s) {
+    unordered_map<char, int> char_with_counts;
+    for (char c:s) char_with_counts[c]++;
+    int flag = 0;
+    for (auto &init:char_with_counts)
+        if (init.second % 2 != 0) flag++;
+    return flag < 2;
+}
+
+int EasySolutions::minMoves(vector<int> &nums) {
+    if (nums.size() < 2) return 0;
+    int min_num = *min_element(nums.begin(), nums.end());
+    int res = 0;
+    for (int &i:nums) {
+        if (i != min_num) res += (i - min_num);
+    }
+    return res;
+}
+
+int EasySolutions::findString(vector<string> &words, string s) {
+    int left = 0, right = words.size() - 1;
+    int mid = 0;
+    while (left <= right) {
+        mid = left + (right - left) / 2;
+        if (words[mid] == "") {
+            if (words[right] == s) return right;
+            right -= 1;
+        } else if (words[mid] == s) return mid;
+        else if (words[mid] <= s) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+
+vector<int> EasySolutions::constructRectangle(int area) {
+    int max_len = sqrt(area);
+    if (max_len * max_len == area) return {max_len, max_len};
+    vector<int> res(2);
+    for (int len = max_len; len > 1; len--) {
+        if (area % len == 0) {
+            int wid = area / len;
+            if (wid > len) {
+                res[0] = wid, res[1] = len;
+            } else res[0] = len, res[1] = wid;
+            return res;
+        }
+    }
+    return {1, area};
+}
+
+int EasySolutions::maxScore(string s) {
+    int res = 0;
+    for (int i = 1; i < s.length(); i++) {
+        int curr = count(s.begin(), s.begin() + i, '0') + count(s.begin() + i, s.end(), '1');
+        res = max(res, curr);
+    }
+    return res;
+}
+
+bool EasySolutions::isPathCrossing(string path) {
+    unordered_set<int> hashData;
+    const int hash = 10000;
+    // 记得先把原点加上
+    hashData.insert(0);
+    int x = 0, y = 0;
+    for (int i = 0; i < path.length(); i++) {
+        if (path[i] == 'N') y--;
+        else if (path[i] == 'S') y++;
+        else if (path[i] == 'E') x++;
+        else x--;
+
+        int hash_value = x * hash + y;
+        if (hashData.count(hash_value)) return true;
+        hashData.insert(hash_value);
+    }
+    return false;
+}
+
+int EasySolutions::largestSumAfterKNegations(vector<int> &nums, int k) {
+    sort(nums.begin(), nums.end());
+    int sum = 0;
+    int minVal = INT_MAX;
+    for (int i = 0; i < nums.size(); i++) {
+        if (k > 0 && nums[i] < 0) {
+            k--;
+            nums[i] = -nums[i];
+        }
+        sum += nums[i];
+        minVal = min(minVal, nums[i]);
+    }
+    if (k && (k & 1)) sum -= (2 * minVal);
+    return sum;
+}
+
 int MeduimSolutions::minOperations(int n) {
     vector<int> allNumber(n, 0);
     for (int i = 0; i < allNumber.size(); i++) {
@@ -2139,6 +2497,42 @@ int MeduimSolutions::maximumUniqueSubarray(vector<int> &nums) {
     }
     return res;
 }
+
+double MeduimSolutions::myPow(double x, int n) {
+    long long N = n;
+    return N >= 0 ? quickMul(x, N) : 1.0 / quickMul(x, -N);
+}
+
+int MeduimSolutions::findKthLargest(vector<int> &nums, int k) {
+    if (nums.empty()) return -1;
+    priority_queue<int> maxHeap;
+    for (int i:nums) maxHeap.push(i);
+    while (--k) maxHeap.pop();
+    return maxHeap.top();
+}
+
+//vector<int> MeduimSolutions::topKFrequent(vector<int> &nums, int k) {
+//    unordered_map<int, int> occurrences;
+//    for (int &i:nums) occurrences[i]++;
+//    // pair 的第一个元素代表数组的值，第二个元素代表了该值出现的次数
+//    priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(&cmpFunc)> heap(cmpFunc);
+//    for (auto&[num, count]:occurrences) {
+//        if (heap.size() == k) {
+//            if (heap.top().second < count) {
+//                heap.pop();
+//                heap.emplace(num, count);
+//            }
+//        } else {
+//            heap.emplace(num, count);
+//        }
+//    }
+//    vector<int> res;
+//    while (!heap.empty()) {
+//        res.push_back(heap.top().first);
+//        heap.pop();
+//    }
+//    return res;
+//}
 
 // 706. 设计哈希映射
 struct _Node_Hash_ {

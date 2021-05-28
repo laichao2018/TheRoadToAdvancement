@@ -36,5 +36,47 @@ public:
     static vector<int> levelTraversal(TreeNode *root);          // 层次遍历（非递归）
 };
 
+// 平衡二叉树
+class BalancedTree {
+private:
+    typedef TreeNode BTreeNode;     // 结点定义别名
+public:
+    BalancedTree() = default;
+
+    ~BalancedTree();
+
+    void createBTree(vector<int> &nums);        // 创建二叉排序树,通过*&来改变指针的值
+
+    void midorderShowBTree();       // 中序遍历
+
+    void levelShowBTree();          // 层次遍历
+
+    int getHeight();                // 获取高度
+
+private:
+    int diff(BTreeNode *root);      // 计算平衡因子
+
+    void releaseBTreeCore(BTreeNode *root);
+
+    BTreeNode *balanceTree(BTreeNode *root);    // 平衡二叉树操作
+
+    BTreeNode *insertBTNode(BTreeNode *&root, int val);     // 插入结点
+
+    void levelShowBTreeCore(BTreeNode *root);   // 层次遍历
+
+    void midorderShowBTreeCore(const BTreeNode *root);      // 中序遍历（有序数组）
+
+    int getHeightCore(const BTreeNode *root);   // 获取树高度（递归）
+
+    BTreeNode *LL_RotateTree(BTreeNode *root);  // 顺时针旋转
+
+    BTreeNode *RR_RotateTree(BTreeNode *root);  // 逆时针旋转
+
+    BTreeNode *LR_RotateTree(BTreeNode *root);  // 先顺后逆
+
+    BTreeNode *RL_RotateTree(BTreeNode *root);  // 先逆后顺
+
+    BTreeNode *root;
+};
 
 #endif //THEROADTOADVANCEMENT_TREESOLUTIONS_H

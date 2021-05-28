@@ -122,6 +122,32 @@ public:
     static bool halvesAreAlike(string s);               // 5637. 判断字符串的两半是否相似
     static bool kLengthApart(vector<int> &nums, int k);                 // 1437. 是否所有 1 都至少相隔 k 个元素
     static bool findTarget(TreeNode *root, int k);      // 653. 两数之和 IV - 输入 BST
+    static string mergeAlternately(string word1, string word2);         // 1768. 交替合并字符串
+    static vector<int> intersection(vector<int> &nums1, vector<int> &nums2);                    // 349. 两个数组的交集
+    static bool isHappy(int n);                         // 202. 快乐数
+    static vector<int> twoSum(vector<int> &nums, int target);           // 1. 两数之和
+    static bool isIsomorphic(string s, string t);       // 205. 同构字符串
+    static vector<string> findRestaurant(vector<string> &list1, vector<string> &list2);         // 599. 两个列表的最小索引总和
+    static int firstUniqChar01(string s);               // 387. 字符串中的第一个唯一字符
+    static int nearestValidPoint(int x, int y, vector<vector<int>> &points);    // 1779. 找到最近的有相同 X 或 Y 坐标的点
+    static bool canConstruct(string ransomNote, string magazine);       // 383. 赎金信
+    static int sumBase(int n, int k);                   // 1837. K 进制表示下的各位数字总和
+    static string reverseStr(string s, int k);          // 541. 反转字符串 II
+    static vector<int> mostVisited(int n, vector<int> &rounds);         // 1560. 圆形赛道上经过次数最多的扇区
+    static string reverseOnlyLetters(string s);         // 917. 仅仅反转字母
+    static int search(vector<int> &nums, int target);   // 704. 二分查找(模板)
+    static string tree2str(TreeNode *root);             // 606. 根据二叉树创建字符串
+    static vector<string> findRelativeRanks(vector<int> &score);        // 506. 相对名次
+    static int dayOfYear(string date);                  // 1154. 一年中的第几天
+    static bool isAlienSorted(vector<string> &words, string order);     // 953. 验证外星语词典
+    static bool isFlipedString(string s1, string s2);   // 面试题 01.09. 字符串轮转
+    static bool canPermutePalindrome(string s);         // 面试题 01.04. 回文排列
+    static int minMoves(vector<int> &nums);             // 453. 最小操作次数使数组元素相等
+    static int findString(vector<string> &words, string s);             // 面试题 10.05. 稀疏数组搜索
+    static vector<int> constructRectangle(int area);    // 492. 构造矩形
+    static int maxScore(string s);          // 1422. 分割字符串的最大得分
+    static bool isPathCrossing(string path);            // 1496. 判断路径是否相交
+    static int largestSumAfterKNegations(vector<int> &nums, int k);     // 1005. K 次取反后最大化的数组和
 };
 
 class MeduimSolutions {
@@ -144,6 +170,9 @@ public:
     static bool isValidSudoku(vector<vector<char>> &board);         // 36. 有效的数独
     static bool isValidBST(TreeNode *root);             // 98. 验证二叉搜索
     static int maximumUniqueSubarray(vector<int> &nums);            // 1695. 删除子数组的最大得分
+    static double myPow(double x, int n);               // 50. Pow(x, n) ****
+    static int findKthLargest(vector<int> &nums, int k);            // 215. 数组中的第K个最大元素
+//    static vector<int> topKFrequent(vector<int> &nums, int k);      // 347. 前 K 个高频元素
 };
 
 #endif //THEROADTOADVANCEMENT_MODULESOLUTIONS_H
